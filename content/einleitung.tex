@@ -34,20 +34,33 @@ Sie werden geordnet nach dem Key abgelegt und koennen ueber Key Ranges abgefragt
 Views werden als Ersatz für die in sql ueblichen index und aggregationen verwendet.
 Dabei stellt eine  reine map operation einn index dar, und map+reduce eine aggragation
 
-ZUm Beispiel
+\newpage
+Zum Beispiel
 \lstsetjavascript
-
 \begin{lstlisting}
 {
-    _id: "user1",
-    name: "bob",
-    roles: ["admin", "developer"],
+    "_id": "user1",
+    "type": "user",
+    "name": "bob",
+    "roles": ["admin", "developer"],
 }
 
 {
-    _id: "user1",
-    name: "alice",
-    roles: ["admin"],
+    "_id": "user1",
+    "type": "user",
+    "name": "alice",
+    "roles": ["admin"],
+}
+\end{lstlisting}
+
+
+Stellen 1 einfache Dokumene dar.
+
+will man basierend auf dem Namen, suchen, so benötigt man eine Map View mit folgender Map Funktion
+\begin{lstlisting}
+function (doc) {
+    if (doc.type == "user")
+        emit(doc.name, null);
 }
 \end{lstlisting}
 
@@ -57,8 +70,28 @@ ZUm Beispiel
 
 \subsection{Überblick}
 
+Kontinuierliche Integration/Verteilung bezeichent alle Prozesse,
+welche dazu dienen automatisch Unittest, Integrations, und Akzeptanz tests Auszufuehren
+
+
 \subsection{existierende Systeme}
 
 \subsubsection{buildbot}
 
+%XXX referenzen
+BuildBot positioniert sich als eine Art Meta-Build-Server.
+es biete keine normale Oberfläche, sondern wird mittels
+Komposition von Metadaten und Komponenten konfiguriert.
+
+Die Konfiguration des Servers stellt dabei ein python script,
+welches die Operationen ausführt, welche zur Zusammenstellung des gewünschten Servers notwendig sind.
+
+Es ist möglich Builds jobs mit minimalen parametern in form von strings zu uebergeben
+
 \subsubsection{jenkins/hudson}
+
+%XXX referenzen
+Jenkins und Hudson stellen ein Benutzerfreundliches,
+jedoch limitiertes System zum einfachen Anlegen von Build-Jobs.
+
+Parametrisierung ist nicht möglich.
