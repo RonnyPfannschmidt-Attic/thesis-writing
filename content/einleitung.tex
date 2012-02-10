@@ -1,5 +1,64 @@
-\section{Thematische Einleitung}
+\chapter{Thematische Einleitung}
 
 \section{NoSQL}
 
+NoSQL (auch Not only Sql) bezeichnet eine breite Klasse
+von Datenbank Managementsystmen, welche sich im wesentlichen
+vom traditionellen relationalen Model dadurch unterscheiden,
+dass ihnen weder SQL als Abfragesprache, noch Joins zur Verfügung stehen.
 
+Dabei h
+
+\section{CouchDB}
+
+Couchdb gehört zur den schemalosen Dokumentorientierten Datenbanken,
+es legt Faten in Form von struktuerierten Dokumenten ab.
+
+\subsection{Grundlgende Eigenschaften}
+
+\begin{itemize}
+\item integriertes map reduce
+\item muti version currency controll
+\item einfache Replikation/Kontinuierliche Replikation
+
+
+\end{itemize}
+
+
+\subsection{Views}
+
+Views in Couchdb sind die Resultate des Integriertem MapReduce.
+Sie werden geordnet nach dem Key abgelegt und koennen ueber Key Ranges abgefragt werden.
+
+
+Views werden als Ersatz für die in sql ueblichen index und aggregationen verwendet.
+Dabei stellt eine  reine map operation einn index dar, und map+reduce eine aggragation
+
+ZUm Beispiel
+\lstsetjavascript
+
+\begin{lstlisting}
+{
+    _id: "user1",
+    name: "bob",
+    roles: ["admin", "developer"],
+}
+
+{
+    _id: "user1",
+    name: "alice",
+    roles: ["admin"],
+}
+\end{lstlisting}
+
+
+
+\section{Kontinuierliche Integration/Verteilung}
+
+\subsection{Überblick}
+
+\subsection{existierende Systeme}
+
+\subsubsection{buildbot}
+
+\subsubsection{jenkins/hudson}
