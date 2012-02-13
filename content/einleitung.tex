@@ -28,7 +28,7 @@ es legt Faten in Form von struktuerierten Dokumenten ab.
 \subsection{Views}
 
 Views in Couchdb sind die Resultate des Integriertem MapReduce.
-Sie werden geordnet nach dem Key abgelegt und koennen ueber Key Ranges abgefragt werden.
+Sie werden geordnet nach dem Key abgelegt und koennen über Key Ranges abgefragt werden.
 
 
 Views werden als Ersatz für die in sql ueblichen index und aggregationen verwendet.
@@ -46,7 +46,7 @@ Zum Beispiel
 }
 
 {
-    "_id": "user1",
+    "_id": "user2",
     "type": "user",
     "name": "alice",
     "roles": ["admin"],
@@ -62,6 +62,15 @@ function (doc) {
     if (doc.type == "user")
         emit(doc.name, null);
 }
+\end{lstlisting}
+
+Im View befinden sich dann folgende Daten:
+
+\begin{lstlisting}
+{"total_rows":2,"offset":0,"rows":[
+    {"id":"user2","key":"alice","value":null},
+    {"id":"user1","key":"bob","value":null}
+]}
 \end{lstlisting}
 
 
