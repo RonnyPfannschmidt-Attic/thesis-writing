@@ -25,9 +25,18 @@ es legt Faten in Form von struktuerierten Dokumenten ab.
 \end{itemize}
 
 
-\subsection{Views}
+\subsection{Views als Werkzeug für Indizierung und Aggregation}
 
-Views in Couchdb sind die Resultate des Integriertem MapReduce.
+Views in Couchdb sind die Werkzeuge,
+welche das Pendant zu Indexen und Aggregationen
+aus traditionellen Datenbanksystemen stellen.
+
+%XXX satzbau
+Im Gegensatz zu Indexen in traditionellen Datenbanken, werden sie auf alle Dokumente,
+nicht nur die Dokumente eines Speziellen Types angewendet
+
+
+Resultate des Integriertem MapReduce.
 Sie werden geordnet nach dem Key abgelegt und koennen über Key Ranges abgefragt werden.
 
 
@@ -104,3 +113,5 @@ Jenkins und Hudson stellen ein Benutzerfreundliches,
 jedoch limitiertes System zum einfachen Anlegen von Build-Jobs.
 
 Parametrisierung ist nicht möglich.
+
+\subsection{Vor- und Nachteile der existierenden Systeme}
