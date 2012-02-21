@@ -1,7 +1,3 @@
-quickpdf:
-	pdflatex document
-	pdflatex document
-
 document:
 	pdflatex document
 	bibtex document
