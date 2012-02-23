@@ -19,6 +19,37 @@ es legt Daten in Form von strukturierten Dokumenten ab.
 
 \subsection{Grundlgende Eigenschaften}
 
+
+\begin{itemize}
+\item Geschrieben in: Erlang
+\item Hauptargumente: Lonsistenz, einfache Verwendung
+\item Lizenz: Apache
+\item Protocol: HTTP/REST
+\item Bi-directionale (!) replication,
+    continuierlich or ad-hoc,
+    with Konflikt Erkennung,
+    was bedeutet, master-master replication. (!)
+
+\item MVCC - schreib operationen blockieren leseoperationen nicht
+\item alte Dokumentrevisionen verfuegbar
+\item Crash-only (reliable) design
+\item benötigt regelmässige Kompaktion/Optimierung
+\item Views: eingebautes map/reduce
+\item Formatierende Vews: lists \& shows
+\item Server-seitige Document validation möglich
+\item Authentication possible
+\item Real-time updates via \_changes (!)
+\item Attachment handling
+\item thus, CouchApps (standalone js apps)
+\item jQuery library included 
+\end{itemize}
+~ \cite{web:db-compare}
+
+Best used: For accumulating, occasionally changing data, on which pre-defined queries are to be run. Places where versioning is important.
+
+For example: CRM, CMS systems. Master-master replication is an especially interesting feature, allowing easy multi-site deployments. 
+
+
 \begin{itemize}
 \item integriertes map reduce
 \item muti version currency controll
