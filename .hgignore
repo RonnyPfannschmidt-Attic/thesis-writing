@@ -6,6 +6,7 @@ syntax: glob
 .texlipse
 tmp/
 
+document.pyg
 *.aux
 *.bbl
 *.blg
