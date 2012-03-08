@@ -1,7 +1,7 @@
-\chapter{Grundlagen}
+\chapter{Grundlagen (15\%)}
+
 
 \section{NoSQL}
-
 
 NoSQL (auch Not only Sql) bezeichnet eine breite Klasse
 von Datenbank Managementsystmen, welche sich im wesentlichen
@@ -11,11 +11,14 @@ dass ihnen weder SQL als Abfragesprache, noch Joins zur Verfügung stehen.
 
 
 Weiterhin bemerkenswert ist der Umgang mit Konsistentz und dem CAP Theorem.
-Eventuelle Konsistenz, im speziellen das prinzip BASE (Basically Available, Soft state, Eventual consistency) genannt.
+Eventuelle Konsistenz, im speziellen das Prinzip BASE (Basically Available, Soft state, Eventual consistency) genannt.
 
 ~ \cite{wikipedia:base}
 
-Anstelle von Atm
+Anstelle von Atoaren operationen über das gesammte system,
+beschränkt sich die Grösse von atomaren Operationen dabei auf eines 
+oder wenige Systeme, gesammtkonsistenz wurd jedoch erst später durch Replikation auf weitere systeme hergestellt.
+
 
 
 
@@ -85,8 +88,11 @@ Views sind ein ideales Werkzeug um vordefinierte Abfragen auszuführen.
 Master-Master Replikation ermöglicht einfaches Deployment auf mehreren Servern.
 
 
-
 \subsection{Buchhalter verwenden keinen Radierer}
+
+Diese einfache Feststellung soll den Einstieg in das Verständniss von Transaktionen auf Dokumentebene geben.
+In der Buchhaltung ist es so, das jede Aktion, die in Auftrag gegeben wird, auch durchgeführt wird.
+Es gibt gibt kein Zurück wie z.b. den Fehlschlag einer Sql Transkation nach zu langer wartezeit
 
 \subsection{Grundlagen Views}
 \subsection{Indizierung mit Views}

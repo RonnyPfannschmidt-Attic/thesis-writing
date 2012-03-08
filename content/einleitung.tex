@@ -1,21 +1,30 @@
-\chapter{Einleitung}
+\chapter{Einleitung (5\%) }
 
 \section{Motivation}
 
 In den letzten Jahren gewannen die NoSQL Datenbanken immer mehr an Bedeutung.
-Die Abkehr von SQL, ACID und Relationen, sowie die Verschiebung von Konsistenz zu eventueller Konsistentz, um Partitionstoleranz zu maximieren,
+Die Abkehr von SQL, ACID und Relationen, sowie die Verschiebung von Konsistenz zu eventueller Konsistenz, um Partitions-Toleranz zu maximieren,
 benötigt eine Grundlegend andere Herangehensweise im Aufbau von Applikationen und Diensten.
 
 Diese Differenzen sind bisher wenig Dokumentiert.
 
 \section{Problemstellung}
 
-Um ein Besseres Verständniss für die Unterschiede bei Modellierung zu gewinnen,
-sollen diverse Teile eines gesammtsystems einzeln Analytisch und/oder praktisch gegenüber gestellt werden.
-Anschliesend sollen diese Anhand noch zu definierender Kriterien Verglichen werden
+Um ein besseres Verständnis für die Unterschiede bei Modellierung zu gewinnen,
+sollen diverse Teile eines Gesamtsystems für die Kontinuierliche Integration einzeln Analytisch und/oder praktisch gegenüber gestellt werden.
+Anschliessend sollen diese Anhand der in der Zielsetzung definierenden Kriterien Verglichen werden.
+
+Weiterhin soll am Beispiel Aufgezeigt werden, wie einfach bestimmte Werkzeuge,
+die in aktuellen Systemen zur Kontinuierlichen Integration nicht oder nur schwer umgesetzt werden können,
+mittels der Werkzeuge, welche in der für die Praxis-Beispiele Gewählten NoSQL Datenbank vorhanden sind,
+umgesetzt werden können.
+
 
 
 \section{Zielsetzung}
+
+
+
 
 \begin{verbatim}
 - bewerungskriterien fuer vergleich der exemplarischen informationen
@@ -41,6 +50,40 @@ Anschliesend sollen diese Anhand noch zu definierender Kriterien Verglichen werd
 \section{Abgrenzung}
 
 
-;;;
+Die variantenreiche Landschaft der NoSQL Datenbanken ist reich an unterschiedlichen Lösungen,
+welche selbst Untereinander gravierende Unterschiede in Speicherung, Abfrage und Aggregation von Daten aufweisen.
+
+Daher ist eine Gesamt-Bearbeitung weit Über dem Rahmen einer Diplomarbeit.
+Stattdessen sollen die Differenzen am Beispiel einer noch Auszuwählenden Datenbank
+Theoretisch und Beispielhaft dargestellt werden, um eine Bewertung zu ermöglichen.
+
+
 \section{Aufbau der Arbeit}
-;;
+
+
+
+
+\begin{verbatim}`
+- grundlagen
+  - datenbanken
+  - sql
+  - nosql
+  - die ausagewaehlte datenbank couchdb
+    - views
+    - replikation
+
+- theorie
+  - vergleiche grundlegender herangehensweisen
+  - aufbau eines einfachen ci systems
+
+- praxisablauf je beispiel
+    - semantik relational (evtl beispiel snippets)
+    - semantik nosql
+    - prototyp
+    - fazit
+
+- gesammtfazit
+    - zusammenfassung einzelfazite
+    - selbstkritik
+- ideen fuer weiterfuehrungen/fortsetzungen
+\end{verbatim}
