@@ -6,46 +6,61 @@ In den letzten Jahren gewannen die NoSQL Datenbanken immer mehr an Bedeutung.
 Die Abkehr von SQL, ACID und Relationen, sowie die Verschiebung von Konsistenz zu eventueller Konsistenz, um Partitions-Toleranz zu maximieren,
 benötigt eine Grundlegend andere Herangehensweise im Aufbau von Applikationen und Diensten.
 
-Diese Differenzen sind bisher wenig Dokumentiert.
+Diese Unterschiede fanden bisher kaum Beachtung.
+
+Ein weiteres, davon unabhängiges Problem,
+ist der aktuelle Zustand der Werkzeuge für Kontinuierliche Integration.
+
+Viele existierende Werkzeuge sind entweder einfach gestrickt,
+oder nur schwer einzurichten.
+
+Weiterhin sind die Systeme in der Regel nicht oder nur Umständlich zu erweitern.
+
+Es bestehtl also ein Bedarf an Werkzeugen welche sowohl einfach einzurichten,
+als auch einfach zu erweitern sind.
+
+Die Möglichkeiten von NoSQL Datenbanken erscheinen geeignet, diese beiden Ziele zu unterstützen.
+Schemalosigkeit, eingebaute Funktionen für verteiltes Arbeiten,
+sowie die Grundlegend anderen Herangehensweisen erscheinen
+als vielversprechende Grundbausteine, deren Nutzen es noch Darzustellen gilt.
+
+
+
 
 \section{Problemstellung}
 
 Um ein besseres Verständnis für die Unterschiede bei Modellierung zu gewinnen,
 sollen diverse Teile eines Gesamtsystems für die Kontinuierliche Integration einzeln Analytisch und/oder praktisch gegenüber gestellt werden.
-Anschliessend sollen diese Anhand der in der Zielsetzung definierenden Kriterien Verglichen werden.
+Anschliessend sollen diese Anhand der in der Zielsetzung definierenden Kriterien verglichen werden.
 
-Weiterhin soll am Beispiel Aufgezeigt werden, wie einfach bestimmte Werkzeuge,
-die in aktuellen Systemen zur Kontinuierlichen Integration nicht oder nur schwer umgesetzt werden können,
-mittels der Werkzeuge, welche in der für die Praxis-Beispiele Gewählten NoSQL Datenbank vorhanden sind,
+Weiterhin soll am Beispiel aufgezeigt werden, wie einfach bestimmte Werkzeuge,
+die in aktuellen Systemen zur kontinuierlichen Integration nicht oder nur schwer umgesetzt werden können,
+mittels der Werkzeuge, welche in der für die Praxis-Beispiele gewählten NoSQL Datenbank vorhanden sind,
 umgesetzt werden können.
 
+Abschliessend soll die Implementations-Komplexität von Standardaufgaben verglichen werden.
 
 
 \section{Zielsetzung}
 
+Die vergleichende Bewertung von grundverschiedenen Herangehensweisen stellt vor ein Grundlegendes Problem.
+
+F\"ur den Vergleich bzw. die Gegen\"uberstellung von Programm-Designs gibt es kein Gundlegendes Formales Mittel,
+um Objektv zu Vergleichen.
+
+Der Inneliegende Semantische Kontext macht eine interpretation der Unterschiede
+in den formalen Beschreibungen der einzelnen Designs notwendig.
+Weshalb der Vergleich eine Grundlegende subjektive Komponente enth\"alt.
+
+Diese subjektive Komponente ist im Rahmen dieser Arbeit jedoch W\"unschenswert,
+da eine Perspektve n\"aher an das Thema heranf\"uhrt.
+Letztendlich ist Programmdesign und Entwicklung trotz aller Objektivit\"at
+doch abh\"angig von den Erfahrungen und Einsichten des menschlichen Entwicklers.
+Somit bietet die Eigene Perspektive dem Leser einen Ansatzpunkt f\"ur Verst\"andniss und Kritik.
 
 
 
-\begin{verbatim}
-- bewerungskriterien fuer vergleich der exemplarischen informationen
 
-
-- vergleichende modellierung
-  - projekte modelieren
-  - integrationen modellieren
-  - states von integrationen
-  - jobs + ihre states
-  - job fencing
-  - verteilungsmodelle
-
-- modellierung neue tools use-cases
-  - send workdir diff/tarball
-  - auswertung zeitserien
-
-- kombination der exemplarischen implementationen
-
-
-\end{verbatim}
 
 \section{Abgrenzung}
 
@@ -53,37 +68,54 @@ umgesetzt werden können.
 Die variantenreiche Landschaft der NoSQL Datenbanken ist reich an unterschiedlichen Lösungen,
 welche selbst Untereinander gravierende Unterschiede in Speicherung, Abfrage und Aggregation von Daten aufweisen.
 
-Daher ist eine Gesamt-Bearbeitung weit Über dem Rahmen einer Diplomarbeit.
-Stattdessen sollen die Differenzen am Beispiel einer noch Auszuwählenden Datenbank
-Theoretisch und Beispielhaft dargestellt werden, um eine Bewertung zu ermöglichen.
+Daher ist eine Gesamt-Bearbeitung weit \"uber dem Rahmen einer Diplomarbeit.
+Stattdessen sollen die Differenzen am Beispiel einer noch Auszuw\"ahlenden Datenbank
+Theoretisch und Beispielhaft dargestellt werden, um eine Bewertung zu erm\"oglichen.
 
 
 \section{Aufbau der Arbeit}
 
 
+Zu Beginn wird in Kapitel 2 die Zentrale Fragestellung der Arbeit geklärt,
+Ziel der Arbeit ist es diese Frage umfassend zu beantworten.
+
+Um dies zu ermöglichen, wird in Kapitel 3 ein grundlagenwissen aufbereitet,
+Zuerst wird dabei in Abschnit 3.1 auf Datenbanken im allgemeinen eingegangen
+
+Fortsetzend wird dann in Kapitel 3.2 auf SQL
+und die grundlegenden Eigenschaften des relationalen Systems noch einmal dargestellt.
+
+Anschliessend wird in Abschnitt 3.3 auf Nosql eingegangen
+und ebenfals die grundlegenden Eigenschafen erläutert.
+
+Der Abschnitt 3.4 wir dazu verwendet um einen groben Überblick über Kontinuierliche Integration zu schaffen.
+
+Letzendlich werden dann ab Abschnitt 3.5 Grundlagen und Technicken zur später
+im Praktischen Teil ausgewählten Datenbank Couchdb erläutert.
+
+% views? replicaton ?
 
 
-\begin{verbatim}`
-- grundlagen
-  - datenbanken
-  - sql
-  - nosql
-  - die ausagewaehlte datenbank couchdb
-    - views
-    - replikation
 
-- theorie
-  - vergleiche grundlegender herangehensweisen
-  - aufbau eines einfachen ci systems
+Kapitel 4 widmet sich Theoretischen Betrachtungen.
+in Abschnitt 4.1 werden Vergleiche von Grundlegenden Herangehensweisen
+getroffen.
 
-- praxisablauf je beispiel
-    - semantik relational (evtl beispiel snippets)
-    - semantik nosql
-    - prototyp
-    - fazit
+Anschliessend wird in Abschnitt 4.2 der Gundlegende Aufbau eines einfachen CI Systemes
+entwickelt, welches für die Praktischen Gegenüberstellugen verwendet wird.
 
-- gesammtfazit
-    - zusammenfassung einzelfazite
-    - selbstkritik
-- ideen fuer weiterfuehrungen/fortsetzungen
-\end{verbatim}
+In Kapitel 5 wird schiesslich Detailiert herausgearbeitet,
+wie das Experimentiersystem aufgebaut ist, und warum.
+
+Die Abschnitte des 6. Kapitels werden je einen Teilaspekt des Beispielsystems,
+gegenüberstellend analysieren und anschliessend prototypisch implementieren,
+sowie das erarbeitete wissen kurz zusammenfassen.
+
+Darauffolgend werden in Kapitel 7 Prototypen für unübliche Funktionalitäten geschaffen,
+welche jedoch f\"ur den Endnutzer einen Grossen Mehrgewinn bedeuten.
+
+In Kapitel 8 werden dann Prototypen fuer Standardaufgaben geschaffen,
+und deren Komplexitaet/aufwand mit den existerenden Werkzeugen.
+
+Anschliessend wird in Kapitel 9 ein Gesammtfazit geschaffen und Selbstkritik ge\"ubt,
+sowie Ideen f\"ur Weiterf\"uhrende Arbeiten vorgestellt.
