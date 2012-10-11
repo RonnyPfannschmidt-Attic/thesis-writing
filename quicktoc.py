@@ -1,13 +1,18 @@
+import re
 toc = open("document.toc")
+MATCH = re.compile(r" {([\d.]+)}(?P<name>.*?)([ ]?\(\s*(?P<number>\d+).*)?{\d+}")
 numbers = []
 for line in toc:
     if 'chapter' not in line:
         continue
-    numberline = line.split('}{')[1]
-    data = numberline.split('}', 1)
-    if data[0][-1].isdigit():
-        numbers.append(int(filter(str.isdigit, data[1])))
-    print data[-1]
+    match =MATCH.search(line)
+    if not match:
+        print line
+        continue
+    number = match.group('number')
+    print match.group(1), number, match.group('name')
+    numbers.append(int(number) if number is not None else 0)
+
 
 print 'gesammt', sum(numbers)
 
