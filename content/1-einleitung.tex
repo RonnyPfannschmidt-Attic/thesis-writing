@@ -1,6 +1,26 @@
 \chapter{Einleitung (5\%) }
 
 \section{Motivation}
+
+
+Kontinuierliche Integration ist ein wachsender Bereich in der Welt
+des automatischen Testens und des Software-Designs.
+
+Traditionell ist der Vorläufer des Prozesses der sogenannte Build Server.
+Dessen einzige Aufgabe bestand darin,
+Regelmässig einen Build eines Software-Projektes zu erstellen.
+Resultat war hierbei nur eine kurze Information über Erfolg oder Misserfolg,
+zusätzlich wurde bei Erfolg das Resultat (i.d.r. ein ausführbares Programm)
+zur Verfügung gestellt.
+
+Im Laufe der Zeit sind jedoch neue Aufgaben hinzugekommen,
+inzwischen werden auch Testergebnisse verwaltet und Builds sind Konfigurierbar
+und werden in mehr als nur einer Konfiguration Ausgeführt.
+
+Neue Technologien in den Bereichen Quellcode Management und führen zu geaenderten
+
+
+
 \begin{verbatim}
 - kontinuierliche integration und ihre brauchbarkeit
 
@@ -10,6 +30,23 @@
 \end{verbatim}
 
 \section{Problem}
+
+Die in der Motivation erwähnten Zukunftsvisionen treffen in der Praxis auf einige harte Probleme,
+existierende Systeme sind schwer erweiterbar und haben oft schwer zugängliche Datenmodelle.
+
+Es gibt Praktisch keine Standardschnittstelle um mit CI Systemen und ihren zu integrieren/
+
+Die Kombination aus diesen beiden Problemen erzeugt viele Probleme,
+welche später im Kapitel \ref{chap:ist-analyse} behandelt werden.
+Resultat ist, das die existierenden Systeme im Bezug auf die Zukunftsvisionen,
+nicht oder nur schwer anpassbar sind.
+
+Der Mangel an Standardschnittstellen für den Datenzugriff und
+das Fehlen von Standardschnittstellen für die Erweiterung 
+
+
+
+
 
 \begin{verbatim}
 - datenbankferne
@@ -21,6 +58,23 @@
 \end{verbatim}
 
 \section{Zielsetzung}
+
+Um aufzuzeigen, dass die oben genannten Probleme lösbar sind,
+soll die Grundlage für ein System geschaffen werden,
+dass auch in der Lage ist all diese Probleme zu lösen.
+
+Ziel ist es, ein Grundlegendes Verteiltes System fuer Kontinuierliche integration zu schaffen,
+welches auf breit verfügbarer datenbantechnologie basiert,
+und dies als Ansatzpunkt zu benutzen,
+um das System zu erweitern und Standardschittstellen fuer den Datenzugriff zur Verfuegung zu stellen.
+
+Es sollte die grundlegenden Funktionen zur Verfügung stellen um alle Operationen
+eines grundlegenden CI zu erfuellen,
+und die Moeglichkeit geben erweiterungen zu Erstellen'
+
+Beispiele fuer solche Erweiterungen wären wie schon genannt
+z.b. vergleichende Analyse zwischen Entwicklungzweigen oder Eigenständige Analysewerkzeuge
+sowie
 
 \begin{verbatim}
 - loesungswunsch
