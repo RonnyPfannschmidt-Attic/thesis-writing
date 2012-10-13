@@ -6,6 +6,8 @@ syntax: glob
 .texlipse
 tmp/
 
+imageinput/*.png
+
 document.pyg
 *.aux
 *.bbl
