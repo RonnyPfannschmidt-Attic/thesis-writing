@@ -4,7 +4,9 @@ DIAFILES=$(wildcard imageinput/*.dia)
 	@echo dia export $<
 	@dia $< -e $@ -t png
 
-document: images
+
+
+document.pdf: images content/*.tex
 	pdflatex -shell-escape document && \
 	bibtex document && \
 	pdflatex -shell-escape document && \
@@ -12,9 +14,6 @@ document: images
 
 .PHONY: images
 images: ${DIAFILES:.dia=.png}
-	echo ${DIAFILES}
-
-
 
 clean:
 	rm -f *.aux *.bbl *.blg *.lof *.lot *.log *.toc *.lol
