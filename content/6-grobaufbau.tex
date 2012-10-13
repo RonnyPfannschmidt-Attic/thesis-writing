@@ -1,10 +1,6 @@
 \chapter{Analyse \& Design ( 25 \%)}
 
 
-\section{test}
-
-\input{content/grobaufbau/test}
-
 
 
 
@@ -12,73 +8,40 @@
 \section{\"Uberblick}
 \subsection{Hauptkomponenten}
 
-\subsubsection{Lebenszyklus eines Auftrags}
-
-\input{content/grobaufbau/auftrag-lebenszyklus}
-
 \subsection{Grundlegendes Datenmodell}
 
 \section{Vorbereitende Primitiven}
-\section{watch\_for}
-\section{run\_callbacks}
+\subsection{watch\_for}
+\subsection{run\_callbacks}
 
 \section{Projektkonfiguration}
 
-\begin{verbatim}
-
-- ingredient
-  - vcs repos
-  - links to tarballs
-  - artifact?
-
-- receipe
-  - name
-  - ingredients
-  - declared simple build steps
-  - known set of variation
-
-- order
-  - declares the execution of a certain receipe/set of receipes
-  - declares a set of tasks to be executed
-  - specific set of variations
-  - status
-- task
-  - status
-  - one specialisation of the declared specific set of variations of an order
-
-
-
-
-
-
-
-- projekt
-    - name
-    - quellen
-    - steps
-    - default axen
-    - abhaengigkeiten?
-    - trigger
-- integration
-  - &projekt
-  - grund
-  - status
-  - spez axen/axenwerte
-- job
-    - & projekt
-    - & integration
-    - spec (ausgewaehlte werte der axeen
-    - status
-    - worker
-
-
-\end{verbatim}
-
 \section{Auftragsannahme}
+
+\begin{figure}[ht] 
+  \label{fig:lebenszyklus-auftrag-eingang}
+  \begin{center}
+      \includegraphics[height=5in]{imageinput/lebenszyklus-auftrag-eingang.png}
+  \end{center}
+  \caption{Auftragsannahme: Flowgraph}
+\end{figure}
+
+
 \subsection{Eingang}
 \subsection{Validation}
 
 \section{Management}
+
+
+
+\begin{figure}[ht] 
+  \label{fig:lebenszyklus-auftrag-abarbeitung}
+  \begin{center}
+      \includegraphics[height=4in]{imageinput/lebenszyklus-auftrag-abarbeitung.png}
+  \end{center}
+  \caption{Auftragsannahme: Flowgraph}
+\end{figure}
+
 \subsection{Auftragsvorbereitung}
 \subsection{Bereitstellung von Arbeitspacketen}
 \subsection{Abschluss von auftr\"agen}
