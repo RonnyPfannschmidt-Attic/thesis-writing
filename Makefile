@@ -17,5 +17,6 @@ images: ${DIAFILES:.dia=.png}
 
 clean:
 	rm -f *.aux *.bbl *.blg *.lof *.lot *.log *.toc *.lol
+	rm -f imageinput/*.png
 cleaner: clean
 	rm -f *.pdf *.out
