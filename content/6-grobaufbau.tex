@@ -48,8 +48,26 @@
 
 
 \section{Zuteilung/Abarbeitung von Arbeitspacketen}
-\subsection{Zuteilungs}
+\subsection{Zuteilungsmethoden}
 
+\subsubsection{\"Uberblick}
+
+\begin{verbatim}
+
+- methoden
+    - token basiert
+    - ausschreibungsbasiert
+
+\end{verbatim}
+
+
+\subsubsection{token basierte zuweisung}
+
+\begin{verbatim}
+- arbeiter teilen nur mit, dass sie arbeitsfaehig sind
+- manager kontrolliert wer welchen auftrag erhaelt
+- fuer erweiterte use-cases extra wissen im manager notwendig
+\end{verbatim}
 
 \begin{figure}[ht] 
   \label{fig:auftrag-zuteilung-token}
@@ -62,6 +80,19 @@
   \end{sequencediagram}
   \caption{Auftragszuteilung: Tokenbasiert}
 \end{figure}
+
+\subsubsection{ausschreibungsbasierte zuweisung}
+
+\begin{verbatim}
+- manager teilt offene auftraegeposten mit (in datenbank verf.)
+- arbeiter konkurieren um offene auftraege
+- manager entscheidet wer den aufrag dann erhaelt
+
+
+- autonomere arbeiter
+- manager muss nur noch entscheiden wer, nicht mehr warum
+- aufgrund der datenbank konzeptuell einfacher
+\end{verbatim}
 
 \begin{figure}[ht] 
   \label{fig:auftrag-zuteilung-claim}
