@@ -1,4 +1,10 @@
 DIAFILES=$(wildcard imageinput/*.dia)
+DOTFILES=$(wildcard imageinput/*.dot)
+
+
+%.png: %.dot
+	@echo dot export $<
+	@dot $< -T png -o $@
 
 %.png: %.dia
 	@echo dia export $<
@@ -13,7 +19,7 @@ document.pdf: images content/*.tex
 	pdflatex -shell-escape document
 
 .PHONY: images
-images: ${DIAFILES:.dia=.png}
+images: ${DIAFILES:.dia=.png} ${DOTFILES:.dot=.png}
 
 clean:
 	rm -f *.aux *.bbl *.blg *.lof *.lot *.log *.toc *.lol
