@@ -49,6 +49,48 @@
 
 \section{Zuteilung/Abarbeitung von Arbeitspacketen}
 \subsection{Zuteilungs}
+
+
+\begin{figure}[ht] 
+  \label{fig:auftrag-zuteilung-token}
+  \begin{sequencediagram}
+      \newinst{worker}{:Worker}
+      \newinst[1]{manager}{:Manager}
+      \mess{worker}{token <spec>}{manager}
+      \mess{manager}{work <spec>}{worker}
+      \mess{worker}{result}{manager}
+  \end{sequencediagram}
+  \caption{Auftragszuteilung: Tokenbasiert}
+\end{figure}
+
+\begin{figure}[ht] 
+  \label{fig:auftrag-zuteilung-claim}
+  \begin{sequencediagram}
+      \newinst{workera}{:Worker A}
+      \newinst[1]{manager}{:Manager}
+      \newinst[1]{workerb}{:Worker B}
+      \mess[1]{manager}{availiable}{workera}
+      \prelevel
+      \prelevel
+      \mess[1]{manager}{availiable}{workerb}
+
+      \mess[1]{workera}{claim}{manager}
+      \prelevel
+      \prelevel
+      \mess[2]{workerb}{claim}{manager}
+      %XXX: better call?
+      %\prelevel
+      %\prelevel
+      %\begin{call}{manager}{approve}{manager}{workera}
+      %\end{call}
+      \mess{manager}{approve A}{workera}
+      \prelevel
+      \mess{manager}{approve A}{workerb}
+  \end{sequencediagram}
+  \caption{Auftragszuteilung: Ausschreibungsbasiert}
+\end{figure}
+
+
 \subsection{Vorbereitung Abarbeitung}
 \subsection{Abschluss Abarbeitung}
 
