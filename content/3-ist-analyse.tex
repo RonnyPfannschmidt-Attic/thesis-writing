@@ -1,24 +1,38 @@
 \chapter{Ist-Analyse ( 5 \%)}
 \label{chap:ist-analyse}
-\section{Probleme Existierender Probleme}
+
+\section{Auswahl Praxisbeisiele}
+
+\section{Probleme Existierender Systeme}
+
+\begin{verbatim}
+- etablierung
+- dokumentation
+  - konfigurierbarkeit
+\end{verbatim}
+
 \subsection{Datenzugriff}
+\begin{verbatim}
+- eigene datenformate
+\end{verbatim}
 \subsection{Erweiterbarkeit}
+
 \subsection{Komponentenabh\"angigkeit}
 \begin{verbatim}
+- zentrales management
 - strikt master/slave
 - dumme arbeiter, keinerlei autonomie
-
-
 \end{verbatim}
-\section{Auswahl Praxisbeisiele}
+
 \section{Praxisbeispiel Jenkins}
+
+%XXX referenzen
+Jenkins und Hudson stellen ein Benutzerfreundliches,
+jedoch limitiertes System zum einfachen Anlegen von Build-Jobs.
+
+Parametrisierung ist nicht möglich.
+
 \section{Praxisbeispiel Buildbot}
-\section{Praxisbeispiel TravisCI}
-
-\section{stuff}
-\subsection{Überblick}
-
-\subsubsection{buildbot}
 
 %XXX referenzen
 BuildBot positioniert sich als eine Art Meta-Build-Server.
@@ -30,22 +44,13 @@ welches die Operationen ausführt, welche zur Zusammenstellung des gewünschten 
 
 Es ist möglich Builds Jobs mit minimale Parameter in Form von Strings zu Übergeben.
 
-\subsubsection{jenkins/hudson}
+\section{Praxisbeispiel TravisCI}
 
-%XXX referenzen
-Jenkins und Hudson stellen ein Benutzerfreundliches,
-jedoch limitiertes System zum einfachen Anlegen von Build-Jobs.
-
-Parametrisierung ist nicht möglich.
+\section{stuff}
 
 \subsection{Vor- und Nachteile der existierenden Systeme}
 
 \begin{verbatim}
-- buildbot/jenkins
-  - konfigurierbarkeit
-  - zentrales management
-  - eigene datenformate
-
 - etablierung
 - dokumentation
 \end{verbatim}
