@@ -12,7 +12,7 @@ DOTFILES=$(wildcard imageinput/*.dot)
 
 
 
-document.pdf: images content/*.tex
+document.pdf: images code content/*.tex
 	pdflatex -shell-escape document && \
 	bibtex document && \
 	pdflatex -shell-escape document && \
@@ -21,8 +21,16 @@ document.pdf: images content/*.tex
 .PHONY: images
 images: ${DIAFILES:.dia=.png} ${DOTFILES:.dot=.png}
 
+
+.PHONY:code
+code:
+	python minted_code_extractor.py content ../juggler .tex_from_code
+
+
 clean:
 	rm -f *.aux *.bbl *.blg *.lof *.lot *.log *.toc *.lol
 cleaner: clean
+	rm -f .tex_from_code/*.tex
+	rmdir .tex_from_code
 	rm -f imageinput/*.png
 	rm -f *.pdf *.out

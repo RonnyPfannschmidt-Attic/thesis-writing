@@ -7,6 +7,8 @@ syntax: glob
 tmp/
 
 imageinput/*.png
+.tex_from_code/*.tex
+
 
 document.pyg
 *.aux
