@@ -1,0 +1,19 @@
+digraph arbeitspacket {
+    new -> ready;
+    runing -> completed;
+    ready-> canceling;
+    claiming -> canceling; 
+    acepted -> canceling;
+    runing -> canceling;
+    canceling -> canceled;
+    canceling -> completed;
+    ready -> claiming -> acepted -> runing;
+
+
+    canceling [style=filled,fillcolor=orange];
+    ready [style=filled,fillcolor=orange];
+    claiming [style=filled,fillcolor=blue];
+    acepted [style=filled,fillcolor=orange];
+    runing [style=filled,fillcolor=blue];
+    completed [style=filled,fillcolor=blue];
+}
