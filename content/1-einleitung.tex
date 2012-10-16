@@ -3,92 +3,88 @@
 \section{Motivation}
 
 Kontinuierliche Integration ist ein wachsender Bereich
-im Gebiet der Software-entwicklung und ihrere Qualit\"atssicherung.
+in der Welt der Software-entwicklung und ihrer Qualit\"atssicherung.
 
 % referenzen folwer/xp
-Urspr\"unglich entstammend aus der Praxis der Extreme Programming
-\cite{xp:explained} \cite{folwer:xp}
+Entstammend aus der Praxis des Extreme Programming
+\cite{xp:explained} \cite{folwer:xp},
 besch\"aftigen sich Werkzeuge f\"ur Kontinuierliche Integration damit,
-Programme nach einer vollzogenen Integration auch zu Testen.
+Programme nach einer vollzogenen Integration zu Testen.
 
-In regelm\"assigen Abst\"anden, wie z.b. nach einer erfolgreichen Integration oder nach Arbeitsschluss,
+In regelm\"assigen Abst\"anden, wie z.B. nach einer erfolgreichen Integration oder nach Arbeitsschluss,
 wird das Programm vobereitet und getestet.
 Dies unterst\"utzt das rasche Auffinden von Fehlern
-und gibt gundlegende Informationen \"uber den Zustand der Software.
-Nach Abschluss eines solchen Testes stehen f\"ur gew\"ohnlich das Resultat
+und informiert \"uber den Zustand der Software.
+Nach Abschluss eines solchen Testes stehen dann das Resultat
 und ein Statusbericht zur Verf\"ugung.
 
-Im Laufe der Entwicklung hat sich der Inhalt der Statusberichte weiterentwickelt,
-waren es anf\"anglich nur sp\"arliche Daten \"uber Erfolg/Misserfolg,
-so findet man Heutzutage Mitschnitte verschiedener Datenquellen, Testergebnisse
-\cite{jenkins:junitxml}, sowie detailierte Informationen \"uber die Umgebung des Builds.
+Im Laufe der Zeit hat sich der Inhalt der Statusberichte weiterentwickelt.
+Waren es anf\"anglich nur sp\"arliche Daten \"uber Erfolg/Misserfolg,
+so findet man heutzutage Mitschnitte verschiedener Datenquellen, Testergebnisse
+\cite{jenkins:junitxml}, sowie detailierte Informationen \"uber die Umgebung des Testvorgangs.
 
 Weiterhin entstand mit Zunehmenden Anforderungen an Portabilit\"at \"uber
-verschiedendste Arten von Platform (z.B. Datenbanksystem oder Betriebssystem)
-die Notwendigkeit das System in mehr als nur einer Umgebung zu Testen.
+verschiedendste Arten von Platformen (z.B. Datenbanksysteme oder Betriebssysteme)
+die Notwendigkeit das System in mehr als nur einer Umgebung zu testen.
 
 Auch die Verwaltung von Software hat sich ge\"andert.
-W\"ahrend urspr\"unglich nur nur auf einem Entwicklungszweig gearbeitet und/oder integriert wurde,
-findet dies Dank moderner SCM in vielen Entwicklungszweigen statt.
+W\"ahrend urspr\"unglich nur nur auf einem Entwicklungszweig gearbeitet und integriert wurde,
+findet dies Dank moderner Quellcodeverwaltung jetzt in vielen Entwicklungszweigen statt.
 \cite{dvcs:vorteile} \cite{dvcs:entwicklungsmodelle}
 
 Aufgrund dieser Entwicklung stehen immer mehr Daten und Informationen zur Verf\"ugung,
 und es erscheint \"uberaus sinnvoll, diese auch zu nutzen, um den Entwicklungsprozess zu unterst\"utzen.
 
+Besonders Interessant sind dabei feststellbare Unterschiede zwischen den Testumgebungen,
+sowie feststellbare Unterschiede zwischen verschiedenen Entwicklerzweigen.
+
+%XXX: test vor integration?
 
 
 \section{Problem}
 
-Die in der Motivation erw\"ahnte Zukunftsvision die Daten zu nutzen,
+Die Zukunftsvision, die Daten zu nutzen,
 trifft in der Praxis auf einige harte Probleme.
 Existierende Systeme sind schwer erweiterbar und haben oft schwer zugängliche Datenmodelle.
 
-Es gibt keine Standardschnittstelle um mit CI Systemen und ihren Daten zu arbeiten
+Es gibt keine Standardschnittstellen um CI-Systeme zu erweitern und mit ihren Daten zu arbeiten
 
-Die Kombination aus diesen beiden Problemen erzeugt viele Probleme,
+Die Kombination dieser beiden Problemen erzeugt wiederum viele Probleme,
 welche später im Kapitel \ref{chap:ist-analyse} behandelt werden.
 
-Resultat ist, das die existierenden Systeme im Bezug auf die Zukunftsvisionen,
-nicht oder nur schwer anpassbar sind.
+Das Resultat ist, dass die existierenden Systeme im Bezug auf die Zukunftsvisionen,
+nicht oder nur schwer anzupassen sind.
 
 Der Mangel an Standardschnittstellen für den Datenzugriff und
-das Fehlen von Standardschnittstellen für die Erweiterung der CI Systeme
+das Fehlen von Standardschnittstellen für die Erweiterung der CI-Systeme
 erschwert die Implementation von Analysewerkzeugen ungemein.
-
-
 
 
 
 \begin{verbatim}
 - datenbankferne
-- praxisprobleme div akt. existierender systeme
-  - erweiterbarkeit
-  - einfachheit
-  - kombination
-
-
 - probleme des client/server ?
-
 \end{verbatim}
 
 \section{Zielsetzung}
 
-Um aufzuzeigen, dass die oben genannten Probleme lösbar sind,
-soll die Grundlage für ein System geschaffen werden,
-welches auch in der Lage ist diese Probleme zu lösen.
+Ziel dieser Arbeit ist es  aufzuzeigen, dass die oben genannten Probleme lösbar sind.
+Zu diesem Zweck soll die Grundlage für ein System geschaffen werden,
+welches auch in der Lage ist dies umzusetzen.
 
-Ziel ist es, ein Grundlegendes Verteiltes System f\"ur Kontinuierliche Integration zu schaffen,
-welches auf verteilter Datenbantechnologie basiert und dies als Ansatzpunkt zu benutzen,
-um das System zu erweitern und Standardschittstellen f\"ur den Datenzugriff zur Verf\"ugung zu stellen.
+Es ist somit ein grundlegendes verteiltes System f\"ur Kontinuierliche Integration zu schaffen,
+welches auf verteilter Datenbanktechnologie basiert.
+Dies dient als Ansatzpunkt, um das System zu erweitern und
+Standardschittstellen f\"ur den Datenzugriff zur Verf\"ugung zu stellen.
 
-Es sollte die grundlegenden Funktionen zur Verfügung stellen,
-um alle Operationen eines grundlegenden CI zu erf\"ullen,
-und die M\"oglichkeit geben Erweiterungen zu erstellen.
+Dabei sollten sowohl die grundlegenden Funktionen eines CI,
+als auch die M\"oglichkeit der Erweiterung in Betracht gezogen werden,
 
-Beispiele f\"ur solche Erweiterungen wären wie schon genannt
-z.b. vergleichende Analyse zwischen Entwicklungzweigen oder Eigenständige Analysewerkzeuge.
+Beispiele f\"ur solche Erweiterungen wären,
+wie schon genannt,
+vergleichende Analyse zwischen Entwicklungzweigen oder Eigenständige Analysewerkzeuge.
 
-Wichtig ist dabei die grundlegende Erweiterbarkit,
+Wichtig ist hierbei die grundlegende Erweiterbarkit
 und nicht die L\"osung eines speziellen Problemes.
 
 
