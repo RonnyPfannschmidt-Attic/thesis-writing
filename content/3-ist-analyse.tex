@@ -53,13 +53,41 @@
 \subsection{Auswahl}
 \subsection{Jenkins}
 
+\begin{verbatim}
+pro:
+- build matrix
+- ui
+
+cons:
+- datenzugriff
+- erweiterungen
+- dateninteraktion?
+
+\end{verbatim}
+
 %XXX referenzen
 Jenkins und Hudson stellen ein Benutzerfreundliches,
 jedoch limitiertes System zum einfachen Anlegen von Build-Jobs.
 
 Parametrisierung ist nicht möglich.
 
-\section{Praxisbeispiel Buildbot}
+\subsection{Buildbot}
+
+
+\begin{verbatim}
+pro:
+- flexible builds
+- rudimentaerer datenzugriff
+- parameter (z.b. branch)
+cons:
+- datenmodell
+- ui
+
+
+- beispiel pypy uebersicht
+
+\end{verbatim}
+
 
 %XXX referenzen
 BuildBot positioniert sich als eine Art Meta-Build-Server.
@@ -74,7 +102,14 @@ Es ist möglich Builds Jobs mit minimale Parameter in Form von Strings zu Überg
 \section{Praxisbeispiel TravisCI}
 
 \begin{verbatim}
+pro:
+- ui
+  - screenshoot
 - matix builds
 - branch builds
+
+cons
 - mangel an datenzugriff
+- hosted
+- nicht portabel
 \end{verbatim}

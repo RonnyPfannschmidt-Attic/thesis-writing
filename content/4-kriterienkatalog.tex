@@ -14,21 +14,42 @@
 \section{Anforderungen und Grundlegende Funktionen}
 
 \begin{verbatim}
+
+
 - ausfallsicherheit bei absturz/beendigung
   von systemkomponenten
 
+- projekt verwalten
 - annahme/generieren von aufrtraegen
+  - matrix mit
+
 - erstellung/management von arbeitspacketen
+  - von matrix
 - abarbeitung von arbeitspacketen
+  - scm
+  - prozesse
 - analyse von
   - zeitserien ueber projekte
   - auftraegen
   - arbeitspackete
+
+  - ext analyse sommer projekt
+  - ext regressionsanalyse (theorie) ?
 \end{verbatim}
 
 \section{Use Cases}
 
+
 \begin{verbatim}
+- user wirft build an
+- event wirft build an
+
+- build achsen ??
+
+- extensions
+  - regressionstest
+  - testanalyse
+
 - alte usecases
   - junitxml beispiel
   - stdout beispiel
@@ -44,7 +65,23 @@
 \begin{verbatim}
 - programmteile
 - siehe andforderungen/funktionen
+- tabelle
+  - auftragsannahme
+  - arbeitspackete
+    - generation mit matrix
+    - verteilung
+    - abarbeitung
+  - arbeitsschritte
+    - scm
+    - prozess
+    - ihre datensammlung
+      - kontinuierlich
+      - dannach?
 
+  - analyse
+    - resultate
+    - ext regressionsanalyse?
+    - ext analysegraph
 \end{verbatim}
 
 \section{Unit tests ?}
@@ -52,7 +89,8 @@
 
 \begin{verbatim}
 - verweis auf grobentwurf?
-
+- hilfskomponenten
+- eregeben sich bei impl
 \end{verbatim}
 
 \section{funktionale Tests}
@@ -75,6 +113,7 @@
 \section{systemtests}
 
 \begin{verbatim}
+- komponentendurchlauf
 - durchlauf komplettsystem
 - resultate beispiel datenanalyse
 
