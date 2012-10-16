@@ -2,47 +2,58 @@
 
 \section{Motivation}
 
+Kontinuierliche Integration ist ein wachsender Bereich
+im Gebiet der Software-entwicklung und ihrere Qualit\"atssicherung.
 
-Kontinuierliche Integration ist ein wachsender Bereich in der Welt
-des automatischen Testens und des Software-Designs.
+% referenzen folwer/xp
+Urspr\"unglich entstammend aus der Praxis der Extreme Programming
+\cite{xp:explained} \cite{folwer:xp}
+besch\"aftigen sich Werkzeuge f\"ur Kontinuierliche Integration damit,
+Programme nach einer vollzogenen Integration auch zu Testen.
 
-Traditionell ist der Vorläufer des Prozesses der sogenannte Build Server.
-Dessen einzige Aufgabe bestand darin,
-Regelmässig einen Build eines Software-Projektes zu erstellen.
-Resultat war hierbei nur eine kurze Information über Erfolg oder Misserfolg,
-zusätzlich wurde bei Erfolg das Resultat (i.d.r. ein ausführbares Programm)
-zur Verfügung gestellt.
+In regelm\"assigen Abst\"anden, wie z.b. nach einer erfolgreichen Integration oder nach Arbeitsschluss,
+wird das Programm vobereitet und getestet.
+Dies unterst\"utzt das rasche Auffinden von Fehlern
+und gibt gundlegende Informationen \"uber den Zustand der Software.
+Nach Abschluss eines solchen Testes stehen f\"ur gew\"ohnlich das Resultat
+und ein Statusbericht zur Verf\"ugung.
 
-Im Laufe der Zeit sind jedoch neue Aufgaben hinzugekommen,
-inzwischen werden auch Testergebnisse verwaltet und Builds sind Konfigurierbar
-und werden in mehr als nur einer Konfiguration Ausgeführt.
+Im Laufe der Entwicklung hat sich der Inhalt der Statusberichte weiterentwickelt,
+waren es anf\"anglich nur sp\"arliche Daten \"uber Erfolg/Misserfolg,
+so findet man Heutzutage Mitschnitte verschiedener Datenquellen, Testergebnisse
+\cite{jenkins:junitxml}, sowie detailierte Informationen \"uber die Umgebung des Builds.
 
-Neue Technologien in den Bereichen Quellcode Management und führen zu geaenderten
+Weiterhin entstand mit Zunehmenden Anforderungen an Portabilit\"at \"uber
+verschiedendste Arten von Platform (z.B. Datenbanksystem oder Betriebssystem)
+die Notwendigkeit das System in mehr als nur einer Umgebung zu Testen.
+
+Auch die Verwaltung von Software hat sich ge\"andert.
+W\"ahrend urspr\"unglich nur nur auf einem Entwicklungszweig gearbeitet und/oder integriert wurde,
+findet dies Dank moderner SCM in vielen Entwicklungszweigen statt.
+\cite{dvcs:vorteile} \cite{dvcs:entwicklungsmodelle}
+
+Aufgrund dieser Entwicklung stehen immer mehr Daten und Informationen zur Verf\"ugung,
+und es erscheint \"uberaus sinnvoll, diese auch zu nutzen, um den Entwicklungsprozess zu unterst\"utzen.
 
 
-
-\begin{verbatim}
-- kontinuierliche integration und ihre brauchbarkeit
-
-
-- zitate aus dem buch
-
-\end{verbatim}
 
 \section{Problem}
 
-Die in der Motivation erwähnten Zukunftsvisionen treffen in der Praxis auf einige harte Probleme,
-existierende Systeme sind schwer erweiterbar und haben oft schwer zugängliche Datenmodelle.
+Die in der Motivation erw\"ahnte Zukunftsvision die Daten zu nutzen,
+trifft in der Praxis auf einige harte Probleme.
+Existierende Systeme sind schwer erweiterbar und haben oft schwer zugängliche Datenmodelle.
 
-Es gibt Praktisch keine Standardschnittstelle um mit CI Systemen und ihren zu integrieren/
+Es gibt keine Standardschnittstelle um mit CI Systemen und ihren Daten zu arbeiten
 
 Die Kombination aus diesen beiden Problemen erzeugt viele Probleme,
 welche später im Kapitel \ref{chap:ist-analyse} behandelt werden.
+
 Resultat ist, das die existierenden Systeme im Bezug auf die Zukunftsvisionen,
 nicht oder nur schwer anpassbar sind.
 
 Der Mangel an Standardschnittstellen für den Datenzugriff und
-das Fehlen von Standardschnittstellen für die Erweiterung 
+das Fehlen von Standardschnittstellen für die Erweiterung der CI Systeme
+erschwert die Implementation von Analysewerkzeugen ungemein.
 
 
 
@@ -55,22 +66,25 @@ das Fehlen von Standardschnittstellen für die Erweiterung
   - einfachheit
   - kombination
 
+
+- probleme des client/server ?
+
 \end{verbatim}
 
 \section{Zielsetzung}
 
 Um aufzuzeigen, dass die oben genannten Probleme lösbar sind,
 soll die Grundlage für ein System geschaffen werden,
-dass auch in der Lage ist all diese Probleme zu lösen.
+welches auch in der Lage ist diese Probleme zu lösen.
 
-Ziel ist es, ein Grundlegendes Verteiltes System fuer Kontinuierliche integration zu schaffen,
-welches auf breit verfügbarer datenbantechnologie basiert,
+Ziel ist es, ein Grundlegendes Verteiltes System f\"ur Kontinuierliche integration zu schaffen,
+welches auf verteilter Datenbantechnologie basiert,
 und dies als Ansatzpunkt zu benutzen,
-um das System zu erweitern und Standardschittstellen fuer den Datenzugriff zur Verfuegung zu stellen.
+um das System zu erweitern und Standardschittstellen f\"ur den Datenzugriff zur Verf\"ugung zu stellen.
 
 Es sollte die grundlegenden Funktionen zur Verfügung stellen um alle Operationen
-eines grundlegenden CI zu erfuellen,
-und die Moeglichkeit geben erweiterungen zu Erstellen'
+eines grundlegenden CI zu erf\"ullen,
+und die Moeglichkeit geben Erweiterungen zu Erstellen'
 
 Beispiele fuer solche Erweiterungen wären wie schon genannt
 z.b. vergleichende Analyse zwischen Entwicklungzweigen oder Eigenständige Analysewerkzeuge.
