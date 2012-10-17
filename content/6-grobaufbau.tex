@@ -1,10 +1,6 @@
 \chapter{Analyse \& Design ( 25 \%)}
 
 
-
-
-
-
 \section{\"Uberblick}
 \subsection{Hauptkomponenten}
 
@@ -40,13 +36,18 @@
 
 
 
-
 \section{Vorbereitende Primitiven}
-\subsection{gather\_next}
+
+\subsection{listen\_changes}
 \subsection{watch\_for}
+\subsection{gather\_next}
 \subsection{run\_callbacks}
 
 \section{Projektkonfiguration}
+
+
+\ldots
+
 
 \section{Auftragsannahme}
 
@@ -89,13 +90,18 @@
 \end{figure}
 
 \subsection{Auftragsvorbereitung}
+
+\begin{verbatim}
+- 
+\end{verbatim}
+
+
 \subsection{Bereitstellung von Arbeitspacketen}
 \subsection{Abschluss von auftr\"agen}
 
 
 \section{Zuteilung/Abarbeitung von Arbeitspacketen}
 
-\subsection{Zuteilungsmethoden}
 
 \subsection{Lebenszyklus eines Arbeitspacketes}
 
@@ -110,6 +116,7 @@
 
 
 
+\subsection{Zuteilungsmethoden}
 \subsubsection{\"Uberblick}
 
 \begin{verbatim}
@@ -191,7 +198,6 @@
 \begin{verbatim}
 - lineare abarbeitung
 
-- evtl db getrieben vs prozessgetrieben
 \end{verbatim}
 
 \subsection{Arbeitsschritte}
@@ -212,11 +218,42 @@
 
 
 \subsection{Datensammlung zur Laufzeit}
+
+- sinn/echtzeit?
+
+- STDOUT/ERR
+- exakte testresultate/reports
+
+
 \subsection{Datensammling nach Abschluss eines Schrittes}
+
+- junitxml
+- logfiles
+
 \subsection{Abschluss von Arbeitschritten}
 
+- returncodes
+- fehler
 
 \section{Arten von Arbeitschritten}
+
+
+\begin{figure}[ht] 
+  \label{fig:klassen-arten-arbeitsschritt}
+  \begin{center}
+      \includegraphics[height=3.4in]{imageinput/klassen-arten-arbeitsschritt.png}
+  \end{center}
+  \caption{Arten von Arbeitschritten}
+\end{figure}
+
+
+
 \subsection{Prozessaktionen}
+
+- was/wozu
+- datensammlung laufzeit
+- datensammlung ende
+
 \subsection{Quellcode Management Aktionen}
-\subsection{Theoretische Betrachtung Interaktion}
+
+- ablauf, beispiele
