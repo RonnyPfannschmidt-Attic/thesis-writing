@@ -1,10 +1,16 @@
-\chapter{Technische Anforderungen ( 5 \% )}
+\chapter{Tecnologische Konzeption ( 5 \% )}
+
+
+% begruendet technologie, ist trasnformation notwendig
+
+% evtl kap 7 referenzieren
+
 
 \section{Datenbank}
 \subsection{Technologische Betrachtung}
 
 \begin{verbatim}
-- reliational vs nosql
+- reliational vs nosql (documentorientiert)
     - eignung aller mit div eigenschaften
 - verteilte datenbank
 \end{verbatim}
@@ -15,6 +21,15 @@
 \begin{verbatim}
 - eingrenzung auf master master replikation
 - selektive/gefilterte replikation wuenschenswert
+- change notification
+- local atomic
+
+-> modellierung referenierung
+% schemata
+% mapping auf datenbank aenderungen
+
+-> couchdb ausarbeiten
+
 \end{verbatim}
 
 
@@ -25,11 +40,13 @@
 - scriptsprachen f produktivitaet
 - ggv db interne sprache
 \end{verbatim}
+% klassen/moduldiagramme aus kap 5 referenzieren
 
 \subsection{Produktanforderungen}
+%-> in die implementation
 
 \begin{verbatim}
-
+- ist python/warum python
 \end{verbatim}
 
 
@@ -40,6 +57,7 @@
 - 
 \end{verbatim}
 \subsection{Produktanforderungen}
+%-> in die implementation
 \begin{verbatim}
 - pytest ref
 \end{verbatim}
