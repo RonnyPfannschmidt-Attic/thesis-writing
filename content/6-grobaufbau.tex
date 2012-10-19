@@ -63,6 +63,9 @@
   \caption{Auftragsannahme: Flowgraph}
 \end{figure}
 
+- 2 teile
+- eingang \& validation
+
 
 \subsubsection{Eingang}
 
@@ -74,10 +77,10 @@
 
 \subsubsection{Validation}
 \begin{verbatim}
+- notwendig weil ...
 - beispiele fuer checks
 - theoretisch
 \end{verbatim}
-
 
 
 \subsection{Management}
@@ -122,6 +125,8 @@
 
 
 \begin{verbatim}
+- diese sektion besch. sich mit
+
 
 - methoden
     - token basiert
@@ -135,7 +140,8 @@
 \begin{verbatim}
 - arbeiter teilen nur mit, dass sie arbeitsfaehig sind
 - manager kontrolliert wer welchen auftrag erhaelt
-- fuer erweiterte use-cases extra wissen im manager notwendig
+cons:
+    - fuer erweiterte use-cases extra wissen im manager notwendig
 \end{verbatim}
 
 \begin{figure}[ht] 
@@ -160,7 +166,7 @@
 
 - autonomere arbeiter
 - manager muss nur noch entscheiden wer, nicht mehr warum
-- aufgrund der datenbank konzeptuell einfacher
+- aufgrund der datenbank konzeptuell einfacher -> beweis oder weg
 \end{verbatim}
 
 \begin{figure}[ht] 
@@ -193,6 +199,10 @@
 
 \subsubsection{Abschluss Abarbeitung}
 
+- ende der arbeisschritte
+- zusammenfassung resultat
+- endscheidung fehlschlag oder nucht
+
 
 \subsection{Abarbeitung von Arbeitspacketen}
 
@@ -220,16 +230,20 @@
 
 \subsubsection{Datensammlung zur Laufzeit}
 
+\begin{verbatim}
 - sinn/echtzeit?
 
-- STDOUT/ERR
-- exakte testresultate/reports
-
+- beispielhaft
+    - STDOUT/ERR
+    - exakte testresultate/reports
+\end{verbatim}
 
 \subsubsection{Datensammling nach Abschluss eines Schrittes}
 
 - junitxml
 - logfiles
+
+- betrachtung extra schritt vs interne funktion
 
 \subsubsection{Abschluss von Arbeitschritten}
 
@@ -252,7 +266,6 @@
 
 \subsubsection{Prozessaktionen}
 
-
 - was/wozu
 - datensammlung laufzeit
 - datensammlung ende
@@ -267,8 +280,6 @@
 % kann krit
 % kein tolles
 % nur werkzeuge
-
-
 
 
 \section{zusammenfassung}
