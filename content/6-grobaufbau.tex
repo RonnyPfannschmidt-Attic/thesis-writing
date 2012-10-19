@@ -39,20 +39,20 @@
 
 % below here - unterordnen logik`
 
-\section{uberblick}
+\subsection{uberblick}
 % bild zusammenhang
 
 
 
-\section{Vorbereitende Primitiven}
+\subsection{Vorbereitende Primitiven}
 
-\subsection{listen\_changes}
-\subsection{watch\_for}
-\subsection{gather\_next}
-\subsection{run\_callbacks}
+\subsubsection{listen\_changes}
+\subsubsection{watch\_for}
+\subsubsection{gather\_next}
+\subsubsection{run\_callbacks}
 
 
-\section{Auftragsannahme}
+\subsection{Auftragsannahme}
 
 
 \begin{figure}[ht] 
@@ -64,7 +64,7 @@
 \end{figure}
 
 
-\subsection{Eingang}
+\subsubsection{Eingang}
 
 \begin{verbatim}
 - quellen
@@ -72,7 +72,7 @@
 - typisches
 \end{verbatim}
 
-\subsection{Validation}
+\subsubsection{Validation}
 \begin{verbatim}
 - beispiele fuer checks
 - theoretisch
@@ -80,7 +80,7 @@
 
 
 
-\section{Management}
+\subsection{Management}
 
 \begin{figure}[ht] 
   \label{fig:lebenszyklus-auftrag-abarbeitung}
@@ -90,21 +90,21 @@
   \caption{Auftragsannahme: Flowgraph}
 \end{figure}
 
-\subsection{Auftragsvorbereitung}
+\subsubsection{Auftragsvorbereitung}
 
 \begin{verbatim}
 - 
 \end{verbatim}
 
 
-\subsection{Bereitstellung von Arbeitspacketen}
-\subsection{Abschluss von Auftr\"agen}
+\subsubsection{Bereitstellung von Arbeitspacketen}
+\subsubsection{Abschluss von Auftr\"agen}
 
 
-\section{Zuteilung/Abarbeitung von Arbeitspacketen}
+\subsection{Zuteilung/Abarbeitung von Arbeitspacketen}
 
 
-\subsection{Lebenszyklus eines Arbeitspacketes}
+\subsubsection{Lebenszyklus eines Arbeitspacketes}
 
 
 \begin{figure}[ht] 
@@ -116,10 +116,10 @@
 \end{figure}
 
 
-\subsection{Vorbereitung Abarbeitung}
+\subsubsection{Vorbereitung Abarbeitung}
 
-\subsection{Zuteilungsmethoden}
-\subsubsection{\"Uberblick}
+\subsection{\"Uberblick Zuteilungsmethoden}
+
 
 \begin{verbatim}
 
@@ -191,17 +191,17 @@
 \end{figure}
 
 
-\subsection{Abschluss Abarbeitung}
+\subsubsection{Abschluss Abarbeitung}
 
 
-\section{Abarbeitung von Arbeitspacketen}
+\subsection{Abarbeitung von Arbeitspacketen}
 
 \begin{verbatim}
 - lineare abarbeitung
 - abbrich bei fehlschlag
 \end{verbatim}
 
-\subsection{Arbeitsschritte}
+\subsubsection{Arbeitsschritte}
 
 
 \begin{figure}[ht] 
@@ -218,7 +218,7 @@
 \end{verbatim}
 
 
-\subsection{Datensammlung zur Laufzeit}
+\subsubsection{Datensammlung zur Laufzeit}
 
 - sinn/echtzeit?
 
@@ -226,19 +226,19 @@
 - exakte testresultate/reports
 
 
-\subsection{Datensammling nach Abschluss eines Schrittes}
+\subsubsection{Datensammling nach Abschluss eines Schrittes}
 
 - junitxml
 - logfiles
 
-\subsection{Abschluss von Arbeitschritten}
+\subsubsection{Abschluss von Arbeitschritten}
 
 - returncodes
 - fehler
 
-\section{Arten von Arbeitschritten}
+\subsection{Arten von Arbeitschritten}
 
-\subsection{\"Ubersicht}
+\subsubsection{\"Ubersicht}
 
 \begin{figure}[ht] 
   \label{fig:klassen-arten-arbeitsschritt}
@@ -250,19 +250,18 @@
 
 
 
-\subsection{Prozessaktionen}
+\subsubsection{Prozessaktionen}
 
 
 - was/wozu
 - datensammlung laufzeit
 - datensammlung ende
 
-\subsection{Quellcode Management Aktionen}
+\subsubsection{Quellcode Management Aktionen}
 
 - ablauf, beispiele
 
 
-% nicht weiter unterordnen
 \section{Benutzerinterface}
 
 % kann krit
