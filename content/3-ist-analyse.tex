@@ -1,16 +1,16 @@
 \chapter{Ist-Analyse ( 5 \%)}
 \label{chap:ist-analyse}
 
+
+
+
 % dieses kap dient .. und damit soll .. aufbau
 
 
 
-\section{Vor- und Nachteile der existierenden Systeme}
+\section{Eigenschaften der existierenden Systeme}
 
 \begin{verbatim}
-- client/server prob
-
-
 - datensammlung
   - logs
     - in time
@@ -18,36 +18,34 @@
   - files
     - junitxml
 \end{verbatim}
-@
-\begin{verbatim}
-- etablierung
-- dokumentation
-\end{verbatim}
-
-
 
 \section{Probleme existierender Systeme}
 
-\begin{verbatim}
-- etablierung
-- dokumentation
-  - konfigurierbarkeit
-\end{verbatim}
 
 \subsection{Datenzugriff}
+
 \begin{verbatim}
 - eigene datenformate
+- dumb stores
 \end{verbatim}
+
 \subsection{Erweiterbarkeit}
+\begin{verbatim}
+
+\end{verbatim}
+
 
 \subsection{Komponentenabh\"angigkeit}
 \begin{verbatim}
-- zentrales management
-- strikt master/slave
-- alles wird im master gemanagt
-- dumme arbeiter, keinerlei autonomie
+- konfigurierbarkeit
 
-- ausfall von master bedingt ausfall von slave
+- strikt master/slave
+  - client/server prob
+  - zentrales management
+  - alles wird im master gemanagt
+  - dumme arbeiter, keinerlei autonomie
+
+  - ausfall von master bedingt ausfall von slave
 
 
 \end{verbatim}
@@ -55,6 +53,12 @@
 \section{Praxisbeisiele}
 
 \subsection{Auswahl}
+
+\begin{verbatim}
+
+- opensource/oeffentlich
+\end{verbatim}
+
 \subsection{Jenkins}
 
 \begin{verbatim}
@@ -110,7 +114,7 @@ pro:
 - ui
   - screenshoot
 - matix builds
-- branch builds
+- branch builds -> via pull req
 
 cons
 - mangel an datenzugriff
