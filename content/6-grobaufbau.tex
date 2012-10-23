@@ -35,14 +35,10 @@
 
 
 
-\section{Grundlegende Logik} %XXX: bettern na
+
+\section{Grundlegende Logik der Komponenten} %XXX: bettern na
 
 % below here - unterordnen logik`
-
-\subsection{uberblick}
-% bild zusammenhang
-
-
 
 \subsection{Vorbereitende Primitiven}
 
@@ -273,6 +269,40 @@ cons:
 \subsubsection{Quellcode Management Aktionen}
 
 - ablauf, beispiele
+
+
+
+\section{Besondere Ans\"atze zur Datenbankinteraktion}
+
+\subsection{CAP Abdeckung}
+
+\begin{verbatim}
+- ``2 of 3''
+- verschiedene aspekte der applikation haben unterschiedliche anforderungen
+- 
+
+\end{verbatim}
+
+
+% http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed
+
+\begin{verbatim}
+- wie ber in cap \ref{sec:basic:cap}
+
+\end{verbatim}
+
+\subsection{statusmaschienen zur konsistenzwahrung}
+
+\begin{verbatim}
+- konzept der knuepfung von transitionen an operatoren,
+  - so gestalten, das auch bei partitionierung inkonsistenzen durch die konsistenzbedingungen der statusmaschienen unmoeglich sind
+
+\end{verbatim}
+
+
+
+\section{Logisches Gesammtkonzept}
+
 
 
 \section{Benutzerinterface}
