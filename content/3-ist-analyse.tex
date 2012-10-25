@@ -12,6 +12,7 @@ dann an Systemen in der Praxis demonstriert.
 
 \subsection{Struktur}
 Wie in der folgenden Grafik leicht zu erkennen,
+sind traditionellen CI-Systeme Client-Server Systeme.
 
 \begin{figure}[ht]
   \centering
@@ -20,16 +21,33 @@ Wie in der folgenden Grafik leicht zu erkennen,
   \caption{Logischer Aufbau eines CI System}
 \end{figure}
 
-\subsection{Datensammlung}
+Der sogenannte Master ist der Server und verwaltet alle Daten.
+Die Slaves sind die Clients und verrichten die eigentliche Arbeit.
+Sie sammeln Daten und liefern diese einschliesslich der Resultate beim Master ab.
 
-\begin{verbatim}
-- datensammlung
-  - logs
-    - in time
-    - STDOUT,
-  - files
-    - junitxml
-\end{verbatim}
+Benutzer interagieren Ausschliesslich mit dem Master.
+
+
+\subsection{Datensammlung}
+Wie bereits in Sektion~\ref{sec:base:ci} erw\"ahnt,
+f\"uhrt ein CI-System nicht nur Auftr\"age aus,
+sondern sammelt auch daten f\"ur die sp\"atere Weiterverarbeitung.
+
+Die Datensammlung l\"asst sich dabei grob in 2 Bereiche einteilen.
+Zum einen die Laufzeitdaten und zum anderen die Artefakte.
+
+Laufeitdaten fallen bereits w\"ahrend der Ausf\"uhrung an,
+und beinhalten in der Regel zumindest die Textuellen Ausgaben
+der ausgef\"uhrten Programme.
+Weitere M\"oglichkeiten k\"onnen Testresultate, echzeit Logs und Ausf\"uhrungsstatistiken sein.
+Laufzeitdaten werden dem Benutzer in idr. Zeitnah zur Verf\"ugung gestellt.
+
+Artefakte hingegen sind Dateien,
+welche erst nach Abschluss eines schrittes zur verf\"ugung stehen.
+Zu ihnen gehoeren neben den Traditionellen ausf\"uhrbaren Dateien
+auch lauff\"ahige Archive des Gesammtprogrammes oder Testergebnisse in den Formaten JunitXML oder TAP.
+
+%XXX: cite tap, junitxml
 
 \section{Probleme existierender Systeme}
 
