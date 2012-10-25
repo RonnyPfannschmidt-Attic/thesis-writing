@@ -250,7 +250,7 @@ cons:
 
 \subsubsection{\"Ubersicht}
 
-\begin{figure}[ht] 
+\begin{figure}[h!]
   \label{fig:klassen-arten-arbeitsschritt}
   \begin{center}
       \includegraphics[height=3.5in]{imageinput/klassen-arten-arbeitsschritt.png}
@@ -259,7 +259,7 @@ cons:
 \end{figure}
 
 
-
+\FloatBarrier
 \subsubsection{Prozessaktionen}
 
 - was/wozu
@@ -279,6 +279,15 @@ cons:
 
 \subsection{CAP Abdeckung}
 
+Wie bereits in Sektion~\ref{sec:base:cap} erw\"ahnt,
+ist es immer nur m\"oglich 2 der 3 Aspekte des CAP Theorems abzudecken.
+
+Jedoch ist es durchaus legitim f\"ur verschiedene Teile einer Applikation unterschiedliche Bereiche abzudecken.
+Sobald genau definiert ist, f\"ur welche Daten in welchem Kontext welche Eigenschafen benoetigt werden,
+kann ein Konsistentes modell geschaffen werden.
+
+
+
 \begin{verbatim}
 - ``2 of 3''
 - verschiedene aspekte der applikation haben unterschiedliche anforderungen
@@ -287,14 +296,14 @@ cons:
 \end{verbatim}
 
 
-% http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed
+%XXX: http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed
 
-\begin{verbatim}
-- wie ber in cap \ref{sec:basic:cap}
 
-\end{verbatim}
+\subsection{Statusmaschienen zur Konsistenzwahrung}
 
-\subsection{statusmaschienen zur konsistenzwahrung}
+%XXX: Literatur
+
+Statusmaschienen sind ein 
 
 \begin{verbatim}
 - konzept der knuepfung von transitionen an operatoren,
