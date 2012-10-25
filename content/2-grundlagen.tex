@@ -16,11 +16,24 @@ welche f\"ur das Verst\"andniss der Arbeit hilfreich sind.
 
 %XXX literatur
 % 
-Das CAP Theorem beschreibt 3 Grundlegende
+Das CAP Theorem nach \cite{brewer:cap} beschreibt 3 Grundlegend
+w\"unschenswerte Eigenschaften von verteilten Systemen/Datenbanken.
 
-\begin{verbatim}
-- basics - copy somewhere
-\end{verbatim}
+\begin{description}
+  \item[Konsistenz (C)] \hfill \\
+      Alle Knoten sehen zur selben Zeit dieselben Daten. 
+  \item[Verf\"ugbarkeit (A)] \hfill \\
+      Alle Anfragen an das System werden stets beantwortet.
+  \item[Partitionstoleranz (P)] \hfill \\
+      Das System arbeitet auch bei Verlust von Nachrichten,
+      einzelner Netzknoten oder Partition des Netzes weiter.
+\end{description}
+
+Zu beachten ist dabei, dass nur 2 dieser 3 Anforderungen gleichzeitig
+vollst\"andig erfuellt werden k\"onnen.
+
+
+
 
 \section{BASE}
 \label{sec:base:base}
