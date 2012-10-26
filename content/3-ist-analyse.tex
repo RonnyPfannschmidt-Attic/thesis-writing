@@ -60,18 +60,30 @@ w\"ahrend Testergebnisse nur dargestellt werden.
 
 \section{Probleme existierender Systeme}
 
+Diese Sektion gibt einen \"Uberblick \"uber die Problemarten
 
 \subsection{Datenzugriff}
 
-\begin{verbatim}
-- eigene datenformate
-- dumb stores
-\end{verbatim}
+Beim Datenzugriff sind die existierenden Systeme besonders Problematisch.
+Es gibt Grunds\"atzlich keinerlei Standardschnittstellen.
+Die meisten Systeme verwenden noch nicht einmal eine Datenbank.
+Jene welche doch eine verwenden wird, machen sie nicht zug\"anglich.
+
+Die Datenhaltung dieser Systeme kann somit grob als geordnete Ablage klassifiziert werden. Weiterf\"uhrende Abfragen sind nicht m\"oglich.
 
 \subsection{Erweiterbarkeit}
-\begin{verbatim}
 
-\end{verbatim}
+Die Erweiterbarkeit eines CI-Systemes wird von 2 Hauptpunkten dominiert.
+Dies ist die Integration in die Benutzeroberfl\"ache
+und zum anderen die M\"oglichkeiten mit den Daten interagieren
+und auf neue Weise zu kombinieren.
+
+Die erweiterbaren Systeme stellen normalerweise zumindest eine Schnittstelle
+f\"ur die graphische Oberfl\"ache zur Verf\"ugung.
+Damit ist zumindest das problemlose Anpassen der Benutzerschnittstelle gegeben.
+
+
+%XXX:
 
 
 \subsection{Komponentenabh\"angigkeit}
@@ -87,13 +99,16 @@ w\"ahrend Testergebnisse nur dargestellt werden.
 
 \end{verbatim}
 
-\section{Praxisbeisiele}
+\section{Praxisbeispiele}
 
 \subsection{Auswahl}
 
 \begin{verbatim}
 
 - opensource/oeffentlich
+- kostenlos
+- verbreitet
+
 \end{verbatim}
 
 \subsection{Jenkins}
