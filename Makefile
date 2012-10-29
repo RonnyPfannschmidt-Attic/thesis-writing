@@ -1,6 +1,6 @@
 DIAFILES=$(wildcard imageinput/*.dia)
 DOTFILES=$(wildcard imageinput/*.dot)
-
+TEXFILES=$(wildcard content/*.tex) document.tex
 
 %.png: %.dot
 	@echo dot export $<
@@ -10,13 +10,15 @@ DOTFILES=$(wildcard imageinput/*.dot)
 	@echo dia export $<
 	@dia $< -e $@ -t png
 
-
-
-document.pdf: images code content/*.tex
+document.pdf: images code $(TEXFILES)
 	pdflatex -shell-escape document && \
 	bibtex document && \
 	pdflatex -shell-escape document && \
 	pdflatex -shell-escape document
+
+.PHONY: perm
+perm:
+	bash tools/permamake.sh $(DIAFILES) $(DOTFILES) $(TEXFILES)
 
 .PHONY: images
 images: ${DIAFILES:.dia=.png} ${DOTFILES:.dot=.png}
@@ -24,7 +26,7 @@ images: ${DIAFILES:.dia=.png} ${DOTFILES:.dot=.png}
 
 .PHONY:code
 code:
-	python minted_code_extractor.py content ../juggler .tex_from_code
+	python tools/minted_code_extractor.py content ../juggler .tex_from_code
 
 
 clean:
