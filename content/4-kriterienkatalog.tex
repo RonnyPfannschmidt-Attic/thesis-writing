@@ -1,22 +1,19 @@
 \chapter{Zielspezifikation ( 5 \%)}
 
+Wie das letzte Kapitel gezeigt hat,
+bringen bisherige Systeme diverse Probleme mit sich.
+Da diese nicht oder nur schwer innerhalb dieser Systeme l\"osbar sind,
+soll ein neues System geschafen werden.
 
-
-% Wie das letzte kap gezeig hat ..
-% in diesem kap sollen zie ziele quali/quantifiziert werden
+Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlegen.
 
 
 % tests in sektionen mit angeben
-
-
 
 % zeitanforderungen ?!
 
 % funktional, tests, szstemanforderunge? bessereer name
 % abgrenzungen
-% zusammenfassung 
-%   - im wesentlichen soll \ldots. prototypisch & exemplarisch
-%   anhand .. soll ein loesungskonz vorgestellt werden
 
 %Was soll konkret gelöst werden. Hierzu gehören u.a.
 %    -    Anforderungskatalog
@@ -28,19 +25,21 @@
 
 \begin{verbatim}
 - funktional + use-cases
-- systemspez anforderungen
 - testkriterien
 -
 \end{verbatim}
 
 
-% kann/soll kriterien
 \section{Systemanforderungen}
+
+
 
 - ausfallsicherheit bei absturz/beendigung
   von systemkomponenten
 - standardschnittstellen fuer den datenbankzugriff
+- grundlegende erweiterbarkeit
 
+% kann/soll kriterien
 \section{Funktionenale Anforderungen}
 % evtl incl use-cases
 \subsection{Funktions\"uberblick}
@@ -72,7 +71,7 @@
   \centering
   \label{fig:use-case-muss}
   \includegraphics[width=0.7\textwidth]{imageinput/use-case-muss.png}
-  \caption{\"Ubersicht Use Cases - Kern}
+  \caption{\"Ubersicht Use-Cases - Kern}
 \end{figure}
 
 
@@ -104,7 +103,6 @@
  - regeln
 
 
------
 \section{Testkriterien}
 \subsection{Unit tests ?}
 
@@ -141,3 +139,28 @@
 
 \end{verbatim}
 
+\subsection{Manuelle Tests}
+
+Die manuellen Tests werden alle Tests umfassen,
+deren Umsetzung als automatisches Programm erfahrungsgem\"ass zeitaufwendig,
+fehleranf\"allig und/oder umfangreich sind.
+
+
+\begin{description}
+  \item[Zeitverhalten] \hfill \\
+    Beobachtung und Analyse des Zeitveraltens bei wachstender Datenmenge und Auftragsgr\"osse
+  \item[Raceverhalten] \hfill \\
+    %XXX: besserer name als race?
+    XXX
+  \item[Verhalten bei Systemfehler]\hfill \\
+    \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten
+  \item[Grosse Datenanalyse] \hfill \\
+    Testen der exemplarischen Erweiterungen mit Datenmengen und Aufgaben
+    die den Rahmen eines automatischen Tests Sprengen
+\end{description}
+
+\section{Zusammenfassung}
+
+% zusammenfassung 
+%   - im wesentlichen soll \ldots. prototypisch & exemplarisch
+%   anhand .. soll ein loesungskonz vorgestellt werden
