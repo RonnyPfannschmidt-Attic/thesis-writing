@@ -23,63 +23,32 @@ Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlege
 %    -    ... 
 
 
-\begin{verbatim}
-- funktional + use-cases
-- testkriterien
--
-\end{verbatim}
-
-
 \section{Systemanforderungen}
 
+Die Systemanforderungen legen funktionale Eigenschaften der Software auf Systemebene fest.
+Dabei werden 3 Punkte als wichtig erachtet.
 
 
-- ausfallsicherheit bei absturz/beendigung
-  von systemkomponenten
-- standardschnittstellen fuer den datenbankzugriff
-- grundlegende erweiterbarkeit
+\begin{description}
 
-% kann/soll kriterien
+\dhitem[S1]
+Das System darf sich nicht vom Absturz/Fehlerfall einzelner Komponenten st\"oren lassen.
+Jederzeit muss es m\"oglich sein, Teile des Systems hart zu beenden oder
+die Struktur des Systems zu ver\"andern.
+
+\dhitem[S2]
+Alle anfallenden L\"angerfristig verf\"ugbaren Daten m\"ussen mittels einer Standardschnittstelle
+f\"ur Datenbankzugriff abfragbar/verwendbar sein.
+
+\dhitem[S3]
+Das System soll offen f\"ur Erweiterungen stehen,
+und soweit m\"oglich Erweiterbarkeit aktiv unterst\"utzen.
+\end{description}
+
+
 \section{Funktionenale Anforderungen}
-% evtl incl use-cases
-\subsection{Funktions\"uberblick}
-\begin{verbatim}
-
-- einzelnen komponenten
-  - auftragseingang
-  - aftragsvorbereitung
-  - auftragsabarbeitung
-  - schritte durchlaufen
-
-- schrittypen durchfuehren
- - prozess
- - python ?
- - scm
-
-
-
-- projekt verwalten -> kann
-
-- annahme/generieren von aufrtraegen
-  - matrix mit werten -> muss
-
-- erstellung/management von arbeitspacketen
-  - von matrix
-- abarbeitung von arbeitspacketen
-  - scm
-  - prozesse
-- analyse von
-  - zeitserien ueber projekte
-  - auftraegen
-  - arbeitspackete
-
-  - ext analyse sommer projekt
-  - ext regressionsanalyse (theorie) ?
-\end{verbatim}
-
+% kann/soll kriterien
 \subsection{Use Cases}
-
-
 
 \begin{figure}[ht]
   \centering
@@ -87,6 +56,8 @@ Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlege
   \includegraphics[width=0.7\textwidth]{imageinput/use-case-muss.png}
   \caption{\"Ubersicht Use-Cases - Kern}
 \end{figure}
+
+
 
 
 \begin{verbatim}
@@ -106,6 +77,41 @@ Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlege
   - datenanalyse beispiel sommer <addon>
 \end{verbatim}
 
+
+% evtl incl use-cases
+\subsection{Funktions\"uberblick}
+
+
+
+\begin{verbatim}
+
+- einzelnen komponenten
+  - auftragseingang
+  - aftragsvorbereitung
+  - auftragsabarbeitung
+  - schritte durchlaufen
+
+- schrittypen durchfuehren
+ - prozess
+ - python
+ - scm
+
+- projekt verwalten -> kann
+
+- annahme/generieren von aufrtraegen
+  - matrix mit werten -> muss
+
+- erstellung/management von arbeitspacketen
+  - von matrix
+
+  - analyse von
+  - zeitserien ueber projekte
+  - auftraegen
+  - arbeitspackete
+
+  - ext analyse sommer projekt
+  - ext regressionsanalyse (theorie) ?
+\end{verbatim}
 
 \section{rahmenbed}
 
