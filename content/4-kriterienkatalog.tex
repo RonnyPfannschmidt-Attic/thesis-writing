@@ -134,12 +134,21 @@ Daher entsprechen sie Grob den funktionalen Anforderungen und Use-cases.
 
 \subsection{Systemtests}
 
-\begin{verbatim}
-- komponentendurchlauf
-- durchlauf komplettsystem
-- resultate beispiel datenanalyse
+Systemtests testen Kombinationen von funktionalen Komponenten sowie das Komplettsystem.
+Im Rahmen dieser Arbeit werden 3 Systemtests definiert.
 
-\end{verbatim}
+
+\begin{description}
+  \dhitem[Komponentendurchlauf]
+    soll anhand des ausf\"uhrens der einzelnen funktionalen Komponenten
+    aufzeigen, ob das Zusammenspiel der Komponenten
+    grunds\"atzlich funkioniert
+  \dhitem[Komplettstystem]
+    soll das komplette CI-System auf einer Testdatenbank starten
+    und seine Funktion sicherstellen
+  \dhitem[Beispiel Datenanalyse]
+    soll die Funktion der Beispielerweiterung f\"ur Datenanalyse sicherstellen
+\end{description}
 
 \subsection{Manuelle Tests}
 
@@ -149,14 +158,14 @@ fehleranf\"allig und/oder umfangreich sind.
 
 
 \begin{description}
-  \item[Zeitverhalten] \hfill \\
+  \dhitem[Zeitverhalten]
     Beobachtung und Analyse des Zeitveraltens bei wachstender Datenmenge und Auftragsgr\"osse
-  \item[Raceverhalten] \hfill \\
+  \dhitem[Raceverhalten]
     %XXX: besserer name als race?
     XXX
-  \item[Verhalten bei Systemfehler]\hfill \\
+  \dhitem[Verhalten bei Systemfehler]
     \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten
-  \item[Grosse Datenanalyse] \hfill \\
+  \dhitem[Grosse Datenanalyse]
     Testen der exemplarischen Erweiterungen mit Datenmengen und Aufgaben
     die den Rahmen eines automatischen Tests Sprengen
 \end{description}
