@@ -1,0 +1,16 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{includes/featcounter}[2012/11/01 feature counters]
+
+\newcounter{thefeatures}
+\setcounter{thefeatures}{0}
+
+\crefname{thefeatures}{feature}{features}
+
+\newcommand{\deffeat}[1]{
+    \refstepcounter{thefeatures}
+    \label{#1}
+    \textbf{F\arabic{thefeatures}}
+}
+
+\crefformat{thefeatures}{#2\textbf{F#1}#3}
