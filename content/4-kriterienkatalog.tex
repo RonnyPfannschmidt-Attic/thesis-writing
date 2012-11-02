@@ -15,12 +15,6 @@ Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlege
 % funktional, tests, szstemanforderunge? bessereer name
 % abgrenzungen
 
-%Was soll konkret gelöst werden. Hierzu gehören u.a.
-%    -    Anforderungskatalog
-%    -    Use-Cases
-%    -    Pflichtenheft
-%    -    Testkriterien
-%    -    ... 
 
 
 \section{Systemanforderungen}
@@ -46,19 +40,31 @@ und soweit m\"oglich Erweiterbarkeit aktiv unterst\"utzen.
 \end{description}
 
 
-\section{Funktionenale Anforderungen}
+\section{Funktionenale Anforderungen und Use Cases}
 % kann/soll kriterien
-\subsection{Use Cases}
 
-Um ein
+Um ein modernes und erweiterbares CI-System zu schaffen,
+m\"ussen zuerst die Kernfunktionen festgelegt werden.
+Anschliessend kann auf dieser Basis
+eine Platform f\"ur Erweiterungen geschaffen werden.
+Dabei ist schon im Kern das bereits Angesprochene Problem
+der Matrix-Builds zu beachten.
+
+
+
+
 \begin{figure}[ht]
   \centering
-  \label{fig:use-case-muss}
   \includegraphics[width=0.7\textwidth]{imageinput/use-case-muss.png}
   \caption{\"Ubersicht Use-Cases - Kern}
+  \label{fig:use-case-muss}
 \end{figure}
 
 
+Wie in Abbildung~\ref{fig:use-case-muss} gut zu erkennen,
+stellt sich der Absolute Kern eines CI-Systemes aus relativ wenigen Funktionalit\"aten zusammen.
+
+Die erste Notwendige Funktion stellt die Verwaltung von Projekten \deffeat{feat:projekt-verwalten}
 
 
 \begin{verbatim}
@@ -77,12 +83,6 @@ Um ein
   - auswertung zeitserien <addon>
   - datenanalyse beispiel sommer <addon>
 \end{verbatim}
-
-
-% evtl incl use-cases
-\subsection{Funktions\"uberblick}
-
-
 
 \begin{verbatim}
 
