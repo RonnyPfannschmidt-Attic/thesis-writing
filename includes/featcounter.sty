@@ -16,9 +16,9 @@
 
 
 \newcommand{\deffeat}[1]{
-    \refstepcounter{thefeatures}
-    \label{#1}
-    (\textbf{F\padfrom{\arabic{thefeatures}}})
+\refstepcounter{thefeatures}%
+\label{#1}%
+(\textbf{F\padfrom{\arabic{thefeatures}}})%
 }
 
 \crefformat{thefeatures}{#2\textbf{F\padfrom{#1}}#3}
