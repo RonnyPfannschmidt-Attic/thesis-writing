@@ -8,10 +8,17 @@
 \crefname{thefeatures}{feature}{features}
 
 
+
+\newcommand\padfrom[1]{%
+\StrLen{#1}[\templen]%
+\StrGobbleRight{000}{\templen}%
+#1}
+
+
 \newcommand{\deffeat}[1]{
     \refstepcounter{thefeatures}
     \label{#1}
-    (\textbf{F\arabic{thefeatures}})
+    (\textbf{F\padfrom{\arabic{thefeatures}}})
 }
 
-\crefformat{thefeatures}{#2\textbf{F#1}#3}
+\crefformat{thefeatures}{#2\textbf{F\padfrom{#1}}#3}
