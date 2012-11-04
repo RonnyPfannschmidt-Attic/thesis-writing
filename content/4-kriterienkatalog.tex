@@ -8,6 +8,8 @@ soll ein neues System geschafen werden.
 Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlegen.
 
 
+
+
 % tests in sektionen mit angeben
 
 % zeitanforderungen ?!
@@ -50,8 +52,14 @@ eine Platform f\"ur Erweiterungen geschaffen werden.
 Dabei ist schon im Kern das bereits Angesprochene Problem
 der Matrix-Builds zu beachten.
 
+Anschliessend K\"onnen auf dieser Basis n\"utzliche weiterf\"uhrende Funktionen
+sowie die gew\"unschten Erweiterungen geschaffen werden.
 
 
+\subsection{Kernfunktionen}
+
+Die Kernfunktionen bilden das absolute Minimum an Funktionen.
+Jede von ihnen ist unabdingbar.
 
 \begin{figure}[ht]
   \centering
@@ -60,50 +68,62 @@ der Matrix-Builds zu beachten.
   \label{fig:use-case-muss}
 \end{figure}
 
-
 Wie in Abbildung~\ref{fig:use-case-muss} gut zu erkennen,
 stellt sich der Absolute Kern eines CI-Systemes aus relativ wenigen Funktionalit\"aten zusammen.
 
-Die erste Notwendige Funktion stellt die Verwaltung von Projekten \deffeat{feat:projekt-verwalten}
+Die erste Notwendige Funktion stellt die Verwaltung von Projekten \deffeat{feat:projekt-verwalten}.
+Sind diese dann angelegt, mann man damit beginnen, Auftr\"age abzusetzen \deffeat{feat:auftrag-absetzen}.
+Ist ein Auftrag abgesetzt, so muss seine Richtigkeit sichergestellt werden \deffeat{feat:auftrag-validieren},
+danach kann er f\"ur die Bearbeitung \deffeat{feat:auftrag-vorbereiten} vorbereitet werden.
+
+Nach dem der Auftrag an sich vorbereitet ist, m\"ussen entsprechend der Build-Matrix \deffeat{feat:auftrag-matrix}
+Arbeitspackete generiert werden \deffeat{feat:arbeitspacket-generieren}.
+Diese Arbeitspackete werden anschliesend verteilt \deffeat{feat:arbeitspacket-verteilen} und abgearbeitet \deffeat{feat:arbeitspacket-abarbeiten}.
+
+Das Abarbeiten der Arbeitspackete sollte in Schritten erfolgen \deffeat{feat:arbeitspackete-schritte},
+wobei die grundlegendste Art von Arbeitsschritt das Ausf\"uhren eines Prozesses \deffeat{feat:arbeitsschritt-prozess} ist.
+
+
+\subsection{Weiterf\"uhrende Funktionen}
+
+Nach dem Umsetzung des funktionalen Kerns als Basis,
+k\"onnen nun weiterf\"uhrende Funktionen angelagert werden.
+Diese sind nicht zwingend notwendig, tragen jedoch erheblich dazu bei,
+informierte Entscheidungen \"uber den Zustand eines Projektes in Integration zu treffen.
+
+\subsubsection{Datensammlung}
+
+Zun\"achst einmal gilt es Datensammlung beim Ablauf eines Arbeitschrittes zu betrachen.
+\"Ublicherweise muss zumindest STDOUT/STDERR schon zur Laufzeit festgehalten \deffeat{feat:arbeisschritt-stdio} werden.
+Weiterhin besteht auch Interesse an statistisch auswertbaren Daten wie z.B. den Speicherverbrauch \deffeat{feat:arbeitsschritt-stats}.
+
+Auch nach dem Ausf\"uhren eines Arbeitschrittes fallen interessante Daten an.
+Oftmals sorgt zumindest einer der Arbeitschritte f\"ur das Generieren eines Ausf\"uhrbaren Programmes.
+Dieses sollte sp\"ater auch zur Verf\"ugung gestellt werden \deffeat{feat:arbeitsschritt-artefakt}.
+Weiterhin finden sich Testresultate in diversen Standardformaten \deffeat{feat:arbeitsschritt-resultate}, wie z.B. JunitXML.
+
+\subsubsection{Arten Arbeitsschritte}
+
+Auch bei den Arten der Arbeitsschritte gibt es f\"r gew\"ohnlich mehrere M\"oglichkeiten (siehe \Cref{chap:ist-analyse}).
+Neben den gewohnten Prozessschritten (\cref{feat:arbeitsschritt-prozess}) sind weitere Arten \"ublich.
+Interaktion mit dem Quellcodemanagement \deffeat{feat:arbeitsschritt-scm}, sowie
+Schritte implementiert in einer Scriptsprache \deffeat{feat:arbeitsschritt-script},
+stellen weiterf\"uhrende Hilfen dar.
+
 
 
 \begin{verbatim}
-- build achsen ??
-
-- extensions
-  - regressionstest
-  - testanalyse
-
-- alte usecases
-  - junitxml beispiel
-  - stdout beispiel
 
 - neue use-cases
   - workdir diff/tarball
   - auswertung zeitserien <addon>
   - datenanalyse beispiel sommer <addon>
-\end{verbatim}
 
-\begin{verbatim}
-
-- einzelnen komponenten
-  - auftragseingang
-  - aftragsvorbereitung
-  - auftragsabarbeitung
-  - schritte durchlaufen
-
-- schrittypen durchfuehren
- - prozess
- - python
- - scm
-
-- projekt verwalten -> kann
-
-- annahme/generieren von aufrtraegen
-  - matrix mit werten -> muss
+- extensions
+  - regressionstest
+  - testanalyse
 
 - erstellung/management von arbeitspacketen
-  - von matrix
 
   - analyse von
   - zeitserien ueber projekte
@@ -131,7 +151,7 @@ Unittests werden verwendet um die kleinsten Komponenten des Systems zu testen.
 Durch ihre starke Koppelung an Implementation und Entwurf,
 sind die nicht w\"ahrend der Kriterienfindung noch nicht n\"aher bestimmbar.
 
-Sie ergeben ich im Entwurf und in der nachfolgenden Implementation.
+Sie ergeben sich im Entwurf und in der nachfolgenden Implementation.
 
 \subsection{Funktionale Tests}
 
@@ -165,15 +185,16 @@ fehleranf\"allig und/oder umfangreich sind.
 
 
 \begin{description}
-  \dhitem[Zeitverhalten]
-    Beobachtung und Analyse des Zeitveraltens bei wachstender Datenmenge und Auftragsgr\"osse
-  \dhitem[Raceverhalten]
-    %XXX: besserer name als race?
-    XXX
+  \dhitem[zeitliches Verhalten]
+    Beobachtung und Analyse des Zeitveraltens \\
+    bei wachsender Datenmenge und Auftragsgr\"osse
+  \dhitem[Race-Conditions]
+    Beobachtung und Analyse trivialer Race-Conditions \\
+    bei wachsender Nebenl\"aufigkeit
   \dhitem[Verhalten bei Systemfehler]
     \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten
   \dhitem[Grosse Datenanalyse]
-    Testen der exemplarischen Erweiterungen mit Datenmengen und Aufgaben
+    Testen der exemplarischen Erweiterungen mit Datenmengen und Aufgaben \\
     die den Rahmen eines automatischen Tests Sprengen
 \end{description}
 
