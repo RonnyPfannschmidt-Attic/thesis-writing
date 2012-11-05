@@ -276,16 +276,22 @@ ist es immer nur m\"oglich 2 der 3 Aspekte des CAP Theorems abzudecken.
 
 Jedoch ist es durchaus legitim f\"ur verschiedene Teile einer Applikation unterschiedliche Bereiche abzudecken.
 Sobald genau definiert ist, f\"ur welche Daten in welchem Kontext welche Eigenschafen benoetigt werden,
-kann ein Konsistentes modell geschaffen werden.
+kann ein konsistentes Modell geschaffen werden.
 
+Wichtig ist bei dieser Betrachtung, dass die Unterschiedlichen des Entwickelten CI-Systemes
+nicht zwingend eine direkte Konsistenzbindung untereinander ben\"otigen.
+Wichtig ist nur, die Konsistenz zwischen einer Komponente und dem Datenbankknoten,
+mit dem sie Kommuniziert.
 
+Das Hauptsystem, in dem alle Komponenten in Kommunikation stehen,
+%XXX: s1?
+soll nach Systemanforderung \textbf{S1} immer verf\"ugbar sein, und Teilausf\"alle verkraften.
+Somit kommt f\"ur die Kommunikation zwischen Komponenten nur das Model \textbf{A-P} in Frage
+(was Verf\"ugbar und Partitionstollerant bedeutet).
 
-\begin{verbatim}
-- ``2 of 3''
-- verschiedene aspekte der applikation haben unterschiedliche anforderungen
-- 
-
-\end{verbatim}
+Die Anbinding einzelner Komponenten and ihre Datenbankknoten, hat jedoch andere Anforderungen.
+Da eie direkte Anbindung and die Datenbank f\"ur das Funktionieren einer Komponente unabdingbar ist,
+kann in diesem Fall nur das Modell \textbf{C-A} zum Einsatz kommen.
 
 
 %XXX: http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed
@@ -296,16 +302,28 @@ kann ein Konsistentes modell geschaffen werden.
 %XXX: Literatur
 % http://blog.incubaid.com/2012/10/25/caulking-your-distributed-algorithm-implementation/
 
-Statusmaschienen sind ein 
+Statusmaschienen sind ein allgemein bekanntes Werkzeug,
+um den den Ablauf eines komplexen Programmes zu beschreiben oder zu erkl\"aren.
+In der Regel wird dazu ein sog. StatusGraph verwendet.
+Dieser ist ein Gerichteter Graph der die Zust\"ande und Zustands\"anderungen eines Systemes beschreibt.
 
-\begin{verbatim}
-- konzept der knuepfung von transitionen an operatoren,
-  - so gestalten, das auch bei partitionierung inkonsistenzen
-    durch die konsistenzbedingungen der statusmaschienen unmoeglich sind
+Wie bereits in Abbildung \ref{fig:lebenszyklus-arbeitspaket} gezeigt,
+stellt der Lebenszyklus eines Arbeitspacketes einen solchen Statusgraph dar.
+Als Besonderheit ist er sogar frei von Zyklen.
+Dadurch ist es unm\"oglich den gleichen Status noch einmal zu erreichen.
 
-\end{verbatim}
+Bindet man Zus\"atzlich noch die Transitionen an bearbeitende Knoten (Agenten ausserhalb der Datenbank),
+so ist es auch bei einer Partitionierung der Datenbank eine Konsistenz der Gesammtsystemes gew\"ahrleistet.
+
+%XXX: moar?
 
 
+Mit dem dem Eingang und der Abarbeitung von Auftr\"agen verh\"alt es sich \"ahnlich,
+jedoch ist der Graph dort Wesentlich einfacher.
+Die Abbildungen \ref{fig:lebenszyklus-auftrag-eingang} und \ref{fig:lebenszyklus-auftrag-abarbeitung} zeigen den groben Ablauf.
+Der Wechselpunkt zwischen Eingang und Abarbeitung ist die der Validation angeschlossene Markierung zur Bereitschaft.
+Da es nur diesen einen Punkt des Austausches gibt, ist die Konsistenzwahrung des Auftrages Denkbar einfach,
+Mit der Bereitschaft, wird die Verwantwortung vom Eingang zur Abarbeitung \"ubertragen.
 
 \section{Logisches Gesammtkonzept}
 
