@@ -23,3 +23,5 @@ document.pyg
 *.pdf
 *.toc
 *.out
+*.brf
+*.bak
