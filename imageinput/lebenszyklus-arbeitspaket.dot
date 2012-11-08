@@ -1,6 +1,6 @@
 digraph arbeitspacket {
     new -> ready;
-    runing -> completed;
+    running -> completed;
     ready-> canceling;
     claiming -> canceling; 
     acepted -> canceling;
@@ -23,6 +23,6 @@ digraph arbeitspacket {
     ready [style=filled,fillcolor=orange];
     claiming [style=filled,fillcolor=blue];
     acepted [style=filled,fillcolor=orange];
-    runing [style=filled,fillcolor=blue];
+    running [style=filled,fillcolor=blue];
     completed [style=filled,fillcolor=blue];
 }
