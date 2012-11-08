@@ -5,9 +5,16 @@ digraph arbeitspacket {
     claiming -> canceling; 
     acepted -> canceling;
     runing -> canceling;
+
+    subgraph final {
+        rank="same";
+        canceled;completed;interrupted;
+    }
+
     canceling -> canceled;
     canceling -> completed;
     ready -> claiming -> acepted -> runing;
+    runing -> interrupted;
 
 
     canceling [style=filled,fillcolor=orange];
