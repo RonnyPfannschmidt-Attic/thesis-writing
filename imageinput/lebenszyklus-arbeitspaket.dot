@@ -12,11 +12,11 @@ digraph arbeitspacket {
         canceled;
         completed;
         interrupted;
-        canceling -> canceled;
-        canceling -> completed;
-        running -> interrupted;
     }
 
+    canceling -> canceled;
+    canceling -> completed;
+    running -> interrupted;
 
 
     canceling [style=filled,fillcolor=orange];
