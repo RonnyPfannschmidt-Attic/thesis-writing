@@ -95,12 +95,14 @@ informierte Entscheidungen \"uber den Zustand eines Projektes in Integration zu 
 
 Zun\"achst einmal gilt es Datensammlung beim Ablauf eines Arbeitschrittes zu betrachen.
 \"Ublicherweise muss zumindest STDOUT/STDERR schon zur Laufzeit festgehalten \deffeat{feat:arbeisschritt-stdio} werden.
-Weiterhin besteht auch Interesse an statistisch auswertbaren Daten wie z.B. den Speicherverbrauch \deffeat{feat:arbeitsschritt-stats}.
+Weiterhin besteht auch Interesse an statistisch auswertbaren Daten
+wie z.B. den Speicherverbrauch \deffeat{feat:arbeitsschritt-stats}.
 
 Auch nach dem Ausf\"uhren eines Arbeitschrittes fallen interessante Daten an.
 Oftmals sorgt zumindest einer der Arbeitschritte f\"ur das Generieren eines Ausf\"uhrbaren Programmes.
 Dieses sollte sp\"ater auch zur Verf\"ugung gestellt werden \deffeat{feat:arbeitsschritt-artefakt}.
-Weiterhin finden sich Testresultate in diversen Standardformaten \deffeat{feat:arbeitsschritt-resultate}, wie z.B. JunitXML.
+Weiterhin finden sich Testresultate in diversen Standardformaten \deffeat{feat:arbeitsschritt-resultate},
+wie z.B. JunitXML.
 
 \subsubsection{Arten Arbeitsschritte}
 
@@ -110,28 +112,35 @@ Interaktion mit dem Quellcodemanagement \deffeat{feat:arbeitsschritt-scm}, sowie
 Schritte implementiert in einer Scriptsprache \deffeat{feat:arbeitsschritt-script},
 stellen weiterf\"uhrende Hilfen dar.
 
+\subsubsection{Verteilung von Arbeitspacketen}
+
+Um \"uberhaupt bis zu den Arbeitschritten zu kommen,
+ist es notwendig, Arbeitspackete zu verteilen \deffeat{feat:arbeitspackete-verteilen}.
+Dies soll ein verteileter Prozess sein \deffeat{feat:arbeitspackete-autonome-verteilung},
+bei dem die Slaves/Arbeiter aktiv mitwirken k\"onnen.
+Eine denkbare Erweiterung w\"are die m\"oglichkeit, das Slaves/Arbeiter
+die Arbeitspackete mittels kategorischer Filter auswaehlen \deffeat{feat:arbeitspackete-verteilung-selektiv}.
+Beispiele f\"ur diese w\"aren z.b. Platform oder Betriebsumgebung.
+
+\subsubsection{Auftragseingang und Vorbereitung}
+
+- mail, web, stuff
+
+- modernes
+  - workdir diff/tarball
+
+\subsubsection{Resultatanalyse}
 
 
 \begin{verbatim}
-
-- neue use-cases
-  - workdir diff/tarball
-  - auswertung zeitserien <addon>
-  - datenanalyse beispiel sommer <addon>
-
-- extensions
-  - regressionstest
-  - testanalyse
-
-- erstellung/management von arbeitspacketen
-
-  - analyse von
-  - zeitserien ueber projekte
+- analyse von
   - auftraegen
   - arbeitspackete
-
-  - ext analyse sommer projekt
-  - ext regressionsanalyse (theorie) ?
+- extensions
+  - datenanalyse beispiel sommer <addon>
+  - regressionstest
+  - testanalyse
+  - auswertung zeitserien <addon>
 \end{verbatim}
 
 
