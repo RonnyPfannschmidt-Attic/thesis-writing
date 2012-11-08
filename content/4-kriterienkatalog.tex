@@ -124,10 +124,17 @@ Beispiele f\"ur diese w\"aren z.b. Platform oder Betriebsumgebung.
 
 \subsubsection{Auftragseingang und Vorbereitung}
 
-- mail, web, stuff
+%XXX: web hook gosar
 
-- modernes
-  - workdir diff/tarball
+Der Auftragseingang kann sich vielseitig gestalten.
+Moderne Systeme unterstuetzen eine Vielzahl von Medien \deffeat{feat:auftrag-eingang-medien},
+wie z.b. Email, Web-Hooks, Web-Formulare oder Zeitgesteuerte Systeme.
+
+W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterstuetzt werden,
+sind die Anreicherung eines Auftrages um eigene Daten/\"Anderungen.
+Besonders hilfreich erscheint hierbei das sogenannte Workdir-diff \deffeat{auftrag-eingang-diff},
+welches die aktuellen \"Anderungen eines Entwickers darstellen.
+Dies macht sie besonders n\"utzlich f\"ur den laufenden Entwicklungsprozess.
 
 \subsubsection{Resultatanalyse}
 
