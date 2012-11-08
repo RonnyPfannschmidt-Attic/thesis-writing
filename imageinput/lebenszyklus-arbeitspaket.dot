@@ -4,17 +4,19 @@ digraph arbeitspacket {
     ready-> canceling;
     claiming -> canceling; 
     acepted -> canceling;
-    runing -> canceling;
+    ready -> claiming -> acepted -> running;
+    running -> canceling;
 
     subgraph final {
         rank="same";
-        canceled;completed;interrupted;
+        canceled;
+        completed;
+        interrupted;
+        canceling -> canceled;
+        canceling -> completed;
+        running -> interrupted;
     }
 
-    canceling -> canceled;
-    canceling -> completed;
-    ready -> claiming -> acepted -> runing;
-    runing -> interrupted;
 
 
     canceling [style=filled,fillcolor=orange];
