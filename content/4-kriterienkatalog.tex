@@ -71,17 +71,17 @@ Jede von ihnen ist unabdingbar.
 Wie in Abbildung~\ref{fig:use-case-muss} gut zu erkennen,
 stellt sich der Absolute Kern eines CI-Systemes aus relativ wenigen Funktionalit\"aten zusammen.
 
-Die erste Notwendige Funktion stellt die Verwaltung von Projekten \deffeat{feat:projekt-verwalten}.
-Sind diese dann angelegt, mann man damit beginnen, Auftr\"age abzusetzen \deffeat{feat:auftrag-absetzen}.
-Ist ein Auftrag abgesetzt, so muss seine Richtigkeit sichergestellt werden \deffeat{feat:auftrag-validieren},
-danach kann er f\"ur die Bearbeitung \deffeat{feat:auftrag-vorbereiten} vorbereitet werden.
+Die erste Notwendige Funktion stellt die Verwaltung von Projekten \deffeat{projekt-verwalten}.
+Sind diese dann angelegt, mann man damit beginnen, Auftr\"age abzusetzen \deffeat{auftrag-absetzen}.
+Ist ein Auftrag abgesetzt, so muss seine Richtigkeit sichergestellt werden \deffeat{auftrag-validieren},
+danach kann er f\"ur die Bearbeitung \deffeat{auftrag-vorbereiten} vorbereitet werden.
 
-Nach dem der Auftrag an sich vorbereitet ist, m\"ussen entsprechend der Build-Matrix \deffeat{feat:auftrag-matrix}
-Arbeitspackete generiert werden \deffeat{feat:arbeitspacket-generieren}.
-Diese Arbeitspackete werden anschliesend verteilt \deffeat{feat:arbeitspacket-verteilen} und abgearbeitet \deffeat{feat:arbeitspacket-abarbeiten}.
+Nach dem der Auftrag an sich vorbereitet ist, m\"ussen entsprechend der Build-Matrix \deffeat{auftrag-matrix}
+Arbeitspackete generiert werden \deffeat{arbeitspacket-generieren}.
+Diese Arbeitspackete werden anschliesend verteilt \deffeat{arbeitspacket-verteilen} und abgearbeitet \deffeat{arbeitspacket-abarbeiten}.
 
-Das Abarbeiten der Arbeitspackete sollte in Schritten erfolgen \deffeat{feat:arbeitspackete-schritte},
-wobei die grundlegendste Art von Arbeitsschritt das Ausf\"uhren eines Prozesses \deffeat{feat:arbeitsschritt-prozess} ist.
+Das Abarbeiten der Arbeitspackete sollte in Schritten erfolgen \deffeat{arbeitspackete-schritte},
+wobei die grundlegendste Art von Arbeitsschritt das Ausf\"uhren eines Prozesses \deffeat{arbeitsschritt-prozess} ist.
 
 
 \subsection{Weiterf\"uhrende Funktionen}
@@ -94,32 +94,32 @@ informierte Entscheidungen \"uber den Zustand eines Projektes in Integration zu 
 \subsubsection{Datensammlung}
 
 Zun\"achst einmal gilt es Datensammlung beim Ablauf eines Arbeitschrittes zu betrachen.
-\"Ublicherweise muss zumindest STDOUT/STDERR schon zur Laufzeit festgehalten \deffeat{feat:arbeisschritt-stdio} werden.
+\"Ublicherweise muss zumindest STDOUT/STDERR schon zur Laufzeit festgehalten \deffeat{arbeisschritt-stdio} werden.
 Weiterhin besteht auch Interesse an statistisch auswertbaren Daten
-wie z.B. den Speicherverbrauch \deffeat{feat:arbeitsschritt-stats}.
+wie z.B. den Speicherverbrauch \deffeat{arbeitsschritt-stats}.
 
 Auch nach dem Ausf\"uhren eines Arbeitschrittes fallen interessante Daten an.
 Oftmals sorgt zumindest einer der Arbeitschritte f\"ur das Generieren eines Ausf\"uhrbaren Programmes.
-Dieses sollte sp\"ater auch zur Verf\"ugung gestellt werden \deffeat{feat:arbeitsschritt-artefakt}.
-Weiterhin finden sich Testresultate in diversen Standardformaten \deffeat{feat:arbeitsschritt-resultate},
+Dieses sollte sp\"ater auch zur Verf\"ugung gestellt werden \deffeat{arbeitsschritt-artefakt}.
+Weiterhin finden sich Testresultate in diversen Standardformaten \deffeat{arbeitsschritt-resultate},
 wie z.B. JunitXML.
 
 \subsubsection{Arten Arbeitsschritte}
 
-Auch bei den Arten der Arbeitsschritte gibt es f\"r gew\"ohnlich mehrere M\"oglichkeiten (siehe \Cref{chap:ist-analyse}).
-Neben den gewohnten Prozessschritten (\cref{feat:arbeitsschritt-prozess}) sind weitere Arten \"ublich.
-Interaktion mit dem Quellcodemanagement \deffeat{feat:arbeitsschritt-scm}, sowie
-Schritte implementiert in einer Scriptsprache \deffeat{feat:arbeitsschritt-script},
+Auch bei den Arten der Arbeitsschritte gibt es f\"r gew\"ohnlich mehrere M\"oglichkeiten (siehe Kapitel~\ref{chap:ist-analyse}).
+Neben den gewohnten Prozessschritten (\reffeat{arbeitsschritt-prozess}) sind weitere Arten \"ublich.
+Interaktion mit dem Quellcodemanagement \deffeat{arbeitsschritt-scm}, sowie
+Schritte implementiert in einer Scriptsprache \deffeat{arbeitsschritt-script},
 stellen weiterf\"uhrende Hilfen dar.
 
 \subsubsection{Verteilung von Arbeitspacketen}
 
 Um \"uberhaupt bis zu den Arbeitschritten zu kommen,
-ist es notwendig, Arbeitspackete zu verteilen \deffeat{feat:arbeitspackete-verteilen}.
-Dies soll ein verteileter Prozess sein \deffeat{feat:arbeitspackete-autonome-verteilung},
+ist es notwendig, Arbeitspackete zu verteilen \deffeat{arbeitspackete-verteilen}.
+Dies soll ein verteileter Prozess sein \deffeat{arbeitspackete-autonome-verteilung},
 bei dem die Slaves/Arbeiter aktiv mitwirken k\"onnen.
 Eine denkbare Erweiterung w\"are die m\"oglichkeit, das Slaves/Arbeiter
-die Arbeitspackete mittels kategorischer Filter auswaehlen \deffeat{feat:arbeitspackete-verteilung-selektiv}.
+die Arbeitspackete mittels kategorischer Filter auswaehlen \deffeat{arbeitspackete-verteilung-selektiv}.
 Beispiele f\"ur diese w\"aren z.b. Platform oder Betriebsumgebung.
 
 \subsubsection{Auftragseingang und Vorbereitung}
@@ -127,7 +127,7 @@ Beispiele f\"ur diese w\"aren z.b. Platform oder Betriebsumgebung.
 %XXX: web hook gosar
 
 Der Auftragseingang kann sich vielseitig gestalten.
-Moderne Systeme unterstuetzen eine Vielzahl von Medien \deffeat{feat:auftrag-eingang-medien},
+Moderne Systeme unterstuetzen eine Vielzahl von Medien \deffeat{auftrag-eingang-medien},
 wie z.b. Email, Web-Hooks, Web-Formulare oder Zeitgesteuerte Systeme.
 
 W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterstuetzt werden,
@@ -151,14 +151,14 @@ Um die Erweiterbarkeit des Systems aufzuzeigen,
 sollen 2 exemplarische Erweiterungen betrachtet werden.
 Diese werden hier nur Grob umrandet und dann Sp\"ater in der analyse genauer spezifiziert.
 
-Dir erste Erweiterung betrachtet vergleichende Analysen von Testergebnisen \deffeat{feat:ext-testing}.
+Dir erste Erweiterung betrachtet vergleichende Analysen von Testergebnisen \deffeat{ext-testing}.
 Dabei sollen Entwickler in die Lage versetzt werden,
 dass Fehlerverhalten eines Programmes in verschiedenen Konfigurationen und Auftr\"agen zu vergleichen.
 Dies dient zur Vereinfachung der Fehleranalyse.
 
 Die zweite Entwicklung betrachtet ein g\"nzlich anderes Thema.
 Dabei soll das Verhalten einer Version eines Programmes
-in sehr vielen Kombinationen verst\"andlich gemacht werden\deffeat{feat:ext-analysis}.
+in sehr vielen Kombinationen verst\"andlich gemacht werden\deffeat{ext-analysis}.
 Dies soll die Flexibilit\"at des Systemes zeigen und
 Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 
@@ -225,6 +225,17 @@ fehleranf\"allig und/oder umfangreich sind.
     Testen der exemplarischen Erweiterungen mit Datenmengen und Aufgaben \\
     die den Rahmen eines automatischen Tests Sprengen
 \end{description}
+
+
+\section{Abgrenzung}
+
+In dieser Arbeit soll nur der prototpische Kern eins CI-Systemes,
+sowie exemplarische Erweiterungen, geschaffen werden.
+Somit sind einige Themen, welche f\"ur ein produktiv eingesetztes CI-System Notwendig
+sind Aussen vor.
+Benutzer und ihre Rechte sollen nicht betrachtet werden,
+ausserdem wird kein Wert auf das Benutzerinterface gelegt.
+
 
 \section{Zusammenfassung}
 

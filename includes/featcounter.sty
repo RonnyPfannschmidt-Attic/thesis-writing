@@ -17,8 +17,10 @@
 
 \newcommand{\deffeat}[1]{%
 \refstepcounter{thefeatures}%
-\label{#1}%
+\label{feat:#1}%
 (\textbf{F\padfrom{\arabic{thefeatures}}})%
 }
 
 \crefformat{thefeatures}{#2\textbf{F\padfrom{#1}}#3}
+
+\newcommand{\reffeat}[1]{\cref{feat:#1}}
