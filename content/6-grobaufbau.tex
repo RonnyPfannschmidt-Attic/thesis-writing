@@ -1,16 +1,19 @@
 \chapter{Analyse \& Design ( 25 \%)}
 \label{chap:design}
 
+
+Im vorhergehenden Kapitel wurden Ziele und Leistungskriterien f\"ur das CI-System festgelegt.
+Diese sollen nun auf konzeptueller Ebene umgesetzt werden.
+Dazu wird zuerst ein \"Uberblick des Gesammtkonzeptes gegeben.
+Anschliessend werden Besondere Konzepte zur 
+%XXX: continue
+
+
 \section{Grundlegende Systemarchitektur}
+\label{sec:design:sysarch}
+Diese Sektion gibt Aufschluss \"uber die Grobstruktuer des CI Systemes auf logischer und physischer Ebene.
 
-
-\begin{figure}[ht] 
-  \centering
-  \label{fig:grob-layout-komponenten}
-  \includegraphics[width=\textwidth]{imageinput/grob-layout-komponenten.png}
-  \caption{\"Ubersicht uber Systemkomponenten - physisch}
-\end{figure}
-
+\subsection{logisch}
 
 \begin{figure}[ht]
   \centering
@@ -18,6 +21,33 @@
   \includegraphics[width=\textwidth]{imageinput/grob-layout-komponenten-logisch.png}
   \caption{\"Ubersicht ber Systemkomponenten - logisch}
 \end{figure}
+
+
+Die erste wichtige Komponente ist der Eingang,
+in ihm gehen Auftr\"age aus verschiedensten Quellen ein.
+Nach dem sie validiert wurden, werden die Auftr\"age an
+die zweite wichtige Komponente, den Manager, weitergegeben.
+Dort werden sie vorbereitet und entsprechend der Build-Matrix Arbeitspackete erstellt.
+Nun treten Manager und Arbeiter in eine Interaktion,
+um zu bestimmen welcher Arbeiter das Eigentliche Arbeitspacket bearbeitet.
+Anschliessend werden die Arbeitspackete von den jeweilig designierten Arbeitern abgefertigt.
+
+\subsection{physisch}
+
+\begin{figure}[ht] 
+  \centering
+  \label{fig:grob-layout-komponenten}
+  \includegraphics[width=\textwidth]{imageinput/grob-layout-komponenten.png}
+  \caption{\"Ubersicht \"uber Systemkomponenten - physisch}
+\end{figure}
+
+Der physische Aufbau unterscheidet sich stark von den bisher dagewesenen CI-Systemen.
+Grund ist der Focus auf die verteilte Datenbank, direkte Kommunikation
+wird der Interaktion mit einer verteilten Datenbank weichen.
+
+
+
+
 
 
 \section{Grundlegendes Datenschema}
