@@ -32,6 +32,9 @@ Nun treten Manager und Arbeiter in eine Interaktion,
 um zu bestimmen welcher Arbeiter das Eigentliche Arbeitspacket bearbeitet.
 Anschliessend werden die Arbeitspackete von den jeweilig designierten Arbeitern abgefertigt.
 
+%XXX: more
+
+
 \subsection{physisch}
 
 \begin{figure}[ht] 
@@ -45,8 +48,12 @@ Der physische Aufbau unterscheidet sich stark von den bisher dagewesenen CI-Syst
 Grund ist der Focus auf die verteilte Datenbank, direkte Kommunikation
 wird der Interaktion mit einer verteilten Datenbank weichen.
 
+Das System besteht somit aus Komponenten welche alle als Clients einer verteilten Datenbank operieren.
+Die Abbildung~\ref{fig:grob-layout-komponenten} zweigt die Struktur.
+Nennenswert ist dabei die Bindung einer Komponente and bestimmte Datenbankknoten,
+dies dient der Kontrolle der Lokalit\"at und wird sp\"ater noch vorgestellte Verfahrensweisen unterst\"utzen.
 
-
+%XXX more
 
 
 
@@ -59,6 +66,11 @@ wird der Interaktion mit einer verteilten Datenbank weichen.
   \includegraphics[width=\textwidth]{imageinput/datenstrukturen-step-templates.png}
   \caption{Grundlegende Datenstrukturen}
 \end{figure}
+
+Das grundlegende Datenschema, in Abbildung~\ref{fig:datenstrukturen} als UML Klassendiagramm dargestellt,
+beschreibt die Daten des Kernsystemes und einige ihrer Interaktionen.
+
+Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order), Arbeitspacket (Task) und Arbeisschritt (Step).
 
 
 
