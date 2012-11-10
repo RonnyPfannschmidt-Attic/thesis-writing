@@ -11,10 +11,10 @@ TEXFILES=$(wildcard content/*.tex) document.tex
 	@dia $< -e $@ -t png
 
 document.pdf: images code $(TEXFILES)
-	pdflatex -shell-escape document && \
-	bibtex document && \
-	pdflatex -shell-escape document && \
-	pdflatex -shell-escape document
+	TEXINPUTS=.:includes: pdflatex -shell-escape document && \
+	TEXINPUTS=.:includes: bibtex document && \
+	TEXINPUTS=.:includes: pdflatex -shell-escape document && \
+	TEXINPUTS=.:includes: pdflatex -shell-escape document
 
 .PHONY: perm
 perm:
