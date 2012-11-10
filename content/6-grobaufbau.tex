@@ -72,11 +72,42 @@ beschreibt die Daten des Kernsystemes und einige ihrer Interaktionen.
 
 Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order), Arbeitspacket (Task) und Arbeisschritt (Step).
 
+\subsubsection{Projekt}
+
 Das Projekt beinhaltet neben dem Namen auch alle Informationen,
 die sp\"ater f\"ur das erstellen von Arbeitspacketen sowie
 das ausf\"uhren einer Integration ben\"otigt werden.
 Dazu geh\"ort das Quellcode-repository (repo), von dem sp\"ater
 die Quelltexte f\"ur das dem Test unterworfenen bezogen werden.
+Weiterhin beinhaltet es die Build-Achsen,
+welche die Wertebereiche der einzelnen Ebenen der Build-Matrix
+beschreiben.
+
+\subsubsection{Arbeitsschritt Template}
+
+Der Mitunter wichtigste Teil eines Projektes ist jedoch die Beschreibung der Arbeitsschritte als Templates.
+Die Darstellung als Template ist dabei bewusst gew\"ahlt,
+sie erm\"oglicht es jedem Arbeitspacket speziell konfigurierte Arbeitsschritte zur Verf\"ugung zu stellen.
+Ausserdem bewirkt die erneute Speicherung als neue Datenbankobjekte,
+das Bearbeiten der Schritte eines Projektes keinen Einfluss auf bereits erstellte Arbeitspackete hat.
+Zudem stellen die extra Objekte auch einen Anschlusspunk f\"ur die Datensammlung dar.
+Die Methode \textit{construct} des Templates dient dazu,
+einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zur\"uckzugeben.
+
+\subsubsection{Auftrag}
+
+Ein Auftrag beinhaltet grunds\"atzlich eine Referenz auf das zugeh\"orige Projekt,
+ausserdem beinhaltet er \"Uberschreibungen/Zus\"atze f\"ur die Build-Achsen,
+dies Erm\"oglicht es sowohl in den Achsen eingeschr\"ankte, als auch erweierte Auftrage zu erstellen.
+Diese werden sp\"ater genauer erkl\"art.
+Zus\"atzlich beinhaltet der Auftrag einen Status, dieser beinhalted den aktuellen Stand der Bearbeitung.
+
+\subsubsection{Arbeitspacket}
+
+Ein Arbeitspacket beinhaltet neben Referenzen zu dem Projekt und dem Auftrag,
+seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen f\"ur dieses Packet an.
+des weiteren beinhaltet es den Index, dieser gibt die Numerische Position in der Build-Matrix an.
+Auch ein Arbeitspacket hat einen Status, welcher den aktuellen Bearbeitungstand zum Ausdruck bringt.
 
 
 
