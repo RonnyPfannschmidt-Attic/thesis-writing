@@ -103,19 +103,52 @@ Diese werden sp\"ater genauer erkl\"art.
 Zus\"atzlich beinhaltet der Auftrag einen Status, dieser beinhalted den aktuellen Stand der Bearbeitung.
 
 \subsubsection{Arbeitspacket}
-
+%XXX: eventuell projekt hier nicht referenzieren
 Ein Arbeitspacket beinhaltet neben Referenzen zu dem Projekt und dem Auftrag,
 seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen f\"ur dieses Packet an.
 des weiteren beinhaltet es den Index, dieser gibt die Numerische Position in der Build-Matrix an.
 Auch ein Arbeitspacket hat einen Status, welcher den aktuellen Bearbeitungstand zum Ausdruck bringt.
+Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher das Arbeitspacket letztendlich bearbeiten wird.
 
+\subsubsection{Arbeitsschritt}
+
+Ein Arbeitsschritt referenziert das zugeh\"orige Arbeitspacket.
+Neben den Zeitpunkten f\"ur Anfang und Ende seiner Ausf\"ugrung,
+bennennt er im Feld ``stepper'' um welche Art von Arbeitsschritt es sich handelt.
+Das Feld ``status'' gibt Auskunft \"uber den aktuellen Bearbeitungsstand.
+Das Feld ``data'' soll weitere dynamische Informationen zum Ausdruck bringen,
+die bei der Audf\"uhrung genutzt werden.
+
+%XXX: dies dient \ldots
+
+
+\subsection{Event}
+%XXX referenz auf task?
+
+Das Event bringt Datensammlung zur Laufzeit zum Ausdruck.
+Neben den Referenzen f\"ur den Arbeitschritt und das Arbeitspacket,
+beinhaltet es die Indexnummer und einen Timestamp.
+Die Indexnummer ist eine aufsteigende Zahl
+und gibt den Events eines bestimmten Arbeitsschrittes eine feste eindeutige Reihenfolge.
+Der Timestamp gibt den Events eine zeitliche Ordnung (welche jedoch nicht eindeutig ist).
+
+
+Zus\"atzlich zu diesen Basisdaten, beinhaltet ein Event beliebige weitere optionale Felder.
+Einige m\"ogliche (und ihre Datentypen) sind:
+
+\begin{description}
+    \dhitem[returncode: Number] R\"uckgabewert eines Prozesses bei seiner Beendigung.
+    \dhitem[line: Text] Textzeile eines Ausgabestromes
+    \dhitem[lineno: Number] Zugeh. Zeilennummer
+    \dhitem[stream: Name] Zugeh. Name des Ausgabestromes
+    \dhitem[start: Name] Mitteilung \"uber den Start eines best. Vorganges
+    \dhitem[end: Name] Mitteilung \"uber den Abschluss eines best. Vorganges
+\end{description}
 
 
 
 
 \section{Grundlegende Logik der Komponenten} %XXX: bettern na
-
-% below here - unterordnen logik`
 
 
 \subsection{Auftragsannahme}
@@ -128,7 +161,7 @@ Auch ein Arbeitspacket hat einen Status, welcher den aktuellen Bearbeitungstand 
   \caption{Auftragsannahme: Flowgraph}
 \end{figure}
 
-- 2 teile
+- 2 teile \\
 - eingang \& validation
 
 
@@ -138,13 +171,14 @@ Auch ein Arbeitspacket hat einen Status, welcher den aktuellen Bearbeitungstand 
 - quellen
 - editiern
 - typisches
+-> eine auswaehlen
 \end{verbatim}
 
 \subsubsection{Validation}
 \begin{verbatim}
 - notwendig weil ...
 - beispiele fuer checks
-- theoretisch
+- theoretisch -> praktisches limit evtl in die implementation
 \end{verbatim}
 
 
