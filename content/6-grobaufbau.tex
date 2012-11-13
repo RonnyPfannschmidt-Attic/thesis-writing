@@ -55,8 +55,6 @@ dies dient der Kontrolle der Lokalit\"at und wird sp\"ater noch vorgestellte Ver
 
 %XXX more
 
-
-
 \section{Grundlegendes Datenschema}
 
 
@@ -117,12 +115,12 @@ Neben den Zeitpunkten f\"ur Anfang und Ende seiner Ausf\"ugrung,
 bennennt er im Feld ``stepper'' um welche Art von Arbeitsschritt es sich handelt.
 Das Feld ``status'' gibt Auskunft \"uber den aktuellen Bearbeitungsstand.
 Das Feld ``data'' soll weitere dynamische Informationen zum Ausdruck bringen,
-die bei der Audf\"uhrung genutzt werden.
+die bei der Ausf\"uhrung genutzt werden.
 
 %XXX: dies dient \ldots
 
 
-\subsection{Event}
+\subsubsection{Event}
 %XXX referenz auf task?
 
 Das Event bringt Datensammlung zur Laufzeit zum Ausdruck.
@@ -148,10 +146,15 @@ Einige m\"ogliche (und ihre Datentypen) sind:
 
 
 
-\section{Grundlegende Logik der Komponenten} %XXX: bettern na
+\section{Grundlegende Logik der Komponenten}
 
+Siese Sektion behandelt die grundlegende Logik %XXX MORE
 
 \subsection{Auftragsannahme}
+
+Der Auftragsannahme l\"asst sich grob in 2 Abschnitte einteilen.
+Zuerst geht ein Aufrag ein, was je nach Methode in mehrere Schritte beinhalten knann,
+dannach wurd er \"uberpr\"uft und damit angenommen oder abgelehnt.
 
 
 \begin{figure}[ht]
@@ -161,11 +164,16 @@ Einige m\"ogliche (und ihre Datentypen) sind:
   \caption{Auftragsannahme: Flowgraph}
 \end{figure}
 
-- 2 teile \\
-- eingang \& validation
-
 
 \subsubsection{Eingang}
+
+Auftragseingang gestaltet sich in der Praxis vielseitig.
+Da nicht alle Quellen direkt einen fertigen Auftrag generieren k\"onnen,
+beginnt ein Auftrag im Zustand eingehend, sind schliesslich alle Daten zusammengekommen,
+so wird der Eingang festgehalten und der Auftrag wird vom System weiterverarbeitet.
+
+%XXX Quellen betrachten``
+
 
 \begin{verbatim}
 - quellen
@@ -175,12 +183,19 @@ Einige m\"ogliche (und ihre Datentypen) sind:
 \end{verbatim}
 
 \subsubsection{Validation}
-\begin{verbatim}
-- notwendig weil ...
-- beispiele fuer checks
-- theoretisch -> praktisches limit evtl in die implementation
-\end{verbatim}
 
+%XXX: genauer beschreiben
+
+Die Validation verfolgt das Ziel, Auftr\"age auch aus weniger vertrauensw\"urdigen Quellen anzunehmen.
+Dies erm\"oglicht Verwendung \"ahnlich zu TravisCI, was es erlaubt, Zuarbeiten von Aussenstehenden zu Testen.
+F\"ur die \"Uberpr\"ufung stehen verschiedene M\"oglichkeiten zur Verf\"ugung.
+Ein Eingang per Email/Malingliste oder Pull-Request auf einer Code-Hosting,
+kann z.b. nach erstmaliger Erlaubniss, wiederholt zugelassen werden,
+w\"ahrend Informationen die Mitarbeiter einsenden z.b. an ihr Arbetsverh\"altniss gebunden werden k\"onnen.
+
+Zeitgesteuerte Eing\"ange innerhalb des Systemes k\"onnen jedoch grunds\"atzlich zugelassen werden.
+
+Den Abschluss der Validation stellt die Markierung des Auftrages als Valide oder invalide dar.
 
 \subsection{Management}
 
@@ -193,14 +208,27 @@ Einige m\"ogliche (und ihre Datentypen) sind:
 
 \subsubsection{Auftragsvorbereitung}
 
-\begin{verbatim}
-- 
-\end{verbatim}
+In der Auftragsvorbereitung werden Managementdaten zum Auftrag hinzugef\"ugt.
+Die vordefinierten Build-Achsen werden vom Projekt \"ubertragen.
+Dies stell sicher, dass der Aufrag und sein Umfang eindeutig bestimmt sind,
 
 
 \subsubsection{Bereitstellung von Arbeitspacketen}
+
+Das Bereitstellen von Arbeitspacketen stellt den Anfang der eigentliche Arbeitsphase dar.
+Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeitspackete generiert,
+wobei jedes Arbeitspacket eine der Wertekombinationen darstellt.
+Nachdem alle Arbeitspackete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen.
+
 \subsubsection{Abschluss von Auftr\"agen}
 
+Der Abschluss eines Auftrages ist ein Ereigniss welches Impliziert werden kann.
+In dieser Arbeit wird der Abschluss eines Auftrages definert als der Zustand der Eintritt,
+wenn alle Arbeitspackete eines Auftrages einen finalen Zustand erreichen.
+
+Dies Vereinfacht die Behandung des Auftragsabschlusses,
+da man nicht nach Abschluss von Arbeitspacketen weitere Operationen durchf\"uhren muss,
+um den eventuellen Abschluss festzustellen.
 
 \subsection{Zuteilung/Abarbeitung von Arbeitspacketen}
 
