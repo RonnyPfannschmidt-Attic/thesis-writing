@@ -45,8 +45,8 @@ Laufzeitdaten werden dem Benutzer in idr. Zeitnah zur Verf\"ugung gestellt.
 
 Artefakte hingegen sind Dateien,
 welche erst nach Abschluss eines Schrittes zur verf\"ugung stehen.
-Zu ihnen gehoeren neben den traditionellen ausf\"uhrbaren Dateien
-auch lauff\"ahige Archive des Gesammtprogrammes oder Testergebnisse in den Formaten JunitXML oder TAP.
+Zu ihnen geh\"oren neben den traditionellen ausf\"uhrbaren Dateien
+auch lauff\"ahige Archive des Gesammtprogrammes oder Testergebnisse in Formaten wie z.b. JunitXML oder TAP.
 
 %XXX: cite tap, junitxml
 
@@ -54,9 +54,6 @@ Diese werden zum Master geschickt, dort aufbewahrt und sp\"ater genutzt.
 
 In der Regel werden ausf\"uhrbare Artefakte zum Download angeboten,
 w\"ahrend Testergebnisse nur dargestellt werden.
-
-
-
 
 
 \section{Probleme existierender Systeme}
@@ -70,7 +67,8 @@ Es gibt Grunds\"atzlich keinerlei Standardschnittstellen.
 Die meisten Systeme verwenden noch nicht einmal eine Datenbank.
 Jene welche doch eine verwenden wird, machen sie nicht zug\"anglich.
 
-Die Datenhaltung dieser Systeme kann somit grob als geordnete Ablage klassifiziert werden. Weiterf\"uhrende Abfragen sind nicht m\"oglich.
+Die Datenhaltung dieser Systeme kann somit grob als geordnete Ablage klassifiziert werden.
+Weiterf\"uhrende Abfragen sind nicht m\"oglich.
 
 \subsection{Erweiterbarkeit}
 
@@ -99,7 +97,7 @@ Slaves haben dabei keinerlei Autonomie und folgen strikt den Anweisungen des Mas
 
 Dadurch nimmt das System zwar keinen Schaden wenn ein Slave ausf\"allt,
 der Ausfall des Master ist jedoch fatal und kann nicht abgefangen werden.
-Die stellt einen ``Single Point of Failure'' dar.
+Dies stellt einen ``Single Point of Failure'' dar.
 
 
 \section{Praxisbeispiele}
@@ -129,27 +127,29 @@ Ausgew\"ahlt wurden die Systeme
   \item TravisCI
 \end{itemize}
 
+Sie alle sind kostenlose Werkzeuge und Quelloffen.
+Ausserdem Decken sie sehr verschiedene Use-Cases ab.
 
 \subsection{Jenkins/Hudson}
 
 Jenkins und Hudson sind aus der Java Welt  stammende CI-Systeme.
 Sie bieten alle Grundfunktionen, um grundlegendes CI umzusetzen
 und unterst\"utzen auch erweiterte Funktionen,
-wie Matriz-Build und nachgelagerte Builds.
+wie Matrix-Build und nachgelagerte Builds.
 
 Sie stellen ein einfach zu bedienendes Nutzerinterface zur verf\"ugung,
 Konfiguration findet jedoch nur im Rahmen dieses Interfaces statt.
 
 Erweiterte Parametrisierung ist nicht m\"oglich.
 Auch Entwicklungszweige sind dem System unbekannt,
-m\"ochte man mehr als einen dem Testprozess unterziehen,
-so muss ein weiterer Job angelegt werden.
+m\"ochte man mehr als einen Entwicklungszweig dem Testprozess unterziehen,
+so m\"ussen weitere Jobs angelegt werden.
 
 Zugriff auf die Daten kann nur mittels der internen API oder
 einer nicht dokumentierten REST API genommen werden.
 
 Damit war es nicht m\"oglich in annehmbarer Zeit festzustellen,
-in wie weit sich die UseCases umsetzen lassen.
+in wie weit sich die bereits vorgestellten UseCases umsetzen lassen.
 Das System verwendet Augenscheinlich kein DBMS.
 Datenabfragen und Aggregationen m\"ussen
 somit von Hand ausformuliert werden.
@@ -157,23 +157,23 @@ somit von Hand ausformuliert werden.
 Das Konzept der Build-Artefakte wird unterst\"utzt und
 aktiv f\"ur Funktionen wie nachgelagerte Builds verwendet.
 
-Es gibt einige simplel gestrickte Plugins mit dem Zweck testresultate anzuzeigen,
-jedoch wird auf weitergehende Analysen dieser Resultate g\"anzlich verzichtet
-Mehr als eine Historie gibt es nicht.
+Es gibt einige simplel gestrickte Plugins mit dem Zweck, Testresultate anzuzeigen.
+Jedoch wird auf weitergehende Analysen dieser Resultate g\"anzlich verzichtet,
+mehr als eine Historie gibt es nicht.
 
 
 \subsection{Buildbot}
 
 
-BuildBot positioniert sich als eine Art Meta-Build-Server.
+BuildBot \cite{buildbot:website} positioniert sich als eine Art Meta-Build-Server.
 Es biete keine normale Benutzerschnittstelle zur Konfiguration,
 sondern wird mittels Komposition von Metadaten und Komponenten konfiguriert.
 
 Die Konfiguration des Servers stellt dabei ein Pythons-Script,
 welches die gewünschten Jobs zusammenstellt und den Server konfiguriert.
 Matrix-Builds werden nicht unterst\"utzt,
-k\"onnen aber in Teilen durch das verwenden von Schleifen im Script simuliert werden.
-Es ist möglich Builds Jobs mit minimale Parameter in Form von Strings zu Übergeben,
+k\"onnen aber in Teilen durch die Verwendung von Schleifen im Script simuliert werden.
+Es ist möglich Builds Jobs mit minimale Parameter in Form von Strings zu \"ubergeben,
 dabei kann man auch den Entwicklungszweig mit angeben.
 
 Builbot unterst\"utzt das Sammeln von Daten in sog. Logdateien,
@@ -189,32 +189,39 @@ Das zweite ist das Script names ``compare\_last\_builds.py'' aus dem PYPY Projek
 welches die Unterschiede in den Testresultaten zwischen 2 Builds hervorhebt.
 Sie werden sp\"ater als Ideenlieferant dienen.
 
-Tragisch ist, das die Buildbot entwickler selbst,
-es nicht als Aufgabe ihres Systemes sehen, sich mit Testergebnissen zu befassen,
-sie empfehlen Integration externer Komponenten.
+Bedauerlich ist, das die Entwichler von BuildBot es nicht als Aufgabe ihres Systemes sehen,
+sich mit Testergebnissen zu befassen.
+Sie empfehlen Integration externer Komponenten \cite{buildbot:irc}.
 
 \subsection{TravisCI}
 
 
 %XXX refs
-TravisCI ist wesentlich anders Positioniert, als die beiden voehergehenden Systeme.
-Es setzt zusammenarbeit in den vordergrund und der Breiten masse werden Server zur verf\"ugung gestellt.
-Diese behandlen die Integration von Projjekten, welche auf der beliebten Code-Hosting Site GitHub gemanagt werden.
+TravisCI \cite{travisci:website} ist wesentlich anders positioniert, als die beiden voehergehenden Systeme.
+Es setzt Zusammenarbeit in den Vordergrund und der Open-Source Community werden gehostete Server
+kostenfrei zur Verf\"ugung gestellt.
+Diese behandlen die Integration von Projekten,
+welche auf der beliebten Code-Hosting Site GitHub verwaltet werden.
+
 % ref yaml
-Die Konfiguration ist dabei Zweigeteilt,
+Die Konfiguration ist dabei zweigeteilt,
 eine Datei im YAML Format legt dabei Build-Achsen und Schritte fest.
 Diese Datei befindet sich in Versionskontrolle beim Projekt
-(was die Konfiguration sehr Flexibel gestaltet)
+(was die Konfiguration sehr flexibel gestaltet).
 
 Ist ein Projekt erst einmal im System registriert,
-so wird es regelmaessig bei \"anderungen Integriert.
+so wird es regelm\"assig bei \"Anderungen integriert.
 
-Besonders hilfreich ist dabei, das TravisCI auch den fall behandelt, wenn ein anderer Benutzer der Code-Hosting Seite a\"nderungen anmeldet.
-Die Testet es auch, und Markiert sogar das Resultat.
+Besonders hilfreich ist dabei, das TravisCI auch den Fall behandelt,
+wenn ein anderer Benutzer der Code-Hosting Seite Github \"Anderungen anmeldet
+\cite{github:pullreq} (sog. Pull-request).
+Die Testet es und f\"ught anschliessend das Resultat der \"Anderungsanmeldung hinzu.
 
 Was leider nichts daran \"andert, das TravisCI keine externe API zur verf\"ugung stellt.
-Es ist ein geschlossenes System. Auch hat es absolut kein Konzept f\"ur Datensammlung/Artefakte.
-Es ist nicht portabel und scheinbar f\"ur den Betrieb nur auf den zur verf\"ugung gestellten Servern vorgesehen.
+Es ist ein geschlossenes System, ausserdem hat es kein Konzept f\"ur Datensammlung/Artefakte
+und Testresultate werden nicht betrachtet.
+Es ist nicht portabel und scheinbar f\"ur den Betrieb nur
+auf den zur verf\"ugung gestellten Servern vorgesehen.
 
 
 \section{Zusammenfassung}
@@ -222,9 +229,9 @@ Es ist nicht portabel und scheinbar f\"ur den Betrieb nur auf den zur verf\"ugun
 Dieses Kapitel hat die Probleme der CI-Systeme n\"aher gezeigt.
 Wir haben gesehen, dass Datenzugriff und Erweiterungen f\"ur Analyse,
 schwer oder gar nicht zu erreichen sind.
-Ausserdem sind die Systeme nach einegen Klassen nicht direkt wiederherstellbar.
+Ausserdem sind die Systeme nach einigen Fehlerklassen nicht direkt wiederherstellbar.
 Im Folgenden Verlauf der Arbeit soll der Grundstein f\"ur ein CI-System gelegt werden,
-Welches Datanzugriff und Datenanalyse vereinfacht.
-Zus\"atzlich soll es Gunds\"atzliche fehlertolleranz aufweisen.
+welches Datanzugriff und Datenanalyse vereinfacht.
+Zus\"atzlich soll es gunds\"atzliche Fehlertolleranz aufweisen.
 
 
