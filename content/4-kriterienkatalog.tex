@@ -127,7 +127,7 @@ Der Auftragseingang kann sich vielseitig gestalten.
 Moderne Systeme unterstuetzen eine Vielzahl von Medien \deffeat{auftrag-eingang-medien},
 wie z.b. Email, Web-Hooks, Web-Formulare oder Zeitgesteuerte Systeme.
 
-W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterstuetzt werden,
+W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterst\"utzt werden,
 sind die Anreicherung eines Auftrages um eigene Daten/\"Anderungen.
 Besonders hilfreich erscheint hierbei das sogenannte Workdir-diff \deffeat{auftrag-eingang-diff},
 welches die aktuellen \"Anderungen eines Entwickers darstellen.
@@ -146,7 +146,7 @@ von Auftr\"agen, Arbeitspacketen und Arbeitsschritten feststellbat sein \deffeat
 
 Um die Erweiterbarkeit des Systems aufzuzeigen,
 sollen 2 exemplarische Erweiterungen betrachtet werden.
-Diese werden hier nur Grob umrandet und dann Sp\"ater in der analyse genauer spezifiziert.
+Diese werden hier nur Grob umrandet und dann Sp\"ater in der Analyse genauer spezifiziert.
 
 Dir erste Erweiterung betrachtet vergleichende Analysen von Testergebnisen \deffeat{ext-testing}.
 Dabei sollen Entwickler in die Lage versetzt werden,
@@ -169,6 +169,8 @@ Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 
 
 \section{Testkriterien}
+
+
 \subsection{Unit Tests}
 
 Unittests werden verwendet um die kleinsten Komponenten des Systems zu testen.
@@ -208,7 +210,6 @@ Die manuellen Tests werden alle Tests umfassen,
 deren Umsetzung als automatisches Programm erfahrungsgem\"ass zeitaufwendig,
 fehleranf\"allig und/oder umfangreich sind.
 
-
 \begin{description}
   \dhitem[zeitliches Verhalten]
     Beobachtung und Analyse des Zeitveraltens \\
@@ -220,7 +221,7 @@ fehleranf\"allig und/oder umfangreich sind.
     \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten
   \dhitem[Grosse Datenanalyse]
     Testen der exemplarischen Erweiterungen mit Datenmengen und Aufgaben \\
-    die den Rahmen eines automatischen Tests Sprengen
+    die den Rahmen eines automatischen Tests sprengen
 \end{description}
 
 
@@ -228,13 +229,16 @@ fehleranf\"allig und/oder umfangreich sind.
 
 In dieser Arbeit soll nur der prototpische Kern eins CI-Systemes,
 sowie exemplarische Erweiterungen, geschaffen werden.
-Somit sind viele Themen, welche f\"ur ein produktiv eingesetztes CI-System Notwendig
+Somit sind viele Themen, welche f\"ur ein produktiv eingesetztes CI-System notwendig
 sind, nicht weiter zu betrachten.
 Benutzer und ihre Rechte sollen nicht betrachtet werden,
-Authentifikation und Authorisation sind weitreichende Themengebiete die sorgf\"altigst betrachtet werden m\"ussen.
+Authentifikation und Authorisation sind weitreichende Themengebiete
+die sorgf\"altigst betrachtet werden m\"ussten,
+dies ist neben der Hauptaufgabe nicht im zeitlichen Rahmen unterzubringen.
 Ausserdem wird kein Wert auf das Benutzerinterface gelegt.
-Intuitive Benutzerinteraktion ist ein \"uberaus umfangreiches Thema.
-Dabei sind auch weiterf\"ugrende Interaktionen, wie z.B. Konfiguration der Replikation ausgeschlossen.
+intuitive Benutzerinteraktion ist ein \"uberaus umfangreiches Thema.
+Dabei sind auch weiterf\"ugrende Interaktionen,
+wie z.B. Konfiguration der Replikation ausgeschlossen.
 
 
 \section{Zusammenfassung}
@@ -245,14 +249,15 @@ Im wesentlichen soll der Kern des CI-Systems als Protoyp geschaffen werden.
 Anschliessend sollen weitere Funktionen sowie exemplarische Erweiterungen
 auf dieser Basis geschaffen werden.
 L\"osungskonzepte f\"ur die einzelnen Komponenten sollen vorgestellt werden,
-um anschliesend ihre Eigenschaften zu betrachen
+um anschliessend ihre Eigenschaften zu betrachten
 
 Fokus sind dabei Interaktionen mit der Datenbank und Datenoperationen.
 Semantik des Systemes und Konsistenzverhalten bei Datenbankpartitionierung
 sollen betrachtet werden. Erweiterungen zur Datenanalyse sollen ebenfalls nur auf technischer Ebene behandelt werden.
 
-Themen wie Benutzerschnittstellen, Rechteverwaltung und Details von visueller Komponentenintegration werden dabei nicht betrachted.
-Ziel dieser Arbeit ist die Betrachtung der Kernfunktionen und Erweiterungen Auf Datenbankebene.
+Themen wie Benutzerschnittstellen, Rechteverwaltung und Details
+von visueller Komponentenintegration werden dabei nicht betrachtet.
+Ziel dieser Arbeit ist die Betrachtung der Kernfunktionen und Erweiterungen auf Datenbankebene.
 
 % zusammenfassung 
 %   - im wesentlichen soll \ldots. prototypisch & exemplarisch
