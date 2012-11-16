@@ -27,10 +27,10 @@ Die erste wichtige Komponente ist der Eingang,
 in ihm gehen Auftr\"age aus verschiedensten Quellen ein.
 Nach dem sie validiert wurden, werden die Auftr\"age an
 die zweite wichtige Komponente, den Manager, weitergegeben.
-Dort werden sie vorbereitet und entsprechend der Build-Matrix Arbeitspackete erstellt.
+Dort werden sie vorbereitet und entsprechend der Build-Matrix Arbeitspakete erstellt.
 Nun treten Manager und Arbeiter in eine Interaktion,
-um zu bestimmen welcher Arbeiter das Eigentliche Arbeitspacket bearbeitet.
-Anschliessend werden die Arbeitspackete von den jeweilig designierten Arbeitern abgefertigt.
+um zu bestimmen welcher Arbeiter das Eigentliche Arbeitspaket bearbeitet.
+Anschliessend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt.
 
 %XXX: more
 
@@ -68,12 +68,12 @@ dies dient der Kontrolle der Lokalit\"at und wird sp\"ater noch vorgestellte Ver
 Das grundlegende Datenschema, in Abbildung~\ref{fig:datenstrukturen} als UML Klassendiagramm dargestellt,
 beschreibt die Daten des Kernsystemes und einige ihrer Interaktionen.
 
-Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order), Arbeitspacket (Task) und Arbeisschritt (Step).
+Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order), Arbeitspaket (Task) und Arbeisschritt (Step).
 
 \subsubsection{Projekt}
 
 Das Projekt beinhaltet neben dem Namen auch alle Informationen,
-die sp\"ater f\"ur das erstellen von Arbeitspacketen sowie
+die sp\"ater f\"ur das erstellen von Arbeitspaketen sowie
 das ausf\"uhren einer Integration ben\"otigt werden.
 Dazu geh\"ort das Quellcode-repository (repo), von dem sp\"ater
 die Quelltexte f\"ur das dem Test unterworfenen bezogen werden.
@@ -83,11 +83,11 @@ beschreiben.
 
 \subsubsection{Arbeitsschritt Template}
 
-Der Mitunter wichtigste Teil eines Projektes ist jedoch die Beschreibung der Arbeitsschritte als Templates.
+Der mitunter wichtigste Teil eines Projektes ist jedoch die Beschreibung der Arbeitsschritte als Templates.
 Die Darstellung als Template ist dabei bewusst gew\"ahlt,
-sie erm\"oglicht es jedem Arbeitspacket speziell konfigurierte Arbeitsschritte zur Verf\"ugung zu stellen.
+sie erm\"oglicht es jedem Arbeitspaket speziell konfigurierte Arbeitsschritte zur Verf\"ugung zu stellen.
 Ausserdem bewirkt die erneute Speicherung als neue Datenbankobjekte,
-das Bearbeiten der Schritte eines Projektes keinen Einfluss auf bereits erstellte Arbeitspackete hat.
+das Bearbeiten der Schritte eines Projektes keinen Einfluss auf bereits erstellte Arbeitspakete hat.
 Zudem stellen die extra Objekte auch einen Anschlusspunk f\"ur die Datensammlung dar.
 Die Methode \textit{construct} des Templates dient dazu,
 einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zur\"uckzugeben.
@@ -96,21 +96,22 @@ einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zur\"
 
 Ein Auftrag beinhaltet grunds\"atzlich eine Referenz auf das zugeh\"orige Projekt,
 ausserdem beinhaltet er \"Uberschreibungen/Zus\"atze f\"ur die Build-Achsen,
-dies Erm\"oglicht es sowohl in den Achsen eingeschr\"ankte, als auch erweierte Auftrage zu erstellen.
+dies Erm\"oglicht es sowohl in den Achsen eingeschr\"ankte,
+als auch erweiterte Auftr\"age zu erstellen.
 Diese werden sp\"ater genauer erkl\"art.
 Zus\"atzlich beinhaltet der Auftrag einen Status, dieser beinhalted den aktuellen Stand der Bearbeitung.
 
-\subsubsection{Arbeitspacket}
+\subsubsection{Arbeitspaket}
 %XXX: eventuell projekt hier nicht referenzieren
-Ein Arbeitspacket beinhaltet neben Referenzen zu dem Projekt und dem Auftrag,
-seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen f\"ur dieses Packet an.
+Ein Arbeitspaket beinhaltet neben Referenzen zu dem Projekt und dem Auftrag,
+seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen f\"ur dieses Paket an.
 des weiteren beinhaltet es den Index, dieser gibt die Numerische Position in der Build-Matrix an.
-Auch ein Arbeitspacket hat einen Status, welcher den aktuellen Bearbeitungstand zum Ausdruck bringt.
-Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher das Arbeitspacket letztendlich bearbeiten wird.
+Auch ein Arbeitspaket hat einen Status, welcher den aktuellen Bearbeitungstand zum Ausdruck bringt.
+Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher das Arbeitspaket letztendlich bearbeiten wird.
 
 \subsubsection{Arbeitsschritt}
 
-Ein Arbeitsschritt referenziert das zugeh\"orige Arbeitspacket.
+Ein Arbeitsschritt referenziert das zugeh\"orige Arbeitspaket.
 Neben den Zeitpunkten f\"ur Anfang und Ende seiner Ausf\"ugrung,
 bennennt er im Feld ``stepper'' um welche Art von Arbeitsschritt es sich handelt.
 Das Feld ``status'' gibt Auskunft \"uber den aktuellen Bearbeitungsstand.
@@ -124,7 +125,7 @@ die bei der Ausf\"uhrung genutzt werden.
 %XXX referenz auf task?
 
 Das Event bringt Datensammlung zur Laufzeit zum Ausdruck.
-Neben den Referenzen f\"ur den Arbeitschritt und das Arbeitspacket,
+Neben den Referenzen f\"ur den Arbeitschritt und das Arbeitspaket,
 beinhaltet es die Indexnummer und einen Timestamp.
 Die Indexnummer ist eine aufsteigende Zahl
 und gibt den Events eines bestimmten Arbeitsschrittes eine feste eindeutige Reihenfolge.
@@ -216,34 +217,35 @@ Die vordefinierten Build-Achsen werden vom Projekt \"ubertragen.
 Dies stell sicher, dass der Aufrag und sein Umfang eindeutig bestimmt sind,
 
 
-\subsubsection{Bereitstellung von Arbeitspacketen}
+\subsubsection{Bereitstellung von Arbeitspaketen}
 
-Das Bereitstellen von Arbeitspacketen stellt den Anfang der eigentliche Arbeitsphase dar.
-Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeitspackete generiert,
-wobei jedes Arbeitspacket eine der Wertekombinationen darstellt.
-Nachdem alle Arbeitspackete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen.
+Das Bereitstellen von Arbeitspaketen stellt den Anfang der eigentliche Arbeitsphase dar.
+Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeitspakete generiert,
+wobei jedes Arbeitspaket eine der Wertekombinationen darstellt.
+Nachdem alle Arbeitspakete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen.
 
 \subsubsection{Abschluss von Auftr\"agen}
 
-Der Abschluss eines Auftrages ist ein Ereigniss welches Impliziert werden kann.
-In dieser Arbeit wird der Abschluss eines Auftrages definert als der Zustand der Eintritt,
-wenn alle Arbeitspackete eines Auftrages einen finalen Zustand erreichen.
+Der Abschluss eines Auftrages ist ein Ereigniss, welches Impliziert werden kann.
+In im zu entwickelnden System wird der Abschluss eines Auftrages definert,
+als der Zustand der Eintritt, wenn alle Arbeitspakete eines Auftrages
+einen finalen Zustand erreichen.
 
 Dies Vereinfacht die Behandung des Auftragsabschlusses,
-da man nicht nach Abschluss von Arbeitspacketen weitere Operationen durchf\"uhren muss,
+da man nicht nach Abschluss von Arbeitspaketen weitere Operationen durchf\"uhren muss,
 um den eventuellen Abschluss festzustellen.
 
-\subsection{Zuteilung/Abarbeitung von Arbeitspacketen}
+\subsection{Zuteilung/Abarbeitung von Arbeitspaketen}
 
 
-\subsubsection{Lebenszyklus eines Arbeitspacketes}
+\subsubsection{Lebenszyklus eines Arbeitspaketes}
 
 
 \begin{figure}[ht] 
   \centering
   \label{fig:lebenszyklus-arbeitspaket}
   \includegraphics[height=4.5in]{imageinput/lebenszyklus-arbeitspaket.png}
-  \caption{Lebenszyklus eines Arbeitspacketes bei Ausschreibungen}
+  \caption{Lebenszyklus eines Arbeitspaketes bei Ausschreibungen}
 \end{figure}
 
 
@@ -332,7 +334,7 @@ cons:
 - endscheidung fehlschlag oder nucht
 
 
-\subsection{Abarbeitung von Arbeitspacketen}
+\subsection{Abarbeitung von Arbeitspaketen}
 
 \begin{verbatim}
 - lineare abarbeitung
@@ -373,6 +375,8 @@ cons:
 - betrachtung extra schritt vs interne funktion
 
 \subsubsection{Abschluss von Arbeitschritten}
+
+
 
 - returncodes
 - fehler
@@ -447,7 +451,7 @@ In der Regel wird dazu ein sog. StatusGraph verwendet.
 Dieser ist ein Gerichteter Graph der die Zust\"ande und Zustands\"anderungen eines Systemes beschreibt.
 
 Wie bereits in Abbildung \ref{fig:lebenszyklus-arbeitspaket} gezeigt,
-stellt der Lebenszyklus eines Arbeitspacketes einen solchen Statusgraph dar.
+stellt der Lebenszyklus eines Arbeitspaketes einen solchen Statusgraph dar.
 Als Besonderheit ist er sogar frei von Zyklen.
 Dadurch ist es unm\"oglich den gleichen Status noch einmal zu erreichen.
 
@@ -465,7 +469,7 @@ Da es nur diesen einen Punkt des Austausches gibt, ist die Konsistenzwahrung des
 Mit der Bereitschaft, wird die Verwantwortung vom Eingang zur Abarbeitung \"ubertragen.
 
 
-\section{auftragsverteilung}
+\subsection{Auftragsverteilung}
 
 \section{Logisches Gesammtkonzept}
 
@@ -479,7 +483,7 @@ Mit der Bereitschaft, wird die Verwantwortung vom Eingang zur Abarbeitung \"uber
 % nur werkzeuge
 
 
-\section{zusammenfassung}
+\section{Zusammenfassung}
 
 was kommt
 was kommt nicht
