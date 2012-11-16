@@ -1,10 +1,74 @@
 \chapter{Implementation ( 15 \% ) }
-% kein quelltext zeile fuer zeile
 
 
+\section{Werkzeuge}
+\subsection{Datenbank}
 
-\section{Datenbank}
-\section{Grundlegende Werkzeuge und Primitiven}
+Das Kriterium der \textbf{Master-Master Replikation}
+schr\"ankte die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
+
+In die n\"ahere Betrachtung kommen CouchDB (dokumentorientiert)
+und PostgreSQL (relational).
+Beide Systeme besizten Werkzeuge f\"ur Master-Master Replikation
+und primitiven f\"ur Notifikationen.
+
+%XXX: cites
+Andere Systeme wie Mysql (relational), Mongodb(dokumentorientiert)
+und  Neo4J (graph) scheiden aus, weil zu ihrem Funktionsumfang
+nur die Master-Slave replikation geh\"ort.
+Das System Riak wurde verworfen, da es \"Anderungs-notifikationen
+nicht unterst\"utzte und in einem kurzen Vergleich
+die Anfragen langsamer beantwortete.
+
+Im Kurzvergleich von PostgreSQL mit CouchDB,
+ging CouchDB als  hervor.
+Im Test mussten bei Couchdb zwar Abstriche im Bereich Performance gemacht werden,
+jedoch stellte sich heraus, das die \"Anderungsnotifikationen von Couchdb detailierter sind.
+Ausserdem erscheint der Prozess der Replikation in CouchDB
+als fehlertolleranter und einfacher.
+
+% \cite
+W\"ahrend in Postgresql die Notifikationen einfach nur eine Nachricht sind,
+dass etwas ge\"andert wurde,
+% \cite couchdb:changestream}
+so beinhalten die Notifikationen von CouchDB, genaue Informationen
+\"uber das ge\"anderte Objekt, eventuelle Datenbankkonflikte
+und auf Wunsch sogar das Objekt selbst.
+
+\subsection{Programmiersprachen}
+
+Es wurden 2 Programmiersprachen Ausgew\"ahlt.
+Zum einen Python, wegen seiner Bibliotheken und
+zum anderen Javascript, da es die Datenbankinterne Sprache von Couchdb ist.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|c|c}
+                            & \textbf{Python}   & \textbf{Javascript} \\
+    \hline
+    Datenbankintern         & nein              & ja \\
+    Prozesskontrolle        & integriert        & extern, rudiment\"ar \\
+    SCM Api                 & Verf\"ugbar (anyvc)& nicht verf\"ugbar \\
+    CouchDB Client          & verg\"ugbar       & verf\"ugbar \\
+\end{tabular}
+\caption{\"Uberblick \"uber Features und Bibliotheken der Sprachen}
+\label{tab:python-vs-js}
+\end{table}
+
+Ein besonderes Problem mit javascript ist,
+dass es Datenbankintern externe Bibliotheken nicht
+oder nur in limitierter Form verwenden kann.
+Die Laufzeitumgebung weisst grosse Unterschiede
+zwischen Datenbankinternen und Datenbankexterner verwendugn auf.
+
+Somit ist Javascript f\"ur die Implementation der Komponenten nur sehr bedingt geeignet.
+
+\subsection{Weitere Werkzeuge}
+
+\subsubsection{Testwerkzeuge}
+\subsubsection{Datenbank Management}
+
+\section{Grundlegende Primitiven}
 
 \subsection{listen\_changes}
 
