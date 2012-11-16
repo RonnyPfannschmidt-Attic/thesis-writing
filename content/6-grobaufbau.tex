@@ -369,10 +369,26 @@ cons:
 
 \subsubsection{Datensammling nach Abschluss eines Schrittes}
 
-- junitxml
-- logfiles
+Datensammlung nach dem Abschluss eines Arbeitschrittes,
+Umfasst in der Regel verschiedenste Dateiformate.
+Diese werden aus den verschiedendsten Gr\"unden genneriert.
+\"Ublich sind Testresultate, Logdateien, Build-resultate und Archive.
 
-- betrachtung extra schritt vs interne funktion
+Die Abbildung dieser Datensammling kann dabei auf 2 Arten geschehen,
+
+\begin{enumerate}
+    \item als Teil des Schrittes
+    \item als eigene Art von Schrit
+\end{enumerate}
+
+Die Abbildung als eigene Art von Arbeitsschritt,
+hat einige Vorteile, da sie die Zust\"andigkeit vom reinen Arbeitsschritt
+und dem Datensammeln sauber trennt.
+
+Dies macht die Werkzeuge zur Datensammlung wesentlich einfacher.
+Anstatt sie in jeden Schritt integrieren zu m\"ussen,
+kann einfach nach dem Schritt angewendet werden.
+
 
 \subsubsection{Abschluss von Arbeitschritten}
 
@@ -472,7 +488,9 @@ Mit der Bereitschaft, wird die Verwantwortung vom Eingang zur Abarbeitung \"uber
 \subsection{Auftragsverteilung}
 
 \section{Logisches Gesammtkonzept}
-
+\subsection{Eingang}
+\subsection{Management}
+\subsection{Arbeiter}
 
 \section{Arbeitsschritte}
 
