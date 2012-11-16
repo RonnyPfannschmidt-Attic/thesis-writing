@@ -479,23 +479,53 @@ Mit der Bereitschaft, wird die Verwantwortung vom Eingang zur Abarbeitung \"uber
 \begin{figure}[h!]
   \centering
   \label{fig:klassen-arten-arbeitsschritt}
-  \includegraphics[height=3.5in]{imageinput/klassen-arten-arbeitsschritt.png}
+  \includegraphics[height=\textheight]{imageinput/klassen-arten-arbeitsschritt.png}
   \caption{Arten von Arbeitschritten}
 \end{figure}
 
 
-\subsection{Prozessaktionen}
+\subsection{Prozess Schritte}
 
-- was/wozu
-- datensammlung laufzeit
+Die Aufgabe eines Prozessschrittes ist es,
+einen Programm mit vorgegebenen Parametern auszuf\"ugren.
+Dies ist auch der Grund, warum der ``ProcessProc'' Datentyp einen
+Prozess-Handle enth\"alt.
+
+
+Dabei Fallen zur Laufzeit sammelbare Daten wie z.B. Text auf den standard Eingabe-/Ausgabe Datenstr\"omen
+an.
+Ausserdem Ver\"andern sich statistische Informationen \"uber den Prozess wie Speicherverbrauch, IO, u.a.
+
 
 \subsection{Script Schritte}
 
+Script Schritte unterscheiden sich von Prozess-Schritten in der Hinsicht,
+dass sie kein Programm an sich, sondern ein Script ausf\"uhren.
+Daher k\"onnen sie in die Lage versetzt werden,
+weitere Laufzeitdaten zur Verf\"ugung zu stellen
+
+
 \subsection{Quellcode Management Schritte}
 
-- ablauf, beispiele
+Interaktion mit dem Quellcode-Management behandelt die gundlegenden Operationen.
+Es wird, wenn notwendig ein Arbeitsverzeichniss erstellt.
+Dannach gibt es mehrere Grundlegende Operationen, die durchgef\"uhrt werden k\"onnen.
+
+\begin{description}
+    \dhitem[Eingang von Historie]
+        bringt die lokale Historie auf den aktuellen Stand, ``pull'' genannt
+
+    \dhitem[Aktualisierung des Arbeitsverzeichniss]
+        aktualisiert die Dateien im Arbeitsverzeichniss
+        auf eine/die gew\"unschte Version
+    \dhitem[Anwendung von Patches]
+        wendet Patches auf das aktuelle Arbeitsverzeichniss an
+\end{description}
 
 \subsection{Datensammlungs Schritte}
+
+Datensammlungschritte haben die Aufgabe, Dateien
+
 
 \section{Erweiterungen}
 \subsection{Analyse Testresultate}
