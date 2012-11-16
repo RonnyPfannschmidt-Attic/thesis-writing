@@ -17,7 +17,7 @@ um die fortf\"uhrende Implementation zu unterst\"utzen.
 
 Die Auswahl der Datenbanktechnologie und eines Datenbankproduktes sind die wichtigsten technologischen Entscheidungen dieser Arbeit.
 Die im Kapitel~\ref{chap:design} vorgestellten L\"osungen.
-Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Implementation Massgeblich beeinflussen.
+Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Implementation massgeblich beeinflussen.
 
 
 \subsection{Technologische Betrachtung}
@@ -27,23 +27,30 @@ In einer initialen Sondierung zeigte sich,
 dass 3 Technologieklassen die grundlegenden Anforderungen an die Datenmodellierung erf\"ullen.
 Dies sind die Dokumentorientierten, die Graphendatenbanken und moderne relationale Datenbanken.
 
-
-
-
-\begin{verbatim}
-
-- eignung aller mit div eigenschaften
-
-- reliational vs nosql (documentorientiert)
-- wunsch nach verteilter datenbank
-\end{verbatim}
-
 \subsection{Produktanforderungen}
 
+Wie die technologische Betrachtung zeigte,
+sind mehrere Arten von Datenbank f\"ur die Modellierung geeignet.
+
+Um ein geeignetes Produkt zu bestimmen,
+m\"ussen Anforderungen herausgearbeitet werden,
+welche sp\"ater bei der Implementation hilfreich sein k\"onnten.
+
+Wichtigstes Kriterium ist dabei, dass die Datenbank tats\"achlich \textbf{verteilt} ist.
+Um sicherzustellen, das alle Systemanforderungen erf\"ullt werden k\"onnen,
+muss die Datenbank zus\"atzlich \textbf{Master-Master Replikation} beherschen.
+Selbstverst\"andlich muss die Replikation mit einer \textbf{partitionierung} des Netzwerkes zurechtkommen.
+
+Ein weiteres wichtiges Werkzeug, welches die Datenbank mitbringen sollte, sind \textbf{\"Anderungs-Mitteilungen}.
+Unterschiedliche Komponenten des Systemes beginnen mit ihnren Aufgaben, wenn \"Anderungen an der Datenbank stattfinden.
+Daher sind detailierte Echtzeit-Informationen \"uber \"Anderungen der Datenbank eine entscheidende Komponente,
+deren Einfluss auf Latenzen und Antwortzeiten der Komponenten nicht zu untersch\"atzen ist.
+
+
+%XXX evtl db management
 \begin{verbatim}
-- eingrenzung auf master master replikation
+
 - selektive/gefilterte replikation wuenschenswert
-- change notification
 - local atomic <> mvcc ?
 
 -> modellierung referenierung
@@ -56,23 +63,56 @@ Dies sind die Dokumentorientierten, die Graphendatenbanken und moderne relationa
 
 
 \section{Programmiersprachen}
+
+Die Programmiersprachen stellen die Basis f\"ur produktives Entwicken,
+sie erm\"oglichen erst die Umsetzung eines Projektes.
+
 \subsection{Technologische Betrachtung}
 
-\begin{verbatim}
-- scriptsprachen f produktivitaet
-- ggv db interne sprache
-\end{verbatim}
+Da ein Prototyp geschaffen werden soll,
+ist eine Pogrammiersprache mit hoher Produktivit\"at gefragt,
+selbst wenn dies auf Konsten von Performance geschiet.
+
+Daher bietet sich die Klasse der Scriptsprachen an,
+ihre dynamische Natur erm\"oglicht es,
+in kleineren Projekten schnell zum Ziel zu kommen.
+%XXX cite?
+Weiterhin muss eventuell die Datenbank-interne Sprache beachtet werden.
+
 % klassen/moduldiagramme aus kap 5 referenzieren
 
 \subsection{Produktanforderungen}
-%-> in die implementation
 
-\begin{verbatim}
-- ist python/warum python
-\end{verbatim}
+Im Detail sind nur einige wenige Punkte zu beachten.
+Die Wahl der Sprache an sich steht frei,
+solange bestimmte Bibliotheken verf\"ugbar sind.
+
+Wichtig sind dabei vor allem folgende Punkte.
+\begin{itemize}
+    \item Datenbankzugriff 
+    \item Prozesskontrolle f. Prozess basierte Arbeitsschritte
+    \item Zugriff Versionskontrolle
+    \item Testing
+\end{itemize}
+
+Ausserdem sollten der Entwickler bereits mit der Sprache vertraut sein.
+
+F\"ur die Datenbank-interne Sprache muss sich nach der Datenbank gerichtet werden.
 
 
-\section{Hilfswerkzeuge}
+\section{Weitere Werkzeuge}
+
+Hier werden weitere Werkzeugarten und Technologien vorgestellt,
+welche die Implementation unterst\"utzen werden.
+
+\subsection{Testwerkzeuge}
+
+Um die noch zu entwickelnden UnitTests,
+sowie die bereits in Kapitel~\ref{chap:target} spezifizierten Tests umzusetzen,
+is
+
+\subsection{Datenbank Management}
+
 \subsection{Technologische Betrachtung}
 \begin{verbatim}
 - tdd
