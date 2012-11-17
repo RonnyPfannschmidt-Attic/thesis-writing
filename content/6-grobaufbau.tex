@@ -471,18 +471,28 @@ Mit der Bereitschaft, wird die Verwantwortung vom Eingang zur Abarbeitung \"uber
 \subsection{Management}
 \subsection{Arbeiter}
 
-\section{Arbeitsschritte}
+\section{Arbeitsschritte und ihr Ausf\"uhrungskontext}
 
-\subsection{\"Uberblick}
-
+\subsection{\"Uberblick und grundlegender Ablauf}
 
 \begin{figure}[h!]
   \centering
   \label{fig:klassen-arten-arbeitsschritt}
   \includegraphics[height=\textheight]{imageinput/klassen-arten-arbeitsschritt.png}
-  \caption{Arten von Arbeitschritten}
+  \caption{Arten und Ablaufkontext von Arbeitschritten}
 \end{figure}
 
+Wie man auf der Grafik~\ref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
+bildet das Arbeitsverzeichniss (ProcDir) die Basis
+f\"ur die Durchf\"uhrung der Arbeitsschritte eines Auftrages.
+
+Es bindet alle Operationen, die notwendig sind,
+um die Kontrolldaten (Steps, siehe Fig~\ref{fig:datenstrukturen})
+aus der Datenbank zu laden und diese dann an Ausf\"uhrende Objekte zu binden (Proc).
+
+Der Lebenzyklus eines Proc Objektes wird dabei
+
+%XXX: More
 
 \subsection{Prozess Schritte}
 
@@ -491,15 +501,13 @@ einen Programm mit vorgegebenen Parametern auszuf\"ugren.
 Dies ist auch der Grund, warum der ``ProcessProc'' Datentyp einen
 Prozess-Handle enth\"alt.
 
-
-Dabei Fallen zur Laufzeit sammelbare Daten wie z.B. Text auf den standard Eingabe-/Ausgabe Datenstr\"omen
-an.
+Dabei Fallen zur Laufzeit sammelbare Daten wie z.B. Text auf den standard Eingabe-/Ausgabe Datenstr\"omen an.
 Ausserdem Ver\"andern sich statistische Informationen \"uber den Prozess wie Speicherverbrauch, IO, u.a.
 
 
 \subsection{Script Schritte}
 
-Script Schritte unterscheiden sich von Prozess-Schritten in der Hinsicht,
+Script-Schritte unterscheiden sich von Prozess-Schritten in der Hinsicht,
 dass sie kein Programm an sich, sondern ein Script ausf\"uhren.
 Daher k\"onnen sie in die Lage versetzt werden,
 weitere Laufzeitdaten zur Verf\"ugung zu stellen
@@ -517,7 +525,7 @@ Dannach gibt es mehrere Grundlegende Operationen, die durchgef\"uhrt werden k\"o
 
     \dhitem[Aktualisierung des Arbeitsverzeichniss]
         aktualisiert die Dateien im Arbeitsverzeichniss
-        auf eine/die gew\"unschte Version
+        auf eine gew\"unschte Version
     \dhitem[Anwendung von Patches]
         wendet Patches auf das aktuelle Arbeitsverzeichniss an
 \end{description}
@@ -529,7 +537,9 @@ Dateien welche bei vorhergehenden Schritten entstanden sind.in die Datenbank ein
 Die Grundfunktion pflegt dabei nur den Inhalt der Datei ein.
 Laufzeitdaten sind die gefundenen Dateien.
 
-Erweiterte Versionen dieeses Schrittes, k\"onnten zus\"atzliche Funktionen,
+Dabei wird das Pattern verwendet, um festzustellen, ob eine Datei, %XXX more
+
+Erweiterte Versionen dieser Schrittart, k\"onnten zus\"atzliche Funktionen,
 wie z.b. Einpflegen von Testergebnissen aus JunitXML Dateien in die Datenbank,
 \"ubernehmen
 
