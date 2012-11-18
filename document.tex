@@ -20,7 +20,7 @@
 
 %\usepackage{tikz}
 %\usetikzlibrary{shapes,arrows}
-\usepackage{pgf-umlsd}
+\usepackage{includes/pgf-umlsd}
 \usepackage{lastpage}
 
 %usepackage{minted}
@@ -54,7 +54,7 @@
 \usepackage{subfigure}
 
 % define the programming language
-\input{lststyles}
+\input{includes/lststyles}
 
 %set default pagestyle
 \pagestyle{empty}
@@ -62,7 +62,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
 
-\usepackage{featcounter}
+\usepackage{includes/featcounter}
 
 % settings for development - 1 page per section
 %\usepackage{pagedsections}
@@ -123,7 +123,7 @@
 \input{preamble}
 
 % loads the fancy pagestyle for register part
-\input{fancyRegisterPart}
+\input{includes/fancyRegisterPart}
 
 % create the registers
 \tableofcontents\newpage
@@ -131,7 +131,7 @@
 % set pagenumbering to arabic(1 2 3 4)
 \pagenumbering{arabic}
 % loads the fancy pagestyle for main part
-\input{fancyMainPart}
+\input{includes/fancyMainPart}
 
 % #####
 % # load the chapter from the files
@@ -154,7 +154,7 @@
 \newpage
 
 % loads the fancy pagestyle for register part
-\input{fancyRegisterPart}
+\input{includes/fancyRegisterPart}
 
 % #####
 % # load the bibliography
