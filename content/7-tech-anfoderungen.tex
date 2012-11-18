@@ -17,7 +17,7 @@ um die fortf\"uhrende Implementation zu unterst\"utzen.
 
 Die Auswahl der Datenbanktechnologie und eines Datenbankproduktes sind die wichtigsten technologischen Entscheidungen dieser Arbeit.
 Die im Kapitel~\ref{chap:design} vorgestellten L\"osungen.
-Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Implementation massgeblich beeinflussen.
+Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Implementation maßgeblich beeinflussen.
 
 
 \subsection{Technologische Betrachtung}
@@ -25,7 +25,7 @@ Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Imp
 %XXX: Bild overview verweisen
 In einer initialen Sondierung zeigte sich,
 dass 3 Technologieklassen die grundlegenden Anforderungen an die Datenmodellierung erf\"ullen.
-Dies sind die Dokumentorientierten, die Graphendatenbanken und moderne relationale Datenbanken.
+Dies sind die Dokument-orientierten, die Graphen-datenbanken und moderne relationale Datenbanken.
 
 \subsection{Produktanforderungen}
 
@@ -41,10 +41,11 @@ Um sicherzustellen, das alle Systemanforderungen erf\"ullt werden k\"onnen,
 muss die Datenbank zus\"atzlich \textbf{Master-Master Replikation} beherschen.
 Selbstverst\"andlich muss die Replikation mit einer \textbf{partitionierung} des Netzwerkes zurechtkommen.
 
-Ein weiteres wichtiges Werkzeug, welches die Datenbank mitbringen sollte, sind \textbf{\"Anderungs-Mitteilungen}.
-Unterschiedliche Komponenten des Systemes beginnen mit ihnren Aufgaben, wenn \"Anderungen an der Datenbank stattfinden.
-Daher sind detailierte Echtzeit-Informationen \"uber \"Anderungen der Datenbank eine entscheidende Komponente,
-deren Einfluss auf Latenzen und Antwortzeiten der Komponenten nicht zu untersch\"atzen ist.
+Ein weiteres wichtiges Werkzeug, welches die Datenbank mitbringen sollte, sind \textbf{Änderungs-Mitteilungen}.
+Unterschiedliche Komponenten des Systems beginnen mit ihren Aufgaben,
+wenn \"Anderungen an der Datenbank stattfinden.
+Daher sind detaillierte Echtzeit-Informationen über Änderungen der Datenbank eine entscheidende Komponente,
+deren Einfluss auf Latenzen und Antwortzeiten der Komponenten nicht zu unterschätzen ist.
 
 
 %XXX evtl db management
@@ -70,11 +71,11 @@ sie erm\"oglichen erst die Umsetzung eines Projektes.
 \subsection{Technologische Betrachtung}
 
 Da ein Prototyp geschaffen werden soll,
-ist eine Pogrammiersprache mit hoher Produktivit\"at gefragt,
-selbst wenn dies auf Konsten von Performance geschiet.
+ist eine Programmiersprache mit hoher Produktivit\"at gefragt,
+selbst wenn dies auf Kosten von Performance geschieht.
 
-Daher bietet sich die Klasse der Scriptsprachen an,
-ihre dynamische Natur erm\"oglicht es,
+Daher bietet sich die Klasse der Skriptsprachen an,
+ihre dynamische Natur ermöglicht es,
 in kleineren Projekten schnell zum Ziel zu kommen.
 %XXX cite?
 Weiterhin muss eventuell die Datenbank-interne Sprache beachtet werden.
@@ -95,21 +96,22 @@ Wichtig sind dabei vor allem folgende Punkte.
     \item Testing
 \end{itemize}
 
-Ausserdem sollten der Entwickler bereits mit der Sprache vertraut sein.
+Außerdem sollten der Entwickler bereits mit der Sprache vertraut sein.
 
-F\"ur die Datenbank-interne Sprache muss sich nach der Datenbank gerichtet werden.
+Für die Datenbank-interne Sprache muss sich nach der Datenbank gerichtet werden.
 
 
 \section{Weitere Werkzeuge}
 
-Hier werden weitere Werkzeugarten und Technologien vorgestellt,
-welche die Implementation unterst\"utzen werden.
+Hier werden weitere Werkzeug-arten und Technologien vorgestellt,
+welche die Implementation unterstützen werden.
 
 \subsection{Testwerkzeuge}
 
 Um die noch zu entwickelnden UnitTests,
 sowie die bereits in Kapitel~\ref{chap:target} spezifizierten Tests umzusetzen,
-is
+is es notwendig Tests zu schreiben. Um diese Aufgabe zu erleichtern,
+Und gleichzeitig 
 
 \subsection{Datenbank Management}
 

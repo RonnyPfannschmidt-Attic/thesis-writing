@@ -5,27 +5,27 @@
 \subsection{Datenbank}
 
 Das Kriterium der \textbf{Master-Master Replikation}
-schr\"ankte die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
+schränkte die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
 
-In die n\"ahere Betrachtung kommen CouchDB (dokumentorientiert)
+In die nähere Betrachtung kommen CouchDB (dokumentorientiert)
 und PostgreSQL (relational).
-Beide Systeme besizten Werkzeuge f\"ur Master-Master Replikation
-und primitiven f\"ur Notifikationen.
+Beide Systeme besitzen Werkzeuge f\"ur Master-Master Replikation
+und primitiven für Notifikationen.
 
 %XXX: cites
 Andere Systeme wie Mysql (relational), Mongodb(dokumentorientiert)
 und  Neo4J (graph) scheiden aus, weil zu ihrem Funktionsumfang
-nur die Master-Slave replikation geh\"ort.
+nur die Master-Slave Replikation geh\"ort.
 Das System Riak wurde verworfen, da es \"Anderungs-notifikationen
-nicht unterst\"utzte und in einem kurzen Vergleich
+nicht unterstützte und in einem kurzen Vergleich
 die Anfragen langsamer beantwortete.
 
 Im Kurzvergleich von PostgreSQL mit CouchDB,
 ging CouchDB als  hervor.
 Im Test mussten bei Couchdb zwar Abstriche im Bereich Performance gemacht werden,
-jedoch stellte sich heraus, das die \"Anderungsnotifikationen von Couchdb detailierter sind.
-Ausserdem erscheint der Prozess der Replikation in CouchDB
-als fehlertolleranter und einfacher.
+jedoch stellte sich heraus, das die \"Anderungsnotifikationen von Couchdb detaillierter sind.
+Außerdem erscheint der Prozess der Replikation in CouchDB
+als fehlertoleranter und einfacher.
 
 % \cite
 W\"ahrend in Postgresql die Notifikationen einfach nur eine Nachricht sind,
@@ -55,17 +55,45 @@ zum anderen Javascript, da es die Datenbankinterne Sprache von Couchdb ist.
 \label{tab:python-vs-js}
 \end{table}
 
-Ein besonderes Problem mit javascript ist,
-dass es Datenbankintern externe Bibliotheken nicht
-oder nur in limitierter Form verwenden kann.
-Die Laufzeitumgebung weisst grosse Unterschiede
-zwischen Datenbankinternen und Datenbankexterner verwendugn auf.
+Ein besonderes Problem mit Javascript ist,
+dass es Datenbankintern Bibliotheken, die Datenbank-extern sind,
+nicht oder nur in limitierter Form verwenden kann.
+Die Laufzeitumgebung weißt große Unterschiede
+zwischen Datenbank-interner und Datenbank-externer Verwendung auf.
 
-Somit ist Javascript f\"ur die Implementation der Komponenten nur sehr bedingt geeignet.
+Weiterhin konnten wie in Tabelle~\ref{tab:python-vs-js} aufgezeigt,
+für einige benötigte Bibliotheken keine
+oder nur unzureichende Implementationen gefunden werden.
+Somit ist Javascript für die Implementation der Komponenten
+nur sehr bedingt geeignet.
+
+Python hingegen hat Bibliotheken für alle notwendigen Grundfunktionen
+und hat somit alle Voraussetzungen,
+um die Implementation der Komponenten zu stützen.
+
+\subsection{Bibliotheken}
+
+\subsubsection{Datenbank Interaktion}
+
+
+\subsubsection{SCM Interaktion}
+
+
 
 \subsection{Weitere Werkzeuge}
 
 \subsubsection{Testwerkzeuge}
+
+Zum Testen wird das Test Framework py.test \cite{pytest:website} verwendet.
+Es das einzige Test Framework für Python,
+welches neben Werkzeugen für UnitTests auch Tools für
+Funktionale und Akzeptanz Tests mitbringt.
+
+Mit der Erweiterung ``pytest-couchdbkit"" \cite{pytest:couchdbkit} ist es Bereits
+bestens für das Testen von Applikationen und einzelnen Funktionen,
+welche CouchDB verwenden, geeignet.
+Außerdem basiert ``pytest-couchdbkit"" auch auf der Bibliothek ``couchdbkit""
+
 \subsubsection{Datenbank Management}
 
 \section{Grundlegende Primitiven}
