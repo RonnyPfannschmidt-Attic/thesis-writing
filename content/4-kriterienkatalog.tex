@@ -5,7 +5,8 @@ bringen bisherige Systeme diverse Probleme mit sich.
 Da diese nicht oder nur schwer innerhalb dieser Systeme lösbar sind,
 soll ein neues System geschaffen werden.
 
-Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlegen.
+Dieses Kapitel soll die entsprechenden Ziele
+qualitativ und quantitativ festlegen.
 
 % tests in sektionen mit angeben
 
@@ -18,39 +19,41 @@ Dieses Kapitel soll die entsprechenden Ziele qualitativ und quantitativ festlege
 
 \section{Systemanforderungen}
 
-Die Systemanforderungen legen funktionale Eigenschaften der Software auf Systemebene fest.
+Die Systemanforderungen legen funktionale Eigenschaften der Software auf System-ebene fest.
 Dabei werden 3 Punkte als wichtig erachtet.
 
 
 \begin{description}
 
 \dhitem[S1]
-Das System darf sich nicht vom Absturz/Fehlerfall einzelner Komponenten st\"oren lassen.
-Jederzeit muss es m\"oglich sein, Teile des Systems hart zu beenden oder
-die Struktur des Systems zu ver\"andern.
+  Das System darf sich nicht vom Absturz/Fehlerfall
+  einzelner Komponenten stören lassen. Jederzeit muss
+  es möglich sein, Teile des Systems hart zu beenden
+  oder die Struktur des Systems zu verändern.
 
 \dhitem[S2]
-Alle anfallenden L\"angerfristig verf\"ugbaren Daten m\"ussen mittels einer Standardschnittstelle
-f\"ur Datenbankzugriff abfragbar/verwendbar sein.
+  Alle anfallenden Längerfristig verfügbaren Daten 
+  mittels einer Standard-Schnittstelle für
+  Datenbankzugriff abfragbar/verwendbar sein.
 
 \dhitem[S3]
-Das System soll offen f\"ur Erweiterungen stehen,
-und soweit m\"oglich Erweiterbarkeit aktiv unterst\"utzen.
+  Das System soll offen für Erweiterungen stehen,
+  und soweit möglich Erweiterbarkeit aktiv unterstützen.
 \end{description}
 
 
-\section{Funktionenale Anforderungen und Use Cases}
+\section{Funktionale Anforderungen und UseCases}
 % kann/soll kriterien
 
 Um ein modernes und erweiterbares CI-System zu schaffen,
-m\"ussen zuerst die Kernfunktionen festgelegt werden.
-Anschliessend kann auf dieser Basis
-eine Platform f\"ur Erweiterungen geschaffen werden.
+müssen zuerst die Kernfunktionen festgelegt werden.
+Anschließend kann auf dieser Basis
+eine Plattform für Erweiterungen geschaffen werden.
 Dabei ist schon im Kern das bereits Angesprochene Problem
 der Matrix-Builds zu beachten.
 
-Anschliessend K\"onnen auf dieser Basis n\"utzliche weiterf\"uhrende Funktionen
-sowie die gew\"unschten Erweiterungen geschaffen werden.
+Anschließend können auf dieser Basis nützliche weiterführende Funktionen
+sowie die gewünschten Erweiterungen geschaffen werden.
 
 
 \subsection{Kernfunktionen}
@@ -66,19 +69,19 @@ Jede von ihnen ist unabdingbar.
 \end{figure}
 
 Wie in Abbildung~\ref{fig:use-case-muss} gut zu erkennen,
-stellt sich der Absolute Kern eines CI-Systemes aus relativ wenigen Funktionalit\"aten zusammen.
+stellt sich der Absolute Kern eines CI-Systeme aus relativ wenigen Funktionalitäten zusammen.
 
-Die erste Notwendige Funktion stellt die Verwaltung von Projekten \deffeat{projekt-verwalten}.
-Sind diese dann angelegt, mann man damit beginnen, Auftr\"age abzusetzen \deffeat{auftrag-absetzen}.
+Die erste notwendige Funktion stellt die Verwaltung von Projekten \deffeat{projekt-verwalten}.
+Sind diese dann angelegt, kann man damit beginnen, Aufträge abzusetzen \deffeat{auftrag-absetzen}.
 Ist ein Auftrag abgesetzt, so muss seine Richtigkeit sichergestellt werden \deffeat{auftrag-validieren},
-danach kann er f\"ur die Bearbeitung \deffeat{auftrag-vorbereiten} vorbereitet werden.
+danach kann er für die Bearbeitung \deffeat{auftrag-vorbereiten} vorbereitet werden.
 
-Nach dem der Auftrag an sich vorbereitet ist, m\"ussen entsprechend der Build-Matrix \deffeat{auftrag-matrix}
-Arbeitspackete generiert werden \deffeat{arbeitspacket-generieren}.
-Diese Arbeitspackete werden anschliesend verteilt \deffeat{arbeitspacket-verteilen} und abgearbeitet \deffeat{arbeitspacket-abarbeiten}.
+Nach dem der Auftrag an sich vorbereitet ist, müssen entsprechend der Build-Matrix \deffeat{auftrag-matrix}
+Arbeitspakete generiert werden \deffeat{arbeitspacket-generieren}.
+Diese Arbeitspakete werden anschließend verteilt \deffeat{arbeitspacket-verteilen} und abgearbeitet \deffeat{arbeitspacket-abarbeiten}.
 
-Das Abarbeiten der Arbeitspackete sollte in Schritten erfolgen \deffeat{arbeitspackete-schritte},
-wobei die grundlegendste Art von Arbeitsschritt das Ausf\"uhren eines Prozesses \deffeat{arbeitsschritt-prozess} ist.
+Das Abarbeiten der Arbeitspakete sollte in Schritten erfolgen \deffeat{arbeitspackete-schritte},
+wobei die grundlegende Art von Arbeitsschritt das Ausführen eines Prozesses \deffeat{arbeitsschritt-prozess} ist.
 
 
 \subsection{Weiterführende Funktionen}
