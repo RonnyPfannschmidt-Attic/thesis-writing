@@ -68,13 +68,14 @@ dies dient der Kontrolle der Lokalit\"at und wird sp\"ater noch vorgestellte Ver
 Das grundlegende Datenschema, in Abbildung~\ref{fig:datenstrukturen} als UML Klassendiagramm dargestellt,
 beschreibt die Daten des Kernsystemes und einige ihrer Interaktionen.
 
-Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order), Arbeitspaket (Task) und Arbeisschritt (Step).
+Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order),
+Arbeitspaket (Task) und Arbeisschritt (Step).
 
 \subsubsection{Projekt}
 
 Das Projekt beinhaltet neben dem Namen auch alle Informationen,
-die sp\"ater f\"ur das erstellen von Arbeitspaketen sowie
-das ausf\"uhren einer Integration ben\"otigt werden.
+die später für das erstellen von Arbeitspaketen sowie
+das ausf\"uhren einer Integration benötigt werden.
 Dazu geh\"ort das Quellcode-repository (repo), von dem sp\"ater
 die Quelltexte f\"ur das dem Test unterworfenen bezogen werden.
 Weiterhin beinhaltet es die Build-Achsen,
@@ -224,15 +225,15 @@ Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeitspak
 wobei jedes Arbeitspaket eine der Wertekombinationen darstellt.
 Nachdem alle Arbeitspakete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen.
 
-\subsubsection{Abschluss von Auftr\"agen}
+\subsubsection{Abschluss von Aufträgen}
 
-Der Abschluss eines Auftrages ist ein Ereigniss, welches Impliziert werden kann.
-In im zu entwickelnden System wird der Abschluss eines Auftrages definert,
+Der Abschluss eines Auftrages ist ein Ereignis, welches Impliziert werden kann.
+In im zu entwickelnden System wird der Abschluss eines Auftrages definiert,
 als der Zustand der Eintritt, wenn alle Arbeitspakete eines Auftrages
 einen finalen Zustand erreichen.
 
-Dies Vereinfacht die Behandung des Auftragsabschlusses,
-da man nicht nach Abschluss von Arbeitspaketen weitere Operationen durchf\"uhren muss,
+Dies Vereinfacht die Behandlung des Auftragsabschlusses,
+da man nicht nach Abschluss von Arbeitspaketen weitere Operationen durchführen muss,
 um den eventuellen Abschluss festzustellen.
 
 \subsection{Zuteilung/Abarbeitung von Arbeitspaketen}
@@ -251,7 +252,7 @@ um den eventuellen Abschluss festzustellen.
 
 \subsubsection{Vorbereitung Abarbeitung}
 
-\subsection{\"Uberblick Zuteilungsmethoden}
+\subsection{Überblick Methoden der Zuteilung}
 
 
 \begin{verbatim}
@@ -265,7 +266,7 @@ um den eventuellen Abschluss festzustellen.
 \end{verbatim}
 
 
-\subsubsection{token basierte zuweisung}
+\subsubsection{Token basierte Zuweisung}
 
 \begin{verbatim}
 - arbeiter teilen nur mit, dass sie arbeitsfaehig sind
