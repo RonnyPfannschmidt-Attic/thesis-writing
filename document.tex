@@ -1,6 +1,6 @@
 % define documentclass
 \documentclass[12pt, bibliography=totoc, a4paper, abstracton, numbers=noenddot]{scrreprt}
-
+\usepackage{xstring}
 % define used packages
 \usepackage[left=4.0cm, right=2.0cm, top=3cm, bottom=3cm]{geometry}
 \usepackage{bibgerm}
@@ -10,14 +10,10 @@
 \usepackage[ngerman]{babel}
 \usepackage{lmodern}
 \usepackage{listings}
-\usepackage[numbers]{natbib}
+\usepackage[numbers,sectionbib]{natbib}
 \usepackage[section]{placeins}
 \usepackage{microtype}
 
-
-\usepackage{xstring}
-
-\bibliographystyle{alpha}
 
 %\usepackage{tikz}
 %\usetikzlibrary{shapes,arrows}
@@ -161,7 +157,7 @@
 % #####
 %XXX
 %\nocite{*}
-\bibliography{bibliography}
+
 %\bibliography{literatur}
 %\bibliography{internetquellen}
 % #####
@@ -169,9 +165,34 @@
 % #####
 \input{appendix}
 
+\chapter{Verzeichnisse}
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{\section*{\bibname}% <-- this line was changed from \chapter* to \section*
+    \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+    {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+        \sloppy
+        \clubpenalty4000
+        \@clubpenalty \clubpenalty
+        \widowpenalty4000%
+        \sfcode`\.\@m}
+        {\def\@noitemerr
+            {\@latex@warning{Empty `thebibliography' environment}}%
+            \endlist}
+            \makeatother
+
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
+\addcontentsline{toc}{section}{\bibname}
 
 \listoffigures
-\addcontentsline{toc}{chapter}{Verzeichnisse}
 \addcontentsline{toc}{section}{Abbildungsverzeichniss}
 \listoftables
 \addcontentsline{toc}{section}{Tabellenverzeichniss}
