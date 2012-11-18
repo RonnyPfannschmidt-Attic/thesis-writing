@@ -1,17 +1,16 @@
 \chapter{Analyse \& Design ( 25 \%)}
 \label{chap:design}
 
-
-Im vorhergehenden Kapitel wurden Ziele und Leistungskriterien f\"ur das CI-System festgelegt.
+Im vorhergehenden Kapitel wurden Ziele und Leistungskriterium für das CI-System festgelegt.
 Diese sollen nun auf konzeptueller Ebene umgesetzt werden.
-Dazu wird zuerst ein \"Uberblick des Gesammtkonzeptes gegeben.
-Anschliessend werden Besondere Konzepte zur 
+Dazu wird zuerst ein Überblick des Gesamtkonzeptes gegeben.
+Anschließend werden Besondere Konzepte zur 
 %XXX: continue
 
 
 \section{Grundlegende Systemarchitektur}
 \label{sec:design:sysarch}
-Diese Sektion gibt Aufschluss \"uber die Grobstruktuer des CI Systemes auf logischer und physischer Ebene.
+Diese Sektion gibt Aufschluss über die Grobstruktur des CI-Systems auf logischer und physischer Ebene.
 
 \subsection{logisch}
 
@@ -24,13 +23,13 @@ Diese Sektion gibt Aufschluss \"uber die Grobstruktuer des CI Systemes auf logis
 
 
 Die erste wichtige Komponente ist der Eingang,
-in ihm gehen Auftr\"age aus verschiedensten Quellen ein.
-Nach dem sie validiert wurden, werden die Auftr\"age an
+in ihm gehen Aufträge aus verschiedensten Quellen ein.
+Nach dem sie validiert wurden, werden die Aufträge an
 die zweite wichtige Komponente, den Manager, weitergegeben.
 Dort werden sie vorbereitet und entsprechend der Build-Matrix Arbeitspakete erstellt.
 Nun treten Manager und Arbeiter in eine Interaktion,
 um zu bestimmen welcher Arbeiter das Eigentliche Arbeitspaket bearbeitet.
-Anschliessend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt.
+Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt.
 
 %XXX: more
 
@@ -41,17 +40,17 @@ Anschliessend werden die Arbeitspakete von den jeweilig designierten Arbeitern a
   \centering
   \label{fig:grob-layout-komponenten}
   \includegraphics[width=\textwidth]{imageinput/grob-layout-komponenten.png}
-  \caption{\"Ubersicht \"uber Systemkomponenten - physisch}
+  \caption{Übersicht über Systemkomponenten - physisch}
 \end{figure}
 
 Der physische Aufbau unterscheidet sich stark von den bisher dagewesenen CI-Systemen.
-Grund ist der Focus auf die verteilte Datenbank, direkte Kommunikation
+Grund ist der Fokus auf die verteilte Datenbank, direkte Kommunikation
 wird der Interaktion mit einer verteilten Datenbank weichen.
 
 Das System besteht somit aus Komponenten welche alle als Clients einer verteilten Datenbank operieren.
 Die Abbildung~\ref{fig:grob-layout-komponenten} zweigt die Struktur.
-Nennenswert ist dabei die Bindung einer Komponente and bestimmte Datenbankknoten,
-dies dient der Kontrolle der Lokalit\"at und wird sp\"ater noch vorgestellte Verfahrensweisen unterst\"utzen.
+Nennenswert ist dabei die Bindung einer Komponente and bestimmte Datenbank-knoten,
+dies dient der Kontrolle der Lokalität und wird später noch vorgestellte Verfahrensweisen unterstützen.
 
 %XXX more
 
@@ -66,58 +65,58 @@ dies dient der Kontrolle der Lokalit\"at und wird sp\"ater noch vorgestellte Ver
 \end{figure}
 
 Das grundlegende Datenschema, in Abbildung~\ref{fig:datenstrukturen} als UML Klassendiagramm dargestellt,
-beschreibt die Daten des Kernsystemes und einige ihrer Interaktionen.
+beschreibt die Daten des Kernsystems und einige ihrer Interaktionen.
 
 Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order),
-Arbeitspaket (Task) und Arbeisschritt (Step).
+Arbeitspaket (Task) und Arbeitsschritt (Step).
 
 \subsubsection{Projekt}
 
 Das Projekt beinhaltet neben dem Namen auch alle Informationen,
-die später für das erstellen von Arbeitspaketen sowie
-das ausf\"uhren einer Integration benötigt werden.
-Dazu geh\"ort das Quellcode-repository (repo), von dem sp\"ater
-die Quelltexte f\"ur das dem Test unterworfenen bezogen werden.
+die später für das Erstellen von Arbeitspaketen sowie
+die Ausführung einer Integration benötigt werden.
+Dazu gehört das Quellcode-repository (repo), von dem später
+die Quelltexte für das dem Test unterworfenen Projekt bezogen werden.
 Weiterhin beinhaltet es die Build-Achsen,
 welche die Wertebereiche der einzelnen Ebenen der Build-Matrix
 beschreiben.
 
-\subsubsection{Arbeitsschritt Template}
+\subsubsection{Arbeitsschritt Templates}
 
 Der mitunter wichtigste Teil eines Projektes ist jedoch die Beschreibung der Arbeitsschritte als Templates.
-Die Darstellung als Template ist dabei bewusst gew\"ahlt,
-sie erm\"oglicht es jedem Arbeitspaket speziell konfigurierte Arbeitsschritte zur Verf\"ugung zu stellen.
-Ausserdem bewirkt die erneute Speicherung als neue Datenbankobjekte,
+Die Darstellung als Template ist dabei bewusst gewählt,
+sie ermöglicht es jedem Arbeitspaket speziell konfigurierte Arbeitsschritte zur Verfügung zu stellen.
+Außerdem bewirkt die erneute Speicherung in der Datenbank,
 das Bearbeiten der Schritte eines Projektes keinen Einfluss auf bereits erstellte Arbeitspakete hat.
-Zudem stellen die extra Objekte auch einen Anschlusspunk f\"ur die Datensammlung dar.
+Zudem stellen die extra Objekte auch einen Anschlusspunk für die Datensammlung dar.
 Die Methode \textit{construct} des Templates dient dazu,
-einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zur\"uckzugeben.
+einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zurückzugeben.
 
 \subsubsection{Auftrag}
 
-Ein Auftrag beinhaltet grunds\"atzlich eine Referenz auf das zugeh\"orige Projekt,
-ausserdem beinhaltet er \"Uberschreibungen/Zus\"atze f\"ur die Build-Achsen,
-dies Erm\"oglicht es sowohl in den Achsen eingeschr\"ankte,
-als auch erweiterte Auftr\"age zu erstellen.
-Diese werden sp\"ater genauer erkl\"art.
-Zus\"atzlich beinhaltet der Auftrag einen Status, dieser beinhalted den aktuellen Stand der Bearbeitung.
+Ein Auftrag beinhaltet grundsätzlich eine Referenz auf das zugehörige Projekt,
+außerdem beinhaltet er Überschreibungen/Zusätze für die Build-Achsen,
+dies Ermöglicht es sowohl in den Achsen eingeschränkte,
+als auch erweiterte Aufträge zu erstellen.
+Diese werden später genauer erklärt.
+Zusätzlich beinhaltet der Auftrag einen Status, dieser beinhaltet den aktuellen Stand der Bearbeitung.
 
 \subsubsection{Arbeitspaket}
 %XXX: eventuell projekt hier nicht referenzieren
 Ein Arbeitspaket beinhaltet neben Referenzen zu dem Projekt und dem Auftrag,
-seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen f\"ur dieses Paket an.
+seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen für dieses Paket an.
 des weiteren beinhaltet es den Index, dieser gibt die Numerische Position in der Build-Matrix an.
-Auch ein Arbeitspaket hat einen Status, welcher den aktuellen Bearbeitungstand zum Ausdruck bringt.
+Auch ein Arbeitspaket hat einen Status, welcher den aktuellen Bearbeitung-stand zum Ausdruck bringt.
 Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher das Arbeitspaket letztendlich bearbeiten wird.
 
 \subsubsection{Arbeitsschritt}
 
-Ein Arbeitsschritt referenziert das zugeh\"orige Arbeitspaket.
-Neben den Zeitpunkten f\"ur Anfang und Ende seiner Ausf\"ugrung,
-bennennt er im Feld ``stepper'' um welche Art von Arbeitsschritt es sich handelt.
-Das Feld ``status'' gibt Auskunft \"uber den aktuellen Bearbeitungsstand.
+Ein Arbeitsschritt referenziert das zugehörige Arbeitspaket.
+Neben den Zeitpunkten für Anfang und Ende seiner Ausführung,
+benennt er im Feld ``stepper'' um welche Art von Arbeitsschritt es sich handelt.
+Das Feld ``status'' gibt Auskunft über den aktuellen Stand der Bearbeitung.
 Das Feld ``data'' soll weitere dynamische Informationen zum Ausdruck bringen,
-die bei der Ausf\"uhrung genutzt werden.
+die bei der Ausführung genutzt werden.
 
 %XXX: dies dient \ldots
 
@@ -126,23 +125,23 @@ die bei der Ausf\"uhrung genutzt werden.
 %XXX referenz auf task?
 
 Das Event bringt Datensammlung zur Laufzeit zum Ausdruck.
-Neben den Referenzen f\"ur den Arbeitschritt und das Arbeitspaket,
-beinhaltet es die Indexnummer und einen Timestamp.
+Neben den Referenzen für den Arbeitsschritt und das Arbeitspaket,
+beinhaltet es eine Indexnummer und einen Timestamp.
 Die Indexnummer ist eine aufsteigende Zahl
-und gibt den Events eines bestimmten Arbeitsschrittes eine feste eindeutige Reihenfolge.
+und gibt den Events eines bestimmten Arbeitsschritts eine feste eindeutige Reihenfolge.
 Der Timestamp gibt den Events eine zeitliche Ordnung (welche jedoch nicht eindeutig ist).
 
 
-Zus\"atzlich zu diesen Basisdaten, beinhaltet ein Event beliebige weitere optionale Felder.
-Einige m\"ogliche (und ihre Datentypen) sind:
+Zusätzlich zu diesen Basisdaten, beinhaltet ein Event beliebige weitere optionale Felder.
+Einige mögliche (und ihre Datentypen) sind:
 
 \begin{description}
-    \dhitem[returncode: Number] R\"uckgabewert eines Prozesses bei seiner Beendigung.
-    \dhitem[line: Text] Textzeile eines Ausgabestromes
+    \dhitem[returncode: Number] Rückgabe-wert eines Prozesses bei seiner Beendigung.
+    \dhitem[line: Text] Textzeile eines Datenstromes der Ausgabe
     \dhitem[lineno: Number] Zugeh. Zeilennummer
-    \dhitem[stream: Name] Zugeh. Name des Ausgabestromes
-    \dhitem[start: Name] Mitteilung \"uber den Start eines best. Vorganges
-    \dhitem[end: Name] Mitteilung \"uber den Abschluss eines best. Vorganges
+    \dhitem[stream: Name] Zugeh. Name des Datenstromes
+    \dhitem[start: Name] Mitteilung über den Start eines best. Vorganges
+    \dhitem[end: Name] Mitteilung über den Abschluss eines best. Vorganges
 \end{description}
 
 
