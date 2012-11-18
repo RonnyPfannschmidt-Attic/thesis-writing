@@ -63,81 +63,82 @@ Diese Sektion gibt einen \"Uberblick \"uber die Problemarten existierender Stste
 \subsection{Datenzugriff}
 
 Beim Datenzugriff sind die existierenden Systeme besonders Problematisch.
-Es gibt Grunds\"atzlich keinerlei Standardschnittstellen.
+Es gibt Grundsätzlich keinerlei Standardschnittstellen.
 Die meisten Systeme verwenden noch nicht einmal eine Datenbank.
-Jene welche doch eine verwenden wird, machen sie nicht zug\"anglich.
+Jene welche doch eine verwenden wird, machen sie nicht zugänglich.
 
 Die Datenhaltung dieser Systeme kann somit grob als geordnete Ablage klassifiziert werden.
-Weiterf\"uhrende Abfragen sind nicht m\"oglich.
+Weiterführende Abfragen sind nicht möglich.
 
 \subsection{Erweiterbarkeit}
 
 Die Erweiterbarkeit eines CI-Systemes wird von 2 Hauptpunkten dominiert.
 Dies ist die Integration in die Benutzeroberfl\"ache
-und zum anderen die M\"oglichkeiten mit den Daten interagieren
+und zum anderen die Möglichkeiten mit den Daten interagieren
 und auf neue Weise zu kombinieren.
 
 Die erweiterbaren Systeme stellen normalerweise zumindest eine Schnittstelle
-f\"ur die graphische Oberfl\"ache zur Verf\"ugung.
-Damit ist zumindest das problemlose Anpassen der Benutzerschnittstelle gegeben.
+für die graphische Oberfläche zur Verfügung.
+Damit ist zumindest das problemlose Anpassen der Benutzeroberfläche gegeben.
 
 
-F\"ur eigene Analysewerkzeuge kann es jedoch oft notwendig werden,
+Für eigene Analysewerkzeuge kann es jedoch oft notwendig werden,
 eine eigene Datenbank, welche vom CI-System getrennt ist zu verwenden.
-Einige Anbieter von CI-werkzeugen w\"unschen dies sogar explizit.
+Einige Anbieter von CI-Werkzeugen wünschen dies sogar explizit.
 %XXX:
 
 
-\subsection{Komponentenabh\"angigkeit}
+\subsection{Komponentenabhängigkeit}
 
 Wie bereits in Kapitel~\ref{sec:ist-analyse:struktur} erw\"ahnt,
 sind CI-Systeme in der Regel traditionelle Netzwerksysteme die nach dem Client/Server Prinzip operieren.
-Dabei sind die Rollen strikt als Master und Slave eingeteilt und das Management wird zentral im Master vorgenommen.
+Dabei sind die Rollen strikt als Master und Slave eingeteilt
+und das Management wird zentral im Master vorgenommen.
 Slaves haben dabei keinerlei Autonomie und folgen strikt den Anweisungen des Master.
 
-Dadurch nimmt das System zwar keinen Schaden wenn ein Slave ausf\"allt,
+Dadurch nimmt das System zwar keinen Schaden wenn ein Slave ausfällt,
 der Ausfall des Master ist jedoch fatal und kann nicht abgefangen werden.
 Dies stellt einen ``Single Point of Failure'' dar.
 
 
-\section{Praxisbeispiele}
+\section{Beispiele aus der Praxis}
 
 Um Probleme in der Praxis aufzuzeigen,
-soll eine Auswahl and Werzeugen getroffen werden.
-Anschliessend sollen ihre Eigenschaften und Probleme
-n\"aher untersucht werden.
+soll eine Auswahl von Werkzeugen getroffen werden.
+Anschließend sollen ihre Eigenschaften und Probleme
+näher untersucht werden.
 
 
 \subsection{Auswahl}
 
-Um die Analyse von Praxisbeispielen zu erm\"oglichen,
+Um die Analyse von Praxisbeispielen zu ermöglichen,
 sollen Systeme mit gewissen Rahmenbedingungen ausgew\"ahlt werden.
-Wichtigs Kritierum ist dabei, das sie \textbf{open-source} Software sind,
-oder zumindest \"offentlich verf\"ugbar sind.
-Sie sollten \textbf{verbreitet} sein, damit ein \"Uberblick
-\"uber praxisrelevante Probleme geschaffen.
-Ausserdem sollten sie \textit{kostenlos} sein,
+Wichtigstes Kriterium ist dabei, das sie \textbf{open-source} Software sind,
+oder zumindest öffentlich verfügbar sind.
+Sie sollten \textbf{verbreitet} sein, damit ein Überblick
+über praxisrelevante Probleme geschaffen.
+Außerdem sollten sie \textit{kostenlos} sein,
 %XXX> LOL
 \textit{um den finanziellen Ruin eines hilflosen Studenten zu verhindern}.
 
-Ausgew\"ahlt wurden die Systeme
+Ausgewählt wurden die Systeme
 \begin{itemize}
   \item Jenkins/Hudson
   \item Buildbot
   \item TravisCI
 \end{itemize}
 
-Sie alle sind kostenlose Werkzeuge und Quelloffen.
-Ausserdem Decken sie sehr verschiedene Use-Cases ab.
+Sie alle sind kostenlose Werkzeuge und Quell-offen.
+Außerdem Decken sie sehr verschiedene Use-Cases ab.
 
 \subsection{Jenkins/Hudson}
 
 Jenkins und Hudson sind aus der Java Welt  stammende CI-Systeme.
 Sie bieten alle Grundfunktionen, um grundlegendes CI umzusetzen
 und unterst\"utzen auch erweiterte Funktionen,
-wie Matrix-Build und nachgelagerte Builds.
+wie Matrix-Build und nach-gelagerte Builds.
 
-Sie stellen ein einfach zu bedienendes Nutzerinterface zur verf\"ugung,
+Sie stellen ein einfach zu bedienendes Nutzerinterface zur Verfügung,
 Konfiguration findet jedoch nur im Rahmen dieses Interfaces statt.
 
 Erweiterte Parametrisierung ist nicht m\"oglich.
