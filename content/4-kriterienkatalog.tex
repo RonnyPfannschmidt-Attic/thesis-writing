@@ -93,56 +93,56 @@ informierte Entscheidungen \"uber den Zustand eines Projektes in Integration zu 
 
 \subsubsection{Datensammlung}
 
-Zun\"achst einmal gilt es Datensammlung beim Ablauf eines Arbeitschrittes zu betrachen.
+Zun\"achst einmal gilt es Datensammlung beim Ablauf eines Arbeitsschritts zu betrachten.
 \"Ublicherweise muss zumindest STDOUT/STDERR schon zur Laufzeit festgehalten \deffeat{arbeisschritt-stdio} werden.
 Weiterhin besteht auch Interesse an statistisch auswertbaren Daten
-wie z.B. den Speicherverbrauch \deffeat{arbeitsschritt-stats}.
+wie z.B. den Speicher-verbrauch \deffeat{arbeitsschritt-stats}.
 
-Auch nach dem Ausf\"uhren eines Arbeitschrittes fallen interessante Daten an.
-Oftmals sorgt zumindest einer der Arbeitschritte f\"ur das Generieren eines Ausf\"uhrbaren Programmes.
+Auch nach dem Ausf\"uhren eines Arbeitsschritts fallen interessante Daten an.
+Oftmals sorgt zumindest einer der Arbeitsschritte für das Generieren eines Ausführbaren Programms.
 Dieses sollte sp\"ater auch zur Verf\"ugung gestellt werden \deffeat{arbeitsschritt-artefakt}.
-Weiterhin finden sich Testresultate in diversen Standardformaten \deffeat{arbeitsschritt-resultate},
+Weiterhin finden sich Test-Resultate in diversen Standardformaten \deffeat{arbeitsschritt-resultate},
 wie z.B. JunitXML.
 
 \subsubsection{Arten Arbeitsschritte}
 
 Auch bei den Arten der Arbeitsschritte gibt es f\"r gew\"ohnlich mehrere M\"oglichkeiten (siehe Kapitel~\ref{chap:ist-analyse}).
-Neben den gewohnten Prozessschritten (\reffeat{arbeitsschritt-prozess}) sind weitere Arten \"ublich.
+Neben den gewohnten Prozess-schritten (\reffeat{arbeitsschritt-prozess}) sind weitere Arten \"ublich.
 Interaktion mit dem Quellcodemanagement \deffeat{arbeitsschritt-scm}, sowie
-Schritte implementiert in einer Scriptsprache \deffeat{arbeitsschritt-script},
+Schritte implementiert in einer Skript-Sprache \deffeat{arbeitsschritt-script},
 stellen weiterf\"uhrende Hilfen dar.
 
 \subsubsection{Verteilung von Arbeitspacketen}
 
-Um \"uberhaupt bis zu den Arbeitschritten zu kommen,
-ist es notwendig, Arbeitspackete zu verteilen \deffeat{arbeitspackete-verteilen}.
-Dies soll ein verteileter Prozess sein \deffeat{arbeitspackete-autonome-verteilung},
+Um \"uberhaupt bis zu den Arbeitsschritten zu kommen,
+ist es notwendig, Arbeitspakete zu verteilen \deffeat{arbeitspackete-verteilen}.
+Dies soll ein verteilter Prozess sein \deffeat{arbeitspackete-autonome-verteilung},
 bei dem die Slaves/Arbeiter aktiv mitwirken k\"onnen.
-Eine denkbare Erweiterung w\"are die m\"oglichkeit, das Slaves/Arbeiter
-die Arbeitspackete mittels kategorischer Filter auswaehlen \deffeat{arbeitspackete-verteilung-selektiv}.
-Beispiele f\"ur diese w\"aren z.b. Platform oder Betriebsumgebung.
+Eine denkbare Erweiterung w\"are die Möglichkeit, das Slaves/Arbeiter
+die Arbeitspakete mittels kategorischer Filter auswählen \deffeat{arbeitspackete-verteilung-selektiv}.
+Beispiele f\"ur diese w\"aren z.b. Plattform oder Betriebsumgebung.
 
 \subsubsection{Auftragseingang und Vorbereitung}
 
 %XXX: web hook gosar
 
 Der Auftragseingang kann sich vielseitig gestalten.
-Moderne Systeme unterstuetzen eine Vielzahl von Medien \deffeat{auftrag-eingang-medien},
+Moderne Systeme unterstützen eine Vielzahl von Medien \deffeat{auftrag-eingang-medien},
 wie z.b. Email, Web-Hooks, Web-Formulare oder Zeitgesteuerte Systeme.
 
 W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterst\"utzt werden,
 sind die Anreicherung eines Auftrages um eigene Daten/\"Anderungen.
 Besonders hilfreich erscheint hierbei das sogenannte Workdir-diff \deffeat{auftrag-eingang-diff},
-welches die aktuellen \"Anderungen eines Entwickers darstellen.
+welches die aktuellen \"Anderungen eines Entwicklers darstellen.
 Dies macht sie besonders n\"utzlich f\"ur den laufenden Entwicklungsprozess.
 
 \subsubsection{Resultatanalyse}
 
-Resultatanalyse ist ein vielseitiges Thema,
+Analyse von Resultaten ist ein vielseitiges Thema,
 welches vorwiegend Aufgabe der Erweiterungen sein soll.
 
-Un der grundlegenden eingebauten Ausf\"uhrung soll zumindest der Erfolg oder Misserfolg
-von Auftr\"agen, Arbeitspacketen und Arbeitsschritten feststellbat sein \deffeat{infache-resultate}
+In der grundlegenden eingebauten Ausf\"uhrung soll zumindest der Erfolg oder Misserfolg
+von Auftr\"agen, Arbeitspaketen und Arbeitsschritten feststellbar sein \deffeat{einfache-resultate}.
 
 
 \subsection{Exemplarische Erweiterungen}
@@ -153,13 +153,13 @@ Diese werden hier nur Grob umrandet und dann Sp\"ater in der Analyse genauer spe
 
 Dir erste Erweiterung betrachtet vergleichende Analysen von Testergebnisen \deffeat{ext-testing}.
 Dabei sollen Entwickler in die Lage versetzt werden,
-dass Fehlerverhalten eines Programmes in verschiedenen Konfigurationen und Auftr\"agen zu vergleichen.
+dass Fehler-verhalten eines Programms in verschiedenen Konfigurationen und Auftr\"agen zu vergleichen.
 Dies dient zur Vereinfachung der Fehleranalyse.
 
-Die zweite Entwicklung betrachtet ein g\"nzlich anderes Thema.
-Dabei soll das Verhalten einer Version eines Programmes
+Die zweite Entwicklung betrachtet ein gänzlich anderes Thema.
+Dabei soll das Verhalten einer Version eines Programms
 in sehr vielen Kombinationen verst\"andlich gemacht werden\deffeat{ext-analysis}.
-Dies soll die Flexibilit\"at des Systemes zeigen und
+Dies soll die Flexibilit\"at des Systems zeigen und
 Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 
 
@@ -176,9 +176,9 @@ Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 
 \subsection{Unit Tests}
 
-Unittests werden verwendet um die kleinsten Komponenten des Systems zu testen.
+Unit-Tests werden verwendet um die kleinsten Komponenten des Systems zu testen.
 Durch ihre starke Koppelung an Implementation und Entwurf,
-sind die w\"ahrend der Kriterienfindung noch nicht n\"aher bestimmbar.
+sind die w\"ahrend der Kriterien-Findung noch nicht n\"aher bestimmbar.
 
 Sie ergeben sich zum Teil im Entwurf und vorwiegend in
 der nachfolgenden Implementation.
@@ -197,9 +197,8 @@ Im Rahmen dieser Arbeit werden 3 Systemtests definiert.
 
 \begin{description}
   \dhitem[Komponentendurchlauf]
-    soll anhand des ausf\"uhrens der einzelnen funktionalen Komponenten
-    aufzeigen, ob das Zusammenspiel der Komponenten
-    grunds\"atzlich funkioniert
+    soll anhand des Ausführens der einzelnen funktionalen Komponenten aufzeigen,
+    ob das Zusammenspiel der Komponenten grunds\"atzlich funktioniert
   \dhitem[Komplettstystem]
     soll das komplette CI-System auf einer Testdatenbank starten
     und seine Funktion sicherstellen
@@ -210,13 +209,13 @@ Im Rahmen dieser Arbeit werden 3 Systemtests definiert.
 \subsection{Manuelle Tests}
 
 Die manuellen Tests werden alle Tests umfassen,
-deren Umsetzung als automatisches Programm erfahrungsgem\"ass zeitaufwendig,
+deren Umsetzung als automatisches Programm erfahrungsgemäß zeitaufwendig,
 fehleranf\"allig und/oder umfangreich sind.
 
 \begin{description}
   \dhitem[zeitliches Verhalten]
-    Beobachtung und Analyse des Zeitveraltens \\
-    bei wachsender Datenmenge und Auftragsgr\"osse
+    Beobachtung und Analyse des Zeitverhaltens \\
+    bei wachsender Datenmenge und Auftragsgröße
   \dhitem[Race-Conditions]
     Beobachtung und Analyse trivialer Race-Conditions \\
     bei wachsender Nebenl\"aufigkeit
@@ -230,17 +229,17 @@ fehleranf\"allig und/oder umfangreich sind.
 
 \section{Abgrenzung}
 
-In dieser Arbeit soll nur der prototpische Kern eins CI-Systemes,
+In dieser Arbeit soll nur der prototypische Kern eins CI-Systems,
 sowie exemplarische Erweiterungen, geschaffen werden.
-Somit sind viele Themen, welche f\"ur ein produktiv eingesetztes CI-System notwendig
+Somit sind viele Themen, welche für ein produktiv eingesetztes CI-System notwendig
 sind, nicht weiter zu betrachten.
 Benutzer und ihre Rechte sollen nicht betrachtet werden,
-Authentifikation und Authorisation sind weitreichende Themengebiete
+Authentifikation und Authorisation sind weitreichende Themen-gebiete
 die sorgf\"altigst betrachtet werden m\"ussten,
 dies ist neben der Hauptaufgabe nicht im zeitlichen Rahmen unterzubringen.
-Ausserdem wird kein Wert auf das Benutzerinterface gelegt.
+Außerdem wird kein Wert auf die Benutzeroberfläche gelegt.
 intuitive Benutzerinteraktion ist ein \"uberaus umfangreiches Thema.
-Dabei sind auch weiterf\"ugrende Interaktionen,
+Dabei sind auch weiterführende Interaktionen,
 wie z.B. Konfiguration der Replikation ausgeschlossen.
 
 
@@ -249,18 +248,18 @@ wie z.B. Konfiguration der Replikation ausgeschlossen.
 %XXX: more text
 
 Im wesentlichen soll der Kern des CI-Systems als Protoyp geschaffen werden.
-Anschliessend sollen weitere Funktionen sowie exemplarische Erweiterungen
+Anschließend sollen weitere Funktionen sowie exemplarische Erweiterungen
 auf dieser Basis geschaffen werden.
 L\"osungskonzepte f\"ur die einzelnen Komponenten sollen vorgestellt werden,
-um anschliessend ihre Eigenschaften zu betrachten
+um anschließend ihre Eigenschaften zu betrachten
 
 Fokus sind dabei Interaktionen mit der Datenbank und Datenoperationen.
-Semantik des Systemes und Konsistenzverhalten bei Datenbankpartitionierung
+Semantik des Systems und Konsistenz-verhalten bei Datenbankpartitionierung
 sollen betrachtet werden. Erweiterungen zur Datenanalyse sollen ebenfalls nur auf technischer Ebene behandelt werden.
 
 Themen wie Benutzerschnittstellen, Rechteverwaltung und Details
 von visueller Komponentenintegration werden dabei nicht betrachtet.
-Ziel dieser Arbeit ist die Betrachtung der Kernfunktionen und Erweiterungen auf Datenbankebene.
+Ziel dieser Arbeit ist die Betrachtung der Kernfunktionen und Erweiterungen auf Datenbank-ebene.
 
 % zusammenfassung 
 %   - im wesentlichen soll \ldots. prototypisch & exemplarisch
