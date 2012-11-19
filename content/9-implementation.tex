@@ -28,10 +28,10 @@ Außerdem erscheint der Prozess der Replikation in CouchDB
 als fehlertoleranter und einfacher.
 
 % \cite
-W\"ahrend in Postgresql die Notifikationen einfach nur eine Nachricht sind,
-dass etwas ge\"andert wurde,
+W\"ahrend in Postgresql die Mitteilungen einfach nur eine Nachricht sind,
+welche mitteilt, dass etwas geändert wurde (aber nicht was)
 % \cite couchdb:changestream}
-so beinhalten die Notifikationen von CouchDB, genaue Informationen
+so beinhalten die Mitteilungen von CouchDB, genaue Informationen
 \"uber das ge\"anderte Objekt, eventuelle Datenbankkonflikte
 und auf Wunsch sogar das Objekt selbst.
 
@@ -73,12 +73,21 @@ um die Implementation der Komponenten zu stützen.
 
 \subsection{Bibliotheken}
 
+Diese Sektion stellt die genutzten Bibliotheken vor.
+
 \subsubsection{Datenbank Interaktion}
 
+Zur Interaktion mit CouchDB wurde die Bibliothek ``couchdbkit"" \cite{couchdbkit:website} verwendet.
+Sie stellte als einzige alle Funktionen der HTTP-Api von CouchDB zur Verfügung.
+%XXX cites?
+Andere Bibliotheken sind python-couchdb (kein Support fuer Änderungsmitteilungen)
+und Paisley (sehr Unvollständig)
 
 \subsubsection{SCM Interaktion}
 
-
+Für die Interaktion mit der Versions-Kontrolle wurde die Bibliothek anyvc \cite{anyvc:website} verwendet.
+Sie ist eine von 2 Python Bibliotheken für den Zugriff auf SCM,
+und als einzige in der Lage mit einem Arbeitsverzeichniss zu interagieren.
 
 \subsection{Weitere Werkzeuge}
 
@@ -92,9 +101,21 @@ Funktionale und Akzeptanz Tests mitbringt.
 Mit der Erweiterung ``pytest-couchdbkit"" \cite{pytest:couchdbkit} ist es Bereits
 bestens für das Testen von Applikationen und einzelnen Funktionen,
 welche CouchDB verwenden, geeignet.
-Außerdem basiert ``pytest-couchdbkit"" auch auf der Bibliothek ``couchdbkit""
+Außerdem basiert ``pytest-couchdbkit"" auch auf der Bibliothek ``couchdbkit"",
+und ist damit Bestens geeignet um die Basis für den Testprozess zu bilden.
 
 \subsubsection{Datenbank Management}
+
+Zum Management der Datenbank an sich wurde die integrierte Administrationsschnittstelle Futon verwendet \cite{couchdb:futon}.
+Sie bietet einfache Schnittstellen für die Verwaltung von Datenbanken sowie der Replikation.
+
+Um Datenbankinterne Programme zu verwalten,
+wurde das Werkzeug ``couchdb-compose"" \cite{couchdb:compose} geschaffen.
+Die Umsetzung dieses Werkzeugs ist nicht als Teil dieser Arbeit zu betrachten.
+Notwendig wurde es, da existierenden Werkzeugen wie ``Kanso"" und ``couchapp""
+keine Möglichkeit boten, um direkte Kontrolle über den Aufbau und die Struktur 
+einer CouchDB Applikation zu üben.
+
 
 \section{Grundlegende Primitiven}
 
@@ -104,7 +125,7 @@ Außerdem basiert ``pytest-couchdbkit"" auch auf der Bibliothek ``couchdbkit""
 \subsection{gather\_next}
 \subsection{watch\_for}
 
-\section{komponenten}
+\section{Komponenten}
 
 \subsection{Auftragsannahme}
 
