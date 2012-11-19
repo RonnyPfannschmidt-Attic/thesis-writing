@@ -160,13 +160,35 @@ Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen eine
         Es verwendet immer die lokale Datenbank namens ``juggler''
     \item[tool/clean_standing.py] [db]\hfill \\
         Setzt unterbrochene Arbeitspakete auf den Ursprungs-zustand zurück.
-        Dies ist Notwendig, da der Prototyp den Status interrupted für ein Arbeitspaket nicht unterstützt.
+        Dies ist notwendig, da der Prototyp den Status interrupted für ein Arbeitspaket nicht unterstützt.
 \end{description}
 
-\subsection{Python Implemenation}
+\subsection{Python Implementation}
 
+Die Python Implementation besteht aus einigen wichtigen Dateien im Ordner namesn juggler.
 
+Einsprungpunkte sind die Dateien ``simple\_master.py' und ``simple\_slave.py''.
+Sie beinhalten die Implementationen der Management und Arbeiter Komponenten.
 
+Hinzu kommt die Datei ``service.py'', welche das Grundgerüst für Komponenten enthält.
+
+Folgende Verzeichnisse sind noch wichtig.
+
+\begin{description}
+    \dhitem[model] 
+        enthält  die Modelklassen,
+        welche die Daten aus der Datenbank auf Python Objekte abbilden
+    \dhitem[handler] 
+        enthält die Einzelteile der Komponenten,
+        welche in Kommunikation mit der Datenbank stehen
+    \dhitem[process]
+        enthält die Implementation der Arbeitsschritte
+        und ihrer Ausführungssumgebung
+\end{description}
+
+\subsection{CouchDB Applikation}
+
+%XXX More
 
 \section{Grundlegende Primitiven}
 \subsection{Datenbank Indexe}
