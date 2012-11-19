@@ -5,7 +5,7 @@ Im vorhergehenden Kapitel wurden Ziele und Leistungskriterium
 für das CI-System festgelegt.
 Diese sollen nun auf konzeptueller Ebene umgesetzt werden.
 Dazu wird zuerst ein Überblick des Gesamtkonzeptes gegeben.
-Anschließend werden Besondere Konzepte zur 
+Anschließend werden besondere Konzepte zur 
 %XXX: continue
 
 
@@ -178,14 +178,49 @@ beginnt ein Auftrag im Zustand eingehend, sind schließlich alle Daten zusammeng
 so wird der Eingang festgehalten und der Auftrag wird vom System weiterverarbeitet.
 
 %XXX Quellen betrachten``
+Betrachtet werden die Anforderungen für die Quellen
+\begin{description}
+    \dhitem[EMail]
+        Eingang per EMail kann in 2 Formen erfolgen,
+        zum einen kann der gesamte Auftrag ein einer einzigen EMail enthalten sein.
+        Zum anderen kann sich der Auftrag über mehr als eine EMail erstrecken.
+        Beispiel hierfür sind z.B. Mercurial Patchbombs \cite{mercurial:patchbomb}.
+        Ist ein Auftrag fertiggestellt, so ist eine Antwort-email hilfreich.
+        Wichtig ist, dass EMails Unbekannter auf keinen Fall
+        akzeptiert werden sollten.
+    \dhitem[Mailingliste]
+        Eingang per Mailingliste ist dem Eingang per Email sehr ähnlich,
+        Haupt-unterschied ist, dass anstelle einer privaten Korrespondenz
+        ein öffentliches Forum genutzt wird. Dabei sollen auch EMails Unbekannter 
+        bearbeitet werden können.
+        Ein bekanntes Beispiel für eine Mailingliste mit Patches
+        ist die Mercurial Mailingliste \cite{mercurial:mailingliste}.
+    \dhitem[Web Formular]
+        Web Formulare bieten eine intuitive Möglichkeit,
+        einen Auftrag zu bearbeiten und vorzubereiten,
+        bevor man ihn letztendlich in Bearbeitung gibt.
+    \dhitem[HTTP Hook]
+        Http Hooks sind ein Traditionelles Werkzeug,
+        um CI-Systemen Änderungen mitzuteilen.
+        Sie sind einfach in externe Werkzeuge wie z.b. SCM integrierbar,
+        und dienen dazu, Aufträge für die Standardkonfiguration
+        eines Projektes abzusetzen, wenn externe Ereignisse,
+        wie z.b. ein SCM commit, eintreten.
+    \dhitem[Zeitsteuerung]
+        Zeitsteuerungen sind ein weiteres Traditionelles Werkzeug,
+        um Aufträge in Standardkonfiguration abzusetzen.
+        Zu festgesetzten Zeitpunkten, wie z.b. Nachts oder nach
+        Arbeitsschluss, werden Aufträge abgesetzt.
+    \dhitem[Http API]
+        Eine HTTP API kann als Basis sowohl für Testwerkzeuge,
+        als auch für WebFormulare dienen.
+        Sie ermöglicht Programmen ein hohes maß an Kontrolle
+        für das Absetzen von Aufträgen
+\end{description}
 
+Fur den Prototypen ist zumindest die ``HTTP API"" notwendig,
+um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 
-\begin{verbatim}
-- quellen
-- editiern
-- typisches
--> eine auswaehlen
-\end{verbatim}
 
 \subsubsection{Validation}
 
