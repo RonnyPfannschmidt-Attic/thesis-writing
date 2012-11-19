@@ -130,8 +130,9 @@ von Datenbank-internen Filtern und Views zu erleichtern
 
 \subsection{Datenbank Indexe}
 
-Die Indexe werden in CouchDB mittels eines MapReduce Algorithmus
-umgesetzt,welcher die Resultate in der Datenbank speichert.
+Die Indexe werden in CouchDB mittels 
+eines MapReduce \cite{couchdb:views} Algorithmus umgesetzt,
+welcher die Resultate innerhalb der Datenbank speichert.
 
 \begin{description}
     \dhitem[tasks\_of]
@@ -146,6 +147,29 @@ umgesetzt,welcher die Resultate in der Datenbank speichert.
         der Zustände der Arbeitspakete gebildet,
         besteht dieses ausschließlich aus finalen Zuständen,
         so kann der Auftrag als Abgeschlossen angesehen werden.
+    \dhitem[steps\_of]
+        Der ``steps\_of'' View hat lediglich die Aufgabe,
+        eine Zuordnung von Arbeitsschritten
+        zu ihren Arbeitspaketen zu schaffen.
+    \dhitem[streams]
+        Aufgabe dieses Views ist es,
+        festzustellen, welche Datenströme (stdout, stderr)
+        eines Arbeitsschritts Daten halten.
+    \dhitem[lines]
+        Der ``lines'' View dient dem Auffinden der einzelnen Zeilen
+        eines Datenstroms. Sie werden nach der Zeilennummer geordnet.
+    \dhitem[stm]
+        Der ``stm'' view hat mehrere Aufgaben.
+        Er dient der Statistischen Analyse und
+        erzeugt seine Schlüssel aus der Kombination
+        von Typ und Zustand eines Dokumentes.
+        Dies ermöglicht es jederzeit festzustellen,
+        welche Objekte sich in welchem Zustand befinden.
+        In der Reduce Phase wird die Anzahl ermittelt.
+        Somit lässt sich jederzeit feststellen,
+        welche zustandsbehafteten Dokumente
+        sich in welchem Zustand befinden.
+%XXX: statret nach testing/eval
 \end{description}
 
 
