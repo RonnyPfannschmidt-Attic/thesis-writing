@@ -126,8 +126,49 @@ Sie bietet diverse funktionale Werkzeuge um das schreiben
 von Datenbank-internen Filtern und Views zu erleichtern
 
 
-\section{Grundlegende Primitiven}
+\section{Projektstruktur}
+\subsection{Überblick}
 
+Die Grundlegende Projekt-struktur beinhaltet einige Hauptverzeichnisse.
+Der Codename des Projektes ist dabei ``Juggler''.
+
+
+\begin{description}
+    \item[bin] beinhaltet die Skripts um einzelne Komponenten zu starten
+    \item[tool] beinhaltet Werkzeuge um mit der Datenbank des Prototyp zu interagieren
+    \item[juggler] beinhaltet die Implementation der Komponenten in Python
+    \item[composeapp] beinhaltet die couchdb-compose Applikation
+    \item[testing] beinhaltet die automatischen Tests
+    \item[example\_data] beinhaltet Beispiel-Datensätze im YAML Format
+\end{description}
+
+\subsection{Scripte und Werkzeuge}
+Die Scripte und werkzeuge haben verschiedene Aufgaben und Aufruf-formen,
+diese werden hier beschrieben dabei werden Parameter in eckigen Klammern angegeben.
+Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen einer  Datenbank an oder den Namen einer lokalen Datenbank.
+
+\begin{description}
+    \item[bin/slave.py] [db] [name] simple \hfill \\
+        Started einen Slave/Worker Prozess
+    \item[bin/master.py] [db] \hfill \\
+        Startet den Master Prozess - es darf nur einen geben und das System testet nicht, ob bereits einer aktiv ist.
+    \item[tool/put.py] [db] [item] / [db] [item] --newid \hfill \\
+        Überträgt den Inhalt der Datei namens \textit{item} zur Datenbank,
+        ist das flag \textit{--newid} gesetzt, so wird eine neue Objekt ID erzwungen
+    \item[tool/example-reset-db.sh] \hfill \\
+        Shell Skript, um die Datenbank für die manuellen Tests vorzubereiten.
+        Es verwendet immer die lokale Datenbank namens ``juggler''
+    \item[tool/clean_standing.py] [db]\hfill \\
+        Setzt unterbrochene Arbeitspakete auf den Ursprungs-zustand zurück.
+        Dies ist Notwendig, da der Prototyp den Status interrupted für ein Arbeitspaket nicht unterstützt.
+\end{description}
+
+\subsection{Python Implemenation}
+
+
+
+
+\section{Grundlegende Primitiven}
 \subsection{Datenbank Indexe}
 
 Die Indexe werden in CouchDB mittels 
@@ -172,11 +213,13 @@ welcher die Resultate innerhalb der Datenbank speichert.
 %XXX: statret nach testing/eval
 \end{description}
 
+\subsection{watches\_for - Kontext für Komponenten}
 
 
 \subsection{listen\_changes}
 
-Die Primitive ``listen\_changes'' dient dazu, 
+Die Primitive ``listen\_changes'' dient dazu,
+Dient dazu, 
 
 \subsection{run\_callbacks}
 
