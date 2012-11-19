@@ -28,13 +28,15 @@ Außerdem erscheint der Prozess der Replikation in CouchDB
 als fehlertoleranter und einfacher.
 
 % \cite
-W\"ahrend in Postgresql die Mitteilungen einfach nur eine Nachricht sind,
+W\"ahrend in PostgreSQL die Mitteilungen einfach nur eine Nachricht sind,
 welche mitteilt, dass etwas geändert wurde (aber nicht was)
 % \cite couchdb:changestream}
 so beinhalten die Mitteilungen von CouchDB, genaue Informationen
 \"uber das ge\"anderte Objekt, eventuelle Datenbankkonflikte
 und auf Wunsch sogar das Objekt selbst.
 
+%XXX: more
+ 
 \subsection{Programmiersprachen}
 
 Es wurden 2 Programmiersprachen Ausgew\"ahlt.
@@ -44,14 +46,14 @@ zum anderen Javascript, da es die Datenbankinterne Sprache von Couchdb ist.
 \begin{table}[ht]
 \centering
 \begin{tabular}{l|c|c}
-                            & \textbf{Python}   & \textbf{Javascript} \\
+                            & \textbf{Python} & \textbf{Javascript} \\
     \hline
-    Datenbankintern         & nein              & ja \\
-    Prozesskontrolle        & integriert        & extern, rudiment\"ar \\
-    SCM Api                 & Verf\"ugbar (anyvc)& nicht verf\"ugbar \\
-    CouchDB Client          & verg\"ugbar       & verf\"ugbar \\
+    Datenbankintern         & nein            & ja \\
+    Prozesskontrolle        & integriert      & extern, rudimentär \\
+    SCM Api                 & verfügbar       & nicht verfügbar \\
+    CouchDB Client          & verfügbar       & verfügbar \\
 \end{tabular}
-\caption{\"Uberblick \"uber Features und Bibliotheken der Sprachen}
+\caption{Überblick über Features und Bibliotheken der Sprachen}
 \label{tab:python-vs-js}
 \end{table}
 
@@ -116,13 +118,44 @@ Notwendig wurde es, da existierenden Werkzeugen wie ``Kanso"" und ``couchapp""
 keine Möglichkeit boten, um direkte Kontrolle über den Aufbau und die Struktur 
 einer CouchDB Applikation zu üben.
 
+\subsubsection{Javascript Bibliotheken}
+
+Um einige wiederkehrende Aufgaben in Javascript zu vereinfachen,
+wurde die Bibliothek underscore verwendet. \cite{javascript:underscore}.
+Sie bietet diverse funktionale Werkzeuge um das schreiben
+von Datenbank-internen Filtern und Views zu erleichtern
+
 
 \section{Grundlegende Primitiven}
 
+\subsection{Datenbank Indexe}
+
+Die Indexe werden in CouchDB mittels eines MapReduce Algorithmus
+umgesetzt,welcher die Resultate in der Datenbank speichert.
+
+\begin{description}
+    \dhitem[tasks\_of]
+        Der ``tasks\_of'' View hat 2 Aufgaben.
+        In der Map Phase, erzeugt er eine \hbox{Key zu Value(status), Id} Zuordnung.
+        Dabei ist der \textbf{Key} die Id des Auftrages,
+        \textbf{Id} ist die Id des Arbeitspaketes
+        und \textbf{Value} der Zustand dieses Arbeitspaketes.
+        Dies ermöglicht es, einfach herauszufinden
+        welche Arbeitspakete zu welchem Auftrag gehören.
+        In der Reduce Phase wird schließlich das Set
+        der Zustände der Arbeitspakete gebildet,
+        besteht dieses ausschließlich aus finalen Zuständen,
+        so kann der Auftrag als Abgeschlossen angesehen werden.
+\end{description}
+
+
+
 \subsection{listen\_changes}
 
+Die Primitive ``listen\_changes'' dient dazu, 
+
 \subsection{run\_callbacks}
-\subsection{gather\_next}
+
 \subsection{watch\_for}
 
 \section{Komponenten}
