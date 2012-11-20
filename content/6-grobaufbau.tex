@@ -288,28 +288,18 @@ um den eventuellen Abschluss festzustellen.
 
 \subsubsection{Vorbereitung Abarbeitung}
 
-\subsection{Überblick Methoden der Zuteilung}
+\subsection{Überblick Methoden der Zuteilung von Arbeitspaketen}
 
+Diese Sektion beschäftigt sich mit der Zuteilung von Arbeitspaketen.
+Grundsätzlich gibt es 2 Möglichkeiten dies zu bewerkstelligen.
+Es muss festgestellt werden, welche Methode Besser Funktioniert
 
-\begin{verbatim}
-- diese sektion besch. sich mit
-
-
-- methoden
-    - token basiert
-    - ausschreibungsbasiert
-
-\end{verbatim}
-
-
-\subsubsection{Melde verfahren}
-
-\begin{verbatim}
-- arbeiter teilen nur mit, dass sie arbeitsfaehig sind
-- manager kontrolliert wer welchen auftrag erhaelt
-cons:
-    - fuer erweiterte use-cases extra wissen im manager notwendig
-\end{verbatim}
+\subsubsection{Melde-verfahren}
+% MOAR
+Beim Melde-verfahren teilt der Arbeiter nur seinen Arbeitwunsch mit.
+Anschließend wartet er darauf, dass dieser Erfüllt wird.
+Dabei liegt die Logik der Zuteilung komplett beim Manager,
+er muss also über das Wissen verfügen, welcher Arbeiter in der Lage ist welche Arbeitspakete zu bearbeiten.
 
 \begin{figure}[ht] 
   \label{fig:auftrag-zuteilung-token}
@@ -323,18 +313,25 @@ cons:
   \caption{Auftragszuteilung: Tokenbasiert}
 \end{figure}
 
+Vorteil des Verfahrens ist, das die Zuteilung ein eindeutiger Prozess ist.
+Jedoch benötigt der Manager genaues wissen über die Arbeiter,
+um seiner Aufgabe gerecht zu werden.
+
 \subsubsection{Ausschreibungsverfahren}
 
-\begin{verbatim}
-- manager teilt offene auftraegeposten mit (in datenbank verf.)
-- arbeiter konkurieren um offene auftraege
-- manager entscheidet wer den aufrag dann erhaelt
+Beim Ausschreibe-verfahren teilt der Manager die offenen Arbeitspakete mit.
+Anschließend können Arbeiter einen Anspruch auf diese Anmelden.
+Sie treten dabei in Konkurrenz.
+Der Manager entscheidet dann, welcher Arbeiter welches Arbeitspaket bearbeiten darf.
+%MOAR
 
+Dies erlaubt Wesentlich autonomere Arbeiter,
+sie sind nun in der Lage frei zu entscheiden,
+welche der verfügbaren Aufträge sie bearbeiten wollen.
+Der Manager ist auch Vereinfacht,
+da er nur noch die Entscheidung für den Zuschlag treffen muss.
+es ist nicht notwendig spezielles Wissen über die Arbeiter zu haben. 
 
-- autonomere arbeiter
-- manager muss nur noch entscheiden wer, nicht mehr warum
-- aufgrund der datenbank konzeptuell einfacher -> beweis oder weg
-\end{verbatim}
 
 \begin{figure}[ht] 
   \label{fig:auftrag-zuteilung-claim}
@@ -364,7 +361,7 @@ cons:
 \end{figure}
 
 
-\subsubsection{Abschluss Abarbeitung}
+\subsection{Abschluss Abarbeitung}
 
 - ende der arbeisschritte
 - zusammenfassung resultat
@@ -403,6 +400,8 @@ cons:
     - STDOUT/ERR
     - exakte testresultate/reports
 \end{verbatim}
+
+
 
 \subsubsection{Datensammlung nach Abschluss eines Schrittes}
 
@@ -499,8 +498,17 @@ Mit der Bereitschaft, wird die Verantwortung vom Eingang zur Abarbeitung übertr
 
 \subsection{Abbildung des Verteilten Systems auf Datenbanken}
 
+Die Abbildung eines verteilten Systems auf eine Datenbank,
+hat einige überaus erfreuliche Nebeneffekte.
 
+Im Client-Server System müssen der Client und Server extra Nachrichten Austauschen, um das gleiche Bild der Welt zu bekommen, wobei jedes System eine eigene Version des Zustandes hat.
+Beim Datenbank-basierten System ist der Status jedoch in der Datenbank und
+die einzelnen Komponenten des Systems müssen somit nicht weiter eigene Kopien vorhalten.
 
+Eine Änderung des Status wird nun durch eine Änderung in der Datenbank zum Ausdruck gebracht.
+Sobald die Änderung in die Datenbank eingebracht ist,
+ist der Vorgang des Übermittelns für die sendende Komponente abgeschlossen.
+Sie muss nicht wie bisher auf eine Rückantwort warten.
 
 \subsection{Auftragsverteilung}
 
@@ -584,6 +592,10 @@ wie z.b. Einpflegen von Testergebnissen aus JunitXML Dateien in die Datenbank,
 
 \section{Erweiterungen}
 \subsection{Analyse Test-Resultate}
+
+
+
+
 \subsection{Analyse Verhalten eines Programms}
 
 Bei der Erweiterung zur Analyse des Verhaltens eines Programms,
