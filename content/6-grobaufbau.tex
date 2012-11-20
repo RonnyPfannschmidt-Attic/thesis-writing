@@ -586,9 +586,49 @@ wie z.b. Einpflegen von Testergebnissen aus JunitXML Dateien in die Datenbank,
 \subsection{Analyse Test-Resultate}
 \subsection{Analyse Verhalten eines Programms}
 
+Bei der Erweiterung zur Analyse des Verhaltens eines Programms,
+geht es darum das Verhalten eines Programms
+in verschiedenen Konfigurationen zu testen.
+Als Programm wurde dabei ein Skript gewählt,
+welches einen genetischen Algorithmus umsetzt.
+
+Im willkürlich gewählten Beispiel ist dies ein Programm,
+welches versuchen soll, eine Funktion anzunähern \cite{gen:prog}.
+
+Die Analyse soll dazu dienen, Parameter-werte festzustellen,
+die zum Erfolg des Algorithmus führen.
+Bei der Betrachtung steht die Analyse der Resultate nach der Durchführung des Programms im Vordergrund,
+
+Dabei wurden die folgenden Konfigurations-achsen für Parameter gewählt.
+
+\begin{description}
+    \item[generations] Menge der Generationen
+    \item[population] Größe der Population
+    \item[height-weight] Bewertungsgewicht für die Höhe des Baumes welcher die angenäherte Funktion zum Ausdruck bringt
+\end{description}
+
+Die Achsen ``generations'' und ``population'' sind dabei ein exponentiell wachsender Wertebereich zwischen 20 und 5000.
+Die Achse ``height-weight'' hingegen wurde im Bereich zwischen -2 und 2 gewählt,
+wobei viele Werte im Bereich $ 0<abs(x)<1$ liegen.
+
+Die Wahl der Achsen und ihrer Parameter ist willkürlich als Teil eines ersten Tests entstanden.
+Weitere Parameter und Achsenkonfigurationen sind denkbar.
+Das Analysewerkzeug soll zeigen welchen Einfluss die Parameter haben.
+
+Um dies zu zeigen, ist es notwendig die Resultate
+eines Konfigurierten Durchlaufes (Auftrag) Zusammenzufassen.
+Die Resultate jedes einzelnen Auftrages sind dabei aus der Standardausgabe
+des Programms zu entnehmen.
+
+Für jedes Arbeitspaket eines Auftrages sind also Parameter-werte und Ergebnis zusammenzufassen.
+Anschließend können die Daten in Graphen dargestellt werden.
+
 
 \section{Benutzeroberfläche}
 
+Da die Benutzeroberfläche für den Prototypen nicht zwingend notwendig,
+wird darauf verzichtet, mehr als nur simple Werkzeuge zur Verfügung zu stellen.
+%XXX: more
 % kann krit
 % kein tolles
 % nur werkzeuge
