@@ -191,7 +191,7 @@ aus dem PYPY Projekt \cite{pypy:diffscript} ,
 welches die Unterschiede in den Testresultaten zwischen 2 Builds hervorhebt.
 Sie werden sp\"ater als Ideenlieferant dienen.
 
-Bedauerlich ist, das die Entwichler von BuildBot es nicht als Aufgabe ihres Systemes sehen,
+Bedauerlich ist, das die Entwickler von BuildBot es nicht als Aufgabe ihres Systems sehen,
 sich mit Testergebnissen zu befassen.
 Sie empfehlen Integration externer Komponenten \cite{buildbot:irc}.
 
@@ -207,7 +207,7 @@ welche auf der beliebten Code-Hosting Site GitHub verwaltet werden.
 
 % ref yaml
 Die Konfiguration ist dabei zweigeteilt,
-eine Datei im YAML Format legt dabei Build-Achsen und Schritte fest.
+eine Datei im YAML Format \cite{yaml:website} legt dabei Build-Achsen und Schritte fest.
 Diese Datei befindet sich in Versionskontrolle beim Projekt
 (was die Konfiguration sehr flexibel gestaltet).
 
@@ -219,11 +219,11 @@ wenn ein anderer Benutzer der Code-Hosting Seite Github \"Anderungen anmeldet
 \cite{github:pullreq} (sog. Pull-request).
 Die Testet es und f\"ught anschliessend das Resultat der \"Anderungsanmeldung hinzu.
 
-Was leider nichts daran \"andert, das TravisCI keine externe API zur verf\"ugung stellt.
-Es ist ein geschlossenes System, ausserdem hat es kein Konzept f\"ur Datensammlung/Artefakte
+Was leider nichts daran \"andert, das TravisCI keine externe API zur Verfügung stellt.
+Es ist ein geschlossenes System, außerdem hat es kein Konzept f\"ur Datensammlung/Artefakte
 und Testresultate werden nicht betrachtet.
 Es ist nicht portabel und scheinbar f\"ur den Betrieb nur
-auf den zur verf\"ugung gestellten Servern vorgesehen.
+auf den zur Verfügung gestellten Servern vorgesehen.
 
 
 \section{Zusammenfassung}
@@ -231,9 +231,9 @@ auf den zur verf\"ugung gestellten Servern vorgesehen.
 Dieses Kapitel hat die Probleme der CI-Systeme n\"aher gezeigt.
 Wir haben gesehen, dass Datenzugriff und Erweiterungen f\"ur Analyse,
 schwer oder gar nicht zu erreichen sind.
-Ausserdem sind die Systeme nach einigen Fehlerklassen nicht direkt wiederherstellbar.
+Außerdem sind die Systeme nach einigen Fehlerklassen nicht direkt wiederherstellbar.
 Im Folgenden Verlauf der Arbeit soll der Grundstein f\"ur ein CI-System gelegt werden,
-welches Datanzugriff und Datenanalyse vereinfacht.
-Zus\"atzlich soll es gunds\"atzliche Fehlertolleranz aufweisen.
+welches Datenzugriff und Datenanalyse vereinfacht.
+Zus\"atzlich soll es grundsätzliche Fehlertoleranz aufweisen.
 
 
