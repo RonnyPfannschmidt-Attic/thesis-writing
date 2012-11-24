@@ -9,7 +9,7 @@ Anschließend werden besondere Konzepte zur
 %XXX: continue
 
 
-\section{Grundlegende Systemarchitektur}
+\section{Systemarchitektur}
 \label{sec:design:sysarch}
 Diese Sektion gibt Aufschluss über die Grobstruktur des CI-Systems auf logischer und physischer Ebene.
 
@@ -55,7 +55,7 @@ dies dient der Kontrolle der Lokalität und wird später noch vorgestellte Verfa
 
 %XXX more
 
-\section{Grundlegendes Datenschema}
+\section{Datenschema}
 
 
 \begin{figure}[ht] 
@@ -148,7 +148,7 @@ Einige mögliche (und ihre Datentypen) sind:
 
 
 
-\section{Grundlegende Logik der Komponenten}
+\section{Logik der Komponenten}
 
 Diese Sektion behandelt die grundlegende Logik  der Einzelteile des Systems,
 sie bilden die Bausteine für das Gesamtsystem.
@@ -288,9 +288,13 @@ um den eventuellen Abschluss festzustellen.
 
 \subsubsection{Vorbereitung Abarbeitung}
 
+\subsubsection{Zuteilung}
 
 
-\subsection{Abschluss Abarbeitung}
+\subsubsection{Abschluss Abarbeitung}
+
+Ist die Bearbeitung der einzelnen Schritte eines Arbeitspaketes abgeschlossen,
+so muss das Resultat zusammen
 
 - ende der arbeisschritte
 - zusammenfassung resultat
@@ -301,7 +305,7 @@ um den eventuellen Abschluss festzustellen.
 
 Diese Sektion beschäftigt sich mit der Zuteilung von Arbeitspaketen.
 Grundsätzlich gibt es 2 Möglichkeiten dies zu bewerkstelligen.
-Es muss festgestellt werden, welche Methode Besser Funktioniert
+Es muss festgestellt werden, welche Methode besser geeignet ist.
 
 \subsubsection{Melde-verfahren}
 % MOAR
@@ -369,14 +373,21 @@ es ist nicht notwendig spezielles Wissen über die Arbeiter zu haben.
   \caption{Auftragszuteilung: Ausschreibungsbasiert}
 \end{figure}
 
+\subsubsection{Auswahl}
 
+Das Ausschreibungsverfahren zeigt sich im Vergleich zum Melde-verfahren
+wesentlich flexibler.
+Die Möglichkeit Detailkenntnisse über die Fähigkeiten eines Arbeiter nur
+beim Arbeiter zu belassen, sorgt dafür, das Arbeiter wesentlich autonomer sind.
+Dies hat zur Folge, dass der Zuteilungs-algorithmus wesentlich vereinfacht wird.
+Da für ihn nun unerheblich ist, er den Zuschlag bekommt.
+Das Ergebnis wird das gleiche sein.
 
 \subsection{Abarbeitung von Arbeitspaketen}
 
-\begin{verbatim}
-- lineare abarbeitung
-- abbrich bei fehlschlag
-\end{verbatim}
+Bei der Abarbeitung von Arbeitspaketen geht es darum die einzelnen Arbeitsschritte
+der reihe nach linear abzuarbeiten.
+es 
 
 \subsubsection{Arbeitsschritte}
 
@@ -430,8 +441,6 @@ kann einfach nach dem Schritt angewendet werden.
 
 
 \subsubsection{Abschluss von Arbeitsschritten}
-
-
 
 - returncodes
 - fehler
@@ -526,9 +535,9 @@ Sie muss nicht wie bisher auf eine Rückantwort warten.
 
 \begin{figure}[!ht]
   \centering
-  \label{fig:klassen-arten-arbeitsschritt}
   \includegraphics[height=0.8\textheight]{imageinput/klassen-arten-arbeitsschritt.png}
   \caption{Arten und Ablauf von Arbeitsschritten}
+  \label{fig:klassen-arten-arbeitsschritt}
 \end{figure}
 
 Wie man auf der Grafik~\ref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
@@ -539,7 +548,18 @@ Es bindet alle Operationen, die notwendig sind,
 um die Kontrolldaten (Steps, siehe Fig~\ref{fig:datenstrukturen})
 aus der Datenbank zu laden und diese dann an Ausführende Objekte zu binden (Proc).
 
-Der Lebenszyklus eines ``Proc'' Objektes wird dabei
+Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen Procdir verwaltet.
+das Proc Objekt sollte nur innerhalb der Methode run existieren.
+\lstset{language=python}
+\begin{lstlisting}
+#pseudocode
+class ProcDir:
+    def __init__(self, procmaker):
+        self.procmaker = procmaker
+    def run(self, step):
+        proc = self.procmaker.create(step)
+        return proc.run()
+\end{lstlisting}
 
 %XXX: More
 
@@ -564,20 +584,20 @@ weitere Laufzeit-Daten zur Verfügung zu stellen
 
 \subsection{Quellcode Management Schritte}
 
-Interaktion mit dem Quellcode-Management behandelt die grundlegenden Operationen mit denen. %XXX MORE
+Quellcode Management Schritte behandeln die Interaktion mit dem SCM.
 Es wird, wenn notwendig ein Arbeitsverzeichniss erstellt.
 Danach gibt es mehrere Grundlegende Operationen, die durchgeführt werden können.
 
 \begin{description}
     \dhitem[Eingang von Historie]
         bringt die lokale Historie auf den aktuellen Stand, ``pull'' genannt
-
     \dhitem[Aktualisierung des Arbeitsverzeichniss]
         aktualisiert die Dateien im Arbeitsverzeichniss
         auf eine gewünschte Version
     \dhitem[Anwendung von Patches]
         wendet Patches auf das aktuelle Arbeitsverzeichniss an
 \end{description}
+
 
 \subsection{Datensammlungs Schritte}
 
@@ -587,17 +607,46 @@ in die Datenbank zu überführen.
 Die Grundfunktion pflegt dabei nur den Inhalt der Datei ein.
 Laufzeit-Daten dieses Schritts sind die gefundenen Dateien.
 
-Dabei wird das Pattern verwendet, um festzustellen, ob eine Datei, %XXX more
+Dabei wird das Regexmuster ``pattern'' verwendet, um festzustellen,
+ob eine Datei im Arbeitsverzeichniss, zur Menge der gewünschten Dateien gehört.
 
 Erweiterte Versionen dieser Schritt-Art, könnten zusätzliche Funktionen,
 wie z.b. Einpflegen von Testergebnissen aus JunitXML Dateien in die Datenbank,
 übernehmen
 
 \section{Erweiterungen}
+
 \subsection{Analyse Test-Resultate}
 
+Bei der Analyse von Test-Resultaten ist das Ziel Veränderungen in Verschiedenen Umgebungen feststellen zu können.
+Ziel ist es dabei Vorwiegend Unterschiede zwischen verschiedenen Arbeitspaketen und Aufträgen festzustellen. Unterschiede zwischen Zeitlich aufeinander Folgenden Aufträgen oder Arbeitspaketen, welche verschiedene Plattformen, Entwickler-zweige oder Konfigurationen betrachten, geben Aufschluss über Entwicklung und Zustand des Projektes.
 
+Da ein großer Teil dieser Erweiterung zur Benutzeroberfläche gehört,
+werden hier nur die unterstützenden Algorithmen und Datenstrukturen betrachtet.
+Um überhaupt Vergleiche anstellen zu können, muss zuerst die Vergleichs-menge bestimmt werden. Dabei erscheint die Menge an Test-Resultaten je Arbeitsschritt am geeignetsten. Im Gegensatz zur Menge an Test-Resultaten je Auftrag,
+ist in diesem Fall für jede Konfiguration ein Set an Resultaten verfügbar.
 
+Um Testresultate abzulegen, erscheint es sinnvoll eine weitere Art an Datenstruktur einzuführen.
+Diese sollte wie die Bereits definierten ``Events'' aufgebaut sein,
+jedoch soll es möglich sein, diese aus einem Prozess der den Testvorgang verwaltet,
+anzulegen. Zudem sollen sie an das Arbeitspaket und nicht an den Arbeitsschritt gebunden sein.
+
+Für die Vergleiche ist es nun Notwendig,
+Unterschiede zwischen 2 oder mehr Mengen an Testresultaten zu bestimmen.
+Eine recht einfache Methode ist dabei die Mengen-Differenz,
+Nimmt man für die Testresultate eine Werte-menge mit der Struktur \{ $Testname \rightarrow Resultat$ \} als Basis,
+so ist es leicht einen passenden Überblick aufzubauen.
+
+Die Datenstruktur der Resultate, für Vergleiche zischen N Resultatmengen
+ist dabei eine Zuordnung von
+$\{ Testname \rightarrow ( Resultat_{1},\ldots,Resultat_{N})\}$
+Wobei idr. nur die Elemente interessant sind,
+deren Resultat-menge Unterschiede und/oder Fehlschläge aufweist.
+Ein gutes Beispiel für die Darstellung eines solchen Resultates
+stellt der Testresultatüberblick des Pypy Projektes \cite{pypy:overview} dar.
+
+Die Art und Weise wie die Mengen an Test-resultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
+da dies vorwiegend ein Problem der Benutzeroberfläche ist.
 
 \subsection{Analyse Verhalten eines Programms}
 
@@ -643,10 +692,7 @@ Anschließend können die Daten in Graphen dargestellt werden.
 
 Da die Benutzeroberfläche für den Prototypen nicht zwingend notwendig,
 wird darauf verzichtet, mehr als nur simple Werkzeuge zur Verfügung zu stellen.
-%XXX: more
-% kann krit
-% kein tolles
-% nur werkzeuge
+Wichtig ist dabei, dass vorgefertigte Testdaten in die Datenbank eingegeben werden können.
 
 
 \section{Zusammenfassung}

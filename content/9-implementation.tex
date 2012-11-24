@@ -1,5 +1,11 @@
 \chapter{Implementation ( 15 \% ) }
 
+Dieses Kapitel beschreibt die Implementation des Systems.
+Dabei wird zuerst auf Wahl der Werkzeuge eingegangen,
+Anschließend wird die Struktur Beschrieben.
+Danach werden Primitiven vorgestellt, welche die Implementatio nder Komponenten vereinfachen.
+Schließlich werden Besonderheiten bei der Implementation einiger Komponenten vorgestellt.
+Zum Schluss werden die exemplarischen Erweiterungen vorgestellt.
 
 \section{Werkzeuge}
 \subsection{Datenbank}
@@ -63,7 +69,7 @@ nicht oder nur in limitierter Form verwenden kann.
 Die Laufzeitumgebung weißt große Unterschiede
 zwischen Datenbank-interner und Datenbank-externer Verwendung auf.
 
-Weiterhin konnten wie in Tabelle~\ref{tab:python-vs-js} aufgezeigt,
+Weiterhin konnten wie in \Cref{tab:python-vs-js} aufgezeigt,
 für einige benötigte Bibliotheken keine
 oder nur unzureichende Implementationen gefunden werden.
 Somit ist Javascript für die Implementation der Komponenten
@@ -186,11 +192,8 @@ Folgende Verzeichnisse sind noch wichtig.
         und ihrer Ausführungssumgebung
 \end{description}
 
-\subsection{CouchDB Applikation}
 
 
-
-\section{Grundlegende Primitiven}
 \subsection{Datenbank Indexe}
 
 Die Indexe werden in CouchDB mittels 
@@ -235,17 +238,44 @@ welcher die Resultate innerhalb der Datenbank speichert.
 %XXX: statret nach testing/eval
 \end{description}
 
-\subsection{watches\_for - Kontext für Komponenten}
+\subsection{CouchDB Applikation}
+
+\section{Grundlegende Primitiven}
 
 
 \subsection{listen\_changes}
 
 Die Primitive ``listen\_changes'' dient dazu,
-Dient dazu, 
+Anderungs-events der Datenbank den Applikationskomponenten mitzuteilen.
+Dabei kann Typ und weiteren Parametern gefiltert werden,
+Somit kann man an einen Strom speziell ausgewählter Änderungen in der Datenbank erhalten.
+
+\subsection{watch\_for}
+
+Die Primitive ``watch\_for'' dient dazu auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die ``listen\_changes'' Primitive ein und gibt die erste passende Änderung in der Datenbank zurück.
+
+\subsection{watches\_for - Kontext für Komponenten}
+
+Die Primitive ``watches\_for'' dient dazu einzelne Systemkomponenten
+an Datenbankereignisse zu Knüpfen.
+Sie bringt die Zustandsänderungen zum Ausdruck,
+bei denen eine Komponente aktiv werden soll.
+
+Außerdem abstrahiert sie die Logik für das Warten auf diese Änderungen
+(unter Verwendung der watch\_for primitive)
+und ermöglicht es die einzelnen Komponenten direkt mit den Daten Aufzurufen,
+auf die sie hätte warten müssen.
+
+Dies ermöglicht es einzelne Komponenten direkt zu testen, ohne Das eine echte Datenbank benötigt wird.
+
+% MORe
+
 
 \subsection{run\_callbacks}
 
-\subsection{watch\_for}
+Die Primitive ``run\_callbacks'' dient dazu, mehrere Komponenten zu einem Programm
+zu kombinieren, sie nimmt den Strom der Änderungen in der Datenbank und
+ruft für jede Änderung die passende Komponente auf.
 
 \section{Komponenten}
 

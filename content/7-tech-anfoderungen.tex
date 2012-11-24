@@ -115,13 +115,49 @@ Und gleichzeitig
 
 \subsection{Datenbank Management}
 
-\subsection{Technologische Betrachtung}
-\begin{verbatim}
-- tdd
-- 
-\end{verbatim}
-\subsection{Produktanforderungen}
-%-> in die implementation
-\begin{verbatim}
-- pytest ref
-\end{verbatim}
+
+\section{Konzeptuelle Abbildungen}
+
+Diese Sektion behandelt Konzeptuelle Abbildungen der Ideen aus dem Grobkonzept.
+Sie sollen den verwendeten Technologien Angepasst werden
+
+\subsection{Ausschreibungsverfahren für die Auftragszuteilung}
+
+Fuer die Umsetzung des Ausschreibungsverfahrens der Auftragserteilung gibt es
+mehrere Möglichkeiten, die Inanspruchnahme eines Auftrages in
+der Datenbank umzusetzen. Je nach Fähigkeiten der Datenbank kann man 
+alternative Versionen des selben Datenbankobjektes nutzen,
+oder auf separate Datenbankobjekte, welche die Inanspruchnahme Ausdruecken setzen.
+
+\subsubsection{Alternative Versionen}
+
+Bei der Umsetzung mit alternativen Versionen, wird die Technik \textbf{MVCC} (Multi Version Conurrency Control) eingesetzt.
+Sinnhaft Übersetzt bedeutet das Kontrolle der Nebenläufigkeit durch multiple Versionen.
+
+Im Zuteilungsprozess sind dabei mehrere Versionen des Arbeitspakete Objektes vorhanden und jede Version bringt eine andere Inanspruchnahme zum Ausdruck.
+
+Die eigentliche Zuteilung wird Anschließend diesen Konflikt wieder bereinigen.
+Dabei wird eine Neue Version des Arbeitspaketes erstellt, welche den Gewinner festlegt, und alle anderen ersetzt.
+% More?
+
+\subsubsection{Separate Datenbankobjekte}
+
+Bei der Abbildung als separate Datenbankobjekte,
+Wird für jeden Arbeiter, der ein Arbeitspaket ausführen will, ein $Claim(Packet, Arbeiter)$ erzeugt. Diese bringen Inanspruchnahme zum Ausdruck.
+Der Manager kann dann eines dieser Claim Objekte auswählen und dem Arbeitspacket einen Arbeiter zuteilen.
+%MORE!
+
+
+\subsection{Alternativen zu Fabriken in Skriptsprachen}
+
+Das Fabrik-Muster kommt vorwiegend in statisch typisierten Objektorientierten Sprachen zum Einsatz. In dynamisch typisierten Sprachen gibt es jedoch eine weitere Methode, das Dynamische Instantiieren von Abgeleiteten Klassen zu behandeln.
+
+Anstelle einer Fabrik-klasse, die Konfiguriert wird,
+kann eine einfache Zuordnungstabelle an Konstruktoren anlegt werden.
+
+Dies trifft besonders auf die ``Proc'' Klassen (Siehe \Cref{fig:klassen-arten-arbeitsschritt}) zu.
+Ihre Zuordnung zu Arbeitsschritten findet über den wert eines Attributes statt
+daher ist eine eindeutige Zuordnung über ein Mapping ausreichend.
+
+%MORE
+
