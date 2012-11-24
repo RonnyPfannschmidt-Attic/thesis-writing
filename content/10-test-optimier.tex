@@ -40,52 +40,127 @@
 
 \subsection{Zeitanforderungen}
 
-\section{Festgestellte Probleme}
-% auffaelliges zeitverhalten
-\subsection{Anlaufphase}
+\section{Festgestellte Probleme bei den manuellen Tests}
 
-\begin{verbatim}
-- beim start mit grosser auftrags/datenmenge
-- zeit steigt linear
-- 
+Bei den manuellen Tests, welche zum händischen Analysieren
+einiger schwer testbarer Problem-punkte dienen,
+sind einige schwerwiegende Probleme aufgetreten,
+dieser werden hier nur kurz umrandet 
 
-\end{verbatim}
-
-\subsection{Konfliktsituation Arbeitspackete anfordern}
-
-\begin{verbatim}
-- fiel beim
-\end{verbatim}
-
-
-
-\subsection{Locksituation Abarbeitung von Managementdaten}
+\begin{description}
+    \dhitem[Langwierige Anlaufphase]
+        Je mehr Daten sich in der Datenbank befinden,
+        desto Länger benötigen Komponenten, um mit ihrer Arbeit zu beginnen.
+    \dhitem[Konfliktsituation Inanspruchname Arbeitspackete]
+        Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter das selben nächsten Arbeitspaket in Anspruch nehmen wollen. Dies führte oft dazu, das manche Arbeiter erst nach Dutzenden Versuchen das nächsten Arbeitspaket bearbeiten können.
+    \dhitem[Locksituation Abarbeitung von Managementdaten]
+        Beim Absetzen großer Aufträge fiel auf,
+        dass der Manager in einigen Situationen für mehrere Minuten keine
+        Inanspruchnahmen bearbeitete.
+        Somit wurden Arbeitern keine Arbeitsschritte gegeben, obwohl diese eigentlich verfügbar waren.
+\end{description}
 
 \section{Optimierung}
+
+Nachdem die Probleme festgestellt wurden
+müsste eigentlich ab \Cref{chap:ist-analyse} neu iteriert werden,
+um die Anforderungen entsprechen anzupassen.
+Um überhöhten Aufwand zu vermeiden,
+sollen die Problemlösungen stattdessen hier vorgestellt werden 
 % beschreiben dass man eigentlich ab kap 3 iterieren muesste
 % als abgrenzung wird das ganze prototypisch geloest
 
-\subsection{Anlaufphase}
+\subsection{Langwierige Anlaufphase}
 \subsubsection{Analyse}
+Das Problem der Anlaufphase lässt sich mit dem Verwenden der Änderungsnotifikationen erklären. Der Datenstrom beginnt dabei immer mit der ersten Änderung,
+somit steigt die Menge an Änderungen, welche nicht betrachtet werden aber dennoch Teil der Notifikationen sind, mit der Datenmenge in der Datenbank an.
+Dies führt zwangsläufig dazu, dass die Primitiven ``watch\_for'' und ``listen\_changes'' mehr Zeit benötigen, um zur ersten verwertbaren Notifikation vorzudringen.
 
 
-\subsubsection{L\"osungsansatz}
+\subsubsection{Lösungsansatz Zustand Speichern}
+Da es Möglich ist die Änderungsnotifikationen an einem bestimmten Änderungsstand der 
+Datenbank beginnen zu lassen (update sequence),
+kann durch Speichern und Wiederverwenden der aktuellen Sequenz verhindert werden,
+dass das System auch die bereits fertiggestellten Änderungen betrachten muss.
+Dazu werden neue Datenobjekte benötigt, welche dies für die einzelnen Arbeiter festhalten.
+
+
+\subsubsection{Lösungsansatz CouchDB View}
+Ein View in CouchDB ist ein der Lage Daten zu einem bestimmten Stand der Datenbank abzubilden und dieses Abbild zu Speichern.
+Damit ist es Möglich den aktuellen Zustand sowie den Stand der Änderungen zu erfragen und somit den Zustand des Views, sowie die darauf-folgenden Änderungen zu bearbeiten 
+
+\subsubsection{Implementation}
+Da der View ``stm'' bereits die Anforderungen des View-Ansatzes erfüllt,
+wurde er zur Implementation verwendet.
+
+Die primitiven watch\_for und run\_callbacks wurden modifiziert zuerst
+Die Daten aus dem View ``stm'' zu bearbeiten und anschließend 
+auf nachfolgenden Änderungen zuzugreifen.
+
+\subsubsection{Resultat}
+Das Problem war damit eingestellt, das System hat keinerlei Wartezeiten mehr bei der Anlaufphase.
+
+
+\subsection{Konfliktsituation Inanspruchnahme Arbeitspakete}
+\subsubsection{Analyse}
+Die Konfliktsituation bei der Inanspruchnahme von Arbeitspaketen ergibt sich aus der linearen Abarbeitung der Änderungsnotifikationen.
+Jeder gerade freie Arbeiter hat dieselbe Ansicht auf das nächste zur Verfügung stehende Arbeitspaket, deshalb fordern alle gleichzeitig dieses auch an.
+Jedoch darf nur ein Arbeiter das Arbeitspaket auch bearbeiten,
+alle anderen müssen es erneut versuchen.
+
+\subsubsection{Lösungsansatz Token}
+Der Lösungsansatz Token bedingt, dass die Auftragsvergabe auf das Melde-verfahren umgestellt wird.
+Es gib dann nicht mehr die Möglichkeit, dass Arbeiter überhaupt Anspruch auf Arbeitspakete erheben, somit existiert der Konflikt auch nicht mehr.
+Jedoch müssen dabei auch die Nachteile dieses Verfahrens in Kauf genommen werden.
+
+\subsubsection{Lösungsansatz Zufall}
+
+Der Lösungsansatz ``Zufall'' soll eine Zufallsfunktion dazu verwenden,
+eines von mehreren verfügbaren Arbeitspaketen auszuwählen.
+Durch die Steigerung der Menge soll dabei die Wahrscheinlichkeit des Konfliktes bei einzelnen Arbeitspaketen verringert werden. Dabei wird die Gleichverteilung eingesetzt, welche jedem Element in der Menge die gleiche Wahrscheinlichkeit gibt.
 
 \subsubsection{Implementation}
 
+Aufgund der vorhergehenden Optimierung für die Anlaufphase,
+bietet die primitive watch\_for einen geeigneten Ansatzpunkt.
+Anstelle des nächsten Objektes im View, werden die nächsten $N$ Objekte erfragt,
+und anschließend Zufällig eines davon ausgewählt.
+Dabei wurde in den Tests $N = 10$ gewählt.
 
-% umsortiern
-\subsection{Konfliktsituation Arbeitsackete}
-\subsubsection{Analyse}
-\subsubsection{L\"osungsans\"atze}
-\subsubsection{L\"osungsauswahl}
-%- implementationstechnik beschreiben
-% konzeption gleich
+\subsubsection{Resultat}
+Im normalen Ablauf sind Konfliktsituationen nicht länger bemerkbar.
+Sie sie sind nur noch feststellbar, wenn die Menge der verfügbaren Arbeitspakete
+sehr gering ist oder bereits mehrere Arbeiter dazu übergegangen sind,
+auf eine Notifikation über einen neuen Auftrag zu warten.
 
-\subsubsection{Implementation}
+Dies bedeutet, das Konflikte nur noch dann auftreten,
+wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete gar keine
+Arbeit hätten ausführen können. Damit kann das Problem als gelöst betrachtet werden.
 
 \subsection{Theorie Locksituation Managementdaten}
 \subsubsection{Analyse}
-% ausblick weil sonst rahmen gesprengt
-\subsubsection{L\"osungsans\"atze}
-\subsubsection{L\"osungsauswahl}
+Das blockieren bei der Bearbeitung von Managementdaten lässt sich aus der Kombination von 2 Umständen erklären. Zum einen gibt die Primitive ``listen\_changes'' Notifikationen in der Reihenfolge der Objekt-Erstellungen/-Änderungen zurück.
+Zum anderen die Zusammenlegung von Zuteilung, Vorbereitung und Erstellung von Arbeitspacketen.
+Wird eine große Menge an Arbeitspaketen generiert,
+so ist das Management anschließend lange Zeit damit beschäftigt,
+diese für die Abarbeitung vorzubereiten.
+
+In dieser Zeit kann es keine anderen Aufgaben wahrnehmen.
+Somit werden andere Vorgänge blockiert.
+
+\subsubsection{Lösungsansatz Prozess-Spaltung}
+
+Der Ansatz der Spaltung teilt die Bearbeitung verschiedener Callbacks
+in verschiedene Unterprozesse, jeder Prozess bearbeitet dabei einem eigenen Strom an Notifikationen, dies macht die verschiedenen Operationen unabhängig und neben-läufig.
+Somit kann das Bearbeiten einer Art von Änderung nicht länger das Bearbeiten einer anderen beeinflussen 
+
+\subsubsection{Lösungsansatz Priorisieren}
+Bei der Priorisierung von Notifikationen ist das Ziel,
+die Notifikationen welche Einfluss auf andere Komponenten haben zuerst zu betrachten.
+Inanspruchnahme sollte also immer vor anderen Notifikationen bearbeitet werden.
+Dies würde Bedeuten, das Vor/Nachbereitung nicht länger die Zuteilung von Arbeitspaketen behindern.
+
+\subsubsection{Ausgrenzung}
+Aufgrund der relativen Komplexität der Umsetzung,
+wurde darauf verzichtet die vorgestellten Lösungsansätze
+als Teil dieser Arbeit zu testen.
