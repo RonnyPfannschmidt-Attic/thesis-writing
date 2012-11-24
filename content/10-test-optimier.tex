@@ -49,15 +49,11 @@ dieser werden hier nur kurz umrandet
 
 \begin{description}
     \dhitem[Langwierige Anlaufphase]
-        Je mehr Daten sich in der Datenbank befinden,
-        desto Länger benötigen Komponenten, um mit ihrer Arbeit zu beginnen.
+        Beim wiederholten Testen mit der gleichen Datenbank fiel auf, dass die Menge der Daten in der Datenbank Einfluss auf das Starten von Komponenten hat. Je mehr Daten sich in der Datenbank befinden, desto Länger benötigen Komponenten, um mit ihrer Arbeit zu beginnen.
     \dhitem[Konfliktsituation Inanspruchname Arbeitspackete]
         Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter das selben nächsten Arbeitspaket in Anspruch nehmen wollen. Dies führte oft dazu, das manche Arbeiter erst nach Dutzenden Versuchen das nächsten Arbeitspaket bearbeiten können.
     \dhitem[Locksituation Abarbeitung von Managementdaten]
-        Beim Absetzen großer Aufträge fiel auf,
-        dass der Manager in einigen Situationen für mehrere Minuten keine
-        Inanspruchnahmen bearbeitete.
-        Somit wurden Arbeitern keine Arbeitsschritte gegeben, obwohl diese eigentlich verfügbar waren.
+        Beim Absetzen großer Aufträge fiel auf, dass der Manager in einigen Situationen für mehrere Minuten keine Inanspruchnahme eines Arbeitspaketes bearbeitete. Somit wurden Arbeitern keine Arbeitsschritte gegeben, obwohl diese eigentlich verfügbar waren.
 \end{description}
 
 \section{Optimierung}
@@ -162,5 +158,5 @@ Dies würde Bedeuten, das Vor/Nachbereitung nicht länger die Zuteilung von Arbe
 
 \subsubsection{Ausgrenzung}
 Aufgrund der relativen Komplexität der Umsetzung,
-wurde darauf verzichtet die vorgestellten Lösungsansätze
+wurde darauf verzichtet die vorgestellten Lösungsansätze der Locksituation Management
 als Teil dieser Arbeit zu testen.
