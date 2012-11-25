@@ -338,26 +338,39 @@ Der Ablauf ist nun denkbar einfach, der Status wird auf valide gesetzt und das R
 Damit ist der Eingang abgeschlossen.
 
 \FloatBarrier
-\subsection{Auftragsverwaltung}
+\subsection{Auftragsvorbereitung}
 
-\begin{verbatim}
-- erstellen von tasks
-- erstellen von schritten
-- bekanntmachung
-\end{verbatim}
+Bei der Arbeitsvorbereitung wird ein Auftrag,
+welcher den Zustand \textit{valid} erreicht hat um weiter Daten ergänzt.
+Anschließend wird er in den Zustand \textit{ready} versetzt
 
-\subsection{auftragsvergabe}
+\subsection{Erstellung Arbeitspackete}
 
-\begin{verbatim}
-- mvcc<> claim objekte
-- anerkennung durch den master
+Erreicht ein Auftrag den Zustand \textit{ready}, so ist er Bereit für die Erstellung von Arbeitspaketen.
+Bei der Erstellung der Arbeitspaketen, soll fuer jede Konfiguration der Achsen ein Arbeitspacket generiert werden,
+Dazu wird das Kartesisches Produkt der Achsen Gebildet,
+Die Ergebnis-menge beinhaltet dann alle Konfigurationen,
+Die Menge aller Arbeitspakete muss nun in der Datenbank abgelegt werden,
+und der Auftrag erreicht seinen Endzustand.
 
-\end{verbatim}
+Die generierten Arbeitspakete befinden sich dabei im Zustand \textit{new}
 
-\subsection{Auftragsabarbeitung}
-\begin{verbatim}
--lineares modell, ein schritt nach dem anderen
-\end{verbatim}
+\subsection{Generierung Arbeisschritte}
+Ist ein neues Arbeitspaket vorhanden (Status \textit{new}), so müssen aus den Templates die eigentlichen Arbeitsschritte generiert werden,
+Anschließens kann das Arbeitspaket als \textit{ready} markiert werden.
+
+\subsection{Inanspruchnahme von Arbeitspaketen}
+
+\subsection{Zuteilung von Arbeitern}
+
+\subsection{Ausführung von Arbeitspaketen}
+
+
+\section{Kombination der Komponenten}
+\subsection{Inbox \& Management}
+\subsection{Arbeiter}
+
+\section{Procdir \& Arbeitsschritte}
 
 \subsection{Prozessschritte}
 
