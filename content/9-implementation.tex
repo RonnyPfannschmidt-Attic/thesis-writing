@@ -129,7 +129,7 @@ einer CouchDB Applikation zu üben.
 Um einige wiederkehrende Aufgaben in Javascript zu vereinfachen,
 wurde die Bibliothek underscore verwendet. \cite{javascript:underscore}.
 Sie bietet diverse funktionale Werkzeuge um das schreiben
-von Datenbank-internen Filtern und Views zu erleichtern
+von Datenbank-internen Filtern und Views zu erleichtern.
 
 
 \section{Projektstruktur}
@@ -149,9 +149,9 @@ Der Codename des Projektes ist dabei ``Juggler''.
 \end{description}
 
 \subsection{Scripte und Werkzeuge}
-Die Scripte und werkzeuge haben verschiedene Aufgaben und Aufruf-formen,
+Die Skripts und Werkzeuge haben verschiedene Aufgaben und Aufruf-formen,
 diese werden hier beschrieben dabei werden Parameter in eckigen Klammern angegeben.
-Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen einer  Datenbank an oder den Namen einer lokalen Datenbank.
+Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen einer  Datenbank an oder den Namen einer lokalen Datenbank an.
 
 \begin{description}
     \item[bin/slave.py] [db] [name] simple \hfill \\
@@ -242,13 +242,14 @@ welcher die Resultate innerhalb der Datenbank speichert.
 
 \section{Grundlegende Primitiven}
 
+Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teile des Prototypen. Die bilden die Basis für eine kompakte und schnell umzusetzende Implementation.
 
 \subsection{listen\_changes}
 
 Die Primitive ``listen\_changes'' dient dazu,
-Anderungs-events der Datenbank den Applikationskomponenten mitzuteilen.
-Dabei kann Typ und weiteren Parametern gefiltert werden,
-Somit kann man an einen Strom speziell ausgewählter Änderungen in der Datenbank erhalten.
+Änderungen der Datenbank den Komponenten der Applikation mitzuteilen.
+Dabei kann Typ und weiteren Parametern gefiltert werden.
+Somit kann man an eine Folge speziell ausgewählter Änderungen in der Datenbank erhalten.
 
 \subsection{watch\_for}
 
@@ -257,7 +258,7 @@ Die Primitive ``watch\_for'' dient dazu auf eine bestimmte Änderung in der Date
 \subsection{watches\_for - Kontext für Komponenten}
 
 Die Primitive ``watches\_for'' dient dazu einzelne Systemkomponenten
-an Datenbankereignisse zu Knüpfen.
+an bestimmte Änderungen der Datenbank zu Knüpfen.
 Sie bringt die Zustandsänderungen zum Ausdruck,
 bei denen eine Komponente aktiv werden soll.
 
@@ -265,35 +266,78 @@ Außerdem abstrahiert sie die Logik für das Warten auf diese Änderungen
 (unter Verwendung der watch\_for primitive)
 und ermöglicht es die einzelnen Komponenten direkt mit den Daten Aufzurufen,
 auf die sie hätte warten müssen.
+Dies ermöglicht es einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
 
-Dies ermöglicht es einzelne Komponenten direkt zu testen, ohne Das eine echte Datenbank benötigt wird.
+Die Primitive watches\_for umschließt dabei die Funktion, welche die Arbeit verrichtet und schafft durch Komposition eine neue Funktion,
+welche basierend auf den übergebenen Parametern die Art und Weise der Vorarbeit entscheidet.
 
-% MORe
+Wird das zu erwartende Objekt nicht mit übergeben, so werden aus den Parametern der Funktion die Parameter für die watches\_for Primitive generiert.
+diese wird anschließend verwendet um das zu erwartende Objekt von der Datenbank zu erhalten.
+
 
 
 \subsection{run\_callbacks}
 
 Die Primitive ``run\_callbacks'' dient dazu, mehrere Komponenten zu einem Programm
-zu kombinieren, sie nimmt den Strom der Änderungen in der Datenbank und
+zu kombinieren, sie nimmt die Folge der Änderungen in der Datenbank und
 ruft für jede Änderung die passende Komponente auf.
 
+Einzelne Komponenten sind dabei mit der Primitive watches\_for vorbereitet,
+die Primitive muss somit nur die Komponenten den Ereignissen zuordnen
+und Anschließend die Folge der Änderungen der Datenbank abarbeiten.
 
-\section{Komponenten}
+\section{Funktionale Komponenten}
+
+Diese Sektion beschreibt die einzelnen Komponenten welche mit der watches\_for primitive kombiniert werden. Sie bilden die Grundsteine des Prototypen.
+
+In der ersten Komponente wird dabei die watches\_for Primitive genauer vorgestellt, und ein Code-Beispiel gegeben
 
 \subsection{Auftragsannahme}
 
-\begin{verbatim}
-- http hook, db auth erwähnen
+Die Umsetzung der Auftragsannahme wurde stark Vereinfacht.
+Im Prototypen werden Aufträge mittels des put Skriptes in die Datenbank eingegeben.
+Ein Beispiel wäre \Cref{fig:auftrag-beispieldaten}.
+\begin{figure}
+\begin{minted}{yaml}
+project: "print-some"
+type: juggler:order
+status: received
+axis:
+  first: [1,2,3]
+  second: [3,4,5]
+  third: [1,2,3]
+  fouth: [3,4,5]
+\end{minted}
+\caption{Beispiel Auftrage im YAML Format}
+\label{fig:auftrag-beispieldaten}
+\end{figure}
 
-- schritte
-  - neu
-  - bearbeiten
-  - erhalten
-  - validation
-  - valid/invalid
-  - bereitschaft
-\end{verbatim}
+Es bringt einen Auftrag zum Ausdruck, welcher 4 Achsen der Konfiguration definiert.
+Mit den Werten für diese Achsen, werden somit $3*3*3*3 = 81$ Arbeitspakete benötigt.
+Das zugehörige Projekt ist offensichtlich. Das Feld ``type"" gibt den für CouchDB benötigten Dokumenttyp an (es stellt nur eine Konvention dar).
+Der Status received sorgt dafür, das dieser Auftrag sofort in Bearbeitung geht
 
+\FloatBarrier
+Die Auftragsannahme beginnt dabei mit einem Auftrag der in den Zustand \textit{erhalten} (received) versetzt wurde.
+
+Dieser sollte nun eigentlich Validiert werden und anschließend in einen der zustaende Valide oder Invalide versetzt werden.
+
+Da diese Umsetzung recht einfach ist, soll sie als Beispiel dienen
+\begin{figure}[h]
+\mintedfromtexofcode{auftrag-validate}{juggler/handlers/inbox.py:order_validate}
+\caption{Quelltext Ausschnitt Auftrag Validation}
+\label{fig:auftrag-validation-code}
+\end{figure}
+
+Die Dekoration \cite{python:decorator}
+der Funktion mit der watches\_for Primitive legt den zu Bearbeitenden Datentyp und Zustand fest.
+
+Die Parameter der Funktion sind dabei zum einen die Datenbankverbindung (db)
+Zum anderen das Objekt was Erwartet oder Übergeben wurde.
+Der Ablauf ist nun denkbar einfach, der Status wird auf valide gesetzt und das Resultat wird wieder in der Datenbank gespeichert.
+Damit ist der Eingang abgeschlossen.
+
+\FloatBarrier
 \subsection{Auftragsverwaltung}
 
 \begin{verbatim}
