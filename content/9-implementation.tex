@@ -355,20 +355,67 @@ und der Auftrag erreicht seinen Endzustand.
 
 Die generierten Arbeitspakete befinden sich dabei im Zustand \textit{new}
 
-\subsection{Generierung Arbeisschritte}
+\subsection{Generierung der Arbeitsschritte}
+
 Ist ein neues Arbeitspaket vorhanden (Status \textit{new}), so müssen aus den Templates die eigentlichen Arbeitsschritte generiert werden,
-Anschließens kann das Arbeitspaket als \textit{ready} markiert werden.
+Anschließend kann das Arbeitspaket als \textit{ready} markiert werden.
 
 \subsection{Inanspruchnahme von Arbeitspaketen}
 
+Die Inanspruchnahme erzeugt eine neue Version eines Arbeitspaketes,
+welche den neuen Besitzer (Feld owner) und die Inanspruchnahme mittels des Zustandes \textit{claimed}
+zum Ausdruck bringt.
+
 \subsection{Zuteilung von Arbeitern}
+Die Zuteilung von Arbeitern löst der Konflikt,
+den die Inanspruchnahme in der Datenbank hinterlässt,
+indem sie eine Version als Gewinner auswählt und
+diese in den Zustand \textit{claimed} versetzt.
+
+\subsection{Erwartung der Zuteilung}
+
+Die ``Erwartung der Zuteilung'' dient dazu,
+einen Arbeiter in die Lage zu versetzen,
+auf den Erfolg/Misserfolg einer Inanspruchnahme zu warten.
+Dabei wird für einen bestimmten Auftrag darauf gewartet,
+dass dieser den Zustand \textit{claimed} erreicht.
+
+Erfolg/Misserfolg ergibt sich aus der Übereinstimmung zwischen dem Feld owner und dem aktuellen Arbeiter
 
 \subsection{Ausführung von Arbeitspaketen}
+
+Die Ausführung von Arbeitspaketen dient dazu die Arbeitsschritte letztendlich innerhalb eines Arbeitsverzeichnisses abzuarbeiten.
+Dieser Prozess wird später detaillierter beschrieben
 
 
 \section{Kombination der Komponenten}
 \subsection{Inbox \& Management}
+
+Im Prototypen wurden Inbox und Management in einer einzelnen Systemkomponente  kombiniert.
+Dabei kommt die ``run\_callbacks'' Primitive zum Einsatz.
+
+Die Callbacks des Managers (und ihre Positionen im Quelltext) sind:
+\begin{itemize}
+    \item Auftragsannahme - $inbox.order\_validate$
+    \item Auftragsvorbereitung - $inbox.valid\_order\_prepare$
+    \item Generierung Arbeitspakete - $inbox.ready\_order\_generate\_tasks$
+    \item Vorbereitung Arbeitspaket - $manage.new\_task\_generate\_steps$
+    \item Zuteilung Arbeitspaket - $manage.approve\_claimed\_task$
+\end{itemize}
+
 \subsection{Arbeiter}
+
+Arbeiter sind im Prototyp extrem einfach gebaut,
+ihre Aufgabe besteht darin sich Arbeitspakete zu sichern,
+und diese dann auszuführen.
+Dazu nutzen sie in einer Schleife folgende Komponenten.
+\begin{enumerate}
+    \item Inanspruchnahme - $work.claim\_pending\_task$
+    \item Erwartung Zuteilung - $work.wait\_for\_one\_claiming\_task$
+    \item Ausführung - $work.run\_one\_claimed\_task$
+\end{enumerate}
+
+
 
 \section{Procdir \& Arbeitsschritte}
 
