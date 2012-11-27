@@ -89,7 +89,7 @@ Damit ist es Möglich den aktuellen Zustand sowie den Stand der Änderungen zu e
 Da der View ``stm'' bereits die Anforderungen des View-Ansatzes erfüllt,
 wurde er zur Implementation verwendet.
 
-Die primitiven watch\_for und run\_callbacks wurden modifiziert zuerst
+Die primitiven \verb|watch_for| und \verb|run_callbacks| wurden modifiziert zuerst
 Die Daten aus dem View ``stm'' zu bearbeiten und anschließend 
 auf nachfolgenden Änderungen zuzugreifen.
 
@@ -99,8 +99,8 @@ Das Problem war damit eingestellt, das System hat keinerlei Wartezeiten mehr bei
 
 \subsection{Konfliktsituation Inanspruchnahme Arbeitspakete}
 \subsubsection{Analyse}
-Die Konfliktsituation bei der Inanspruchnahme von Arbeitspaketen ergibt sich aus der linearen Abarbeitung der Änderungsnotifikationen.
-Jeder gerade freie Arbeiter hat dieselbe Ansicht auf das nächste zur Verfügung stehende Arbeitspaket, deshalb fordern alle gleichzeitig dieses auch an.
+Die Konflikte bei der Inanspruchnahme von Arbeitspaketen ergeben sich aus der linearen Abarbeitung der Mitteilungen über Änderungen.
+Jeder gerade freie Arbeiter hat die selbe Ansicht auf das nächste zur Verfügung stehende Arbeitspaket, deshalb fordern alle gleichzeitig dieses auch an.
 Jedoch darf nur ein Arbeiter das Arbeitspaket auch bearbeiten,
 alle anderen müssen es erneut versuchen.
 
@@ -118,16 +118,16 @@ Durch die Steigerung der Menge soll dabei die Wahrscheinlichkeit des Konfliktes 
 \subsubsection{Implementation}
 
 Aufgund der vorhergehenden Optimierung für die Anlaufphase,
-bietet die primitive watch\_for einen geeigneten Ansatzpunkt.
+bietet die primitive \verb|watch_for| einen geeigneten Ansatzpunkt.
 Anstelle des nächsten Objektes im View, werden die nächsten $N$ Objekte erfragt,
 und anschließend Zufällig eines davon ausgewählt.
 Dabei wurde in den Tests $N = 10$ gewählt.
 
 \subsubsection{Resultat}
-Im normalen Ablauf sind Konfliktsituationen nicht länger bemerkbar.
+Im normalen Ablauf sind Konflikte nicht länger bemerkbar.
 Sie sie sind nur noch feststellbar, wenn die Menge der verfügbaren Arbeitspakete
 sehr gering ist oder bereits mehrere Arbeiter dazu übergegangen sind,
-auf eine Notifikation über einen neuen Auftrag zu warten.
+auf eine Mitteilung über einen neuen Auftrag zu warten.
 
 Dies bedeutet, das Konflikte nur noch dann auftreten,
 wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete gar keine

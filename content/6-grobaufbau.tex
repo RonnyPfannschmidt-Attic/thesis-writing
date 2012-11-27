@@ -39,9 +39,9 @@ Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern a
 
 \begin{figure}[ht] 
   \centering
-  \label{fig:grob-layout-komponenten}
   \includegraphics[width=\textwidth]{imageinput/grob-layout-komponenten.png}
   \caption{Übersicht über Systemkomponenten - physisch}
+  \label{fig:grob-layout-komponenten}
 \end{figure}
 
 Der physische Aufbau unterscheidet sich stark von den bisher dagewesenen CI-Systemen.
@@ -49,9 +49,8 @@ Grund ist der Fokus auf die verteilte Datenbank, direkte Kommunikation
 wird der Interaktion mit einer verteilten Datenbank weichen.
 
 Das System besteht somit aus Komponenten welche alle als Clients einer verteilten Datenbank operieren.
-Die Abbildung~\ref{fig:grob-layout-komponenten} zweigt die Struktur.
-Nennenswert ist dabei die Bindung einer Komponente and bestimmte Datenbank-knoten,
-dies dient der Kontrolle der Lokalität und wird später noch vorgestellte Verfahrensweisen unterstützen.
+Die \Cref{fig:grob-layout-komponenten} zeigt die Struktur.
+Nennenswert ist dabei die Bindung einer Komponente an bestimmte Knotenpunkte der Datenbank. Dies dient der Kontrolle der Lokalität und wird später noch vorgestellte Verfahrensweisen unterstützen.
 
 %XXX more
 
@@ -338,12 +337,12 @@ Sie treten dabei in Konkurrenz.
 Der Manager entscheidet dann, welcher Arbeiter welches Arbeitspaket bearbeiten darf.
 %MOAR
 
-Dies erlaubt Wesentlich autonomere Arbeiter,
+Dies erlaubt Arbeitern wesentlich autonomer zu agieren,
 sie sind nun in der Lage frei zu entscheiden,
 welche der verfügbaren Aufträge sie bearbeiten wollen.
 Der Manager ist auch Vereinfacht,
 da er nur noch die Entscheidung für den Zuschlag treffen muss.
-es ist nicht notwendig spezielles Wissen über die Arbeiter zu haben. 
+es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeiten zu haben. 
 
 
 \begin{figure}[ht] 
@@ -377,17 +376,17 @@ es ist nicht notwendig spezielles Wissen über die Arbeiter zu haben.
 
 Das Ausschreibungsverfahren zeigt sich im Vergleich zum Melde-verfahren
 wesentlich flexibler.
-Die Möglichkeit Detailkenntnisse über die Fähigkeiten eines Arbeiter nur
-beim Arbeiter zu belassen, sorgt dafür, das Arbeiter wesentlich autonomer sind.
+Die Möglichkeit Detailkenntnisse über die Fähigkeiten eines Arbeiter 
+beim Arbeiter zu belassen, sorgt dafür das Arbeiter wesentlich autonomer sind.
 Dies hat zur Folge, dass der Zuteilungs-algorithmus wesentlich vereinfacht wird.
 Da für ihn nun unerheblich ist, er den Zuschlag bekommt.
-Das Ergebnis wird das gleiche sein.
 
 \subsection{Abarbeitung von Arbeitspaketen}
 
 Bei der Abarbeitung von Arbeitspaketen geht es darum die einzelnen Arbeitsschritte
-der reihe nach linear abzuarbeiten.
-es 
+des Arbeitspaketes nacheinander linear abzuarbeiten.
+Tritt ein Fehler auf oder wird ein Wunsch zum Abbruch im System eingetragen,
+so kann der Prozess vorzeitig beendet werden.
 
 \subsubsection{Arbeitsschritte}
 
@@ -396,7 +395,7 @@ es
   \centering
   \label{fig:lebenszyklus-arbeitsschritt}
   \includegraphics[height=3.4in]{imageinput/lebenszyklus-arbeitsschritt.png}
-  \caption{Stategraph eines Arbeitschrittes}
+  \caption{Zustandsdiagramm eines Arbeitsschritts}
 \end{figure}
 
 \begin{verbatim}

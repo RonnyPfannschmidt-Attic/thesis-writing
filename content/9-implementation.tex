@@ -16,7 +16,7 @@ schränkte die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
 In die nähere Betrachtung kommen CouchDB (dokumentorientiert)
 und PostgreSQL (relational).
 Beide Systeme besitzen Werkzeuge f\"ur Master-Master Replikation
-und primitiven für Notifikationen.
+und primitiven für die Mitteilung von Änderungen.
 
 %XXX: cites
 Andere Systeme wie Mysql (relational), Mongodb(dokumentorientiert)
@@ -26,10 +26,10 @@ Das System Riak wurde verworfen, da es \"Anderungs-notifikationen
 nicht unterstützte und in einem kurzen Vergleich
 die Anfragen langsamer beantwortete.
 
-Im Kurzvergleich von PostgreSQL mit CouchDB,
-ging CouchDB als  hervor.
+Im oberflächlichen Vergleich von PostgreSQL mit CouchDB,
+ging CouchDB als Sieger hervor.
 Im Test mussten bei Couchdb zwar Abstriche im Bereich Performance gemacht werden,
-jedoch stellte sich heraus, das die \"Anderungsnotifikationen von Couchdb detaillierter sind.
+jedoch stellte sich heraus, das die Mitteilungen über Änderungen von Couchdb detaillierter sind.
 Außerdem erscheint der Prozess der Replikation in CouchDB
 als fehlertoleranter und einfacher.
 
@@ -37,8 +37,8 @@ als fehlertoleranter und einfacher.
 W\"ahrend in PostgreSQL die Mitteilungen einfach nur eine Nachricht sind,
 welche mitteilt, dass etwas geändert wurde (aber nicht was)
 % \cite couchdb:changestream}
-so beinhalten die Mitteilungen von CouchDB, genaue Informationen
-\"uber das ge\"anderte Objekt, eventuelle Datenbankkonflikte
+so beinhalten die Mitteilungen von CouchDB \cite[Chap Notifications]{couchdb:guide}, genaue Informationen
+über das geänderte Objekt, eventuelle Konflikte der Datenbank
 und auf Wunsch sogar das Objekt selbst.
 
 %XXX: more
@@ -47,7 +47,7 @@ und auf Wunsch sogar das Objekt selbst.
 
 Es wurden 2 Programmiersprachen Ausgew\"ahlt.
 Zum einen Python, wegen seiner Bibliotheken und
-zum anderen Javascript, da es die Datenbankinterne Sprache von Couchdb ist.
+zum anderen Javascript, da es die Datenbankinterne Sprache von CouchDB ist.
 
 \begin{table}[ht]
 \centering
@@ -176,7 +176,7 @@ Die Python Implementation besteht aus einigen wichtigen Dateien im Ordner namesn
 Einsprungpunkte sind die Dateien ``simple\_master.py' und ``simple\_slave.py''.
 Sie beinhalten die Implementationen der Management und Arbeiter Komponenten.
 
-Hinzu kommt die Datei ``service.py'', welche das Grundgerüst für Komponenten enthält.
+Hinzu kommt die Datei ``service.py'', welche ein Grundgerät für Komponenten enthält.
 
 Folgende Verzeichnisse sind noch wichtig.
 
@@ -395,29 +395,50 @@ Im Prototypen wurden Inbox und Management in einer einzelnen Systemkomponente  k
 Dabei kommt die ``run\_callbacks'' Primitive zum Einsatz.
 
 Die Callbacks des Managers (und ihre Positionen im Quelltext) sind:
-\begin{itemize}
-    \item Auftragsannahme - $inbox.order\_validate$
-    \item Auftragsvorbereitung - $inbox.valid\_order\_prepare$
-    \item Generierung Arbeitspakete - $inbox.ready\_order\_generate\_tasks$
-    \item Vorbereitung Arbeitspaket - $manage.new\_task\_generate\_steps$
-    \item Zuteilung Arbeitspaket - $manage.approve\_claimed\_task$
-\end{itemize}
+\begin{table}
+\begin{tabular}{lcl}
+    \textbf{Callback} && \textbf{Position} \\
+    Auftragsannahme && \verb|inbox.order_validate| \\
+    Auftragsvorbereitung && \verb|inbox.valid_order_prepare| \\
+    Generierung Arbeitspakete && \verb|inbox.ready_order_generate_tasks| \\
+    Vorbereitung Arbeitspaket && \verb|manage.new_task_generate_steps| \\
+    Zuteilung Arbeitspaket && \verb|manage.approve_claimed_task| \\
+\end{tabular}
+\caption{Callbacks des Managers und ihre Positionen im Quelltext}
+\label{tab:callbacks-manager}
+\end{table}
 
+Die funktionalen Komponenten des Managers sind dabei so Konzipiert,
+dass ein Ausfall keine negativen Auswirkungen auf die Datenbank hat.
+Er kann einfach an anderer Stelle neu gestartet werden.
+Jedoch ist das System nicht in der Lage, korrekt zu agieren, wenn mehr als ein Manager aktiv ist.
 \subsection{Arbeiter}
 
 Arbeiter sind im Prototyp extrem einfach gebaut,
 ihre Aufgabe besteht darin sich Arbeitspakete zu sichern,
 und diese dann auszuführen.
 Dazu nutzen sie in einer Schleife folgende Komponenten.
+
 \begin{enumerate}
-    \item Inanspruchnahme - $work.claim\_pending\_task$
-    \item Erwartung Zuteilung - $work.wait\_for\_one\_claiming\_task$
-    \item Ausführung - $work.run\_one\_claimed\_task$
+    \item Inanspruchnahme - \verb|work.claim_pending_task|
+    \item Erwartung Zuteilung - \verb|work.wait_for_one_claiming_task|
+    \item Ausführung - \verb|work.run_one_claimed_task|
 \end{enumerate}
+
+Wie sich aus der Reduktion auf ein Minimum schließen lässt,
+wurde im Prototypen darauf verzichtet den Abbruch oder die Unterbrechung
+eines Arbeitspakets zu unterstützen.
+
+Stattdessen dient \verb|tool/clean_standing.py| dazu,
+um Überbleibsel in der Datenbank nach dem erzwungenen Ende
+eines Arbeiters zu entfernen.
 
 
 
 \section{Procdir \& Arbeitsschritte}
+
+\subsection{Procdir}
+
 
 \subsection{Prozessschritte}
 

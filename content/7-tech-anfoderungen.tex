@@ -1,10 +1,10 @@
 \chapter{Technologische Konzeption ( 5\% )}
 
 
-Im vorhergehenden Kapitel wurde das gundlegende System konzipiert.
+Im vorhergehenden Kapitel wurde das grundlegende System konzipiert.
 Fortsetzend daran sollen nun geeignete Technologien und Werkzeuge gefunden werden,
 um einen Prototyp umzusetzen.
-Ausserdem werden notwendige Anpassungen der Konzepte an technische Gegebenheiten vorgenommen werden,
+Außerdem werden notwendige Anpassungen der Konzepte an technische Gegebenheiten vorgenommen werden,
 um die fortf\"uhrende Implementation zu unterst\"utzen.
 
 
@@ -16,7 +16,7 @@ um die fortf\"uhrende Implementation zu unterst\"utzen.
 \section{Datenbank}
 
 Die Auswahl der Datenbanktechnologie und eines Datenbankproduktes sind die wichtigsten technologischen Entscheidungen dieser Arbeit.
-Die im Kapitel~\ref{chap:design} vorgestellten L\"osungen.
+Die im \Cref{chap:design} vorgestellten L\"osungen.
 Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Implementation maßgeblich beeinflussen.
 
 
@@ -26,6 +26,9 @@ Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Imp
 In einer initialen Sondierung zeigte sich,
 dass 3 Technologieklassen die grundlegenden Anforderungen an die Datenmodellierung erf\"ullen.
 Dies sind die Dokument-orientierten, die Graphen-datenbanken und moderne relationale Datenbanken.
+\begin{figure}
+    \includegraphics[width=\textwidth]{images/databases-overview.png}
+\end{figure}
 
 \subsection{Produktanforderungen}
 
@@ -109,11 +112,13 @@ welche die Implementation unterstützen werden.
 \subsection{Testwerkzeuge}
 
 Um die noch zu entwickelnden UnitTests,
-sowie die bereits in Kapitel~\ref{chap:target} spezifizierten Tests umzusetzen,
-is es notwendig Tests zu schreiben. Um diese Aufgabe zu erleichtern,
-Und gleichzeitig 
+sowie die bereits in \cref{chap:target} spezifizierten Tests umzusetzen,
+is es notwendig Tests zu schreiben. Um diese Aufgabe zu erleichtern
+und gleichzeitig 
 
 \subsection{Datenbank Management}
+
+
 
 
 \section{Konzeptuelle Abbildungen}
