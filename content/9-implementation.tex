@@ -243,56 +243,56 @@ Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teil
 
 \subsection{listen\_changes}
 
-Die Primitive ``listen\_changes'' dient dazu,
+Die Primitive \verb|listen_changes| dient dazu,
 Änderungen der Datenbank den Komponenten der Applikation mitzuteilen.
 Dabei kann Typ und weiteren Parametern gefiltert werden.
 Somit kann man an eine Folge speziell ausgewählter Änderungen in der Datenbank erhalten.
 
 \subsection{watch\_for}
 
-Die Primitive ``watch\_for'' dient dazu auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die ``listen\_changes'' Primitive ein und gibt die erste passende Änderung in der Datenbank zurück.
+Die Primitive \verb|watch_for| dient dazu auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die \verb|listen_changes| Primitive ein und gibt die erste passende Änderung in der Datenbank zurück.
 
 \subsection{watches\_for - Kontext für Komponenten}
 
-Die Primitive ``watches\_for'' dient dazu einzelne Systemkomponenten
+Die Primitive \verb|watches_for| dient dazu einzelne Systemkomponenten
 an bestimmte Änderungen der Datenbank zu Knüpfen.
 Sie bringt die Zustandsänderungen zum Ausdruck,
 bei denen eine Komponente aktiv werden soll.
 
 Außerdem abstrahiert sie die Logik für das Warten auf diese Änderungen
-(unter Verwendung der watch\_for primitive)
+(unter Verwendung der \verb|watch_for| primitive)
 und ermöglicht es die einzelnen Komponenten direkt mit den Daten Aufzurufen,
 auf die sie hätte warten müssen.
 Dies ermöglicht es einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
 
-Die Primitive watches\_for umschließt dabei die Funktion, welche die Arbeit verrichtet und schafft durch Komposition eine neue Funktion,
+Die Primitive \verb|watches_for| umschließt dabei die Funktion, welche die Arbeit verrichtet und schafft durch Komposition eine neue Funktion,
 welche basierend auf den übergebenen Parametern die Art und Weise der Vorarbeit entscheidet.
 
-Wird das zu erwartende Objekt nicht mit übergeben, so werden aus den Parametern der Funktion die Parameter für die watches\_for Primitive generiert.
+Wird das zu erwartende Objekt nicht mit übergeben, so werden aus den Parametern der Funktion die Parameter für die \verb|watches_for| Primitive generiert.
 diese wird anschließend verwendet um das zu erwartende Objekt von der Datenbank zu erhalten.
 
 
 
 \subsection{run\_callbacks}
 
-Die Primitive ``run\_callbacks'' dient dazu, mehrere Komponenten zu einem Programm
+Die Primitive \verb|run_callbacks| dient dazu, mehrere Komponenten zu einem Programm
 zu kombinieren, sie nimmt die Folge der Änderungen in der Datenbank und
 ruft für jede Änderung die passende Komponente auf.
 
-Einzelne Komponenten sind dabei mit der Primitive watches\_for vorbereitet,
+Einzelne Komponenten sind dabei mit der Primitive \verb|watches_for| vorbereitet,
 die Primitive muss somit nur die Komponenten den Ereignissen zuordnen
 und Anschließend die Folge der Änderungen der Datenbank abarbeiten.
 
 \section{Funktionale Komponenten}
 
-Diese Sektion beschreibt die einzelnen Komponenten welche mit der watches\_for primitive kombiniert werden. Sie bilden die Grundsteine des Prototypen.
+Diese Sektion beschreibt die einzelnen Komponenten welche mit der \verb|watches_for| Primitive kombiniert werden. Sie bilden die Grundsteine des Prototypen.
 
-In der ersten Komponente wird dabei die watches\_for Primitive genauer vorgestellt, und ein Code-Beispiel gegeben
+In der ersten Komponente wird dabei die Verwendung der \verb|watches_for| Primitive genauer vorgestellt, und ein Code-Beispiel gegeben.
 
 \subsection{Auftragsannahme}
 
 Die Umsetzung der Auftragsannahme wurde stark Vereinfacht.
-Im Prototypen werden Aufträge mittels des put Skriptes in die Datenbank eingegeben.
+Im Prototypen werden Aufträge mittels des \verb|put.py| Skriptes in die Datenbank eingegeben.
 Ein Beispiel wäre \Cref{fig:auftrag-beispieldaten}.
 \begin{figure}
 \begin{minted}{yaml}
@@ -312,12 +312,12 @@ axis:
 Es bringt einen Auftrag zum Ausdruck, welcher 4 Achsen der Konfiguration definiert.
 Mit den Werten für diese Achsen, werden somit $3*3*3*3 = 81$ Arbeitspakete benötigt.
 Das zugehörige Projekt ist offensichtlich. Das Feld ``type"" gibt den für CouchDB benötigten Dokumenttyp an (es stellt nur eine Konvention dar).
-Der Status received sorgt dafür, das dieser Auftrag sofort in Bearbeitung geht
+Der Status \textit{received} sorgt dafür, das dieser Auftrag sofort in Bearbeitung geht
 
 \FloatBarrier
-Die Auftragsannahme beginnt dabei mit einem Auftrag der in den Zustand \textit{erhalten} (received) versetzt wurde.
+Die Auftragsannahme im System beginnt dabei mit einem Auftrag der in den Zustand \textit{erhalten} (received) versetzt wurde.
 
-Dieser sollte nun eigentlich Validiert werden und anschließend in einen der zustaende Valide oder Invalide versetzt werden.
+Dieser sollte nun eigentlich Validiert werden und anschließend in einen der Zustände Valide oder Invalide versetzt werden.
 
 Da diese Umsetzung recht einfach ist, soll sie als Beispiel dienen
 \begin{figure}[h]
@@ -327,9 +327,10 @@ Da diese Umsetzung recht einfach ist, soll sie als Beispiel dienen
 \end{figure}
 
 Die Dekoration \cite{python:decorator}
-der Funktion mit der watches\_for Primitive legt den zu Bearbeitenden Datentyp und Zustand fest.
+der Funktion mit der \verb|watches_for| Primitive legt den zu Bearbeitenden Datentyp und Zustand fest.
 
-Die Parameter der Funktion sind dabei zum einen die Datenbankverbindung (db)
+Die Parameter der Funktion sind dabei zum einen die Verbinding mit der Datenbank
+ (db)
 Zum anderen das Objekt was Erwartet oder Übergeben wurde.
 Der Ablauf ist nun denkbar einfach, der Status wird auf valide gesetzt und das Resultat wird wieder in der Datenbank gespeichert.
 Damit ist der Eingang abgeschlossen.
@@ -341,10 +342,10 @@ Bei der Arbeitsvorbereitung wird ein Auftrag,
 welcher den Zustand \textit{valid} erreicht hat um weiter Daten ergänzt.
 Anschließend wird er in den Zustand \textit{ready} versetzt
 
-\subsection{Erstellung Arbeitspackete}
+\subsection{Erstellung Arbeitspakete}
 
 Erreicht ein Auftrag den Zustand \textit{ready}, so ist er Bereit für die Erstellung von Arbeitspaketen.
-Bei der Erstellung der Arbeitspaketen, soll fuer jede Konfiguration der Achsen ein Arbeitspacket generiert werden,
+Bei der Erstellung der Arbeitspaketen, soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden,
 Dazu wird das Kartesisches Produkt der Achsen Gebildet,
 Die Ergebnis-menge beinhaltet dann alle Konfigurationen,
 Die Menge aller Arbeitspakete muss nun in der Datenbank abgelegt werden,
