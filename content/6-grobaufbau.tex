@@ -287,31 +287,30 @@ um den eventuellen Abschluss festzustellen.
 
 \subsubsection{Vorbereitung Abarbeitung}
 
-\subsubsection{Zuteilung}
 
+
+\subsubsection{Zuteilung}
+\cref{sec:methoden:zuteilung}
 
 \subsubsection{Abschluss Abarbeitung}
 
 Ist die Bearbeitung der einzelnen Schritte eines Arbeitspaketes abgeschlossen,
-so muss das Resultat zusammen
-
-- ende der arbeisschritte
-- zusammenfassung resultat
-- endscheidung fehlschlag oder nucht
-
+so muss das Resultat zusammengefasst werde 
+Dabei wird die Entscheidung getroffen ob ein Arbeitspaket zum ERfolg oder Misserfolg geführt hat.
 
 \subsection{Überblick Methoden der Zuteilung von Arbeitspaketen}
-
+\label{sec:methoden:zuteilung}
 Diese Sektion beschäftigt sich mit der Zuteilung von Arbeitspaketen.
 Grundsätzlich gibt es 2 Möglichkeiten dies zu bewerkstelligen.
 Es muss festgestellt werden, welche Methode besser geeignet ist.
 
 \subsubsection{Melde-verfahren}
 % MOAR
-Beim Melde-verfahren teilt der Arbeiter nur seinen Arbeitwunsch mit.
+Beim Melde-verfahren teilt der Arbeiter nur seinen Wunsch, ein noch nicht näher festgelegtes Arbeitspaket zu bearbeiten, mit.
 Anschließend wartet er darauf, dass dieser Erfüllt wird.
 Dabei liegt die Logik der Zuteilung komplett beim Manager,
-er muss also über das Wissen verfügen, welcher Arbeiter in der Lage ist welche Arbeitspakete zu bearbeiten.
+er muss also über das Wissen verfügen,
+welcher Arbeiter in der Lage ist welche Arbeitspakete zu bearbeiten.
 
 \begin{figure}[ht] 
   \label{fig:auftrag-zuteilung-token}
@@ -331,7 +330,7 @@ um seiner Aufgabe gerecht zu werden.
 
 \subsubsection{Ausschreibungsverfahren}
 
-Beim Ausschreibe-verfahren teilt der Manager die offenen Arbeitspakete mit.
+Beim Ausschreibungsverfahren teilt der Manager die offenen Arbeitspakete mit.
 Anschließend können Arbeiter einen Anspruch auf diese Anmelden.
 Sie treten dabei in Konkurrenz.
 Der Manager entscheidet dann, welcher Arbeiter welches Arbeitspaket bearbeiten darf.
@@ -378,8 +377,8 @@ Das Ausschreibungsverfahren zeigt sich im Vergleich zum Melde-verfahren
 wesentlich flexibler.
 Die Möglichkeit Detailkenntnisse über die Fähigkeiten eines Arbeiter 
 beim Arbeiter zu belassen, sorgt dafür das Arbeiter wesentlich autonomer sind.
-Dies hat zur Folge, dass der Zuteilungs-algorithmus wesentlich vereinfacht wird.
-Da für ihn nun unerheblich ist, er den Zuschlag bekommt.
+Dies hat zur Folge, dass der Algorithmus für die Zuteilung von Arbeitspaketen wesentlich vereinfacht wird,
+da es für ihn nun unerheblich ist, wer den Zuschlag bekommt.
 
 \subsection{Abarbeitung von Arbeitspaketen}
 
@@ -388,61 +387,6 @@ des Arbeitspaketes nacheinander linear abzuarbeiten.
 Tritt ein Fehler auf oder wird ein Wunsch zum Abbruch im System eingetragen,
 so kann der Prozess vorzeitig beendet werden.
 
-\subsubsection{Arbeitsschritte}
-
-
-\begin{figure}[ht] 
-  \centering
-  \includegraphics[height=3.4in]{imageinput/lebenszyklus-arbeitsschritt.png}
-  \caption{Zustandsdiagramm eines Arbeitsschritts}
-  \label{fig:lebenszyklus-arbeitsschritt}
-\end{figure}
-
-\begin{verbatim}
-- kill wird in der impl nicht betrachtet
-
-\end{verbatim}
-
-
-\subsubsection{Datensammlung zur Laufzeit}
-
-\begin{verbatim}
-- sinn/echtzeit?
-
-- beispielhaft
-    - STDOUT/ERR
-    - exakte testresultate/reports
-\end{verbatim}
-
-
-
-\subsubsection{Datensammlung nach Abschluss eines Schrittes}
-
-Datensammlung nach dem Abschluss eines Arbeitsschritts,
-Umfasst in der Regel verschiedenste Dateiformate.
-Diese werden aus den verschiedensten Gründen generiert.
-Üblich sind Test-Resultate, Logdateien, Build-Resultate und Archive.
-
-Die Abbildung dieser Datensammlung kann dabei auf 2 Arten geschehen,
-
-\begin{enumerate}
-    \item als Teil des Schrittes
-    \item als eigene Art von Schritt
-\end{enumerate}
-
-Die Abbildung als eigene Art von Arbeitsschritt,
-hat einige Vorteile, da sie die Zuständigkeit vom reinen Arbeitsschritt
-und dem Daten-sammeln sauber trennt.
-
-Dies macht die Werkzeuge zur Datensammlung wesentlich einfacher.
-Anstatt sie in jeden Schritt integrieren zu müssen,
-kann einfach nach dem Schritt angewendet werden.
-
-
-\subsubsection{Abschluss von Arbeitsschritten}
-
-- returncodes
-- fehler
 
 \section{Besondere Ansätze zur Datenbank-Interaktion}
 
@@ -470,10 +414,10 @@ soll nach Systemanforderung \textbf{S1} immer verfügbar sein und somit einen Te
 Somit kommt für die Kommunikation zwischen Komponenten nur das Modell \textbf{A-P} in Frage
 (was Verfügbar und Partitionstolerant bedeutet).
 
-Die Anbindung einzelner Komponenten and ihre Datenbank-knoten, hat jedoch andere Anforderungen.
-Da eine direkte Anbindung and die Datenbank für das Funktionieren einer Komponente unabdingbar ist,
+Die Anbindung einzelner Komponenten an ihre Knoten in der Datenbank hat jedoch andere Anforderungen.
+Da eine direkte Anbindung an die Datenbank für das Funktionieren einer Komponente unabdingbar ist,
 kann in diesem Fall nur das Modell \textbf{C-A} zum Einsatz kommen.
-
+(was Konsistent und Verfügbar bedeutet)
 
 %XXX: http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed
 
@@ -494,9 +438,8 @@ stellt der Lebenszyklus eines Arbeitspaketes einen solchen Statusgraph dar.
 Als Besonderheit ist er sogar frei von Zyklen.
 Dadurch ist es unmöglich den gleichen Status noch einmal zu erreichen.
 
-Bindet man Zusätzlich noch die Transitionen an bearbeitende Knoten (Agenten außerhalb der Datenbank),
+Bindet man Zusätzlich noch die Transitionen an bearbeitende Komponenten,
 so ist es auch bei einer Partitionierung der Datenbank eine Konsistenz der Gesamtsystems gewährleistet.
-
 %XXX: moar?
 
 
@@ -530,6 +473,61 @@ Sie muss nicht wie bisher auf eine Rückantwort warten.
 
 \section{Arbeitsschritte und der Kontext ihrer Ausführung}
 
+\subsubsection{Arbeitsschritte}
+
+
+\begin{figure}[ht] 
+    \centering
+    \includegraphics[height=3.4in]{imageinput/lebenszyklus-arbeitsschritt.png}
+    \caption{Zustandsdiagramm eines Arbeitsschritts}
+    \label{fig:lebenszyklus-arbeitsschritt}
+\end{figure}
+
+\begin{verbatim}
+- kill wird in der impl nicht betrachtet
+
+\end{verbatim}
+
+
+\subsubsection{Datensammlung zur Laufzeit}
+
+\begin{verbatim}
+- sinn/echtzeit?
+
+- beispielhaft
+- STDOUT/ERR
+- exakte testresultate/reports
+\end{verbatim}
+
+
+
+\subsubsection{Datensammlung nach Abschluss eines Schrittes}
+
+Datensammlung nach dem Abschluss eines Arbeitsschritts,
+Umfasst in der Regel verschiedenste Dateiformate.
+Diese werden aus den verschiedensten Gründen generiert.
+Üblich sind Test-Resultate, Logdateien, Build-Resultate und Archive.
+
+Die Abbildung dieser Datensammlung kann dabei auf 2 Arten geschehen,
+
+\begin{enumerate}
+    \item als Teil des Schrittes
+    \item als eigene Art von Schritt
+\end{enumerate}
+
+Die Abbildung als eigene Art von Arbeitsschritt,
+hat einige Vorteile, da sie die Zuständigkeit vom reinen Arbeitsschritt
+und dem Daten-sammeln sauber trennt.
+
+Dies macht die Werkzeuge zur Datensammlung wesentlich einfacher.
+Anstatt sie in jeden Schritt integrieren zu müssen,
+kann einfach nach dem Schritt angewendet werden.
+
+
+\subsubsection{Abschluss von Arbeitsschritten}
+
+- returncodes
+- fehler
 \subsection{Überblick und grundlegender Ablauf}
 
 \begin{figure}[!ht]
