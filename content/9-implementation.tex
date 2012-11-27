@@ -438,6 +438,16 @@ eines Arbeiters zu entfernen.
 \section{Procdir \& Arbeitsschritte}
 
 \subsection{Procdir}
+\lstset{language=python}
+\begin{lstlisting}
+#pseudocode
+class ProcDir:
+def __init__(self, procmaker):
+self.procmaker = procmaker
+def run(self, step):
+proc = self.procmaker.create(step)
+return proc.run()
+\end{lstlisting}
 
 
 \subsection{Prozessschritte}

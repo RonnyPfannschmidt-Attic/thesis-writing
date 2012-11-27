@@ -59,12 +59,12 @@ Nennenswert ist dabei die Bindung einer Komponente an bestimmte Knotenpunkte der
 
 \begin{figure}[ht] 
   \centering
-  \label{fig:datenstrukturen}
   \includegraphics[width=\textwidth]{imageinput/datenstrukturen-step-templates.png}
   \caption{Grundlegende Datenstrukturen}
+  \label{fig:datenstrukturen}
 \end{figure}
 
-Das grundlegende Datenschema, in Abbildung~\ref{fig:datenstrukturen} als UML Klassendiagramm dargestellt,
+Das grundlegende Datenschema, in \Cref{fig:datenstrukturen} als UML Klassendiagramm dargestellt,
 beschreibt die Daten des Kernsystems und einige ihrer Interaktionen.
 
 Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order),
@@ -163,9 +163,9 @@ danach wird er überprüft und damit angenommen oder abgelehnt.
 
 \begin{figure}[ht]
   \centering
-  \label{fig:lebenszyklus-auftrag-eingang}
   \includegraphics[height=5in]{imageinput/lebenszyklus-auftrag-eingang.png}
   \caption{Auftragsannahme: Flussdiagramm}
+  \label{fig:lebenszyklus-auftrag-eingang}
 \end{figure}
 
 
@@ -240,9 +240,9 @@ Den Abschluss der Validation stellt die Markierung des Auftrages als Valide oder
 
 \begin{figure}[ht] 
   \centering
-  \label{fig:lebenszyklus-auftrag-abarbeitung}
   \includegraphics[height=4in]{imageinput/lebenszyklus-auftrag-abarbeitung.png}
   \caption{Auftragsannahme: Flussdiagramm}
+  \label{fig:lebenszyklus-auftrag-abarbeitung}
 \end{figure}
 
 \subsubsection{Auftragsvorbereitung}
@@ -279,9 +279,9 @@ um den eventuellen Abschluss festzustellen.
 
 \begin{figure}[ht] 
   \centering
-  \label{fig:lebenszyklus-arbeitspaket}
   \includegraphics[height=4.5in]{imageinput/lebenszyklus-arbeitspaket.png}
   \caption{Lebenszyklus eines Arbeitspaketes bei Ausschreibungen}
+  \label{fig:lebenszyklus-arbeitspaket}
 \end{figure}
 
 
@@ -393,9 +393,9 @@ so kann der Prozess vorzeitig beendet werden.
 
 \begin{figure}[ht] 
   \centering
-  \label{fig:lebenszyklus-arbeitsschritt}
   \includegraphics[height=3.4in]{imageinput/lebenszyklus-arbeitsschritt.png}
   \caption{Zustandsdiagramm eines Arbeitsschritts}
+  \label{fig:lebenszyklus-arbeitsschritt}
 \end{figure}
 
 \begin{verbatim}
@@ -451,7 +451,7 @@ kann einfach nach dem Schritt angewendet werden.
 
 \subsection{CAP Abdeckung}
 
-Wie bereits in Sektion~\ref{sec:base:cap} erwähnt,
+Wie bereits in \Cref{sec:base:cap} erwähnt,
 ist es immer nur möglich 2 der 3 Aspekte des CAP Theorems abzudecken.
 
 Jedoch ist es durchaus legitim für verschiedene Teile
@@ -489,7 +489,7 @@ um den den Ablauf eines komplexen Programms zu beschreiben oder zu erklären.
 In der Regel wird dazu ein sog. StatusGraph verwendet.
 Dieser ist ein Gerichteter Graph der die Zustände und Zustandsänderungen eines Systems beschreibt.
 
-Wie bereits in Abbildung \ref{fig:lebenszyklus-arbeitspaket} gezeigt,
+Wie bereits in \Cref{fig:lebenszyklus-arbeitspaket} gezeigt,
 stellt der Lebenszyklus eines Arbeitspaketes einen solchen Statusgraph dar.
 Als Besonderheit ist er sogar frei von Zyklen.
 Dadurch ist es unmöglich den gleichen Status noch einmal zu erreichen.
@@ -502,8 +502,8 @@ so ist es auch bei einer Partitionierung der Datenbank eine Konsistenz der Gesam
 
 Mit dem dem Eingang und der Abarbeitung von Aufträgen verhält es sich ähnlich,
 jedoch ist der Graph dort Wesentlich einfacher.
-Die Abbildungen \ref{fig:lebenszyklus-auftrag-eingang} und \ref{fig:lebenszyklus-auftrag-abarbeitung} zeigen den groben Ablauf.
-Der Wechselpunkt zwischen Eingang und Abarbeitung ist die der Validation angeschlossene Markierung zur Bereitschaft.
+Die \Cref{fig:lebenszyklus-auftrag-eingang,fig:lebenszyklus-auftrag-abarbeitung} zeigen den groben Ablauf.
+Der Wechselpunkt zwischen Eingang und Abarbeitung ist die der Validation angeschlossene Markierung zur Bereitschaft.    
 Da es nur diesen einen Punkt des Austausches gibt, ist die Wahrung der Konsistenz des Auftrages denkbar einfach,
 Mit der Bereitschaft, wird die Verantwortung vom Eingang zur Abarbeitung übertragen.
 
@@ -539,26 +539,16 @@ Sie muss nicht wie bisher auf eine Rückantwort warten.
   \label{fig:klassen-arten-arbeitsschritt}
 \end{figure}
 
-Wie man auf der Grafik~\ref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
+Wie man auf der \Cref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
 bildet das Arbeitsverzeichniss (ProcDir) die Basis
 für die Durchführung der Arbeitsschritte eines Auftrages.
 
 Es bindet alle Operationen, die notwendig sind,
-um die Kontrolldaten (Steps, siehe Fig~\ref{fig:datenstrukturen})
+um die Kontrolldaten (Steps, siehe \Cref{fig:datenstrukturen})
 aus der Datenbank zu laden und diese dann an Ausführende Objekte zu binden (Proc).
 
 Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen Procdir verwaltet.
 das Proc Objekt sollte nur innerhalb der Methode run existieren.
-\lstset{language=python}
-\begin{lstlisting}
-#pseudocode
-class ProcDir:
-    def __init__(self, procmaker):
-        self.procmaker = procmaker
-    def run(self, step):
-        proc = self.procmaker.create(step)
-        return proc.run()
-\end{lstlisting}
 
 %XXX: More
 
@@ -569,7 +559,7 @@ einen Programm mit vorgegebenen Parametern auszuführen.
 Dies ist auch der Grund, warum der ``ProcessProc'' Datentyp einen
 Prozess-Handle enthält.
 
-Dabei Fallen zur Laufzeit sammelbare Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe Datenströmen an.
+Dabei fallen zur Laufzeit sammelbare Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe Datenströmen an.
 Außerdem verändern sich statistische Informationen über den Prozess wie Speicher-verbrauch, IO-Last, u.a.
 
 
