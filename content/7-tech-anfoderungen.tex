@@ -15,25 +15,30 @@ um die fortf\"uhrende Implementation zu unterst\"utzen.
 
 \section{Datenbank}
 
-Die Auswahl der Datenbanktechnologie und eines Datenbankproduktes sind die wichtigsten technologischen Entscheidungen dieser Arbeit.
-Die im \Cref{chap:design} vorgestellten L\"osungen.
-Die Datenbank stellt die Basis des Systems und ihre Eigenschaften werden die Implementation maßgeblich beeinflussen.
+Die Auswahl der Datenbanktechnologie und eines darauf basierenden Datenbankproduktes sind die wichtigsten technologischen Entscheidungen dieser Arbeit.
+Die im \Cref{chap:design} vorgestellten Lösungen sollen als prototypisches System umgesetzt werden.
+Die Datenbank stellt die Basis dieses Systems und ihre Eigenschaften werden die Implementation maßgeblich beeinflussen.
 
 
 \subsection{Technologische Betrachtung}
 
 %XXX: Bild overview verweisen
 In einer initialen Sondierung zeigte sich,
-dass 3 Technologieklassen die grundlegenden Anforderungen an die Datenmodellierung erf\"ullen.
-Dies sind die Dokument-orientierten, die Graphen-datenbanken und moderne relationale Datenbanken.
+dass 3 Klassen an Datenbanken die grundlegenden Anforderungen an die Modellierung des Denkschemata erfüllen.
+Dies sind die Dokument-orientierten Datenbanken, die Graphendatenbanken und moderne relationale Datenbanken. 
+
+\Cref{fig:classen-datenbanken}
+
 \begin{figure}
     \includegraphics[width=\textwidth]{images/databases-overview.png}
+    \caption{Übersicht Klassen an Datenbanken}
+    \label{fig:klassen-datenbanken}
 \end{figure}
 
 \subsection{Produktanforderungen}
 
 Wie die technologische Betrachtung zeigte,
-sind mehrere Arten von Datenbank f\"ur die Modellierung geeignet.
+sind mehrere Arten von Datenbank für die Modellierung geeignet.
 
 Um ein geeignetes Produkt zu bestimmen,
 m\"ussen Anforderungen herausgearbeitet werden,
@@ -41,17 +46,16 @@ welche sp\"ater bei der Implementation hilfreich sein k\"onnten.
 
 Wichtigstes Kriterium ist dabei, dass die Datenbank tats\"achlich \textbf{verteilt} ist.
 Um sicherzustellen, das alle Systemanforderungen erf\"ullt werden k\"onnen,
-muss die Datenbank zus\"atzlich \textbf{Master-Master Replikation} beherschen.
-Selbstverst\"andlich muss die Replikation mit einer \textbf{partitionierung} des Netzwerkes zurechtkommen.
+muss die Datenbank zus\"atzlich \textbf{Master-Master Replikation} beherrschen.
+Selbstverst\"andlich muss die Replikation mit einer \textbf{Partitionierung} des Netzwerkes zurechtkommen.
 
-Ein weiteres wichtiges Werkzeug, welches die Datenbank mitbringen sollte, sind \textbf{Änderungs-Mitteilungen}.
+Ein weiteres wichtiges Werkzeug, welches die Datenbank mitbringen sollte, sind \textbf{Mitteilungen über Änderungen}.
 Unterschiedliche Komponenten des Systems beginnen mit ihren Aufgaben,
-wenn \"Anderungen an der Datenbank stattfinden.
+wenn Änderungen an der Datenbank stattfinden.
 Daher sind detaillierte Echtzeit-Informationen über Änderungen der Datenbank eine entscheidende Komponente,
 deren Einfluss auf Latenzen und Antwortzeiten der Komponenten nicht zu unterschätzen ist.
 
 
-%XXX evtl db management
 \begin{verbatim}
 
 - selektive/gefilterte replikation wuenschenswert
@@ -95,12 +99,11 @@ Wichtig sind dabei vor allem folgende Punkte.
 \begin{itemize}
     \item Datenbankzugriff 
     \item Prozesskontrolle f. Prozess basierte Arbeitsschritte
-    \item Zugriff Versionskontrolle
-    \item Testing
+    \item Zugriff SCM
+    \item Automatisches Testen
 \end{itemize}
 
 Außerdem sollten der Entwickler bereits mit der Sprache vertraut sein.
-
 Für die Datenbank-interne Sprache muss sich nach der Datenbank gerichtet werden.
 
 
@@ -118,7 +121,9 @@ und gleichzeitig
 
 \subsection{Datenbank Management}
 
-
+Zur Verwaltung der Datenbank, sowie Datenbank-intene Programmteile,
+werden 
+%XXX
 
 
 \section{Konzeptuelle Abbildungen}
@@ -126,26 +131,26 @@ und gleichzeitig
 Diese Sektion behandelt Konzeptuelle Abbildungen der Ideen aus dem Grobkonzept.
 Sie sollen den verwendeten Technologien Angepasst werden
 
-\subsection{Ausschreibungsverfahren für die Auftragszuteilung}
+\subsection{Ausschreibungsverfahren für die Auftragserteilung}
 
-Fuer die Umsetzung des Ausschreibungsverfahrens der Auftragserteilung gibt es
+Für die Umsetzung des Ausschreibungsverfahren der Auftragserteilung gibt es
 mehrere Möglichkeiten, die Inanspruchnahme eines Auftrages in
 der Datenbank umzusetzen. Je nach Fähigkeiten der Datenbank kann man 
-alternative Versionen des selben Datenbankobjektes nutzen,
-oder auf separate Datenbankobjekte, welche die Inanspruchnahme Ausdruecken setzen.
+alternative Versionen des selben Datenobjekt nutzen,
+oder auf separate Datenobjekte, welche die Inanspruchnahme ausdrücken setzen.
 
 \subsubsection{Alternative Versionen}
 
-Bei der Umsetzung mit alternativen Versionen, wird die Technik \textbf{MVCC} (Multi Version Conurrency Control) eingesetzt.
+Bei der Umsetzung mit alternativen Versionen, wird die Technik \textbf{MVCC} (Multiversion Concurrency Control) eingesetzt.
 Sinnhaft Übersetzt bedeutet das Kontrolle der Nebenläufigkeit durch multiple Versionen.
 
-Im Zuteilungsprozess sind dabei mehrere Versionen des Arbeitspakete Objektes vorhanden und jede Version bringt eine andere Inanspruchnahme zum Ausdruck.
+Im Prozess der Zuteilung sind dabei mehrere Versionen eines Arbeitspaket Objektes vorhanden und jede Version bringt eine andere Inanspruchnahme zum Ausdruck.
 
 Die eigentliche Zuteilung wird Anschließend diesen Konflikt wieder bereinigen.
-Dabei wird eine Neue Version des Arbeitspaketes erstellt, welche den Gewinner festlegt, und alle anderen ersetzt.
+Dabei wird eine neue Version des Arbeitspaketes erstellt, welche den Gewinner festlegt und alle anderen ersetzt.
 % More?
 
-\subsubsection{Separate Datenbankobjekte}
+\subsubsection{Separate Datenobjekte}
 
 Bei der Abbildung als separate Datenbankobjekte,
 Wird für jeden Arbeiter, der ein Arbeitspaket ausführen will, ein $Claim(Packet, Arbeiter)$ erzeugt. Diese bringen Inanspruchnahme zum Ausdruck.
@@ -153,16 +158,28 @@ Der Manager kann dann eines dieser Claim Objekte auswählen und dem Arbeitspacke
 %MORE!
 
 
-\subsection{Alternativen zu Fabriken in Skriptsprachen}
+\subsection{Alternativen zu Fabriken in Skript-sprachen}
 
 Das Fabrik-Muster kommt vorwiegend in statisch typisierten Objektorientierten Sprachen zum Einsatz. In dynamisch typisierten Sprachen gibt es jedoch eine weitere Methode, das Dynamische Instantiieren von Abgeleiteten Klassen zu behandeln.
 
 Anstelle einer Fabrik-klasse, die Konfiguriert wird,
-kann eine einfache Zuordnungstabelle an Konstruktoren anlegt werden.
+kann eine einfache Zuordnung an Konstruktoren anlegt werden.
 
 Dies trifft besonders auf die ``Proc'' Klassen (Siehe \Cref{fig:klassen-arten-arbeitsschritt}) zu.
-Ihre Zuordnung zu Arbeitsschritten findet über den wert eines Attributes statt
+Ihre Zuordnung zu Arbeitsschritten findet über den Wert eines Attributes statt
 daher ist eine eindeutige Zuordnung über ein Mapping ausreichend.
 
-%MORE
+\begin{figure}
+\begin{minted}{python}
+#pseudocode
+class Proc(object):
+    def __init__(self, lookup):
+        ...
+        self.lookup = lookup or default_lookup()
 
+    def run(self, step):
+        proc = self.lookup[step.stepper](self, step)
+        proc.run()
+\end{minted}
+\caption{Beispiel Zuordnung statt Fabrik}
+\end{figure}
