@@ -3,7 +3,7 @@
 Dieses Kapitel beschreibt die Implementation des Systems.
 Dabei wird zuerst auf Wahl der Werkzeuge eingegangen,
 Anschließend wird die Struktur Beschrieben.
-Danach werden Primitiven vorgestellt, welche die Implementatio nder Komponenten vereinfachen.
+Danach werden Primitiven vorgestellt, welche die Implementation der Komponenten vereinfachen.
 Schließlich werden Besonderheiten bei der Implementation einiger Komponenten vorgestellt.
 Zum Schluss werden die exemplarischen Erweiterungen vorgestellt.
 
@@ -15,26 +15,23 @@ schränkte die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
 
 In die nähere Betrachtung kommen CouchDB (dokumentorientiert)
 und PostgreSQL (relational).
-Beide Systeme besitzen Werkzeuge f\"ur Master-Master Replikation
+Beide Systeme besitzen Werkzeuge für Master-Master Replikation
 und primitiven für die Mitteilung von Änderungen.
 
 %XXX: cites
-Andere Systeme wie Mysql (relational), Mongodb(dokumentorientiert)
-und  Neo4J (graph) scheiden aus, weil zu ihrem Funktionsumfang
+Andere Systeme wie Mysql (relational) \cite{mysql:website}, Mongodb(dokumentorientiert) \cite{mongodb:website}
+und  Neo4J (graph) \cite{neo4j:website} scheiden aus, weil zu ihrem Funktionsumfang
 nur die Master-Slave Replikation geh\"ort.
-Das System Riak wurde verworfen, da es \"Anderungs-notifikationen
-nicht unterstützte und in einem kurzen Vergleich
+Das System Riak wurde verworfen, da es Mitteilungen über Änderungen nicht unterstützte und in einem kurzen Vergleich
 die Anfragen langsamer beantwortete.
 
-Im oberflächlichen Vergleich von PostgreSQL mit CouchDB,
-ging CouchDB als Sieger hervor.
-Im Test mussten bei Couchdb zwar Abstriche im Bereich Performance gemacht werden,
+Im oberflächlichen Vergleich von PostgreSQL mit CouchDB, ging CouchDB als Sieger hervor.
+Im Test mussten bei CouchDB zwar Abstriche im Bereich Performance gemacht werden,
 jedoch stellte sich heraus, das die Mitteilungen über Änderungen von Couchdb detaillierter sind.
-Außerdem erscheint der Prozess der Replikation in CouchDB
-als fehlertoleranter und einfacher.
+Außerdem erscheint der Prozess der Replikation in CouchDB als fehlertoleranter und einfacher, da er fest integriert ist und für asynchrone Replikation mit langen Unterbrechungen konzipiert ist.
 
 % \cite
-W\"ahrend in PostgreSQL die Mitteilungen einfach nur eine Nachricht sind,
+Während in PostgreSQL die Mitteilungen einfach nur eine Nachricht sind,
 welche mitteilt, dass etwas geändert wurde (aber nicht was)
 % \cite couchdb:changestream}
 so beinhalten die Mitteilungen von CouchDB \cite[Chap Notifications]{couchdb:guide}, genaue Informationen
