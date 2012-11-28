@@ -13,8 +13,8 @@ Zum Schluss werden die exemplarischen Erweiterungen vorgestellt.
 Das Kriterium der \textbf{Master-Master Replikation}
 schränkte die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
 
-In die nähere Betrachtung kommen CouchDB (dokumentorientiert)
-und PostgreSQL (relational).
+In die nähere Betrachtung kommen CouchDB \cite{couchdb:website} (dokumentorientiert)
+und PostgreSQL \cite{postgresql:website} (relational).
 Beide Systeme besitzen Werkzeuge für Master-Master Replikation
 und primitiven für die Mitteilung von Änderungen.
 
@@ -436,17 +436,6 @@ eines Arbeiters zu entfernen.
 \section{Procdir \& Arbeitsschritte}
 
 \subsection{Procdir}
-\lstset{language=python}
-\begin{lstlisting}
-#pseudocode
-class ProcDir:
-def __init__(self, procmaker):
-self.procmaker = procmaker
-def run(self, step):
-proc = self.procmaker.create(step)
-return proc.run()
-\end{lstlisting}
-
 
 \subsection{Prozessschritte}
 
