@@ -435,9 +435,29 @@ eines Arbeiters zu entfernen.
 
 \section{Procdir \& Arbeitsschritte}
 
+Procdir und Arbeitsschritte setzen die letztendliche Ausführung eines Arbeitspakets um.
+Sie finden in der Ausführungskomponente im Arbeiter Anwendung.
+
+
 \subsection{Procdir}
 
+
+\subsection{baseproc - eine Basis für Implementationen von Arbeitsschritten}
+
+%XXX
+
+
 \subsection{Prozessschritte}
+
+Prozessschritte (\verb|process.subprocess.SubProcessProc|)
+führen einzelne Prozesse aus, und schließen ab, sobald dieser
+abgeschlossen ist.
+
+Um ihre Datensammlung zur Laufzeit zu behandeln,
+sind mehrere Threads notwendig.
+
+%
+
 
 \begin{verbatim}
 - intro prozesse unix
