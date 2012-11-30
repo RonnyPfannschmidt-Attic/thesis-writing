@@ -131,7 +131,7 @@ Diese Sektion behandelt Konzeptuelle Abbildungen der Ideen aus dem Grobkonzept.
 Sie sollen den verwendeten Technologien Angepasst werden
 
 \subsection{Ausschreibungsverfahren für die Auftragserteilung}
-
+\label{sec:verfahren:erteilung}
 Für die Umsetzung des Ausschreibungsverfahren der Auftragserteilung gibt es
 mehrere Möglichkeiten, die Inanspruchnahme eines Auftrages in
 der Datenbank umzusetzen. Je nach Fähigkeiten der Datenbank kann man 
@@ -151,11 +151,10 @@ Dabei wird eine neue Version des Arbeitspaketes erstellt, welche den Gewinner fe
 
 \subsubsection{Separate Datenobjekte}
 
-Bei der Abbildung als separate Datenbankobjekte,
-Wird für jeden Arbeiter, der ein Arbeitspaket ausführen will, ein $Claim(Packet, Arbeiter)$ erzeugt. Diese bringen Inanspruchnahme zum Ausdruck.
-Der Manager kann dann eines dieser Claim Objekte auswählen und dem Arbeitspacket einen Arbeiter zuteilen.
+Bei der Abbildung als separate Objekte in der Datenbank,
+wird für jeden Arbeiter, der ein Arbeitspaket ausführen will, ein $Claim(Packet, Arbeiter)$ erzeugt. Diese bringen Inanspruchnahme zum Ausdruck.
+Der Manager kann dann eines dieser Claim Objekte auswählen und dem Arbeitspaket einen Arbeiter zuteilen.
 %MORE!
-
 
 \subsection{Alternativen zu Fabriken in Skript-sprachen}
 

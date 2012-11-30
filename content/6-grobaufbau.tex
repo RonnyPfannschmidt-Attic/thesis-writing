@@ -428,25 +428,25 @@ kann in diesem Fall nur das Modell \textbf{C-A} zum Einsatz kommen.
 % http://blog.incubaid.com/2012/10/25/caulking-your-distributed-algorithm-implementation/
 \nocite{statechart}
 
-Statusmaschienen sind ein allgemein bekanntes Werkzeug,
-um den den Ablauf eines komplexen Programms zu beschreiben oder zu erklären.
-In der Regel wird dazu ein sog. StatusGraph verwendet.
+Zustands-Maschinen sind ein allgemein bekanntes Werkzeug,
+um den Ablauf eines komplexen Programms zu beschreiben oder zu erklären.
+In der Regel wird dazu ein sog. ZustandsGraph verwendet.
 Dieser ist ein Gerichteter Graph der die Zustände und Zustandsänderungen eines Systems beschreibt.
 
 Wie bereits in \Cref{fig:lebenszyklus-arbeitspaket} gezeigt,
-stellt der Lebenszyklus eines Arbeitspaketes einen solchen Statusgraph dar.
+stellt der Lebenszyklus eines Arbeitspaketes einen solchen Zustandsgraph dar.
 Als Besonderheit ist er sogar frei von Zyklen.
 Dadurch ist es unmöglich den gleichen Status noch einmal zu erreichen.
 
-Bindet man Zusätzlich noch die Transitionen an bearbeitende Komponenten,
+Bindet man Zusätzlich noch die Zustandsänderungen an bearbeitende Komponenten,
 so ist es auch bei einer Partitionierung der Datenbank eine Konsistenz der Gesamtsystems gewährleistet.
 %XXX: moar?
 
 
-Mit dem dem Eingang und der Abarbeitung von Aufträgen verhält es sich ähnlich,
+Mit dem Eingang und der Abarbeitung von Aufträgen verhält es sich ähnlich,
 jedoch ist der Graph dort Wesentlich einfacher.
 Die \Cref{fig:lebenszyklus-auftrag-eingang,fig:lebenszyklus-auftrag-abarbeitung} zeigen den groben Ablauf.
-Der Wechselpunkt zwischen Eingang und Abarbeitung ist die der Validation angeschlossene Markierung zur Bereitschaft.    
+Der Übergang zwischen Eingang und Abarbeitung ist die der Validation angeschlossene Markierung zur Bereitschaft.
 Da es nur diesen einen Punkt des Austausches gibt, ist die Wahrung der Konsistenz des Auftrages denkbar einfach,
 Mit der Bereitschaft, wird die Verantwortung vom Eingang zur Abarbeitung übertragen.
 
@@ -482,11 +482,6 @@ Sie muss nicht wie bisher auf eine Rückantwort warten.
     \caption{Zustandsdiagramm eines Arbeitsschritts}
     \label{fig:lebenszyklus-arbeitsschritt}
 \end{figure}
-
-\begin{verbatim}
-- kill wird in der impl nicht betrachtet
-
-\end{verbatim}
 
 
 \subsubsection{Datensammlung zur Laufzeit}
@@ -621,7 +616,7 @@ anzulegen. Zudem sollen sie an das Arbeitspaket und nicht an den Arbeitsschritt 
 Für die Vergleiche ist es nun Notwendig,
 Unterschiede zwischen 2 oder mehr Mengen an Testresultaten zu bestimmen.
 Eine recht einfache Methode ist dabei die Mengen-Differenz,
-Nimmt man für die Testresultate eine Werte-menge mit der Struktur \{ $Testname \rightarrow Resultat$ \} als Basis,
+Nimmt man für die Resultate von Tests eine Werte-menge mit der Struktur \{ $Testname \rightarrow Resultat$ \} als Basis,
 so ist es leicht einen passenden Überblick aufzubauen.
 
 Die Datenstruktur der Resultate, für Vergleiche zischen N Resultatmengen
