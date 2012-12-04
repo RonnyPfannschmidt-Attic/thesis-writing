@@ -6,37 +6,37 @@ Kontinuierliche Integration ist ein wachsender Bereich
 in der Welt der Software-Entwicklung und ihrer Qualitätssicherung.
 
 % referenzen folwer/xp
-Entstammend aus der Praxis des Extreme Programming
+Entstammend aus der Praxis des ``Extreme Programming''
 \cite{xp:explained, folwer:xp},
 beschäftigen sich Werkzeuge für Kontinuierliche Integration damit,
 Programme nach einer vollzogenen Integration zu Testen.
 
 In regelmäßigen Abständen, wie z.B. nach einer erfolgreichen Integration oder nach Arbeitsschluss,
-wird das Programm vobereitet und getestet.
+wird das Programm vorbereitet und getestet.
 Dies unterst\"utzt das rasche Auffinden von Fehlern
 und informiert \"uber den Zustand der Software.
 Nach Abschluss eines solchen Testes stehen dann das Resultat
-und ein Statusbericht zur Verf\"ugung.
+und ein Zustandsbericht zur Verf\"ugung.
 
-Im Laufe der Zeit hat sich der Inhalt der Statusberichte weiterentwickelt.
+Im Laufe der Zeit hat sich der Inhalt der Zustandsberichte weiterentwickelt.
 Waren es anf\"anglich nur sp\"arliche Daten \"uber Erfolg/Misserfolg,
 so findet man heutzutage Mitschnitte verschiedener Datenquellen, Testergebnisse
-\cite{jenkins:junitxml}, sowie detailierte Informationen \"uber die Umgebung des Testvorgangs.
+\cite{jenkins:junitxml}, sowie detaillierte Informationen \"uber die Umgebung des Tests.
 
 Weiterhin entstand mit Zunehmenden Anforderungen an Portabilit\"at \"uber
-verschiedendste Arten von Platformen (z.B. Datenbanksysteme oder Betriebssysteme)
+verschiedenste Arten von Plattformen (z.B. Datenbank oder Betriebssysteme)
 die Notwendigkeit das System in mehr als nur einer Umgebung zu testen.
 
 Auch die Verwaltung von Software hat sich ge\"andert.
-Während ursprünglich nur nur auf einem Entwicklungszweig gearbeitet und integriert wurde,
-findet dies Dank moderner Quellcode-verwaltung jetzt in vielen Entwicklungszweigen statt.
+Während ursprünglich nur auf einem Zweig der Entwicklung gearbeitet und integriert wurde,
+findet dies Dank moderner Quellcode-verwaltung jetzt in vielen Zweigen statt.
 \cite{dvcs:vorteile, dvcs:entwicklungsmodelle}
 
 Aufgrund dieser Entwicklung stehen immer mehr Daten und Informationen zur Verfügung,
 und es erscheint überaus sinnvoll, diese auch zu nutzen, um den Entwicklungsprozess zu unterstützen.
 
-Besonders Interessant sind dabei feststellbare Unterschiede zwischen den Testumgebungen,
-sowie feststellbare Unterschiede zwischen verschiedenen Entwicklungszweigen.
+Besonders Interessant sind dabei feststellbare Unterschiede zwischen den Umgebungen,
+sowie feststellbare Unterschiede zwischen verschiedenen Zweigen der Entwicklung.
 
 %XXX: test vor integration?
 
@@ -58,7 +58,7 @@ Die Zukunftsvision, die Daten zu nutzen,
 trifft in der Praxis auf einige harte Probleme.
 Existierende Systeme sind schwer erweiterbar und haben oft schwer zugängliche Datenmodelle.
 
-Es gibt keine Standardschnittstellen um CI-Systeme zu erweitern und mit ihren Daten zu arbeiten
+Es gibt keine Standards für Schnittstellen um CI-Systeme zu erweitern und mit ihren Daten zu arbeiten
 
 Die Kombination dieser beiden Problemen erzeugt wiederum viele Probleme,
 welche später im Kapitel \ref{chap:ist-analyse} behandelt werden.
@@ -66,10 +66,9 @@ welche später im Kapitel \ref{chap:ist-analyse} behandelt werden.
 Das Resultat ist, dass die existierenden Systeme im Bezug auf die Zukunftsvisionen,
 nicht oder nur schwer anzupassen sind.
 
-Der Mangel an Standardschnittstellen für den Datenzugriff und
-das Fehlen von Standardschnittstellen für die Erweiterung der CI-Systeme
-erschwert die Implementation von Analysewerkzeugen ungemein.
-
+Der Mangel an Schnittstellen für den Datenzugriff und
+das Fehlen von Schnittstellen für die Erweiterung der CI-Systeme
+erschwert die Implementation von Werkzeugen für Analyse ungemein.
 
 
 \begin{verbatim}
@@ -78,7 +77,7 @@ erschwert die Implementation von Analysewerkzeugen ungemein.
 \end{verbatim}
 
 \section{Zielsetzung}
-
+%XXX nochmal
 Ziel dieser Arbeit ist es  aufzuzeigen, dass die oben genannten Probleme lösbar sind.
 Zu diesem Zweck soll die Grundlage für ein System geschaffen werden,
 welches auch in der Lage ist dies umzusetzen.
