@@ -70,9 +70,9 @@ Von den 3 Systemtests wurden nur 2 Automatisiert.
 die Tests mit dem Durchlauf der Funktionalen  und des Gesamtsystems
 zeigten viele kleine Fehler auf die hier nicht Näher betrachtet werden.
 
-Das Testen der Beispeilerweiterung stellte sich als kompliziert heraus, und wurde auch als Manueller Test umgesetzt.
+Das Testen der Beispielerweiterung stellte sich als kompliziert heraus, und wurde auch als Manueller Test umgesetzt.
 
-Der Komponentendurchlauf führt einfach nur die Komponenten der logischen Reihenfolge nach durch.
+Der Durchlauf der Komponenten führt einfach nur die Komponenten der logischen Reihenfolge nach aus.
 \begin{enumerate}
     \item Auftrag Überprüfung
     \item Auftrag Vorbereitung
@@ -84,17 +84,13 @@ Der Komponentendurchlauf führt einfach nur die Komponenten der logischen Reihen
     \item Arbeitspaket Ausführen
 \end{enumerate}
 
-Der Test des Gesammtsystems verwendet die beschriebenen Systemkomponenten, um den Manager und 2 Arbeiter zu starten und gibt Aufträge ins System
+Der Test des Gesamtsystems verwendet die beschriebenen Systemkomponenten, um den Manager und 2 Arbeiter zu starten und gibt Aufträge ins System
 
-\subsection{Grundlegende Primitiven}
-
-\begin{verbatim}
-- watch-for -> funktioniert
-- run_callbacks
-- gather next #XXX optimierung
-\end{verbatim}
+\subsection{Manuelle tests}
 
 \subsection{Exemplarische Erweiterung - Datenaggregation}
+
+
 
 \section{Festgestellte Probleme bei den manuellen Tests}
 
