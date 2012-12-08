@@ -464,13 +464,31 @@ Sobald die Änderung in die Datenbank eingebracht ist,
 ist der Vorgang des Übermittelns für die sendende Komponente abgeschlossen.
 Sie muss nicht wie bisher auf eine Rückantwort warten.
 
-\subsection{Auftragsverteilung}
-
-
 
 \section{Arbeitsschritte und der Kontext ihrer Ausführung}
+\subsection{Überblick und grundlegender Ablauf}
 
-\subsubsection{Arbeitsschritte}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[height=0.8\textheight]{imageinput/klassen-arten-arbeitsschritt.png}
+    \caption{Arten und Ablauf von Arbeitsschritten}
+    \label{fig:klassen-arten-arbeitsschritt}
+\end{figure}
+
+Wie man auf der \Cref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
+bildet das Arbeitsverzeichniss (ProcDir) die Basis
+für die Durchführung der Arbeitsschritte eines Auftrages.
+
+Es bindet alle Operationen, die notwendig sind,
+um die Kontrolldaten (Steps, siehe \Cref{fig:datenstrukturen})
+aus der Datenbank zu laden und diese dann an Ausführende Objekte zu binden (Proc).
+
+Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen Procdir verwaltet.
+das Proc Objekt sollte nur innerhalb der Methode run existieren.
+
+%XXX: More
+
+\subsection{Lebenszyklus einzelner Arbeitsschritte}
 
 
 \begin{figure}[ht] 
@@ -480,20 +498,23 @@ Sie muss nicht wie bisher auf eine Rückantwort warten.
     \label{fig:lebenszyklus-arbeitsschritt}
 \end{figure}
 
+Der Lebenszyklus eines einzelnen Arbeitsschritts beginnt mit der Speicherung der Arbeitsschritte für ein Arbeitspaket. Ein Arbeitsschritt wird sich, bis er zur Ausführung kommt, im Zustand \verb|new| befinden.
 
-\subsubsection{Datensammlung zur Laufzeit}
+Kommt es schließlich zur Ausführung, so wechselt der Zustand nach \verb|building|.
+Und nach der Ausführung wird festgestellt, ob der ablauf erfolgreich war und der Zustand entsprechend auf \verb|completed| oder \verb|failed| gesetzt.
 
-\begin{verbatim}
-- sinn/echtzeit?
+Solange ein Arbeitsschritt in Bearbeitung ist kann sein Abbruch
+durch den Zustand \verb|canceling| beantragt werden.
+Ein Abbruch zwingt den Arbeitsschritt in den zustand \verb|canceled|.
+Wird er jedoch vor Bearbeitung des Abbruchs abgeschlossen,
+so findet ein normaler Abschluss statt.
 
-- beispielhaft
-- STDOUT/ERR
-- exakte testresultate/reports
-\end{verbatim}
+\subsection{Datensammlung zur Laufzeit}
 
+Datensammlung zur Laufzeit dient dazu, Zeitnah den Zustand eines Integrationsprozesses zu bewerten.
+Üblicherweise werden dabei die Standardausgabe und Standardfehlerausgabe berücksichtigt. Aber auch statistische Informationen und einzelne Testresultate sind hilfreich. Im System wird dazu der \verb|Event| Datentyp verwendet.
 
-
-\subsubsection{Datensammlung nach Abschluss eines Schrittes}
+\subsection{Datensammlung nach Abschluss eines Schrittes}
 
 Datensammlung nach dem Abschluss eines Arbeitsschritts,
 Umfasst in der Regel verschiedenste Dateiformate.
@@ -515,33 +536,6 @@ Dies macht die Werkzeuge zur Datensammlung wesentlich einfacher.
 Anstatt sie in jeden Schritt integrieren zu müssen,
 kann einfach nach dem Schritt angewendet werden.
 
-
-\subsubsection{Abschluss von Arbeitsschritten}
-
-- returncodes
-- fehler
-\subsection{Überblick und grundlegender Ablauf}
-
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[height=0.8\textheight]{imageinput/klassen-arten-arbeitsschritt.png}
-  \caption{Arten und Ablauf von Arbeitsschritten}
-  \label{fig:klassen-arten-arbeitsschritt}
-\end{figure}
-
-Wie man auf der \Cref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
-bildet das Arbeitsverzeichniss (ProcDir) die Basis
-für die Durchführung der Arbeitsschritte eines Auftrages.
-
-Es bindet alle Operationen, die notwendig sind,
-um die Kontrolldaten (Steps, siehe \Cref{fig:datenstrukturen})
-aus der Datenbank zu laden und diese dann an Ausführende Objekte zu binden (Proc).
-
-Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen Procdir verwaltet.
-das Proc Objekt sollte nur innerhalb der Methode run existieren.
-
-%XXX: More
-
 \subsection{Prozess Schritte}
 
 Die Aufgabe eines Prozessschrittes ist es,
@@ -549,7 +543,7 @@ einen Programm mit vorgegebenen Parametern auszuführen.
 Dies ist auch der Grund, warum der ``ProcessProc'' Datentyp einen
 Prozess-Handle enthält.
 
-Dabei fallen zur Laufzeit sammelbare Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe Datenströmen an.
+Dabei fallen zur Laufzeit Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe Datenströmen an.
 Außerdem verändern sich statistische Informationen über den Prozess wie Speicher-verbrauch, IO-Last, u.a.
 
 
@@ -594,10 +588,6 @@ wie z.b. Einpflegen von Testergebnissen aus JunitXML Dateien in die Datenbank,
 übernehmen
 
 
-\section{Logisches Gesamtkonzept}
-\subsection{Eingang}
-\subsection{Management}
-\subsection{Arbeiter}
 
 \section{Erweiterungen}
 
