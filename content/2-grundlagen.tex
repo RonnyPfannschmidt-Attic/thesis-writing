@@ -1,7 +1,7 @@
 \chapter{Grundlagen (5\%)}
 \label{chap:base}
 Dieses Kapitel beschreibt einige grundlegende Sachverhalte,
-welche f\"ur das Verst\"andniss der Arbeit hilfreich sind.
+welche für das Verständnis dieser Arbeit hilfreich sind.
 
 \section{Verteilte Systeme}
 \label{sec:base:vs}
@@ -16,30 +16,27 @@ welche f\"ur das Verst\"andniss der Arbeit hilfreich sind.
 
 %XXX literatur
 %  http://www.julianbrowne.com/article/viewer/brewers-cap-theorem
-Das CAP Theorem nach \cite{brewer:cap} beschreibt 3 Grundlegend
-w\"unschenswerte Eigenschaften von verteilten Systemen/Datenbanken.
+Das CAP Theorem nach \cite{brewer:cap} beschreibt 3 grundlegend
+wünschenswerte Eigenschaften von verteilten Systemen/Datenbanken.
 
 \begin{description}
   \item[Konsistenz (C)] \hfill \\
       Alle Knoten sehen zur selben Zeit dieselben Daten. 
-  \item[Verf\"ugbarkeit (A)] \hfill \\
+  \item[Verfügbarkeit (A)] \hfill \\
       Alle Anfragen an das System werden stets beantwortet.
   \item[Partitionstoleranz (P)] \hfill \\
       Das System arbeitet auch bei Verlust von Nachrichten,
-      einzelner Netzknoten oder Partition des Netzes weiter.
+      einzelner Netz-knoten oder Partition des Netzes weiter.
 \end{description}
 
 Zu beachten ist dabei, dass nur 2 dieser 3 Anforderungen gleichzeitig
-vollst\"andig erfuellt werden k\"onnen.
-
-
-
-%XXX
-
-
+vollständig erfüllt werden können.
 
 \section{Kontinuierliche Integration/Verteilung}
 \label{sec:base:ci}
+
+Wie bereits im \cref{chap:intro} erwähnt,
+
 \begin{verbatim}
 
 
@@ -54,17 +51,14 @@ vollst\"andig erfuellt werden k\"onnen.
 
 Quelltext und Versions-Management fasst eine Menge
 von Praktiken und Werkzeugen zusammen,
-welche dazu Dienen den Quellcode eines Projektes zu verwalten.
-Sie verwalten \"Anderungen am Quelltext, Entwicklungszweige und sogenannte Tags,
-welche einen Namen zu einem bestimmten \"Anderungsstand zuweisen.
+welche dazu Dienen, den Quellcode eines Projektes zu verwalten.
+Sie verwalten Änderungen am Quelltext, Zweige der Entwicklung und sogenannte Tags,
+welche einen Namen zu einem bestimmten Änderungsstand zuweisen.
 
-Dies wird vorwiegend genutzt um die Versionsnummer eines Releases an den dazugeh\"origen \"Anderungsstand zu binden.
+Dies wird vorwiegend genutzt um die Versionsnummer einer neuen Version eines Software-Projektes an den dazugehörigen Änderungsstand zu binden.
 
-%XXX
+Moderne Systeme Arbeiten dabei verteilt,
+was dazu führt, das grundsätzlich immer mehrere Zweige der Entwicklung existieren.
+Die bekanntesten Vertreter dieser Systeme sind \emph{Mercurial} \cite{mercurial:website}
+und \emph{Git} \cite{git:website}.
 
-
-\begin{verbatim}
-- git/hg?
-- branches
-- entwicklungsmodelle
-\end{verbatim}
