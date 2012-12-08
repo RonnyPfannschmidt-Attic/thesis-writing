@@ -442,10 +442,16 @@ Sie finden in der Ausführungskomponente im Arbeiter Anwendung.
 
 \subsection{Procdir}
 
+Der Lebenszyklus des Procdir entspricht der Ausführung des Arbeitspaketes.
+Es verwaltet das Arbeitsverzeichniss des Arbeitspaketes und behandelt die Ausführung von Arbeitsschritten.
+Es behandelt somit alle Vorgänge, welche von einem \emph{Arbeiter} Service benötigt werden, um  Arbeitspakete Schritt für Schritt auszuführen.
 
-\subsection{baseproc - eine Basis für Implementationen von Arbeitsschritten}
+\subsection{baseproc - eine Basis für Arbeitsschritte}
 
-%XXX
+Die Baseproc Klasse stellt ein Framework für die Schaffung von eigenen Arbeitsschritten.
+Neben der Verwaltung von zusammengehörenden Threads und Ressourcen, bietet sie außerdem Werkzeuge um Datensammlung zur Laufzeit zu behandeln.
+
+Sie ermöglicht es Arbeitsschritte als Kombination von Ressourcen und Threads (welche Laufzeit-Daten generieren) zu beschreiben.
 
 
 \subsection{Prozessschritte}
@@ -454,29 +460,12 @@ Prozessschritte (\verb|process.subprocess.SubProcessProc|)
 führen einzelne Prozesse aus, und schließen ab, sobald dieser
 abgeschlossen ist.
 
-Um ihre Datensammlung zur Laufzeit zu behandeln,
-sind mehrere Threads notwendig.
-
-%
-
-
-\begin{verbatim}
-- intro prozesse unix
-- ausfuehrung
-- datensammlung
-- theoretische betrachtung stats
-- \ldots
-\end{verbatim}
+Dabei ist das Prozess-handle die grundlegende Ressource.
+Auf seiner Basis sammeln mehrere Threads die Ausgaben des Prozesses, sowie Informationen über den Status des Prozesses.
 
 \subsection{Quellcode Management Schritte}
 
-
-\begin{verbatim}
-- anyvc
-- exemplarischer ablauf
-    - checkout
-    - update
-\end{verbatim}
+Die Quellcode Management Schritte sind auf Basis von anyvc \cite{anyvc:website} implementiert. Die wurden lediglich Funktionsfähig erstellt und sammeln noch keine Laufzeiten.
 
 \section{Exemplarische Erweiterung - Datenaggregation}
 
