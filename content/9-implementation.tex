@@ -29,15 +29,14 @@ Im Test mussten bei CouchDB zwar Abstriche im Bereich Performance gemacht werden
 jedoch stellte sich heraus, das die Mitteilungen über Änderungen von Couchdb detaillierter sind.
 Außerdem erscheint der Prozess der Replikation in CouchDB als fehlertoleranter und einfacher, da er fest integriert ist und für asynchrone Replikation mit langen Unterbrechungen konzipiert ist.
 
-% \cite
-Während in PostgreSQL die Mitteilungen einfach nur eine Nachricht sind,
-welche mitteilt, dass etwas geändert wurde (aber nicht was)
-so beinhalten die Mitteilungen von CouchDB \cite[Chap Notifications]{couchdb:guide}, genaue Informationen
+In PostgreSQL sind Mitteilungen ein extra Konzept \cite{postgresql:notify}.
+Sie sind unabhängig von Änderungen der Datenbank und müssen manuell integriert werden. 
+In CouchDB sind Mitteilungen \cite[Chap Notifications]{couchdb:guide}, genaue Informationen
 über das geänderte Objekt, eventuelle Konflikte der Datenbank
-und auf Wunsch sogar das Objekt selbst.
+und auf Wunsch sogar das Objekt selbst. Somit erfüllen die Mitteilungen in CouchDB bereits alle Anforderungen.
 
-%XXX: more
- 
+Somit wurde Aufgrund der technischen Vorteile das System CouchDB als zugrunde liegende Datenbank ausgewählt.
+
 \subsection{Programmiersprachen}
 
 Es wurden 2 Programmiersprachen Ausgew\"ahlt.
@@ -101,10 +100,10 @@ Es das einzige Test Framework für Python,
 welches neben Werkzeugen für UnitTests auch Tools für
 Funktionale und Akzeptanz Tests mitbringt.
 
-Mit der Erweiterung ``pytest-couchdbkit"" \cite{pytest:couchdbkit} ist es Bereits
+Mit der Erweiterung ``pytest-couchdbkit'' \cite{pytest:couchdbkit} ist es Bereits
 bestens für das Testen von Applikationen und einzelnen Funktionen,
 welche CouchDB verwenden, geeignet.
-Außerdem basiert ``pytest-couchdbkit"" auch auf der Bibliothek ``couchdbkit"",
+Außerdem basiert ''pytest-couchdbkit'' auch auf der Bibliothek ``couchdbkit'',
 und ist damit Bestens geeignet um die Basis für den Testprozess zu bilden.
 
 \subsubsection{Datenbank Management}
@@ -152,7 +151,7 @@ Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen eine
     \item[bin/slave.py] [db] [name] simple \hfill \\
         Started einen Slave/Worker Prozess
     \item[bin/master.py] [db] \hfill \\
-        Startet den Master Prozess - es darf nur einen geben und das System testet nicht, ob bereits einer aktiv ist.
+        Startet den Master Prozess - es darf nur einen geben und der Prototyp testet nicht, ob bereits einer aktiv ist.
     \item[tool/put.py] [db] [item] / [db] [item] --newid \hfill \\
         Überträgt den Inhalt der Datei namens \textit{item} zur Datenbank,
         ist das flag \textit{--newid} gesetzt, so wird eine neue Objekt ID erzwungen
