@@ -19,7 +19,7 @@ Diese Sektion gibt Aufschluss über die Grobstruktur des CI-Systems auf logische
   \centering
   \label{fig:grob-layout-komponenten-logisch}
   \includegraphics[width=\textwidth]{imageinput/grob-layout-komponenten-logisch.png}
-  \caption{\"Ubersicht ber Systemkomponenten - logisch}
+  \caption{\"Ubersicht über Systemkomponenten - logisch}
 \end{figure}
 
 
@@ -345,7 +345,6 @@ es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeite
 
 
 \begin{figure}[ht] 
-  \label{fig:auftrag-zuteilung-claim}
   \begin{sequencediagram}
       \newinst{workera}{:Worker A}
       \newinst[1]{manager}{:Manager}
@@ -369,6 +368,7 @@ es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeite
       \mess{manager}{approve A}{workerb}
   \end{sequencediagram}
   \caption{Auftragszuteilung: Ausschreibungsbasiert}
+  \label{fig:auftrag-zuteilung-claim}
 \end{figure}
 
 \subsubsection{Auswahl}

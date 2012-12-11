@@ -18,7 +18,6 @@ und PostgreSQL \cite{postgresql:website} (relational).
 Beide Systeme besitzen Werkzeuge für Master-Master Replikation
 und primitiven für die Mitteilung von Änderungen.
 
-%XXX: cites
 Andere Systeme wie Mysql (relational) \cite{mysql:website}, Mongodb(dokumentorientiert) \cite{mongodb:website}
 und  Neo4J (graph) \cite{neo4j:website} scheiden aus, weil zu ihrem Funktionsumfang
 nur die Master-Slave Replikation geh\"ort.
@@ -33,7 +32,6 @@ Außerdem erscheint der Prozess der Replikation in CouchDB als fehlertoleranter 
 % \cite
 Während in PostgreSQL die Mitteilungen einfach nur eine Nachricht sind,
 welche mitteilt, dass etwas geändert wurde (aber nicht was)
-% \cite couchdb:changestream}
 so beinhalten die Mitteilungen von CouchDB \cite[Chap Notifications]{couchdb:guide}, genaue Informationen
 über das geänderte Objekt, eventuelle Konflikte der Datenbank
 und auf Wunsch sogar das Objekt selbst.
@@ -82,10 +80,10 @@ Diese Sektion stellt die genutzten Bibliotheken vor.
 
 \subsubsection{Datenbank Interaktion}
 
-Zur Interaktion mit CouchDB wurde die Bibliothek ``couchdbkit"" \cite{couchdbkit:website} verwendet.
+Zur Interaktion mit CouchDB wurde die Bibliothek \emph{couchdbkit} \cite{couchdbkit:website} verwendet.
 Sie stellte als einzige alle Funktionen der HTTP-Api von CouchDB zur Verfügung.
 %XXX cites?
-Andere Bibliotheken sind python-couchdb (kein Support fuer Änderungsmitteilungen)
+Andere Bibliotheken sind python-couchdb (kein Support für Änderungsmitteilungen)
 und Paisley (sehr Unvollständig)
 
 \subsubsection{SCM Interaktion}

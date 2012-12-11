@@ -13,21 +13,21 @@ Programme nach einer vollzogenen Integration zu testen.
 
 In regelmäßigen Abständen, wie z.B. nach einer erfolgreichen Integration oder nach Arbeitsschluss,
 wird das Programm vorbereitet und getestet.
-Dies unterst\"utzt das rasche Auffinden von Fehlern
-und informiert \"uber den Zustand der Software.
+Dies unterstützt das rasche Auffinden von Fehlern
+und informiert über den Zustand der Software.
 Nach Abschluss eines solchen Testes stehen dann das Resultat
-und ein Zustandsbericht zur Verf\"ugung.
+und ein Zustandsbericht zur Verfügung.
 
 Im Laufe der Zeit hat sich der Inhalt der Zustandsberichte weiterentwickelt.
-Waren es anf\"anglich nur sp\"arliche Daten \"uber Erfolg/Misserfolg,
+Waren es anfänglich nur spärliche Informationen über Erfolg bzw. Misserfolg,
 so findet man heutzutage Mitschnitte verschiedener Datenquellen, Testergebnisse
-\cite{jenkins:junitxml}, sowie detaillierte Informationen \"uber die Umgebung des Tests.
+\cite{jenkins:junitxml}, sowie detaillierte Informationen über die Umgebung des Tests.
 
-Weiterhin entstand mit Zunehmenden Anforderungen an Portabilit\"at \"uber
-verschiedenste Arten von Plattformen (z.B. Datenbank oder Betriebssysteme)
+Weiterhin entstand mit Zunehmenden Anforderungen an Portabilität über
+verschiedenste Arten von Plattformen (z.B. Datenbanken oder Betriebssystemen)
 die Notwendigkeit das System in mehr als nur einer Umgebung zu testen.
 
-Auch die Verwaltung von Software hat sich ge\"andert.
+Auch die Verwaltung von Software hat sich geändert.
 Während ursprünglich nur auf einem Zweig der Entwicklung gearbeitet und integriert wurde,
 findet dies Dank moderner Quellcode-verwaltung jetzt in vielen Zweigen statt.
 \cite{dvcs:vorteile, dvcs:entwicklungsmodelle}
@@ -35,20 +35,21 @@ findet dies Dank moderner Quellcode-verwaltung jetzt in vielen Zweigen statt.
 Aufgrund dieser Entwicklung stehen immer mehr Daten und Informationen zur Verfügung,
 und es erscheint überaus sinnvoll, diese auch zu nutzen, um den Entwicklungsprozess zu unterstützen.
 
+%XXX woanders?
 Besonders Interessant sind dabei feststellbare Unterschiede zwischen den Umgebungen,
 sowie feststellbare Unterschiede zwischen verschiedenen Zweigen der Entwicklung.
 
 %XXX: test vor integration?
 
 
-\begin{verbatim}
-start traditionelles ci
-ueberfuehrung anforderungen
-ueberfuehrung branches, build achsen
-groessere datenmengen
-analyse
-feststellung struktir
-\end{verbatim}
+%\begin{verbatim}
+%start traditionelles ci
+%ueberfuehrung anforderungen
+%ueberfuehrung branches, build achsen
+%groessere datenmengen
+%analyse
+%feststellung struktir
+%\end{verbatim}
 
 
 
@@ -71,31 +72,25 @@ das Fehlen von Schnittstellen für die Erweiterung der CI-Systeme
 erschwert die Implementation von Werkzeugen für Analyse ungemein.
 
 
-\begin{verbatim}
-- datenbankferne
-- probleme des client/server ?
-\end{verbatim}
-
 \section{Zielsetzung}
 %XXX nochmal
 Ziel dieser Arbeit ist es  aufzuzeigen, dass die oben genannten Probleme lösbar sind.
 Zu diesem Zweck soll die Grundlage für ein System geschaffen werden,
 welches auch in der Lage ist dies umzusetzen.
 
-Es ist somit ein grundlegendes verteiltes System f\"ur Kontinuierliche Integration zu schaffen,
-welches auf verteilter Datenbanktechnologie basiert.
+Es ist somit ein grundlegendes verteiltes System für Kontinuierliche Integration zu schaffen,
+welches auf verteilter Datenbanktechnik basiert.
 Dies dient als Ansatzpunkt, um das System zu erweitern und
-Standardschittstellen f\"ur den Datenzugriff zur Verf\"ugung zu stellen.
+Schnittstellen für den Datenzugriff zur Verfügung zu stellen.
 
 Dabei sollten sowohl die grundlegenden Funktionen eines CI,
-als auch die M\"oglichkeit der Erweiterung in Betracht gezogen werden,
+als auch die Möglichkeit der Erweiterung in Betracht gezogen werden,
 
-Beispiele f\"ur solche Erweiterungen wären,
-wie schon genannt,
-vergleichende Analyse zwischen Entwicklungzweigen oder Eigenständige Analysewerkzeuge.
+Beispiele für solche Erweiterungen wären, wie schon genannt,
+vergleichende Analyse zwischen Entwicklung-zweigen oder Eigenständige Analysewerkzeuge.
 
-Wichtig ist hierbei die grundlegende Erweiterbarkit
-und nicht die L\"osung eines speziellen Problemes.
+Wichtig ist hierbei die grundlegende Erweiterbarkeit
+und nicht die Lösung eines speziellen Problems.
 
 
 \begin{verbatim}
