@@ -12,8 +12,6 @@ welche für das Verständnis dieser Arbeit hilfreich sind.
 
 \section{CAP}
 \label{sec:base:cap}
-
-
 %XXX literatur
 %  http://www.julianbrowne.com/article/viewer/brewers-cap-theorem
 Das CAP Theorem nach \cite{brewer:cap} beschreibt 3 grundlegend
@@ -37,18 +35,18 @@ vollständig erfüllt werden können.
 
 Wie bereits im \cref{chap:intro} erwähnt, behandelt CI die regelmäßige Integration und das anschließende automatische Testen von Softwareprodukten
 Dabei können verschiedenste Ereignisse den Anstoß geben.
-AM einfachsten sind dabei der Anstoss durch eine Zeitsteuerung,
-oder durch vom Quellcode Management abgesetzte Mitteilungen über neue Änderungen.
+AM einfachsten sind dabei der Anstoß durch eine Zeitsteuerung
+oder vom Quellcode Management abgesetzte Mitteilungen über neue Änderungen.
+Manche Systeme nehmen sogar den Erfolg anderer Tests zum Anstoß.
 
- 
+Ziel ist es dabei Fehler früher und schneller aufzufinden,
+und zu verhindern, das diese erneut auftreten.
+Außerdem wird ermöglicht, das Produkt immer in einem Zustand zu halten,
+welcher das veröffentlichen einer neuen Version jederzeit ermöglicht.
 
-\begin{verbatim}
+Jay Folwer beschreibt in seinem Essay ``
+A Recipe for Build Maintainability and Reusability'' \cite{folwer:receipe} eindrucksvoll in welchem Kontext diese Praxis einzusetzen ist..
 
-
-- nachgelagerte builds?
-- folwer ci - grundlegende verwendung 
-\end{verbatim}
-\cite{folwer:receipe}
 
 \section{Quelltext/Versions Management}
 \label{sec:base:scm}
