@@ -32,9 +32,9 @@ Dabei werden 3 Punkte als wichtig erachtet.
   oder die Struktur des Systems zu verändern.
 
 \dhitem[S2]
-  Alle anfallenden, Längerfristig verfügbaren, Daten sollen\\
+  Alle anfallenden längerfristig verfügbaren Daten sollen\\
   mittels einer Standard-Schnittstelle für \\
-  Datenbankzugriff abfragbar/verwendbar sein.
+  Datenbankzugriff abfragbar Bez. verwendbar sein.
 
 \dhitem[S3]
   Das System soll für Erweiterungen offen stehen, \\
@@ -49,7 +49,7 @@ Um ein modernes und erweiterbares CI-System zu schaffen,
 müssen zuerst die Kernfunktionen festgelegt werden.
 Anschließend kann auf dieser Basis
 eine Plattform für Erweiterungen geschaffen werden.
-Dabei ist schon im Kern das bereits Angesprochene Problem
+Dabei ist schon im Kern das bereits angesprochene Problem
 der Matrix-Builds zu beachten.
 
 Anschließend können auf dieser Basis nützliche weiterführende Funktionen
@@ -99,20 +99,20 @@ Weiterhin besteht auch Interesse an statistisch auswertbaren Daten
 wie z.B. den Speicher-verbrauch \deffeat{arbeitsschritt-stats}.
 
 Auch nach dem Ausf\"uhren eines Arbeitsschritts fallen interessante Daten an.
-Oftmals sorgt zumindest einer der Arbeitsschritte für das Generieren eines Ausführbaren Programms.
+Oftmals sorgt zumindest einer der Arbeitsschritte für das Generieren eines ausführbaren Programms.
 Dieses sollte sp\"ater auch zur Verf\"ugung gestellt werden \deffeat{arbeitsschritt-artefakt}.
 Weiterhin finden sich Test-Resultate in diversen Standardformaten \deffeat{arbeitsschritt-resultate},
 wie z.B. JunitXML.
 
 \subsubsection{Arten Arbeitsschritte}
 
-Auch bei den Arten der Arbeitsschritte gibt es f\"r gew\"ohnlich mehrere M\"oglichkeiten (siehe Kapitel~\ref{chap:ist-analyse}).
+Auch bei den Arten der Arbeitsschritte gibt es für gew\"ohnlich mehrere M\"oglichkeiten (siehe Kapitel~\ref{chap:ist-analyse}).
 Neben den gewohnten Prozess-schritten (\reffeat{arbeitsschritt-prozess}) sind weitere Arten \"ublich.
 Interaktion mit dem Quellcodemanagement \deffeat{arbeitsschritt-scm}, sowie
 Schritte implementiert in einer Skript-Sprache \deffeat{arbeitsschritt-script},
 stellen weiterf\"uhrende Hilfen dar.
 
-\subsubsection{Verteilung von Arbeitspacketen}
+\subsubsection{Verteilung von Arbeitspaketen}
 
 Um \"uberhaupt bis zu den Arbeitsschritten zu kommen,
 ist es notwendig, Arbeitspakete zu verteilen \deffeat{arbeitspackete-verteilen}.
@@ -120,7 +120,7 @@ Dies soll ein verteilter Prozess sein \deffeat{arbeitspackete-autonome-verteilun
 bei dem die Slaves/Arbeiter aktiv mitwirken k\"onnen.
 Eine denkbare Erweiterung w\"are die Möglichkeit, das Slaves/Arbeiter
 die Arbeitspakete mittels kategorischer Filter auswählen \deffeat{arbeitspackete-verteilung-selektiv}.
-Beispiele f\"ur diese w\"aren z.b. Plattform oder Betriebsumgebung.
+Beispiele f\"ur diese w\"aren z.B. Plattform oder Betriebsumgebung.
 
 \subsubsection{Auftragseingang und Vorbereitung}
 
@@ -128,7 +128,7 @@ Beispiele f\"ur diese w\"aren z.b. Plattform oder Betriebsumgebung.
 
 Der Auftragseingang kann sich vielseitig gestalten.
 Moderne Systeme unterstützen eine Vielzahl von Medien \deffeat{auftrag-eingang-medien},
-wie z.b. Email, Web-Hooks, Web-Formulare oder Zeitgesteuerte Systeme.
+wie z.b. Email, Web-Hooks, Web-Formulare oder zeitgesteuerte Systeme.
 
 W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterst\"utzt werden,
 sind die Anreicherung eines Auftrages um eigene Daten/\"Anderungen.
@@ -150,9 +150,9 @@ Die weitergehende Analyse von Ergebnissen soll mittels Erweiterungen behandelt w
 
 Um die Erweiterbarkeit des Systems aufzuzeigen,
 sollen 2 exemplarische Erweiterungen betrachtet werden.
-Diese werden hier nur Grob umrandet und dann Sp\"ater in der Analyse genauer spezifiziert.
+Diese werden hier nur grob umrandet und dann sp\"ater in der Analyse genauer spezifiziert.
 
-Dir erste Erweiterung betrachtet vergleichende Analysen von Testergebnisen \deffeat{ext-testing}.
+Die erste Erweiterung betrachtet vergleichende Analysen von Testergebnisen \deffeat{ext-testing}.
 Dabei sollen Entwickler in die Lage versetzt werden,
 dass Fehler-verhalten eines Programms in verschiedenen Konfigurationen und Auftr\"agen zu vergleichen.
 Dies dient zur Vereinfachung der Fehleranalyse.
@@ -204,7 +204,7 @@ Im Rahmen dieser Arbeit werden 3 Systemtests definiert.
     soll das komplette CI-System auf einer Testdatenbank starten
     und seine Funktion sicherstellen
   \dhitem[Beispiel Datenanalyse]
-    soll die Funktion der Beispielerweiterung f\"ur Datenanalyse sicherstellen
+    soll die Funktion der Beispielerweiterung f\"ur die Datenanalyse sicherstellen
 \end{description}
 
 \subsection{Manuelle Tests}
