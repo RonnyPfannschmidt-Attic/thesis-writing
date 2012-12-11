@@ -1,6 +1,8 @@
 \appendix
 \chapter{Anhang}
 \section{Weitere Tabellen}
+
+
 \section{Abkürzungsverzeichniss}
 \begin{description}
   \item[CI] Continious Integration/Kontinuierliche Integration
@@ -11,6 +13,21 @@
 
 
 \section{Ergänzende Abbildungen}
+
+\begin{figure}[h]
+\begin{minted}{python}
+#pseudocode
+class Proc(object):
+  def __init__(self, lookup):
+    self.lookup = lookup or default_lookup()
+
+  def run(self, step):
+    proc = self.lookup[step.stepper](self, step)
+    proc.run()
+\end{minted}
+\caption{Beispiel Zuordnung statt Fabrik}
+\label{fig:fabrik-mapping}
+\end{figure}
 
 
 \begin{figure}

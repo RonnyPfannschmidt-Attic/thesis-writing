@@ -22,7 +22,6 @@ Die Datenbank stellt die Basis dieses Systems und ihre Eigenschaften werden die 
 
 \subsection{Technologische Betrachtung}
 
-%XXX: Bild overview verweisen
 In einer initialen Sondierung zeigte sich,
 dass 3 Klassen an Datenbanken die grundlegenden Anforderungen an die Modellierung des Denkschemata erfüllen.
 Dies sind die Dokument-orientierten Datenbanken, die Graphendatenbanken und moderne relationale Datenbanken. 
@@ -47,20 +46,6 @@ Unterschiedliche Komponenten des Systems beginnen mit ihren Aufgaben,
 wenn Änderungen an der Datenbank stattfinden.
 Daher sind detaillierte Echtzeit-Informationen über Änderungen der Datenbank eine entscheidende Komponente,
 deren Einfluss auf Latenzen und Antwortzeiten der Komponenten nicht zu unterschätzen ist.
-
-
-\begin{verbatim}
-
-- selektive/gefilterte replikation wuenschenswert
-- local atomic <> mvcc ?
-
--> modellierung referenierung
-% schemata
-% mapping auf datenbank aenderungen
-
--> couchdb ausarbeiten
-
-\end{verbatim}
 
 
 \section{Programmiersprachen}
@@ -158,19 +143,5 @@ kann eine einfache Zuordnung an Konstruktoren anlegt werden.
 
 Dies trifft besonders auf die ``Proc'' Klassen (Siehe \Cref{fig:klassen-arten-arbeitsschritt}) zu.
 Ihre Zuordnung zu Arbeitsschritten findet über den Wert eines Attributes statt
-daher ist eine eindeutige Zuordnung über ein Mapping ausreichend.
+daher ist eine eindeutige Zuordnung über ein Mapping ausreichend (siehe \cref{fig:fabrik-mapping}).
 
-\begin{figure}
-\begin{minted}{python}
-#pseudocode
-class Proc(object):
-    def __init__(self, lookup):
-        ...
-        self.lookup = lookup or default_lookup()
-
-    def run(self, step):
-        proc = self.lookup[step.stepper](self, step)
-        proc.run()
-\end{minted}
-\caption{Beispiel Zuordnung statt Fabrik}
-\end{figure}
