@@ -75,43 +75,31 @@ erschwert die Implementation von Werkzeugen für Analyse ungemein.
 \section{Zielsetzung}
 %XXX nochmal
 Ziel dieser Arbeit ist es  aufzuzeigen, dass die oben genannten Probleme lösbar sind.
-Zu diesem Zweck soll die Grundlage für ein System geschaffen werden,
-welches auch in der Lage ist dies umzusetzen.
+Zu diesem Zweck soll der Kern für ein System geschaffen werden,
+welches in der Lage ist dies umzusetzen.
 
-Es ist somit ein grundlegendes verteiltes System für Kontinuierliche Integration zu schaffen,
-welches auf verteilter Datenbanktechnik basiert.
+Es ist somit ein verteiltes System für Kontinuierliche Integration zu schaffen,
+welches auf Datenbanktechnik basiert.
 Dies dient als Ansatzpunkt, um das System zu erweitern und
 Schnittstellen für den Datenzugriff zur Verfügung zu stellen.
 
 Dabei sollten sowohl die grundlegenden Funktionen eines CI,
-als auch die Möglichkeit der Erweiterung in Betracht gezogen werden,
-
+als auch die Möglichkeit der Erweiterung in Betracht gezogen werden.
 Beispiele für solche Erweiterungen wären, wie schon genannt,
-vergleichende Analyse zwischen Entwicklung-zweigen oder Eigenständige Analysewerkzeuge.
+vergleichende Analyse zwischen Entwicklung-zweigen oder eigenständige Analysewerkzeuge.
 
-Wichtig ist hierbei die grundlegende Erweiterbarkeit
+Wichtig ist hierbei die grundlegende Erweiterbarkeit aufzuzeigen
 und nicht die Lösung eines speziellen Problems.
-
-
-\begin{verbatim}
-- loesungswunsch
-    - offene fragen
-- dokumentorientert und verteilt
-\end{verbatim}
 
 \section{Abgrenzung}
 
-\begin{verbatim}
-- kernkomponenten
-- prototyp
-- ausgewaehlte erweiterung
-  - praktisch analyse (sommer)
-  - theoretish - regressions-vergleiche
+Es soll lediglich der \emph{Kern} eines Systems als \emph{Prototyp} geschaffen werden,
+damit werden Punkte wie die Benutzeroberfläche und Benutzer-verwaltung
+außen vor gestellt.
 
-- keine authentifikation
-- keine user-interfaces
+Um die Arbeit überschaubar zu halten, wird dabei darauf verzichtet, Analysewerkzeuge außerhalb der verwendeten Datenbank zu betrachten.
+Stattdessen wird der Kern des Systems und die Datenbank in den Fokus gestellt.
 
-\end{verbatim}
 
 \section{Aufbau der Arbeit}
 
