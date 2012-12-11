@@ -104,7 +104,7 @@ Dies stellt einen ``Single Point of Failure'' dar.
 \section{Beispiele aus der Praxis}
 
 Um Probleme in der Praxis aufzuzeigen,
-soll eine Auswahl von Werkzeugen getroffen werden.
+soll eine Auswahl an Werkzeugen getroffen werden.
 Anschließend sollen ihre Eigenschaften und Probleme
 näher untersucht werden.
 
@@ -113,13 +113,13 @@ näher untersucht werden.
 
 Um die Analyse von Praxisbeispielen zu ermöglichen,
 sollen Systeme mit gewissen Rahmenbedingungen ausgew\"ahlt werden.
-Wichtigstes Kriterium ist dabei, das sie \textbf{open-source} Software sind,
+Wichtigstes Kriterium ist dabei, dass sie \textbf{open-source} Software sind,
 oder zumindest öffentlich verfügbar sind.
 Sie sollten \textbf{verbreitet} sein, damit ein Überblick
 über praxisrelevante Probleme geschaffen.
-Außerdem sollten sie \textit{kostenlos} sein,
+Außerdem sollten sie \textit{kostenlos} sein. %,
 %XXX> LOL
-\textit{um den finanziellen Ruin eines hilflosen Studenten zu verhindern}.
+%\textit{um den finanziellen Ruin eines hilflosen Studenten zu verhindern}.
 
 Ausgewählt wurden die Systeme
 \begin{itemize}
@@ -142,8 +142,8 @@ Sie stellen ein einfach zu bedienendes Nutzerinterface zur Verfügung,
 Konfiguration findet jedoch nur im Rahmen dieses Interfaces statt.
 
 Erweiterte Parametrisierung ist nicht m\"oglich.
-Auch Entwicklungszweige sind dem System unbekannt,
-m\"ochte man mehr als einen Entwicklungszweig dem Testprozess unterziehen,
+Auch Entwicklungszweige sind dem System unbekannt.
+M\"ochte man mehr als einen Entwicklungszweig dem Testprozess unterziehen,
 so m\"ussen weitere Jobs angelegt werden.
 
 Zugriff auf die Daten kann nur mittels der internen API oder
@@ -151,14 +151,14 @@ einer nicht dokumentierten REST API genommen werden.
 
 Damit war es nicht m\"oglich in annehmbarer Zeit festzustellen,
 in wie weit sich die bereits vorgestellten UseCases umsetzen lassen.
-Das System verwendet Augenscheinlich kein DBMS.
+Das System verwendet augenscheinlich kein DBMS.
 Datenabfragen und Aggregationen m\"ussen
 somit von Hand ausformuliert werden.
 
 Das Konzept der Build-Artefakte wird unterst\"utzt und
 aktiv f\"ur Funktionen wie nachgelagerte Builds verwendet.
 
-Es gibt einige simplel gestrickte Plugins mit dem Zweck, Testresultate anzuzeigen.
+Es gibt einige einfach gestrickte Plugins mit dem Zweck, Testresultate anzuzeigen.
 Jedoch wird auf weitergehende Analysen dieser Resultate g\"anzlich verzichtet,
 mehr als eine Historie gibt es nicht.
 
@@ -167,26 +167,26 @@ mehr als eine Historie gibt es nicht.
 
 
 BuildBot \cite{buildbot:website} positioniert sich als eine Art Meta-Build-Server.
-Es biete keine normale Benutzerschnittstelle zur Konfiguration,
+Er bietet keine normale Benutzerschnittstelle zur Konfiguration,
 sondern wird mittels Komposition von Metadaten und Komponenten konfiguriert.
 
 Die Konfiguration des Servers stellt dabei ein Pythons-Script,
 welches die gewünschten Jobs zusammenstellt und den Server konfiguriert.
 Matrix-Builds werden nicht unterst\"utzt,
 k\"onnen aber in Teilen durch die Verwendung von Schleifen im Script simuliert werden.
-Es ist möglich Builds Jobs mit minimale Parameter in Form von Strings zu \"ubergeben,
+Es ist möglich Builds Jobs mit minimalen Parametern in Form von Strings zu \"ubergeben,
 dabei kann man auch den Entwicklungszweig mit angeben.
 
 Builbot unterst\"utzt das Sammeln von Daten in sog. Logdateien,
-diese sind intern ind extern leicht Auffindbar.
-Es gibt sogar schon Werkzeuge, welche dies zur erweiterten Vergleichen von Testresultaten nutzen nutzen.
+diese sind intern und extern leicht auffindbar.
+Es gibt sogar schon Werkzeuge, welche dies zum erweiterten Vergleichen von Testresultaten nutzen nutzen.
 
 %XXX referenzen
 %XXX: C
 Einige wurden dabei besonders genau betrachtet.
 Das erste ist der PYPY Buildbot \cite{pypy:overview} , welcher eine hilfreiche Gesamtübersicht der Testergebnisse und ihrer Fehler gibt
 der letzten 4 Builds darstellt.
-Das zweite ist das Script namens ``compare\_last\_builds.py''
+Das zweite ist das Script namens \verb|compare\_last\_builds.py|
 aus dem PYPY Projekt \cite{pypy:diffscript} ,
 welches die Unterschiede in den Testresultaten zwischen 2 Builds hervorhebt.
 Sie werden sp\"ater als Ideenlieferant dienen.
@@ -199,7 +199,7 @@ Sie empfehlen Integration externer Komponenten \cite{buildbot:irc}.
 
 
 %XXX refs
-TravisCI \cite{travisci:website} ist wesentlich anders positioniert, als die beiden voehergehenden Systeme.
+TravisCI \cite{travisci:website} ist wesentlich anders positioniert, als die beiden vorhergehenden Systeme.
 Es setzt Zusammenarbeit in den Vordergrund und der Open-Source Community werden gehostete Server
 kostenfrei zur Verf\"ugung gestellt.
 Diese behandeln die Integration von Projekten,
@@ -217,11 +217,11 @@ so wird es regelm\"assig bei Änderungen integriert.
 Besonders hilfreich ist dabei, das TravisCI auch den Fall behandelt,
 wenn ein anderer Benutzer der Code-Hosting Seite Github \"Anderungen anmeldet
 \cite{github:pullreq} (sog. Pull-request).
-Die Testet es und f\"ught anschliessend das Resultat der \"Anderungsanmeldung hinzu.
+Die testet es und f\"ught anschliessend das Resultat der \"Anderungsanmeldung hinzu.
 
 Was leider nichts daran \"andert, das TravisCI keine externe API zur Verfügung stellt.
 Es ist ein geschlossenes System, außerdem hat es kein Konzept f\"ur Datensammlung/Artefakte
-und Testresultate werden nicht betrachtet.
+und auch Testresultate werden nicht betrachtet.
 Es ist nicht portabel und scheinbar f\"ur den Betrieb nur
 auf den zur Verfügung gestellten Servern vorgesehen.
 
@@ -232,7 +232,7 @@ Dieses Kapitel hat die Probleme der CI-Systeme n\"aher gezeigt.
 Wir haben gesehen, dass Datenzugriff und Erweiterungen f\"ur Analyse,
 schwer oder gar nicht zu erreichen sind.
 Außerdem sind die Systeme nach einigen Fehlerklassen nicht direkt wiederherstellbar.
-Im Folgenden Verlauf der Arbeit soll der Grundstein f\"ur ein CI-System gelegt werden,
+Im folgenden Verlauf der Arbeit soll der Grundstein f\"ur ein CI-System gelegt werden,
 welches Datenzugriff und Datenanalyse vereinfacht.
 Zus\"atzlich soll es grundsätzliche Fehlertoleranz aufweisen.
 
