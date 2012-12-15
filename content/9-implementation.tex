@@ -189,6 +189,7 @@ Folgende Verzeichnisse sind noch wichtig.
 
 
 \subsection{Datenbank Indexe}
+\label{sec:db-indexe}
 
 Die Indexe werden in CouchDB mittels 
 eines MapReduce \cite{couchdb:views} Algorithmus umgesetzt,
@@ -232,6 +233,14 @@ welcher die Resultate innerhalb der Datenbank speichert.
 \end{description}
 
 \subsection{CouchDB Applikation}
+
+Die Datenbank-Applikation wurde mit \emph{couchdb-compose} \cite{couchdb:compose} geschaffen und befindet sich wie bereits erwähnt im Verzeichnis \verb|composeapp|.
+
+Die Grundstruktur ist dabei in der Datei \verb|couchdb-compose.yml| festgelegt.
+Die bereits in \cref{sec:db-indexe} erwähnten Views befinden sich im Verzeichnis \verb|views|.
+weiterhin beinhaltet die applikation einen \emph{list} \cite{couchdb:guide}[list] s names \verb|lines| - er dient dazu, die Daten aus dem \verb|lines| view als text zu formatieren.
+
+Weiterhin sind in der Datei \verb|rewrites.yml| Regeln enthalten, um verwendbare URLs für den \verb|lines| show benutzen zu können.
 
 \section{Grundlegende Primitiven}
 
