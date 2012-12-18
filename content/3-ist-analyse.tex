@@ -3,7 +3,7 @@
 
 Dieses Kapitel dient der Beschreibung existierender System.
 Es soll ihre Eigenschaften und Probleme aufzeigen.
-Diese werden zuerst Theoretisch betrachtet und
+Diese werden zuerst theoretisch betrachtet und
 dann an Systemen in der Praxis demonstriert.
 
 % dieses kap dient .. und damit soll .. aufbau
@@ -13,40 +13,40 @@ dann an Systemen in der Praxis demonstriert.
 \subsection{Struktur}
 \label{sec:ist-analyse:struktur}
 
-Wie in der folgenden Grafik leicht zu erkennen,
-sind traditionellen CI-Systeme Client-Server Systeme.
+Wie in der \cref{fig:ist-aufbau-tradition} leicht zu erkennen ist,
+sind traditionellen \ac{CI}-Systeme Client-Server Systeme.
 
 \begin{figure}[ht]
   \centering
-  \label{fig:ist-aufbau-tradition}
   \includegraphics[height=1in]{imageinput/ist-aufbau-tradition.png}
   \caption{Logischer Aufbau eines CI System}
+  \label{fig:ist-aufbau-tradition}
 \end{figure}
 
-Der sogenannte Master ist der Server und verwaltet alle Daten.
-Die Slaves sind die Clients und verrichten die eigentliche Arbeit.
+Der sogenannte Master (M) ist der Server und verwaltet alle Daten.
+Die Slaves (S1 bis SN) sind die Clients und verrichten die eigentliche Arbeit.
 Sie sammeln Daten und liefern diese einschließlich der Resultate beim Master ab.
 
-Benutzer interagieren Ausschließlich mit dem Master.
+Benutzer interagieren ausschließlich mit dem Master.
 
 \subsection{Datensammlung}
 Wie bereits in \Cref{sec:base:ci} erwähnt,
-führt ein CI-System nicht nur Aufträge aus,
+führt ein \ac{CI}-System nicht nur Aufträge aus,
 sondern sammelt auch Daten für die spätere Weiterverarbeitung.
 
-Die Datensammlung lässt sich dabei grob in 2 Bereiche einteilen.
-Zum einen die Laufzeitdaten und zum anderen die Artefakte.
+Die Datensammlung lässt sich dabei grob in zwei Bereiche einteilen
+zum Einen in die Laufzeitdaten und zum Anderen in die Artefakte.
 
-Laufzeitdaten fallen bereits w\"ahrend der Ausf\"uhrung an,
-und beinhalten in der Regel zumindest die Textuellen Ausgaben
+Laufzeitdaten fallen bereits w\"ahrend der Ausf\"uhrung an
+und beinhalten in der Regel zumindest die textuellen Ausgaben
 der ausgef\"uhrten Programme.
-Weitere M\"oglichkeiten k\"onnen Resultate von Tests, Echtzeit Mitschnitte und Aufführungsstatistiken sein.
+Weitere M\"oglichkeiten k\"onnen Resultate von Tests, Echtzeit Mitschnitte und Ausführungsstatistiken sein.
 Laufzeitdaten werden dem Benutzer in der Regel Zeitnah zur Verfügung gestellt.
 
 Artefakte hingegen sind Dateien,
-welche erst nach Abschluss eines Schrittes zur verf\"ugung stehen.
-Zu ihnen geh\"oren neben den traditionellen ausf\"uhrbaren Dateien
-auch lauff\"ahige Archive des Gesammtprogrammes oder Testergebnisse in Formaten wie z.b. JunitXML oder TAP.
+welche erst nach Abschluss eines Schrittes zur Verfügung stehen.
+Zu ihnen geh\"oren neben den traditionellen, ausf\"uhrbaren Dateien
+auch lauff\"ahige Archive des Gesamtprogramms oder Testergebnisse in Formaten wie zb. JunitXML \cite{jenkins:junitxml} oder \ac{TAP}.
 
 %XXX: cite tap, junitxml
 
@@ -58,23 +58,23 @@ w\"ahrend Testergebnisse nur dargestellt werden.
 
 \section{Probleme existierender Systeme}
 
-Diese Sektion gibt einen \"Uberblick \"uber die Problemarten existierender Ststeme
+Diese Unterkapitel gibt einen \"Uberblick \"uber die Problemarten existierender Systeme
 
 \subsection{Datenzugriff}
 
-Beim Datenzugriff sind die existierenden Systeme besonders Problematisch.
-Es gibt Grundsätzlich keinerlei Standardschnittstellen.
+Beim Datenzugriff sind die existierenden Systeme besonders problematisch.
+Es gibt grundsätzlich keinerlei Standardschnittstellen.
 Die meisten Systeme verwenden noch nicht einmal eine Datenbank.
-Jene welche doch eine verwenden wird, machen sie nicht zugänglich.
+Jene, welche doch eine verwenden, machen sie nicht zugänglich.
 
 Die Datenhaltung dieser Systeme kann somit grob als geordnete Ablage klassifiziert werden.
 Weiterführende Abfragen sind nicht möglich.
 
 \subsection{Erweiterbarkeit}
 
-Die Erweiterbarkeit eines CI-Systemes wird von 2 Hauptpunkten dominiert.
-Dies ist die Integration in die Benutzeroberfl\"ache
-und zum anderen die Möglichkeiten mit den Daten interagieren
+Die Erweiterbarkeit eines \ac{CI}-Systems wird von zwei Hauptpunkten dominiert.
+Dies ist zum Einen die Integration in die Benutzeroberfl\"ache
+und zum Anderen die Möglichkeiten mit den Daten interagieren
 und auf neue Weise zu kombinieren.
 
 Die erweiterbaren Systeme stellen normalerweise zumindest eine Schnittstelle
@@ -83,20 +83,22 @@ Damit ist zumindest das problemlose Anpassen der Benutzeroberfläche gegeben.
 
 
 Für eigene Analysewerkzeuge kann es jedoch oft notwendig werden,
-eine eigene Datenbank, welche vom CI-System getrennt ist zu verwenden.
-Einige Anbieter von CI-Werkzeugen wünschen dies sogar explizit.
+eine eigene Datenbank, welche vom \ac{CI}-System getrennt ist, zu verwenden.
+Einige Anbieter von \ac{CI}-Werkzeugen wünschen dies sogar explizit.
 %XXX:
 
 
 \subsection{Komponentenabhängigkeit}
 
 Wie bereits in \cref{sec:ist-analyse:struktur} erw\"ahnt,
-sind CI-Systeme in der Regel traditionelle Netzwerksysteme die nach dem Client/Server Prinzip operieren.
-Dabei sind die Rollen strikt als Master und Slave eingeteilt
-und das Management wird zentral im Master vorgenommen.
-Slaves haben dabei keinerlei Autonomie und folgen strikt den Anweisungen des Master.
+sind \ac{CI}-Systeme in der Regel traditionelle Netzwerksysteme,
+die nach dem Client/Server-Prinzip operieren.
+Dabei sind die Rollen strikt als Master und Slave eingeteilt.
+Das Management wird zentral im Master vorgenommen.
+Die Slaves haben dabei keinerlei Autonomie
+und folgen strikt den Anweisungen des Master.
 
-Dadurch nimmt das System zwar keinen Schaden wenn ein Slave ausfällt,
+Dadurch nimmt das System zwar keinen Schaden, wenn ein Slave ausfällt,
 der Ausfall des Master ist jedoch fatal und kann nicht abgefangen werden.
 Dies stellt einen ``Single Point of Failure'' dar.
 

@@ -15,20 +15,20 @@ welche für das Verständnis dieser Arbeit hilfreich sind.
 \label{sec:base:cap}
 %XXX literatur
 %  http://www.julianbrowne.com/article/viewer/brewers-cap-theorem
-Das CAP Theorem nach \cite{brewer:cap} beschreibt 3 grundlegend
+Das \ac{CAP} Theorem nach \cite{brewer:cap} beschreibt drei grundlegend
 wünschenswerte Eigenschaften von verteilten Systemen/Datenbanken.
 
 \begin{description}
   \item[Konsistenz (C)] \hfill \\
-      Alle Knoten sehen zur selben Zeit dieselben Daten. 
+      Alle Knoten sehen zur selben Zeit die selben Daten. 
   \item[Verfügbarkeit (A)] \hfill \\
       Alle Anfragen an das System werden stets beantwortet.
   \item[Partitionstoleranz (P)] \hfill \\
       Das System arbeitet auch bei Verlust von Nachrichten,
-      einzelner Netz-knoten oder Partition des Netzes weiter.
+      einzelner Netz-knoten oder bei der Partition des Netzes weiter.
 \end{description}
 
-Zu beachten ist dabei, dass nur 2 dieser 3 Anforderungen gleichzeitig
+Zu beachten ist dabei, dass nur zwei dieser drei Anforderungen gleichzeitig
 vollständig erfüllt werden können.
 
 \section{Kontinuierliche Integration/Verteilung - Traditionell}
@@ -49,13 +49,13 @@ Jay Folwer beschreibt in seinem Essay ``
 A Recipe for Build Maintainability and Reusability'' \cite{folwer:receipe} eindrucksvoll in welchem Kontext diese Praxis einzusetzen ist..
 
 
-\section{Quelltext/Versions Management}
+\section{Quelltext/Versions-Management}
 \label{sec:base:scm}
 
 
-Quelltext und Versions-Management fasst eine Menge
+\ac{SCM} fasst eine Menge
 von Praktiken und Werkzeugen zusammen,
-welche dazu Dienen, den Quellcode eines Projektes zu verwalten.
+welche dazu dienen, den Quellcode eines Projektes zu verwalten.
 Sie verwalten Änderungen am Quelltext, Zweige der Entwicklung und sogenannte Tags,
 welche einen Namen zu einem bestimmten Änderungsstand zuweisen.
 
