@@ -1,6 +1,6 @@
 \chapter{Zielspezifikation ( 5 \%)}
 \label{chap:target}
-Wie das letzte Kapitel gezeigt hat,
+Wie das vorherige Kapitel gezeigt hat,
 bringen bisherige Systeme diverse Probleme mit sich.
 Da diese nicht oder nur schwer innerhalb dieser Systeme lösbar sind,
 soll ein neues System geschaffen werden.
@@ -20,7 +20,7 @@ qualitativ und quantitativ festlegen.
 \section{Systemanforderungen}
 
 Die Systemanforderungen legen funktionale Eigenschaften der Software auf System-ebene fest.
-Dabei werden 3 Punkte als wichtig erachtet.
+Dabei werden drei Punkte als wichtig erachtet.
 
 
 \begin{description}
@@ -32,13 +32,13 @@ Dabei werden 3 Punkte als wichtig erachtet.
   oder die Struktur des Systems zu verändern.
 
 \dhitem[S2]
-  Alle anfallenden längerfristig verfügbaren Daten sollen\\
+  Alle anfallenden längerfristig verfügbaren Daten müssen\\
   mittels einer Standard-Schnittstelle für \\
   Datenbankzugriff abfragbar Bez. verwendbar sein.
 
 \dhitem[S3]
   Das System soll für Erweiterungen offen stehen, \\
-  und soweit möglich Erweiterbarkeit aktiv unterstützen.
+  und soweit möglich Erweiterbarkeit aktiv zu unterstützen.
 \end{description}
 
 
@@ -52,9 +52,10 @@ eine Plattform für Erweiterungen geschaffen werden.
 Dabei ist schon im Kern das bereits angesprochene Problem
 der Matrix-Builds zu beachten.
 
-Anschließend können auf dieser Basis nützliche weiterführende Funktionen
+Anschließend können auf dieser Basis nützliche, weiterführende Funktionen
 sowie die gewünschten Erweiterungen geschaffen werden.
 
+Dabei werden den einzelnen Anforderungen Kennziffern zugewiesen (F0001 bis F...N).
 
 \subsection{Kernfunktionen}
 
@@ -68,20 +69,20 @@ Jede von ihnen ist unabdingbar.
   \label{fig:use-case-muss}
 \end{figure}
 
-Wie in \Cref{fig:use-case-muss} gut zu erkennen,
+Wie in \Cref{fig:use-case-muss} gezeigt,
 stellt sich der Absolute Kern eines CI-Systeme aus relativ wenigen Funktionalitäten zusammen.
 
-Die erste notwendige Funktion stellt die Verwaltung von Projekten \deffeat{projekt-verwalten}.
+Die erste notwendige Funktion stellt die Verwaltung von Projekten \deffeat{projekt-verwalten} dae.
 Sind diese dann angelegt, kann man damit beginnen, Aufträge abzusetzen \deffeat{auftrag-absetzen}.
 Ist ein Auftrag abgesetzt, so muss seine Richtigkeit sichergestellt werden \deffeat{auftrag-validieren},
 danach kann er für die Bearbeitung \deffeat{auftrag-vorbereiten} vorbereitet werden.
 
-Nach dem der Auftrag an sich vorbereitet ist, müssen entsprechend der Build-Matrix \deffeat{auftrag-matrix}
+Nachdem der Auftrag an sich vorbereitet ist, müssen entsprechend der Build-Matrix \deffeat{auftrag-matrix}
 Arbeitspakete generiert werden \deffeat{arbeitspacket-generieren}.
 Diese Arbeitspakete werden anschließend verteilt \deffeat{arbeitspacket-verteilen} und abgearbeitet \deffeat{arbeitspacket-abarbeiten}.
 
 Das Abarbeiten der Arbeitspakete sollte in Schritten erfolgen \deffeat{arbeitspackete-schritte},
-wobei die grundlegende Art von Arbeitsschritt das Ausführen eines Prozesses \deffeat{arbeitsschritt-prozess} ist.
+wobei die grundlegende Art von Arbeitsschritten das Ausführen eines Prozesses \deffeat{arbeitsschritt-prozess} ist.
 
 
 \subsection{Weiterführende Funktionen}
@@ -95,21 +96,21 @@ informierte Entscheidungen \"uber den Zustand eines Projektes in Integration zu 
 
 Zun\"achst einmal gilt es Datensammlung beim Ablauf eines Arbeitsschritts zu betrachten.
 \"Ublicherweise muss zumindest STDOUT/STDERR schon zur Laufzeit festgehalten \deffeat{arbeisschritt-stdio} werden.
-Weiterhin besteht auch Interesse an statistisch auswertbaren Daten
-wie z.B. den Speicher-verbrauch \deffeat{arbeitsschritt-stats}.
+Weiterhin besteht  Interesse an statistisch auswertbaren Daten
+wie zB. den Speicherverbrauch \deffeat{arbeitsschritt-stats}.
 
-Auch nach dem Ausf\"uhren eines Arbeitsschritts fallen interessante Daten an.
+Nach dem Ausf\"uhren eines Arbeitsschritts fallen interessante Daten an.
 Oftmals sorgt zumindest einer der Arbeitsschritte für das Generieren eines ausführbaren Programms.
 Dieses sollte sp\"ater auch zur Verf\"ugung gestellt werden \deffeat{arbeitsschritt-artefakt}.
 Weiterhin finden sich Test-Resultate in diversen Standardformaten \deffeat{arbeitsschritt-resultate},
-wie z.B. JunitXML.
+wie zB. JunitXML \cite{jenkins:junitxml}.
 
 \subsubsection{Arten Arbeitsschritte}
 
-Auch bei den Arten der Arbeitsschritte gibt es für gew\"ohnlich mehrere M\"oglichkeiten (siehe Kapitel~\ref{chap:ist-analyse}).
-Neben den gewohnten Prozess-schritten (\reffeat{arbeitsschritt-prozess}) sind weitere Arten \"ublich.
-Interaktion mit dem Quellcodemanagement \deffeat{arbeitsschritt-scm}, sowie
-Schritte implementiert in einer Skript-Sprache \deffeat{arbeitsschritt-script},
+Bei den Arten der Arbeitsschritte gibt es für gew\"ohnlich mehrere M\"oglichkeiten (siehe Kapitel~\ref{chap:ist-analyse}).
+Neben den gewohnten Prozess-Schritten (\reffeat{arbeitsschritt-prozess}) sind weitere Arten \"ublich.
+Interaktionen mit dem Quellcodemanagement \deffeat{arbeitsschritt-scm} sowie
+Schritte implementiert in einer Skript-Sprache \deffeat{arbeitsschritt-script}
 stellen weiterf\"uhrende Hilfen dar.
 
 \subsubsection{Verteilung von Arbeitspaketen}
@@ -118,9 +119,9 @@ Um \"uberhaupt bis zu den Arbeitsschritten zu kommen,
 ist es notwendig, Arbeitspakete zu verteilen \deffeat{arbeitspackete-verteilen}.
 Dies soll ein verteilter Prozess sein \deffeat{arbeitspackete-autonome-verteilung},
 bei dem die Slaves/Arbeiter aktiv mitwirken k\"onnen.
-Eine denkbare Erweiterung w\"are die Möglichkeit, das Slaves/Arbeiter
+Eine denkbare Erweiterung w\"are die Möglichkeit, dass Slaves/Arbeiter
 die Arbeitspakete mittels kategorischer Filter auswählen \deffeat{arbeitspackete-verteilung-selektiv}.
-Beispiele f\"ur diese w\"aren z.B. Plattform oder Betriebsumgebung.
+Beispiele f\"ur diese sind Plattform oder Betriebsumgebung.
 
 \subsubsection{Auftragseingang und Vorbereitung}
 
@@ -128,7 +129,7 @@ Beispiele f\"ur diese w\"aren z.B. Plattform oder Betriebsumgebung.
 
 Der Auftragseingang kann sich vielseitig gestalten.
 Moderne Systeme unterstützen eine Vielzahl von Medien \deffeat{auftrag-eingang-medien},
-wie z.b. Email, Web-Hooks, Web-Formulare oder zeitgesteuerte Systeme.
+wie zb. E-Mail, Web-Hooks, Web-Formulare oder zeitgesteuerte Systeme.
 
 W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterst\"utzt werden,
 sind die Anreicherung eines Auftrages um eigene Daten/\"Anderungen.
@@ -141,7 +142,7 @@ Dies macht sie besonders n\"utzlich f\"ur den laufenden Entwicklungsprozess.
 Analyse von Resultaten ist ein vielseitiges Thema,
 welches vorwiegend Aufgabe der Erweiterungen sein soll.
 
-In der grundlegenden eingebauten Ausf\"uhrung soll zumindest der Erfolg oder Misserfolg
+In der grundlegend eingebauten Ausf\"uhrung soll zumindest der Erfolg oder Misserfolg
 von Auftr\"agen, Arbeitspaketen und Arbeitsschritten feststellbar sein \deffeat{einfache-resultate}.
 
 Die weitergehende Analyse von Ergebnissen soll mittels Erweiterungen behandelt werden.
@@ -149,17 +150,17 @@ Die weitergehende Analyse von Ergebnissen soll mittels Erweiterungen behandelt w
 \subsection{Exemplarische Erweiterungen}
 
 Um die Erweiterbarkeit des Systems aufzuzeigen,
-sollen 2 exemplarische Erweiterungen betrachtet werden.
+sollen zwei exemplarische Erweiterungen betrachtet werden.
 Diese werden hier nur grob umrandet und dann sp\"ater in der Analyse genauer spezifiziert.
 
-Die erste Erweiterung betrachtet vergleichende Analysen von Testergebnisen \deffeat{ext-testing}.
+Die erste Erweiterung betrachtet vergleichende Analysen von Testergebnissen \deffeat{ext-testing}.
 Dabei sollen Entwickler in die Lage versetzt werden,
 dass Fehler-verhalten eines Programms in verschiedenen Konfigurationen und Auftr\"agen zu vergleichen.
 Dies dient zur Vereinfachung der Fehleranalyse.
 
 Die zweite Entwicklung betrachtet ein gänzlich anderes Thema.
 Dabei soll das Verhalten einer Version eines Programms
-in sehr vielen Kombinationen verst\"andlich gemacht werden\deffeat{ext-analysis}.
+in sehr vielen Kombinationen verst\"andlich gemacht werden \deffeat{ext-analysis}.
 Dies soll die Flexibilit\"at des Systems zeigen und
 Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 
@@ -175,92 +176,93 @@ Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 \section{Testkriterien}
 
 
-\subsection{Unit Tests}
+\subsection{Unit-Tests}
 
 Unit-Tests werden verwendet um die kleinsten Komponenten des Systems zu testen.
 Durch ihre starke Koppelung an Implementation und Entwurf,
-sind die w\"ahrend der Kriterien-Findung noch nicht n\"aher bestimmbar.
+sind sie w\"ahrend der Kriterien-Findung noch nicht n\"aher bestimmbar.
 
 Sie ergeben sich zum Teil im Entwurf und vorwiegend in
 der nachfolgenden Implementation.
 
 \subsection{Funktionale Tests}
 
-Funktionale Tests testen einzelne funktionale Komponenten des Systems.
-Daher entsprechen sie Grob den funktionalen Anforderungen und Use-cases.
+Funktionale Tests testen einzelne, funktionale Komponenten des Systems.
+Daher entsprechen sie grob den funktionalen Anforderungen und Use-Cases.
 %XXX: mehr text
 
 \subsection{Systemtests}
 
 Systemtests testen Kombinationen von funktionalen Komponenten sowie das Komplettsystem.
-Im Rahmen dieser Arbeit werden 3 Systemtests definiert.
+Im Rahmen dieser Arbeit werden drei Systemtests definiert.
 
 
 \begin{description}
-  \dhitem[Komponentendurchlauf]
-    soll anhand des Ausführens der einzelnen funktionalen Komponenten aufzeigen,
-    ob das Zusammenspiel der Komponenten grunds\"atzlich funktioniert
-  \dhitem[Komplettstystem]
-    soll das komplette CI-System auf einer Testdatenbank starten
+  \dhitem[Komponentendurchlauf:]
+    Der Komponentendurchlauf soll anhand des Ausführens der einzelnen, funktionalen Komponenten aufzeigen,
+    ob das Zusammenspiel der Komponenten grunds\"atzlich funktioniert.
+  \dhitem[Komplettstystem:]
+    Der Test des Komplettsystems soll das komplette CI-System auf einer Testdatenbank starten
     und seine Funktion sicherstellen
-  \dhitem[Beispiel Datenanalyse]
-    soll die Funktion der Beispielerweiterung f\"ur die Datenanalyse sicherstellen
+  \dhitem[Beispiel Datenanalyse:]
+    Das Beispiel Datenanalyse soll die Funktion der Beispielerweiterung f\"ur die Datenanalyse sicherstellen
 \end{description}
 
 \subsection{Manuelle Tests}
 
-Die manuellen Tests werden alle Tests umfassen,
+Die manuellen Tests umfassen alle Tests,
 deren Umsetzung als automatisches Programm erfahrungsgemäß zeitaufwendig,
 fehleranf\"allig und/oder umfangreich sind.
 
 \begin{description}
-  \dhitem[zeitliches Verhalten]
-    Beobachtung und Analyse des Zeitverhaltens \\
-    bei wachsender Datenmenge und Auftragsgröße
-  \dhitem[Race-Conditions]
-    Beobachtung und Analyse trivialer Race-Conditions \\
-    bei wachsender Nebenl\"aufigkeit
-  \dhitem[Verhalten bei Systemfehler]
-    \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten
-  \dhitem[Grosse Datenanalyse]
-    Testen der exemplarischen Erweiterungen mit Datenmengen und Aufgaben \\
-    die den Rahmen eines automatischen Tests sprengen
+  \dhitem[Zeitliches Verhalten:]
+    Die Beobachtung und Analyse des Zeitverhaltens \\
+    bei wachsender Datenmenge und Auftragsgröße soll Aufschluss über algorithmische Engpässe geben.
+  \dhitem[Race-Conditions:]
+    Die Beobachtung und Analyse trivialer Race-Conditions \\
+    bei wachsender Nebenl\"aufigkeit soll Probleme bei der Skalierbarkeit aufdecken.
+  \dhitem[Verhalten bei Systemfehler:]
+      Der Verhaltenstest bei Systemfehlern dient der
+    \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten.
+  \dhitem[Große Datenanalyse:]
+    Die Große wird die exemplarischen Erweiterungen mit Datenmengen und Aufgaben, \\
+    welche den Rahmen eines automatischen Tests sprengen überprüfen.
 \end{description}
 
 
 \section{Abgrenzung}
 
-In dieser Arbeit soll nur der prototypische Kern eins CI-Systems,
+In dieser Arbeit soll nur der prototypische Kern eins \ac{CI}-Systems,
 sowie exemplarische Erweiterungen, geschaffen werden.
-Somit sind viele Themen, welche für ein produktiv eingesetztes CI-System notwendig
+Somit sind viele Themen, welche für ein produktiv eingesetztes \ac{CI}-System notwendig
 sind, nicht weiter zu betrachten.
 Benutzer und ihre Rechte sollen nicht betrachtet werden,
-Authentifikation und Authorisation sind weitreichende Themen-gebiete
-die sorgf\"altigst betrachtet werden m\"ussten,
-dies ist neben der Hauptaufgabe nicht im zeitlichen Rahmen unterzubringen.
+Authentifikation und Authorisation sind weitreichende Themengebiete
+die sorgf\"altig betrachtet werden m\"ussen.
+Dies ist neben der Hauptaufgabe nicht im zeitlichen Rahmen unterzubringen.
 Außerdem wird kein Wert auf die Benutzeroberfläche gelegt.
-intuitive Benutzerinteraktion ist ein \"uberaus umfangreiches Thema.
+Intuitive Benutzerinteraktion ist ein \"uberaus umfangreiches Thema.
 Dabei sind auch weiterführende Interaktionen,
-wie z.B. Konfiguration der Replikation ausgeschlossen.
+wie zB. Konfiguration der Replikation ausgeschlossen.
 
 
 \section{Zusammenfassung}
 
 %XXX: more text
 
-Im wesentlichen soll der Kern des CI-Systems als Protoyp geschaffen werden.
+Die wesentliche Aufgabe ist es, den Kern des CI-Systems als Protoyp zu schaffen.
 Anschließend sollen weitere Funktionen sowie exemplarische Erweiterungen
 auf dieser Basis geschaffen werden.
 L\"osungskonzepte f\"ur die einzelnen Komponenten sollen vorgestellt werden,
 um anschließend ihre Eigenschaften zu betrachten
 
-Fokus sind dabei Interaktionen mit der Datenbank und Datenoperationen.
-Semantik des Systems und Konsistenz-verhalten bei Datenbankpartitionierung
+Fokusse sind dabei die Interaktionen mit der Datenbank und die Datenoperationen.
+Semantik des Systems und das Konsistenz-Verhalten bei Datenbankpartitionierung
 sollen betrachtet werden. Erweiterungen zur Datenanalyse sollen ebenfalls nur auf technischer Ebene behandelt werden.
 
 Themen wie Benutzerschnittstellen, Rechteverwaltung und Details
 von visueller Komponentenintegration werden dabei nicht betrachtet.
-Ziel dieser Arbeit ist die Betrachtung der Kernfunktionen und Erweiterungen auf Datenbank-ebene.
+Ziel dieser Arbeit ist die Betrachtung der Kernfunktionen und Erweiterungen auf Datenbank-Ebene.
 
 % zusammenfassung 
 %   - im wesentlichen soll \ldots. prototypisch & exemplarisch
