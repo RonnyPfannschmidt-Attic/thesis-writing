@@ -21,8 +21,8 @@ digraph arbeitspacket {
 
     canceling [style=filled,fillcolor=orange];
     ready [style=filled,fillcolor=orange];
-    claiming [style=filled,fillcolor=blue];
+    claiming [style=filled,fillcolor=blue,fontcolor=white];
     acepted [style=filled,fillcolor=orange];
-    running [style=filled,fillcolor=blue];
-    completed [style=filled,fillcolor=blue];
+    running [style=filled,fillcolor=blue,fontcolor=white];
+    completed [style=filled,fillcolor=blue,fontcolor=white];
 }

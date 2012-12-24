@@ -249,6 +249,9 @@ Den Abschluss der Validation stellt die Markierung des Auftrages als valide oder
   \label{fig:lebenszyklus-auftrag-abarbeitung}
 \end{figure}
 
+In \cref{fig:lebenszyklus-auftrag-abarbeitung} wird die Vorbereitung, die Abarbeitung und der Abschluss eines Auftrags illustriert.
+
+
 \subsubsection{Auftragsvorbereitung}
 
 In der Auftragsvorbereitung werden Details aus dem Projekt zum Auftrag hinzugefügt.
@@ -260,18 +263,18 @@ bevor mit der Erstellung von Arbeitspaketen begonnen wird.
 \subsubsection{Bereitstellung von Arbeitspaketen}
 
 Das Bereitstellen von Arbeitspaketen stellt den Anfang der eigentliche Arbeitsphase dar.
-Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeitspakete generiert,
+Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeits\-pakete generiert,
 wobei jedes Arbeitspaket eine der Wertekombinationen darstellt.
 Nachdem alle Arbeitspakete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen.
 
 \subsubsection{Abschluss von Aufträgen}
 
-Der Abschluss eines Auftrages ist ein Ereignis, welches Impliziert werden kann.
-In im zu entwickelnden System wird der Abschluss eines Auftrages definiert,
-als der Zustand der Eintritt, wenn alle Arbeitspakete eines Auftrages
+Der Abschluss eines Auftrages ist ein Ereignis, welches impliziert werden kann.
+Im zu entwickelnden System wird der Abschluss eines Auftrages definiert
+als der Zustand, der eintritt, wenn alle Arbeitspakete eines Auftrages
 einen finalen Zustand erreichen.
 
-Dies Vereinfacht die Behandlung des Auftragsabschlusses,
+Dies vereinfacht die Behandlung des Auftragsabschlusses,
 da man nicht nach Abschluss von Arbeitspaketen weitere Operationen durchführen muss,
 um den eventuellen Abschluss festzustellen.
 
