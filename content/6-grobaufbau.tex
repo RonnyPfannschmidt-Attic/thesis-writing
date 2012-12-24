@@ -1,10 +1,10 @@
-\chapter{Analyse \& Design ( 25 \%)}
+\chapter{Analyse und Design ( 25 \%)}
 \label{chap:design}
 
-Im vorhergehenden Kapitel wurden Ziele und Leistungskriterium
-für das CI-System festgelegt.
-Diese sollen nun auf konzeptueller Ebene umgesetzt werden.
-Dazu wird zuerst ein Überblick des Gesamtkonzeptes IN der Systemarchitektur und den Schemata gegeben.
+Im vorhergehenden Kapitel wurden Ziele und Leistungskriterien
+für das \ac{CI}-System festgelegt.
+Diese werden nun auf konzeptueller Ebene umgesetzt werden.
+Dazu wird zuerst ein Überblick des Gesamtkonzeptes in der Systemarchitektur und den Schemata gegeben.
 Anschließend wird die Logik einzelner Systemkomponenten genauer betrachtet.
 Schließlich werden besondere Ansätze zur Interaktion mit der Datenbank betrachtet.
 Abschließend wird die Mechanik der Durchführung von Arbeitsschritten sowie die Erweiterungen noch einmal näher betrachtet.
@@ -14,31 +14,31 @@ Abschließend wird die Mechanik der Durchführung von Arbeitsschritten sowie die
 
 \section{Systemarchitektur}
 \label{sec:design:sysarch}
-Diese Sektion gibt Aufschluss über die Grobstruktur des CI-Systems auf logischer und physischer Ebene.
+Diese Unterkapitel gibt Aufschluss über die Grobstruktur des \ac{CI}-Systems auf logischer und physischer Ebene.
 
-\subsection{logisch}
+\subsection{logische Ebene}
 
 \begin{figure}[ht]
   \centering
-  \label{fig:grob-layout-komponenten-logisch}
   \includegraphics[width=\textwidth]{imageinput/grob-layout-komponenten-logisch.png}
   \caption{\"Ubersicht über Systemkomponenten - logisch}
+  \label{fig:grob-layout-komponenten-logisch}
 \end{figure}
 
 
 Die erste wichtige Komponente ist der Eingang,
 in ihm gehen Aufträge aus verschiedensten Quellen ein.
-Nach dem sie validiert wurden, werden die Aufträge an
+Nachdem sie validiert wurden, werden die Aufträge an
 die zweite wichtige Komponente, den Manager, weitergegeben.
 Dort werden sie vorbereitet und entsprechend der Build-Matrix Arbeitspakete erstellt.
 Nun treten Manager und Arbeiter in eine Interaktion,
-um zu bestimmen welcher Arbeiter das Eigentliche Arbeitspaket bearbeitet.
-Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt.
+um zu bestimmen, welcher Arbeiter das Eigentliche Arbeitspaket bearbeitet.
+Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt. (siehe \cref{fig:grob-layout-komponenten-logisch})
 
 %XXX: more
 
 
-\subsection{physisch}
+\subsection{physische Ebene}
 
 \begin{figure}[ht] 
   \centering
@@ -47,8 +47,8 @@ Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern a
   \label{fig:grob-layout-komponenten}
 \end{figure}
 
-Der physische Aufbau unterscheidet sich stark von den bisher dagewesenen CI-Systemen.
-Grund ist der Fokus auf die verteilte Datenbank, direkte Kommunikation
+Der physische Aufbau unterscheidet sich stark von den bisher da gewesenen CI-Systemen.
+Ein Grund dafür ist der Fokus auf die verteilte Datenbank, direkte Kommunikation
 wird der Interaktion mit einer verteilten Datenbank weichen.
 
 Das System besteht somit aus Komponenten welche alle als Clients einer verteilten Datenbank operieren.
@@ -67,7 +67,7 @@ Nennenswert ist dabei die Bindung einer Komponente an bestimmte Knotenpunkte der
   \label{fig:datenstrukturen}
 \end{figure}
 
-Das grundlegende Datenschema, in \Cref{fig:datenstrukturen} als UML Klassendiagramm dargestellt,
+Das grundlegende Datenschema, in \Cref{fig:datenstrukturen} als \ac{UML}-Klassendiagramm dargestellt,
 beschreibt die Daten des Kernsystems und einige ihrer Interaktionen.
 
 Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order),
@@ -90,8 +90,8 @@ Der mitunter wichtigste Teil eines Projektes ist jedoch die Beschreibung der Arb
 Die Darstellung als Template ist dabei bewusst gewählt,
 sie ermöglicht es jedem Arbeitspaket speziell konfigurierte Arbeitsschritte zur Verfügung zu stellen.
 Außerdem bewirkt die erneute Speicherung in der Datenbank,
-das Bearbeiten der Schritte eines Projektes keinen Einfluss auf bereits erstellte Arbeitspakete hat.
-Zudem stellen die extra Objekte auch einen Anschlusspunk für die Datensammlung dar.
+dass das Bearbeiten der Schritte eines Projektes keinen Einfluss auf bereits erstellte Arbeitspakete hat.
+Zudem stellen die extra Objekte auch einen Anschlusspunkt für die Datensammlung dar.
 Die Methode \textit{construct} des Templates dient dazu,
 einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zurückzugeben.
 
@@ -99,17 +99,17 @@ einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zurü
 
 Ein Auftrag beinhaltet grundsätzlich eine Referenz auf das zugehörige Projekt,
 außerdem beinhaltet er Überschreibungen/Zusätze für die Build-Achsen,
-dies Ermöglicht es sowohl in den Achsen eingeschränkte,
+dies ermöglicht es sowohl in den Achsen eingeschränkte,
 als auch erweiterte Aufträge zu erstellen.
 Diese werden später genauer erklärt.
 Zusätzlich beinhaltet der Auftrag einen Status, dieser beinhaltet den aktuellen Stand der Bearbeitung.
 
 \subsubsection{Arbeitspaket}
 %XXX: eventuell projekt hier nicht referenzieren
-Ein Arbeitspaket beinhaltet neben Referenzen zu dem Projekt und dem Auftrag,
+Ein Arbeitspaket beinhaltet, neben Referenzen zu dem Projekt und dem Auftrag,
 seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen für dieses Paket an.
-des weiteren beinhaltet es den Index, dieser gibt die Numerische Position in der Build-Matrix an.
-Auch ein Arbeitspaket hat einen Status, welcher den aktuellen Bearbeitung-stand zum Ausdruck bringt.
+Des Weiteren beinhaltet es den Index, dieser gibt die numerische Position in der Build-Matrix an.
+Auch ein Arbeitspaket hat einen Status, welcher den aktuellen Bearbeitungsstand zum Ausdruck bringt.
 Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher das Arbeitspaket letztendlich bearbeiten wird.
 
 \subsubsection{Arbeitsschritt}
@@ -131,20 +131,20 @@ Das Event bringt Datensammlung zur Laufzeit zum Ausdruck.
 Neben den Referenzen für den Arbeitsschritt und das Arbeitspaket,
 beinhaltet es eine Indexnummer und einen Timestamp.
 Die Indexnummer ist eine aufsteigende Zahl
-und gibt den Events eines bestimmten Arbeitsschritts eine feste eindeutige Reihenfolge.
+und gibt den Events eines bestimmten Arbeitsschritts eine feste, eindeutige Reihenfolge.
 Der Timestamp gibt den Events eine zeitliche Ordnung (welche jedoch nicht eindeutig ist).
 
 
-Zusätzlich zu diesen Basisdaten, beinhaltet ein Event beliebige weitere optionale Felder.
+Zusätzlich zu diesen Basisdaten beinhaltet ein Event beliebige weitere optionale Felder.
 Einige mögliche (und ihre Datentypen) sind:
 
 \begin{description}
     \dhitem[returncode: Number] Rückgabe-wert eines Prozesses bei seiner Beendigung.
     \dhitem[line: Text] Textzeile eines Datenstromes der Ausgabe
-    \dhitem[lineno: Number] Zugeh. Zeilennummer
-    \dhitem[stream: Name] Zugeh. Name des Datenstromes
-    \dhitem[start: Name] Mitteilung über den Start eines best. Vorganges
-    \dhitem[end: Name] Mitteilung über den Abschluss eines best. Vorganges
+    \dhitem[lineno: Number] Zugehörige Zeilennummer
+    \dhitem[stream: Name] Zugehörige Name des Datenstromes
+    \dhitem[start: Name] Mitteilung über den Start eines bestimmten Vorganges
+    \dhitem[end: Name] Mitteilung über den Abschluss eines bestimmten Vorganges
 \end{description}
 
 
@@ -152,14 +152,14 @@ Einige mögliche (und ihre Datentypen) sind:
 
 \section{Logik der Komponenten}
 
-Diese Sektion behandelt die grundlegende Logik  der Einzelteile des Systems,
+Dieses Unterkapitel behandelt die grundlegende Logik  der Einzelteile des Systems,
 sie bilden die Bausteine für das Gesamtsystem.
 
 %XXX MORE
 
 \subsection{Auftragsannahme}
 
-Der Auftragsannahme lässt sich grob in 2 Abschnitte einteilen.
+Die Auftragsannahme lässt sich grob in zwei Abschnitte einteilen.
 Zuerst geht ein Auftrag ein, was je nach Methode in mehrere Schritte beinhalten kann,
 danach wird er überprüft und damit angenommen oder abgelehnt.
 
@@ -171,10 +171,11 @@ danach wird er überprüft und damit angenommen oder abgelehnt.
   \label{fig:lebenszyklus-auftrag-eingang}
 \end{figure}
 
+In \cref{fig:lebenszyklus-auftrag-eingang} ist das Flussdiagramm zur Auftragsannahme dargestellt.
 
 \subsubsection{Eingang}
 
-Auftragseingang gestaltet sich in der Praxis vielseitig.
+Der Auftragseingang gestaltet sich in der Praxis vielseitig.
 Da nicht alle Quellen direkt einen fertigen Auftrag generieren können,
 beginnt ein Auftrag im Zustand eingehend, sind schließlich alle Daten zusammengekommen,
 so wird der Eingang festgehalten und der Auftrag wird vom System weiterverarbeitet.
@@ -182,45 +183,45 @@ so wird der Eingang festgehalten und der Auftrag wird vom System weiterverarbeit
 %XXX Quellen betrachten``
 Betrachtet werden die Anforderungen für die Quellen
 \begin{description}
-    \dhitem[EMail]
-        Eingang per EMail kann in 2 Formen erfolgen,
-        zum einen kann der gesamte Auftrag ein einer einzigen EMail enthalten sein.
-        Zum anderen kann sich der Auftrag über mehr als eine EMail erstrecken.
+    \dhitem[E-Mail]
+        Der Eingang per E-Mail kann in zwei Formen erfolgen,
+        zum Einen kann der gesamte Auftrag ein einer einzigen E-Mail enthalten sein.
+        Zum Anderen kann sich der Auftrag über mehr als eine E-Mail erstrecken.
         Beispiel hierfür sind z.B. Mercurial Patchbombs \cite{mercurial:patchbomb}.
-        Ist ein Auftrag fertiggestellt, so ist eine Antwort-email hilfreich.
-        Wichtig ist, dass EMails Unbekannter auf keinen Fall
+        Ist ein Auftrag fertiggestellt, so ist eine Antwort-E-Mail hilfreich.
+        Wichtig ist, dass E-Mails Unbekannter auf keinen Fall
         akzeptiert werden sollten.
     \dhitem[Mailingliste]
-        Eingang per Mailingliste ist dem Eingang per Email sehr ähnlich,
+        Der Eingang per Mailingliste ist dem Eingang per E-Mail sehr ähnlich.
         Haupt-unterschied ist, dass anstelle einer privaten Korrespondenz
-        ein öffentliches Forum genutzt wird. Dabei sollen auch EMails Unbekannter 
+        ein öffentliches Forum genutzt wird. Dabei sollen auch E-Mails Unbekannter 
         bearbeitet werden können.
         Ein bekanntes Beispiel für eine Mailingliste mit Patches
         ist die Mercurial Mailingliste \cite{mercurial:mailingliste}.
     \dhitem[Web Formular]
-        Web Formulare bieten eine intuitive Möglichkeit,
+        Web-Formulare bieten eine intuitive Möglichkeit,
         einen Auftrag zu bearbeiten und vorzubereiten,
         bevor man ihn letztendlich in Bearbeitung gibt.
     \dhitem[HTTP Hook]
-        Http Hooks sind ein Traditionelles Werkzeug,
-        um CI-Systemen Änderungen mitzuteilen.
-        Sie sind einfach in externe Werkzeuge wie z.b. SCM integrierbar,
+        HTTP Hooks sind ein traditionelles Werkzeug,
+        um \ac{CI}-Systemen Änderungen mitzuteilen.
+        Sie sind einfach in externe Werkzeuge wie zB. \ac{SCM} integrierbar,
         und dienen dazu, Aufträge für die Standardkonfiguration
         eines Projektes abzusetzen, wenn externe Ereignisse,
-        wie z.b. ein SCM commit, eintreten.
+        wie zB. ein SCM commit, eintreten.
     \dhitem[Zeitsteuerung]
-        Zeitsteuerungen sind ein weiteres Traditionelles Werkzeug,
+        DIe Zeitsteuerung ist ein weiteres Traditionelles Werkzeug,
         um Aufträge in Standardkonfiguration abzusetzen.
-        Zu festgesetzten Zeitpunkten, wie z.b. Nachts oder nach
+        Zu festgesetzten Zeitpunkten, wie zb. Nachts oder nach
         Arbeitsschluss, werden Aufträge abgesetzt.
-    \dhitem[Http API]
-        Eine HTTP API kann als Basis sowohl für Testwerkzeuge,
-        als auch für WebFormulare dienen.
+    \dhitem[HTTP API]
+        Eine HTTP API kann als Basis sowohl für Testwerkzeuge
+        als auch für Web-Formulare dienen.
         Sie ermöglicht Programmen ein hohes maß an Kontrolle
         für das Absetzen von Aufträgen
 \end{description}
 
-Fur den Prototypen ist zumindest die ``HTTP API"" notwendig,
+Fur den Prototypen ist zumindest die HTTP API notwendig,
 um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 
 
@@ -229,15 +230,15 @@ um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 %XXX: genauer beschreiben
 
 Die Validation verfolgt das Ziel, Aufträge auch aus weniger vertrauenswürdigen Quellen anzunehmen.
-Dies ermöglicht Verwendung ähnlich zu TravisCI, was es erlaubt, Zuarbeiten von Außenstehender zu Testen.
+Dies ermöglicht Verwendung ähnlich zu TravisCI, was es erlaubt, Zuarbeiten von Außenstehenden zu Testen.
 Für die Überprüfung stehen verschiedene Möglichkeiten zur Verfügung.
 Ein Eingang per Mail/Mailingliste oder Pull-Request auf einer Code-Hosting,
-kann z.b. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
-während Informationen die Mitarbeiter einsenden z.b. an ihr Arbeitsverhältnis gebunden werden können.
+kann zB. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
+während Informationen die Mitarbeiter einsenden zB. an ihr Arbeitsverhältnis gebunden werden können.
 
 Zeitgesteuerte Eingänge innerhalb des Systems können jedoch grundsätzlich zugelassen werden.
 
-Den Abschluss der Validation stellt die Markierung des Auftrages als Valide oder invalide dar.
+Den Abschluss der Validation stellt die Markierung des Auftrages als valide oder invalide dar.
 
 \subsection{Management}
 
@@ -252,7 +253,7 @@ Den Abschluss der Validation stellt die Markierung des Auftrages als Valide oder
 
 In der Auftragsvorbereitung werden Details aus dem Projekt zum Auftrag hinzugefügt.
 Die vordefinierten Build-Achsen werden vom Projekt übertragen.
-Dies stell sicher, dass der Aufrag und sein Umfang eindeutig bestimmt sind,
+Dies stellt sicher, dass der Auftrag und sein Umfang eindeutig bestimmt sind,
 bevor mit der Erstellung von Arbeitspaketen begonnen wird.
 
 
