@@ -307,20 +307,19 @@ Dabei wird die Entscheidung getroffen ob ein Arbeitspaket zum ERfolg oder Misser
 
 \subsection{Überblick Methoden der Zuteilung von Arbeitspaketen}
 \label{sec:methoden:zuteilung}
-Diese Sektion beschäftigt sich mit der Zuteilung von Arbeitspaketen.
-Grundsätzlich gibt es 2 Möglichkeiten dies zu bewerkstelligen.
+Dieses Unterkapitel beschäftigt sich mit der Zuteilung von Arbeitspaketen.
+Grundsätzlich gibt es zwei Möglichkeiten dies zu bewerkstelligen.
 Es muss festgestellt werden, welche Methode besser geeignet ist.
 
-\subsubsection{Melde-verfahren}
+\subsubsection{Melde-Verfahren}
 % MOAR
-Beim Melde-verfahren teilt der Arbeiter nur seinen Wunsch, ein noch nicht näher festgelegtes Arbeitspaket zu bearbeiten, mit.
-Anschließend wartet er darauf, dass dieser Erfüllt wird.
+Beim Melde-Verfahren teilt der Arbeiter nur seinen Wunsch, ein noch nicht näher festgelegtes Arbeitspaket zu bearbeiten, mit.
+Anschließend wartet er darauf, dass dieser erfüllt wird.
 Dabei liegt die Logik der Zuteilung komplett beim Manager,
 er muss also über das Wissen verfügen,
-welcher Arbeiter in der Lage ist welche Arbeitspakete zu bearbeiten.
+welcher Arbeiter in der Lage ist, welche Arbeitspakete zu bearbeiten.
 
 \begin{figure}[ht] 
-  \label{fig:auftrag-zuteilung-token}
   \begin{sequencediagram}
       \newinst{worker}{:Worker}
       \newinst[1]{manager}{:Manager}
@@ -328,27 +327,29 @@ welcher Arbeiter in der Lage ist welche Arbeitspakete zu bearbeiten.
       \mess{manager}{work <spec>}{worker}
       \mess{worker}{result}{manager}
   \end{sequencediagram}
-  \caption{Auftragszuteilung: Tokenbasiert}
+  \caption{Auftragszuteilung: tokenbasiert}
+  \label{fig:auftrag-zuteilung-token}
 \end{figure}
 
+Die \cref{fig:auftrag-zuteilung-token} stellt den Prozess noch einmal graphisch dar.
 Vorteil des Verfahrens ist, das die Zuteilung ein eindeutiger Prozess ist.
-Jedoch benötigt der Manager genaues wissen über die Arbeiter,
+Jedoch benötigt der Manager genaues Wissen über die Arbeiter,
 um seiner Aufgabe gerecht zu werden.
 
 \subsubsection{Ausschreibungsverfahren}
 
 Beim Ausschreibungsverfahren teilt der Manager die offenen Arbeitspakete mit.
-Anschließend können Arbeiter einen Anspruch auf diese Anmelden.
-Sie treten dabei in Konkurrenz.
+Anschließend können Arbeiter einen Anspruch auf diese anmelden.
+Sie treten dabei, wie in \cref{fig:auftrag-zuteilung-claim} gezeigt, in Konkurrenz.
 Der Manager entscheidet dann, welcher Arbeiter welches Arbeitspaket bearbeiten darf.
 %MOAR
 
-Dies erlaubt Arbeitern wesentlich autonomer zu agieren,
-sie sind nun in der Lage frei zu entscheiden,
+Dies erlaubt Arbeitern wesentlich autonomer zu agieren.
+Sie sind nun in der Lage frei zu entscheiden,
 welche der verfügbaren Aufträge sie bearbeiten wollen.
-Der Manager ist auch Vereinfacht,
+Der Manager ist auch vereinfacht,
 da er nur noch die Entscheidung für den Zuschlag treffen muss.
-es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeiten zu haben. 
+Es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeiten zu haben. 
 
 
 \begin{figure}[ht] 
@@ -380,12 +381,13 @@ es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeite
 
 \subsubsection{Auswahl}
 
-Das Ausschreibungsverfahren zeigt sich im Vergleich zum Melde-verfahren
+Das Ausschreibungsverfahren zeigt sich im Vergleich zum Meldeverfahren
 wesentlich flexibler.
 Die Möglichkeit Detailkenntnisse über die Fähigkeiten eines Arbeiter 
 beim Arbeiter zu belassen, sorgt dafür das Arbeiter wesentlich autonomer sind.
 Dies hat zur Folge, dass der Algorithmus für die Zuteilung von Arbeitspaketen wesentlich vereinfacht wird,
 da es für ihn nun unerheblich ist, wer den Zuschlag bekommt.
+Das Endresultat wird durch die Zuteilung nicht beeinflusst.
 
 \subsection{Abarbeitung von Arbeitspaketen}
 
