@@ -399,13 +399,16 @@ so kann der Prozess vorzeitig beendet werden.
 
 \section{Besondere Ansätze zur Datenbank-Interaktion}
 
+Dieses Unterkapitel behandelt einige Ansätze zum zugriff auf die Daten in der verteilten Datenbank.
+Die unterstützen die Konsistenz der Daten.
+
 %XXX: http://dbmsmusings.blogspot.de/2010/04/problems-with-cap-and-yahoos-little.html
 
 
 \subsection{CAP Abdeckung}
 
 Wie bereits in \Cref{sec:base:cap} erwähnt,
-ist es immer nur möglich 2 der 3 Aspekte des CAP Theorems abzudecken.
+ist es immer nur möglich zwei der drei Aspekte des CAP-Theorems abzudecken.
 
 Jedoch ist es durchaus legitim für verschiedene Teile
 einer verteilten Applikation unterschiedliche Bereiche abzudecken.
@@ -415,18 +418,18 @@ kann ein konsistentes Modell geschaffen werden.
 Wichtig ist bei dieser Betrachtung, dass die unterschiedlichen Komponenten des Entwickelten CI-Systems
 nicht zwingend eine direkte Konsistenz-Bindung untereinander benötigen.
 Wichtig ist nur, die Konsistenz zwischen einer Komponente
-und dem Datenbank-knoten, mit dem sie Kommuniziert.
+und dem Datenbankknoten, mit dem sie kommuniziert.
 
-Das Haupt-system, in dem alle Komponenten in Kommunikation stehen,
+Das Hauptsystem, in dem alle Komponenten in Kommunikation stehen,
 %XXX: s1?
 soll nach Systemanforderung \textbf{S1} immer verfügbar sein und somit einen Teil-Ausfall  verkraften.
 Somit kommt für die Kommunikation zwischen Komponenten nur das Modell \textbf{A-P} in Frage
-(was Verfügbar und Partitionstolerant bedeutet).
+(was verfügbar und partitionstolerant bedeutet).
 
 Die Anbindung einzelner Komponenten an ihre Knoten in der Datenbank hat jedoch andere Anforderungen.
 Da eine direkte Anbindung an die Datenbank für das Funktionieren einer Komponente unabdingbar ist,
 kann in diesem Fall nur das Modell \textbf{C-A} zum Einsatz kommen.
-(was Konsistent und Verfügbar bedeutet)
+(was konsistent und verfügbar bedeutet)
 
 %XXX: http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed
 
@@ -440,31 +443,31 @@ kann in diesem Fall nur das Modell \textbf{C-A} zum Einsatz kommen.
 Zustands-Maschinen sind ein allgemein bekanntes Werkzeug,
 um den Ablauf eines komplexen Programms zu beschreiben oder zu erklären.
 In der Regel wird dazu ein sog. ZustandsGraph verwendet.
-Dieser ist ein Gerichteter Graph der die Zustände und Zustandsänderungen eines Systems beschreibt.
+Dieser ist ein gerichteter Graph, der die Zustände und Zustandsänderungen eines Systems beschreibt.
 
 Wie bereits in \Cref{fig:lebenszyklus-arbeitspaket} gezeigt,
 stellt der Lebenszyklus eines Arbeitspaketes einen solchen Zustandsgraph dar.
 Als Besonderheit ist er sogar frei von Zyklen.
 Dadurch ist es unmöglich den gleichen Status noch einmal zu erreichen.
 
-Bindet man Zusätzlich noch die Zustandsänderungen an bearbeitende Komponenten,
+Bindet man zusätzlich noch die Zustandsänderungen an bearbeitende Komponenten,
 so ist es auch bei einer Partitionierung der Datenbank eine Konsistenz der Gesamtsystems gewährleistet.
 %XXX: moar?
 
 
 Mit dem Eingang und der Abarbeitung von Aufträgen verhält es sich ähnlich,
-jedoch ist der Graph dort Wesentlich einfacher.
+jedoch ist der Graph dort wesentlich einfacher.
 Die \Cref{fig:lebenszyklus-auftrag-eingang,fig:lebenszyklus-auftrag-abarbeitung} zeigen den groben Ablauf.
 Der Übergang zwischen Eingang und Abarbeitung ist die der Validation angeschlossene Markierung zur Bereitschaft.
-Da es nur diesen einen Punkt des Austausches gibt, ist die Wahrung der Konsistenz des Auftrages denkbar einfach,
-Mit der Bereitschaft, wird die Verantwortung vom Eingang zur Abarbeitung übertragen.
+Da es nur diesen einen Punkt des Austausches gibt, ist die Wahrung der Konsistenz des Auftrages denkbar einfach.
+Mit der Bereitschaft wird die Verantwortung vom Eingang zur Abarbeitung übertragen.
 
 \subsection{Abbildung des Verteilten Systems auf Datenbanken}
 
 Die Abbildung eines verteilten Systems auf eine Datenbank,
 hat einige überaus erfreuliche Nebeneffekte.
 
-Im Client-Server System müssen der Client und Server extra Nachrichten Austauschen, um das gleiche Bild der Welt zu bekommen, wobei jedes System eine eigene Version des Zustandes hat.
+Im Client-Server-System müssen der Client und Server extra Nachrichten austauschen, um das gleiche Bild der Welt zu bekommen, wobei jedes System eine eigene Version des Zustandes hat.
 Beim Datenbank-basierten System ist der Status jedoch in der Datenbank und
 die einzelnen Komponenten des Systems müssen somit nicht weiter eigene Kopien vorhalten.
 
@@ -484,16 +487,16 @@ Sie muss nicht wie bisher auf eine Rückantwort warten.
     \label{fig:klassen-arten-arbeitsschritt}
 \end{figure}
 
-Wie man auf der \Cref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
+Wie man an der \Cref{fig:klassen-arten-arbeitsschritt} gut erkennen kann,
 bildet das Arbeitsverzeichniss (ProcDir) die Basis
 für die Durchführung der Arbeitsschritte eines Auftrages.
 
 Es bindet alle Operationen, die notwendig sind,
 um die Kontrolldaten (Steps, siehe \Cref{fig:datenstrukturen})
-aus der Datenbank zu laden und diese dann an Ausführende Objekte zu binden (Proc).
+aus der Datenbank zu laden und diese dann an ausführende Objekte zu binden (Proc).
 
-Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen Procdir verwaltet.
-das Proc Objekt sollte nur innerhalb der Methode run existieren.
+Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen ProcDir verwaltet.
+das Proc Objekt sollte nur innerhalb der Methode ``run'' existieren.
 
 %XXX: More
 
@@ -549,14 +552,14 @@ kann einfach nach dem Schritt angewendet werden.
 
 Die Aufgabe eines Prozessschritts ist es,
 einen Programm mit vorgegebenen Parametern auszuführen.
-Dies ist auch der Grund, warum der ``ProcessProc'' Datentyp einen
+Dies ist der Grund, warum der ``ProcessProc''-Datentyp einen
 Prozess-Handle enthält.
 
-Dabei fallen zur Laufzeit Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe Datenströmen an.
-Außerdem verändern sich statistische Informationen über den Prozess wie Speicher-verbrauch, IO-Last, u.a.
+Dabei fallen zur Laufzeit Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe-Datenströmen an.
+Außerdem verändern sich statistische Informationen über den Prozess wie Speicher-Verbrauch, IO-Last, u.a.
 
 
-\subsection{Skript Schritte}
+\subsection{Skript-Schritte}
 
 Skript-Schritte unterscheiden sich von Prozess-Schritten in der Hinsicht,
 dass sie kein Programm an sich, sondern ein Skript ausführen.
@@ -567,69 +570,71 @@ weitere Laufzeit-Daten zur Verfügung zu stellen
 \subsection{Quellcode Management Schritte}
 
 Quellcode Management Schritte behandeln die Interaktion mit dem SCM.
-Es wird, wenn notwendig ein Arbeitsverzeichniss erstellt.
-Danach gibt es mehrere Grundlegende Operationen, die durchgeführt werden können.
+Es wird, wenn notwendig, ein Arbeitsverzeichniss erstellt.
+Danach gibt es mehrere grundlegende Operationen, die durchgeführt werden können.
 
 \begin{description}
     \dhitem[Eingang von Historie]
-        bringt die lokale Historie auf den aktuellen Stand, ``pull'' genannt
+        bringt die lokale Historie auf den aktuellen Stand, ``pull'' genannt.
     \dhitem[Aktualisierung des Arbeitsverzeichniss]
         aktualisiert die Dateien im Arbeitsverzeichniss
-        auf eine gewünschte Version
+        auf eine gewünschte Version.
     \dhitem[Anwendung von Patches]
-        wendet Patches auf das aktuelle Arbeitsverzeichniss an
+        wendet Patches auf das aktuelle Arbeitsverzeichniss an.
 \end{description}
 
 
 \subsection{Datensammlungs Schritte}
 
-Datensammlung-schritte haben die Aufgabe,
+Datensammlungs-Schritte haben die Aufgabe
 bei vorhergehenden Schritten entstandene Dateien 
 in die Datenbank zu überführen.
 Die Grundfunktion pflegt dabei nur den Inhalt der Datei ein.
 Laufzeit-Daten dieses Schritts sind die gefundenen Dateien.
 
 Dabei wird das Regexmuster ``pattern'' verwendet, um festzustellen,
-ob eine Datei im Arbeitsverzeichniss, zur Menge der gewünschten Dateien gehört.
+ob eine Datei im Arbeitsverzeichniss zur Menge der gewünschten Dateien gehört.
 
-Erweiterte Versionen dieser Schritt-Art, könnten zusätzliche Funktionen,
-wie z.b. Einpflegen von Testergebnissen aus JunitXML Dateien in die Datenbank,
-übernehmen
+Erweiterte Versionen dieser Schritt-Art könnten zusätzliche Funktionen,
+wie z.b. Einpflegen von Testergebnissen aus JunitXML-Dateien in die Datenbank,
+übernehmen.
 
 
 
 \section{Erweiterungen}
 
+Dieses Unterkapitel beschäftigt sich mit dem Aufbau der zwei Beispielerweiterungen.
+
 \subsection{Analyse Test-Resultate}
 
-Bei der Analyse von Test-Resultaten ist das Ziel Veränderungen in Verschiedenen Umgebungen feststellen zu können.
-Ziel ist es dabei Vorwiegend Unterschiede zwischen verschiedenen Arbeitspaketen und Aufträgen festzustellen. Unterschiede zwischen Zeitlich aufeinander Folgenden Aufträgen oder Arbeitspaketen, welche verschiedene Plattformen, Entwickler-zweige oder Konfigurationen betrachten, geben Aufschluss über Entwicklung und Zustand des Projektes.
+Bei der Analyse von Test-Resultaten ist das Ziel Veränderungen in verschiedenen Umgebungen feststellen zu können.
+Betrachtungsgrundlage sind dabei vorwiegend Unterschiede zwischen verschiedenen Arbeitspaketen und Aufträgen sowie Unterschiede zwischen zeitlich aufeinander folgenden Aufträgen oder Arbeitspaketen, welche verschiedene Plattformen, Entwickler-Zweige oder Konfigurationen betrachten, geben Aufschluss über Entwicklung und Zustand des Projektes.
 
 Da ein großer Teil dieser Erweiterung zur Benutzeroberfläche gehört,
 werden hier nur die unterstützenden Algorithmen und Datenstrukturen betrachtet.
-Um überhaupt Vergleiche anstellen zu können, muss zuerst die Vergleichs-menge bestimmt werden. Dabei erscheint die Menge an Test-Resultaten je Arbeitsschritt am geeignetsten. Im Gegensatz zur Menge an Test-Resultaten je Auftrag,
+Um überhaupt Vergleiche anstellen zu können, muss zuerst die Vergleichs-Menge bestimmt werden. Dabei erscheint die Menge an Test-Resultaten je Arbeitsschritt am geeignetsten. Im Gegensatz zur Menge an Test-Resultaten je Auftrag,
 ist in diesem Fall für jede Konfiguration ein Set an Resultaten verfügbar.
 
 Um Testresultate abzulegen, erscheint es sinnvoll eine weitere Art an Datenstruktur einzuführen.
-Diese sollte wie die Bereits definierten ``Events'' aufgebaut sein,
-jedoch soll es möglich sein, diese aus einem Prozess der den Testvorgang verwaltet,
+Diese sollte wie die bereits definierten ``Events'' aufgebaut sein.
+Jedoch soll es möglich sein, diese aus einem Prozess der den Testvorgang verwaltet,
 anzulegen. Zudem sollen sie an das Arbeitspaket und nicht an den Arbeitsschritt gebunden sein.
 
-Für die Vergleiche ist es nun Notwendig,
-Unterschiede zwischen 2 oder mehr Mengen an Testresultaten zu bestimmen.
+Für die Vergleiche ist es nun notwendig,
+Unterschiede zwischen zwei oder mehr Mengen an Testresultaten zu bestimmen.
 Eine recht einfache Methode ist dabei die Mengen-Differenz,
-Nimmt man für die Resultate von Tests eine Werte-menge mit der Struktur \{ $Testname \rightarrow Resultat$ \} als Basis,
+Nimmt man für die Resultate von Tests eine Werte-Menge mit der Struktur \{ $Testname \rightarrow Resultat$ \} als Basis,
 so ist es leicht einen passenden Überblick aufzubauen.
 
-Die Datenstruktur der Resultate, für Vergleiche zischen N Resultatmengen
+Die Datenstruktur der Resultate, für Vergleiche zwischen N Resultatmengen
 ist dabei eine Zuordnung von
 $\{ Testname \rightarrow ( Resultat_{1},\ldots,Resultat_{N})\}$
-Wobei idr. nur die Elemente interessant sind,
-deren Resultat-menge Unterschiede und/oder Fehlschläge aufweist.
+Wobei i.d.R. nur die Elemente interessant sind,
+deren Resultat-Menge Unterschiede und/oder Fehlschläge aufweist.
 Ein gutes Beispiel für die Darstellung eines solchen Resultates
-stellt der Testresultatüberblick des Pypy Projektes \cite{pypy:overview} dar.
+stellt der Testresultatüberblick des PYPY Projektes \cite{pypy:overview} dar.
 
-Die Art und Weise wie die Mengen an Test-resultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
+Die Art und Weise wie die Mengen an Test-Resultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
 da dies vorwiegend ein Problem der Benutzeroberfläche ist.
 
 \subsection{Analyse Verhalten eines Programms}
@@ -643,16 +648,16 @@ welches einen genetischen Algorithmus umsetzt.
 Im willkürlich gewählten Beispiel ist dies ein Programm,
 welches versuchen soll, eine Funktion anzunähern \cite{gen:prog}.
 
-Die Analyse soll dazu dienen, Parameter-werte festzustellen,
+Die Analyse soll dazu dienen, Parameter-Werte festzustellen,
 die zum Erfolg des Algorithmus führen.
-Bei der Betrachtung steht die Analyse der Resultate nach der Durchführung des Programms im Vordergrund,
+Bei der Betrachtung steht die Analyse der Resultate nach der Durchführung des Programms im Vordergrund.
 
-Dabei wurden die folgenden Konfigurations-achsen für Parameter gewählt.
+Dabei wurden die folgenden Konfigurations-Achsen für Parameter gewählt:
 
 \begin{description}
-    \item[generations] Menge der Generationen
-    \item[population] Größe der Population
-    \item[height-weight] Bewertungsgewicht für die Höhe des Baumes welcher die angenäherte Funktion zum Ausdruck bringt
+    \item[generations:] Menge der Generationen
+    \item[population:] Größe der Population
+    \item[height-weight:] Bewertungsgewicht für die Höhe des Baumes welcher die angenäherte Funktion zum Ausdruck bringt
 \end{description}
 
 Die Achsen ``generations'' und ``population'' sind dabei ein exponentiell wachsender Wertebereich zwischen 20 und 5000.
@@ -661,20 +666,20 @@ wobei viele Werte im Bereich $ 0<abs(x)<1$ liegen.
 
 Die Wahl der Achsen und ihrer Parameter ist willkürlich als Teil eines ersten Tests entstanden.
 Weitere Parameter und Achsenkonfigurationen sind denkbar.
-Das Analysewerkzeug soll zeigen welchen Einfluss die Parameter haben.
+Das Analysewerkzeug soll zeigen, welchen Einfluss die Parameter haben.
 
 Um dies zu zeigen, ist es notwendig die Resultate
-eines Konfigurierten Durchlaufes (Auftrag) Zusammenzufassen.
+eines Konfigurierten Durchlaufes (Auftrag) zusammenzufassen.
 Die Resultate jedes einzelnen Auftrages sind dabei aus der Standardausgabe
 des Programms zu entnehmen.
 
-Für jedes Arbeitspaket eines Auftrages sind also Parameter-werte und Ergebnis zusammenzufassen.
+Für jedes Arbeitspaket eines Auftrages sind also Parameter-Werte und Ergebnis zusammenzufassen.
 Anschließend können die Daten in Graphen dargestellt werden.
 
 
 \section{Benutzeroberfläche}
 
-Da die Benutzeroberfläche für den Prototypen nicht zwingend notwendig,
+Da die Benutzeroberfläche für den Prototypen nicht zwingend notwendig ist,
 wird darauf verzichtet, mehr als nur simple Werkzeuge zur Verfügung zu stellen.
 Wichtig ist dabei, dass vorgefertigte Testdaten in die Datenbank eingegeben werden können.
 

@@ -23,13 +23,13 @@ Die Datenbank stellt die Basis dieses Systems und ihre Eigenschaften werden die 
 \subsection{Technologische Betrachtung}
 
 In einer initialen Sondierung zeigte sich,
-dass 3 Klassen an Datenbanken die grundlegenden Anforderungen an die Modellierung des Denkschemata erfüllen.
-Dies sind die Dokument-orientierten Datenbanken, die Graphendatenbanken und moderne relationale Datenbanken. 
+dass drei Klassen an Datenbanken die grundlegenden Anforderungen an die Modellierung des Denkschemata erfüllen.
+Dies sind die dokument-orientierten Datenbanken, die Graphen-Datenbanken und moderne relationale Datenbanken. 
 Eine erklärende Abbildung findet sich in \Cref{fig:klassen-datenbanken}
 
 \subsection{Produktanforderungen}
 
-Wie die technologische Betrachtung zeigte,
+Wie die technologische Betrachtung zeigt,
 sind mehrere Arten von Datenbank für die Modellierung geeignet.
 
 Um ein geeignetes Produkt zu bestimmen,
@@ -38,7 +38,7 @@ welche sp\"ater bei der Implementation hilfreich sein k\"onnten.
 
 Wichtigstes Kriterium ist dabei, dass die Datenbank tats\"achlich \textbf{verteilt} ist.
 Um sicherzustellen, das alle Systemanforderungen erf\"ullt werden k\"onnen,
-muss die Datenbank zus\"atzlich \textbf{Master-Master Replikation} beherrschen.
+muss die Datenbank zus\"atzlich \textbf{Master-Master-Replikation} beherrschen.
 Selbstverst\"andlich muss die Replikation mit einer \textbf{Partitionierung} des Netzwerkes zurechtkommen.
 
 Ein weiteres wichtiges Werkzeug, welches die Datenbank mitbringen sollte, sind \textbf{Mitteilungen über Änderungen}.
@@ -73,75 +73,75 @@ Im Detail sind nur einige wenige Punkte zu beachten.
 Die Wahl der Sprache an sich steht frei,
 solange bestimmte Bibliotheken verf\"ugbar sind.
 
-Wichtig sind dabei vor allem folgende Punkte.
+Wichtig sind dabei vor allem folgende Punkte:
 \begin{itemize}
-    \item Datenbankzugriff 
-    \item Prozesskontrolle f. Prozess basierte Arbeitsschritte
-    \item Zugriff SCM
-    \item Automatisches Testen
+    \item Datenbankzugriff,
+    \item Prozesskontrolle für Prozess basierte Arbeitsschritte,
+    \item Zugriff SCM und
+    \item Automatisches Testen.
 \end{itemize}
 
-Außerdem sollten der Entwickler bereits mit der Sprache vertraut sein.
+Außerdem sollte der Entwickler bereits mit der Sprache vertraut sein.
 Für die Datenbank-interne Sprache muss sich nach der Datenbank gerichtet werden.
 
 
 \section{Weitere Werkzeuge}
 
-Hier werden weitere Werkzeug-arten und Technologien vorgestellt,
-welche die Implementation unterstützen werden.
+Hier werden weitere Werkzeug-Arten und Technologien vorgestellt,
+welche die Implementation unterstützen.
 
 \subsection{Testwerkzeuge}
 
-Um die noch zu entwickelnden UnitTests,
+Um die noch zu entwickelnden Unit-Tests,
 sowie die bereits in \cref{chap:target} spezifizierten Tests umzusetzen,
 is es notwendig Tests zu schreiben. Um diese Aufgabe zu erleichtern
 und gleichzeitig 
 
 \subsection{Datenbank Management}
 
-Zur Verwaltung der Datenbank, sowie Datenbank-intene Programmteile,
+Zur Verwaltung der Datenbank, sowie Datenbank-interne Programmteile,
 werden Werkzeuge zum analysieren und verwalten benötigt.
 
 
 \section{Konzeptuelle Abbildungen}
 
-Diese Sektion behandelt Konzeptuelle Abbildungen der Ideen aus dem Grobkonzept.
-Sie sollen den verwendeten Technologien Angepasst werden
+Dieses Unterkapitel behandelt konzeptuelle Abbildungen der Ideen aus dem Grobkonzept.
+Sie sollen den verwendeten Technologien angepasst werden
 
 \subsection{Ausschreibungsverfahren für die Auftragserteilung}
 \label{sec:verfahren:erteilung}
 Für die Umsetzung des Ausschreibungsverfahren der Auftragserteilung gibt es
-mehrere Möglichkeiten, die Inanspruchnahme eines Auftrages in
+mehrere Möglichkeiten die Inanspruchnahme eines Auftrages in
 der Datenbank umzusetzen. Je nach Fähigkeiten der Datenbank kann man 
 alternative Versionen des selben Datenobjekt nutzen,
-oder auf separate Datenobjekte, welche die Inanspruchnahme ausdrücken setzen.
+oder auf separate Datenobjekte, welche die Inanspruchnahme ausdrücken, setzen.
 
 \subsubsection{Alternative Versionen}
 
-Bei der Umsetzung mit alternativen Versionen, wird die Technik \textbf{MVCC} (Multiversion Concurrency Control) eingesetzt.
+Bei der Umsetzung mit alternativen Versionen, wird die Technik \ac{MVCC} eingesetzt.
 Sinnhaft Übersetzt bedeutet das Kontrolle der Nebenläufigkeit durch multiple Versionen.
 
-Im Prozess der Zuteilung sind dabei mehrere Versionen eines Arbeitspaket Objektes vorhanden und jede Version bringt eine andere Inanspruchnahme zum Ausdruck.
+Im Prozess der Zuteilung sind dabei mehrere Versionen eines Arbeitspaket-Objektes vorhanden und jede Version bringt eine andere Inanspruchnahme zum Ausdruck.
 
-Die eigentliche Zuteilung wird Anschließend diesen Konflikt wieder bereinigen.
+Die eigentliche Zuteilung wird anschließend diesen Konflikt wieder bereinigen.
 Dabei wird eine neue Version des Arbeitspaketes erstellt, welche den Gewinner festlegt und alle anderen ersetzt.
 % More?
 
 \subsubsection{Separate Datenobjekte}
 
-Bei der Abbildung als separate Objekte in der Datenbank,
-wird für jeden Arbeiter, der ein Arbeitspaket ausführen will, ein $Claim(Packet, Arbeiter)$ erzeugt. Diese bringen Inanspruchnahme zum Ausdruck.
-Der Manager kann dann eines dieser Claim Objekte auswählen und dem Arbeitspaket einen Arbeiter zuteilen.
+Bei der Abbildung als separate Objekte in der Datenbank
+wird für jeden Arbeiter, der ein Arbeitspaket ausführen will, ein $Claim (Paket, Arbeiter)$ erzeugt. Diese bringen Inanspruchnahme zum Ausdruck.
+Der Manager kann dann eines dieser $Claim$-Objekte auswählen und dem Arbeitspaket einen Arbeiter zuteilen.
 %MORE!
 
 \subsection{Alternativen zu Fabriken in Skript-sprachen}
 
-Das Fabrik-Muster kommt vorwiegend in statisch typisierten Objektorientierten Sprachen zum Einsatz. In dynamisch typisierten Sprachen gibt es jedoch eine weitere Methode, das Dynamische Instantiieren von Abgeleiteten Klassen zu behandeln.
+Das Fabrik-Muster kommt vorwiegend in statisch-typisierten objektorientierten Sprachen zum Einsatz. In dynamisch typisierten Sprachen gibt es jedoch eine weitere Methode, dass dynamische Instantiieren von abgeleiteten Klassen zu behandeln.
 
-Anstelle einer Fabrik-klasse, die Konfiguriert wird,
+Anstelle einer Fabrik-Klasse, die konfiguriert wird,
 kann eine einfache Zuordnung an Konstruktoren anlegt werden.
 
-Dies trifft besonders auf die ``Proc'' Klassen (Siehe \Cref{fig:klassen-arten-arbeitsschritt}) zu.
-Ihre Zuordnung zu Arbeitsschritten findet über den Wert eines Attributes statt
+Dies trifft besonders auf die ``Proc''-Klassen (siehe \Cref{fig:klassen-arten-arbeitsschritt}) zu.
+Ihre Zuordnung zu Arbeitsschritten findet über den Wert eines Attributes statt,
 daher ist eine eindeutige Zuordnung über ein Mapping ausreichend (siehe \cref{fig:fabrik-mapping}).
 
