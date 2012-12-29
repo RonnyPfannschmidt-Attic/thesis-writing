@@ -1,7 +1,7 @@
 \chapter{Ist-Analyse ( 5 \%)}
 \label{chap:ist-analyse}
 
-Dieses Kapitel dient der Beschreibung existierender System.
+Dieses Kapitel dient der Beschreibung existierender Systeme.
 Es soll ihre Eigenschaften und Probleme aufzeigen.
 Diese werden zuerst theoretisch betrachtet und
 dann an Systemen in der Praxis demonstriert.
@@ -34,19 +34,19 @@ Wie bereits in \Cref{sec:base:ci} erwähnt,
 führt ein \ac{CI}-System nicht nur Aufträge aus,
 sondern sammelt auch Daten für die spätere Weiterverarbeitung.
 
-Die Datensammlung lässt sich dabei grob in zwei Bereiche einteilen
-zum Einen in die Laufzeitdaten und zum Anderen in die Artefakte.
+Die Datensammlung lässt sich dabei grob in zwei Bereiche einteilen:
+Zum Einen in die Laufzeitdaten und zum Anderen in die Artefakte.
 
 Laufzeitdaten fallen bereits w\"ahrend der Ausf\"uhrung an
 und beinhalten in der Regel zumindest die textuellen Ausgaben
 der ausgef\"uhrten Programme.
 Weitere M\"oglichkeiten k\"onnen Resultate von Tests, Echtzeit Mitschnitte und Ausführungsstatistiken sein.
-Laufzeitdaten werden dem Benutzer in der Regel Zeitnah zur Verfügung gestellt.
+Laufzeitdaten werden dem Benutzer in der Regel zeitnah zur Verfügung gestellt.
 
 Artefakte hingegen sind Dateien,
 welche erst nach Abschluss eines Schrittes zur Verfügung stehen.
 Zu ihnen geh\"oren neben den traditionellen, ausf\"uhrbaren Dateien
-auch lauff\"ahige Archive des Gesamtprogramms oder Testergebnisse in Formaten wie zb. JunitXML \cite{jenkins:junitxml} oder \ac{TAP}.
+auch lauff\"ahige Archive des Gesamtprogramms oder Testergebnisse in Formaten wie z.B. JunitXML \cite{jenkins:junitxml} oder \ac{TAP}.
 
 %XXX: cite tap, junitxml
 
@@ -65,7 +65,7 @@ Diese Unterkapitel gibt einen \"Uberblick \"uber die Problemarten existierender 
 Beim Datenzugriff sind die existierenden Systeme besonders problematisch.
 Es gibt grundsätzlich keinerlei Standardschnittstellen.
 Die meisten Systeme verwenden noch nicht einmal eine Datenbank.
-Jene, welche doch eine verwenden, machen sie nicht zugänglich.
+Jene, welche doch eine Datenbank verwenden, machen sie nicht zugänglich.
 
 Die Datenhaltung dieser Systeme kann somit grob als geordnete Ablage klassifiziert werden.
 Weiterführende Abfragen sind nicht möglich.
@@ -96,7 +96,7 @@ die nach dem Client/Server-Prinzip operieren.
 Dabei sind die Rollen strikt als Master und Slave eingeteilt.
 Das Management wird zentral im Master vorgenommen.
 Die Slaves haben dabei keinerlei Autonomie
-und folgen strikt den Anweisungen des Master.
+und folgen strikt den Anweisungen des Masters.
 
 Dadurch nimmt das System zwar keinen Schaden, wenn ein Slave ausfällt,
 der Ausfall des Master ist jedoch fatal und kann nicht abgefangen werden.
@@ -151,7 +151,7 @@ so m\"ussen weitere Jobs angelegt werden.
 Zugriff auf die Daten kann nur mittels der internen \ac{API} oder
 einer nicht dokumentierten \ac{REST} \ac{API} genommen werden.
 
-Damit war es nicht m\"oglich in annehmbarer Zeit festzustellen,
+Damit war es nicht m\"oglich, in annehmbarer Zeit festzustellen,
 in wie weit sich die bereits vorgestellten UseCases umsetzen lassen.
 Das System verwendet augenscheinlich kein \ac{DBMS}.
 Datenabfragen und Aggregationen m\"ussen
@@ -162,7 +162,7 @@ aktiv f\"ur Funktionen wie nachgelagerte Builds verwendet.
 
 Es gibt einige einfach gestrickte Plugins mit dem Zweck die Testresultate anzuzeigen.
 Jedoch wird auf weitergehende Analysen dieser Resultate g\"anzlich verzichtet,
-mehr als eine Historie gibt es nicht.
+mehr als ein Histogramm gibt es nicht.
 
 
 \subsection{Buildbot}
@@ -186,14 +186,14 @@ Es gibt sogar schon Werkzeuge, welche diese zu erweiterten Vergleichen von Testr
 %XXX referenzen
 %XXX: C
 Einige wurden dabei besonders genau betrachtet.
-Das erste ist der PYPY Buildbot \cite{pypy:overview}, welcher eine hilfreiche Gesamtübersicht der Testergebnisse und ihrer Fehler
-der letzten vier Builds darstellt.
+Das erste ist der PYPY Buildbot \cite{pypy:overview}, welcher eine hilfreiche Gesamtübersicht der Testergebnisse und ihrer Fehler darstellt.
+Dabei werden nur die letzten vier Builds betrachtet.
 Das zweite ist das Script namens \verb|compare_last_builds.py|
 aus dem PYPY Projekt \cite{pypy:diffscript} ,
 welches die Unterschiede in den Testresultaten zwischen 2 Builds hervorhebt.
 Sie werden sp\"ater als Ideenlieferant dienen.
 
-Bedauerlich ist, das die Entwickler von BuildBot es nicht als Aufgabe ihres Systems sehen
+Bedauerlich ist, dass die Entwickler von BuildBot es nicht als Aufgabe ihres Systems sehen
 sich mit Testergebnissen zu befassen.
 Sie empfehlen die Integration externer Komponenten \cite{buildbot:irc}.
 
@@ -209,7 +209,7 @@ welche auf der beliebten Code-Hosting Seite GitHub verwaltet werden.
 
 % ref yaml % acronym yaml
 Die Konfiguration ist dabei zweigeteilt,
-eine Datei im YAML Format \cite{yaml:website} legt dabei Build-Achsen und Schritte fest.
+eine Datei im \acute{YAML} Format \cite{yaml:website} legt dabei Build-Achsen und Schritte fest.
 Diese Datei befindet sich in der Versionskontrolle beim Projekt
 (was die Konfiguration sehr flexibel gestaltet).
 
@@ -219,7 +219,7 @@ so wird es regelmäßig bei Änderungen integriert.
 Besonders hilfreich ist, dass TravisCI auch den Fall behandelt,
 wenn ein anderer Benutzer der Code-Hosting Seite Github \"Anderungen anmeldet
 \cite{github:pullreq} (sog. Pull-Request).
-Die testet es und f\"ught anschließend das Resultat der \"Anderungsanmeldung hinzu.
+Die testet es und f\"ugt anschließend das Resultat der \"Anderungsanmeldung hinzu.
 
 Was leider nichts daran \"andert, dass TravisCI keine externe API zur Verfügung stellt.
 Es ist ein geschlossenes System. Außerdem hat es kein Konzept f\"ur Datensammlung/Artefakte
