@@ -1,24 +1,24 @@
 \chapter{Optimierung}
 
-Nachdem die Probleme festgestellt wurden
+Nachdem die Probleme festgestellt wurden,
 müsste eigentlich ab \Cref{chap:ist-analyse} neu iteriert werden,
 um die Anforderungen entsprechen anzupassen.
 Um überhöhten Aufwand zu vermeiden,
-sollen die Problemlösungen stattdessen hier vorgestellt werden
-und eine Auswahl auch Implementiert werden.
+sollen die Problemlösungen stattdessen hier vorgestellt werden.
+Außerdem eine Auswahl auch Implementiert werden.
 
 \section{Langwierige Anlaufphase}
 
 \subsection{Analyse}
 
-Das Problem der Anlaufphase lässt sich mit dem Verwenden der Mitteilungen über Änderungen erklären. Der Datenstrom beginnt dabei immer mit der ersten Änderung,
-somit steigt die Menge an Änderungen, welche nicht betrachtet werden, aber dennoch Teil der Mitteilungen sind, mit der Datenmenge in der Datenbank an.
+Das Problem der Anlaufphase lässt sich mit dem Verwenden der Mitteilungen über Änderungen erklären. Der Datenstrom beginnt dabei immer mit der ersten Änderung.
+Somit steigt die Menge an Änderungen, welche nicht betrachtet werden, aber dennoch Teil der Mitteilungen sind, mit der Datenmenge in der Datenbank an.
 Dies führt zwangsläufig dazu, dass die Primitiven \verb|watch_for| und \verb|listen_changes| mehr Zeit benötigen, um zur ersten verwertbaren Mitteilung vorzudringen.
 
 
 \subsection{Lösungsansatz Zustand Speichern}
 
-Da es Möglich ist die Mitteilungen über an einem bestimmten Änderungsstand der 
+Da es möglich ist die Mitteilungen über an einem bestimmten Änderungsstand der 
 Datenbank beginnen zu lassen (update sequence),
 kann durch Speichern und Wiederverwenden der aktuellen Sequenz verhindert werden,
 dass das System auch die bereits fertiggestellten Änderungen betrachten muss.
@@ -27,8 +27,8 @@ Dazu werden neue Datenobjekte benötigt, welche dies für die einzelnen Arbeiter
 
 \subsection{Lösungsansatz CouchDB View}
 
-Ein View in CouchDB ist ein der Lage Daten zu einem bestimmten Stand der Datenbank abzubilden und dieses Abbild zu Speichern.
-Damit ist es Möglich den aktuellen Zustand sowie den Stand der Änderungen zu erfragen und somit den Zustand des Views, sowie die darauf-folgenden Änderungen zu bearbeiten 
+Ein View in CouchDB ist in der Lage Daten zu einem bestimmten Stand der Datenbank abzubilden und dieses Abbild zu speichern.
+Damit ist es möglich den aktuellen Zustand sowie den Stand der Änderungen zu erfragen und somit den Zustand des Views, sowie die darauf-folgenden Änderungen zu bearbeiten 
 Dies benötigt nur eine Überarbeitung der Techn. Konzeption und der Implementation.
 
 \subsection{Implementation}
@@ -36,7 +36,7 @@ Da der View \verb|stm| bereits die Anforderungen des View-Ansatzes erfüllt,
 wurde er zur Implementation verwendet.
 
 Die primitiven \verb|watch_for| und \verb|run_callbacks| wurden modifiziert zuerst
-Die Daten aus dem View \verb|stm| zu bearbeiten und anschließend 
+die Daten aus dem View \verb|stm| zu bearbeiten und anschließend 
 auf nachfolgenden Änderungen zuzugreifen.
 
 \subsection{Resultat}
@@ -51,7 +51,7 @@ Jedoch darf nur ein Arbeiter das Arbeitspaket auch bearbeiten,
 alle anderen müssen es erneut versuchen.
 
 \subsection{Lösungsansatz Token}
-Der Lösungsansatz Token bedingt, dass die Auftragsvergabe auf das im Grobkonzept besprochene Melde-verfahren umgestellt wird.
+Der Lösungsansatz ``Token'' bedingt, dass die Auftragsvergabe auf das im Grobkonzept besprochene Meldeverfahren umgestellt wird.
 Es gib dann nicht mehr die Möglichkeit, dass Arbeiter überhaupt Anspruch auf Arbeitspakete erheben, somit existiert der Konflikt auch nicht mehr.
 Jedoch müssen dabei auch die Nachteile dieses Verfahrens in Kauf genommen werden.
 
@@ -61,13 +61,10 @@ Der Lösungsansatz ``Zufall'' soll eine Zufallsfunktion dazu verwenden,
 eines von mehreren verfügbaren Arbeitspaketen auszuwählen.
 Durch die Steigerung der Menge kann dabei die Wahrscheinlichkeit des Konfliktes bei einzelnen Arbeitspaketen verringert werden. Dabei wird die Gleichverteilung eingesetzt, welche jedem Element in der Menge die gleiche Wahrscheinlichkeit gibt.
 
-Im Rahmen dieser Arbeit stellte sich dieser Ansatz als Implementationstechnik heraus.
-
-
 \subsection{Implementation}
 
 Aufgrund der vorhergehenden Optimierung für die Anlaufphase,
-bietet die primitive \verb|watch_for| einen geeigneten Ansatzpunkt.
+bietet die Primitive \verb|watch_for| einen geeigneten Ansatzpunkt für den Ansatz ``Zufall''.
 Anstelle des nächsten Objektes im View, werden die nächsten $N$ Objekte erfragt,
 und anschließend Zufällig eines davon ausgewählt.
 Dabei wurde in den Tests $N = 10$ gewählt.
@@ -78,16 +75,16 @@ Sie sie sind nur noch feststellbar, wenn die Menge der verfügbaren Arbeitspaket
 sehr gering ist oder bereits mehrere Arbeiter dazu übergegangen sind,
 auf eine Mitteilung über einen neuen Auftrag zu warten.
 
-Dies bedeutet, das Konflikte nur noch dann auftreten,
+Dies bedeutet, dass Konflikte nur noch dann auftreten,
 wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete nicht mehr in der Lage sind weiter zu Arbeiten. Damit kann das Problem als gelöst betrachtet werden.
 
 \section{Theorie Blockade Managementdaten}
 \subsection{Analyse}
 Das Blockieren bei der Bearbeitung von Managementdaten lässt sich
-aus der Kombination von 2 Umständen erklären.
-Zum einen gibt die Primitive ``listen\_changes'' Mitteilungen
+aus der Kombination von zwei Umständen erklären.
+Zum Einen gibt die Primitive ``listen\_changes'' Mitteilungen
 in der Reihenfolge der Objekt-Erstellungen/-Änderungen zurück.
-Zum anderen die Zusammenlegung von Zuteilung, Vorbereitung
+Zum Anderen die Zusammenlegung von Zuteilung, Vorbereitung
 und Erstellung von Arbeitspaketen.
 Wird eine große Menge an Arbeitspaketen generiert,
 so ist das Management anschließend lange Zeit damit beschäftigt,
@@ -100,24 +97,24 @@ Somit werden andere Vorgänge blockiert.
 \subsection{Lösungsansatz Prozess-Spaltung}
 
 Der Ansatz der Spaltung teilt die Bearbeitung verschiedener Callbacks im Manager
-in verschiedene Prozesse, jeder Prozess bearbeitet dabei einem eigenen Strom an Mitteilungen, dies macht die verschiedenen Operationen unabhängig und neben-läufig.
-Somit kann das Bearbeiten einer Art von Änderung nicht länger das Bearbeiten einer anderen beeinflussen 
+in verschiedene Prozesse. Jeder Prozess bearbeitet dabei einem eigenen Strom an Mitteilungen, dies macht die verschiedenen Operationen unabhängig und neben-läufig.
+Somit kann das Bearbeiten einer Art von Änderung nicht länger das Bearbeiten einer anderen beeinflussen.
 
-Die Aufteilung in mehr Prozesse benötigt eine Umstellung Der Technischen Konzeption und der Implementation
+Die Aufteilung in mehr Prozesse benötigt eine Umstellung der technischen Konzeption und der Implementation.
 
 \subsection{Lösungsansatz Priorisieren}
 
 Bei der Priorisierung von Notifikationen ist das Ziel,
 die Notifikationen welche Einfluss auf andere Komponenten haben zuerst zu betrachten.
 Inanspruchnahme sollte also immer vor anderen Notifikationen bearbeitet werden.
-Dies würde Bedeuten, das Vor/Nachbereitung nicht länger die Zuteilung von Arbeitspaketen behindern.
+Dies würde Bedeuten, das Vor-/Nachbereitung nicht länger die Zuteilung von Arbeitspaketen behindern.
 
 Um dies umzusetzen wäre eine Neukonzeption im Grobkonzept notwendig.
 
 
 \subsection{Ausgrenzung}
 
-Aufgrund der relativen Komplexität der Umsetzung,
+Aufgrund der relativen Komplexität der Umsetzung
 wurde darauf verzichtet die vorgestellten Lösungsansätze der Locksituation Management
 als Teil dieser Arbeit zu testen.
 

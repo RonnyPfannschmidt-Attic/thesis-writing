@@ -322,9 +322,10 @@ Der Status \textit{``received''} sorgt dafür, dass dieser Auftrag sofort in Bea
 \FloatBarrier
 Die Auftragsannahme im System beginnt dabei mit einem Auftrag der in den Zustand \textit{erhalten} (received) versetzt wurde.
 
-Dieser sollte nun eigentlich Validiert werden und anschließend in einen der Zustände Valide oder Invalide versetzt werden.
+Dieser sollte nun eigentlich validiert werden und anschließend in einen der Zustände valide oder invalide versetzt werden.
 
-Da diese Umsetzung recht einfach ist, soll sie als Beispiel dienen
+Da diese Umsetzung recht einfach ist, soll sie im \cref{fig:auftrag-validation-code} als Beispiel dienen.
+
 \begin{listing}[h]
 \mintedfromtexofcode{auftrag-validate}{juggler/handlers/inbox.py:order_validate}
 \caption{Quelltext Ausschnitt Auftrag Validation}
@@ -332,11 +333,10 @@ Da diese Umsetzung recht einfach ist, soll sie als Beispiel dienen
 \end{listing}
 
 Die Dekoration \cite{python:decorator}
-der Funktion mit der \verb|watches_for| Primitive legt den zu Bearbeitenden Datentyp und Zustand fest.
+der Funktion mit der \verb|watches_for|-Primitive legt den zu bearbeitenden Datentyp und Zustand fest.
 
-Die Parameter der Funktion sind dabei zum einen die Verbinding mit der Datenbank
- (db)
-Zum anderen das Objekt was Erwartet oder Übergeben wurde.
+Die Parameter der Funktion sind dabei zum Einen die Verbindung mit der Datenbank (db) und
+zum Anderen das Objekt was erwartet oder übergeben wurde.
 Der Ablauf ist nun denkbar einfach, der Status wird auf valide gesetzt und das Resultat wird wieder in der Datenbank gespeichert.
 Damit ist der Eingang abgeschlossen.
 
@@ -344,31 +344,31 @@ Damit ist der Eingang abgeschlossen.
 \subsection{Auftragsvorbereitung}
 
 Bei der Arbeitsvorbereitung wird ein Auftrag,
-welcher den Zustand \textit{valid} erreicht hat um weiter Daten ergänzt.
+welcher den Zustand \textit{valid} erreicht hat, um weiter Daten ergänzt.
 Anschließend wird er in den Zustand \textit{ready} versetzt
 
 \subsection{Erstellung Arbeitspakete}
 
-Erreicht ein Auftrag den Zustand \textit{ready}, so ist er Bereit für die Erstellung von Arbeitspaketen.
-Bei der Erstellung der Arbeitspaketen, soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden,
-Dazu wird das Kartesisches Produkt der Achsen Gebildet,
-Die Ergebnis-menge beinhaltet dann alle Konfigurationen,
-Die Menge aller Arbeitspakete muss nun in der Datenbank abgelegt werden,
+Erreicht ein Auftrag den Zustand \textit{ready}, so ist er bereit für die Erstellung von Arbeitspaketen.
+Bei der Erstellung der Arbeitspaketen, soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden.
+Dazu wird das kartesisches Produkt der Achsen gebildet,
+Die Ergebnis-Menge beinhaltet dann alle Konfigurationen.
+Die Menge aller Arbeitspakete muss nun in der Datenbank abgelegt werden
 und der Auftrag erreicht seinen Endzustand.
 
-Die generierten Arbeitspakete befinden sich dabei im Zustand \textit{new}
+Die generierten Arbeitspakete befinden sich dabei im Zustand \textit{new}.
 
 \subsection{Generierung der Arbeitsschritte}
 
-Ist ein neues Arbeitspaket vorhanden (Status \textit{new}), so müssen aus den Templates die eigentlichen Arbeitsschritte generiert werden,
+Ist ein neues Arbeitspaket vorhanden (Status \textit{new}), so müssen aus den Templates die eigentlichen Arbeitsschritte generiert werden.
 Anschließend kann das Arbeitspaket als \textit{ready} markiert werden.
 
 \subsection{Inanspruchnahme von Arbeitspaketen}
 
 wie bereits in \Cref{sec:verfahren:erteilung} erwähnt gibt es 2 Möglichkeiten für die Umsetzung der Inanspruchnahme.
-Da CouchDB \emph{MVCC} direkt unterstützt und das Verwenden von extra Objekten einiges an extra Aufwand generiert, wird die Methode mit alternativen Versionen verwendet.
+Da CouchDB \emph{MVCC} direkt unterstützt und das Verwenden von extra Objekten einiges an extra Aufwand generiert, wird die Methode der alternativen Versionen verwendet.
 Die Inanspruchnahme eines Arbeitspaketes erzeugt also eine neue Version dieses Arbeitspaketes.
-Diese beschreibt den neuen Besitzer (Feld owner) und die Inanspruchnahme mittels des Zustandes \verb|claimed|
+Diese beschreibt den neuen Besitzer (Feld ``owner'') und die Inanspruchnahme mittels des Zustandes \verb|claimed|
 zum Ausdruck bringt.
 
 \subsection{Zuteilung von Arbeitern}
@@ -379,28 +379,28 @@ diese in den Zustand \textit{claimed} versetzt.
 
 \subsection{Erwartung der Zuteilung}
 
-Die ``Erwartung der Zuteilung'' dient dazu,
+Die ``Erwartung der Zuteilung'' dient dazu
 einen Arbeiter in die Lage zu versetzen,
 auf den Erfolg/Misserfolg einer Inanspruchnahme zu warten.
 Dabei wird für einen bestimmten Auftrag darauf gewartet,
 dass dieser den Zustand \textit{claimed} erreicht.
 
-Erfolg/Misserfolg ergibt sich aus der Übereinstimmung zwischen dem Feld owner und dem aktuellen Arbeiter
+Erfolg/Misserfolg ergibt sich aus der Übereinstimmung zwischen dem Feld ``owner'' und dem aktuellen Arbeiter.
 
 \subsection{Ausführung von Arbeitspaketen}
 
 Die Ausführung von Arbeitspaketen dient dazu die Arbeitsschritte letztendlich innerhalb eines Arbeitsverzeichnisses abzuarbeiten.
-Dieser Prozess wird später detaillierter beschrieben
+Dieser Prozess wird später detaillierter beschrieben.
 
 
 \section{Kombination der Komponenten}
-\subsection{Inbox \& Management}
+\subsection{Inbox und Management}
 
 Im Prototypen wurden Inbox und Management in einer einzelnen Systemkomponente  kombiniert.
-Dabei kommt die ``run\_callbacks'' Primitive zum Einsatz.
+Dabei kommt die ``run\_callbacks''-Primitive zum Einsatz.
 
 Die Callbacks des Managers (und ihre Positionen im Quelltext) sind:
-\begin{table}
+\begin{table}[h]
 \begin{tabular}{lcl}
     \textbf{Callback} && \textbf{Position} \\
     Auftragsannahme && \verb|inbox.order_validate| \\
@@ -413,16 +413,17 @@ Die Callbacks des Managers (und ihre Positionen im Quelltext) sind:
 \label{tab:callbacks-manager}
 \end{table}
 
-Die funktionalen Komponenten des Managers sind dabei so Konzipiert,
+Die funktionalen Komponenten des Managers sind dabei so konzipiert,
 dass ein Ausfall keine negativen Auswirkungen auf die Datenbank hat.
 Er kann einfach an anderer Stelle neu gestartet werden.
 Jedoch ist das System nicht in der Lage, korrekt zu agieren, wenn mehr als ein Manager aktiv ist.
+
 \subsection{Arbeiter}
 
-Arbeiter sind im Prototyp extrem einfach gebaut,
-ihre Aufgabe besteht darin sich Arbeitspakete zu sichern,
+Arbeiter sind im Prototyp extrem einfach gebaut:
+ihre Aufgabe besteht darin sich Arbeitspakete zu sichern
 und diese dann auszuführen.
-Dazu nutzen sie in einer Schleife folgende Komponenten.
+Dazu nutzen sie in einer Schleife folgende Komponenten:
 
 \begin{enumerate}
     \item Inanspruchnahme - \verb|work.claim_pending_task|
@@ -440,7 +441,7 @@ eines Arbeiters zu entfernen.
 
 
 
-\section{Procdir \& Arbeitsschritte}
+\section{Procdir und Arbeitsschritte}
 
 Procdir und Arbeitsschritte setzen die letztendliche Ausführung eines Arbeitspakets um.
 Sie finden in der Ausführungskomponente im Arbeiter Anwendung.
