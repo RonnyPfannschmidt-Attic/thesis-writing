@@ -51,7 +51,7 @@ Der physische Aufbau unterscheidet sich stark von den bisher da gewesenen CI-Sys
 Ein Grund dafür ist der Fokus auf die verteilte Datenbank, direkte Kommunikation
 wird der Interaktion mit einer verteilten Datenbank weichen.
 
-Das System besteht somit aus Komponenten welche alle als Clients einer verteilten Datenbank operieren.
+Das System besteht somit aus Komponenten, welche alle als Clients einer verteilten Datenbank operieren.
 Die \Cref{fig:grob-layout-komponenten} zeigt die Struktur.
 Nennenswert ist dabei die Bindung einer Komponente an bestimmte Knotenpunkte der Datenbank. Dies dient der Kontrolle der Lokalität und wird später noch vorgestellte Verfahrensweisen unterstützen.
 
@@ -99,7 +99,7 @@ einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zurü
 
 Ein Auftrag beinhaltet grundsätzlich eine Referenz auf das zugehörige Projekt,
 außerdem beinhaltet er Überschreibungen/Zusätze für die Build-Achsen,
-dies ermöglicht es sowohl in den Achsen eingeschränkte,
+dies ermöglicht es sowohl in den Achsen eingeschränkte
 als auch erweiterte Aufträge zu erstellen.
 Diese werden später genauer erklärt.
 Zusätzlich beinhaltet der Auftrag einen Status, dieser beinhaltet den aktuellen Stand der Bearbeitung.
@@ -116,7 +116,7 @@ Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher das Arbeitspaket letzten
 
 Ein Arbeitsschritt referenziert das zugehörige Arbeitspaket.
 Neben den Zeitpunkten für Anfang und Ende seiner Ausführung,
-benennt er im Feld ``stepper'' um welche Art von Arbeitsschritt es sich handelt.
+benennt er im Feld ``stepper'', um welche Art von Arbeitsschritt es sich handelt.
 Das Feld ``status'' gibt Auskunft über den aktuellen Stand der Bearbeitung.
 Das Feld ``data'' soll weitere dynamische Informationen zum Ausdruck bringen,
 die bei der Ausführung genutzt werden.
@@ -160,8 +160,9 @@ sie bilden die Bausteine für das Gesamtsystem.
 \subsection{Auftragsannahme}
 
 Die Auftragsannahme lässt sich grob in zwei Abschnitte einteilen.
-Zuerst geht ein Auftrag ein, was je nach Methode in mehrere Schritte beinhalten kann,
-danach wird er überprüft und damit angenommen oder abgelehnt.
+Zuerst geht ein Auftrag ein.
+Dies kann je nach Methode in mehrere Schritte umfassen.
+Danach wird er überprüft und damit angenommen oder abgelehnt.
 
 
 \begin{figure}[ht]
@@ -176,16 +177,18 @@ In \cref{fig:lebenszyklus-auftrag-eingang} ist das Flussdiagramm zur Auftragsann
 \subsubsection{Eingang}
 
 Der Auftragseingang gestaltet sich in der Praxis vielseitig.
-Da nicht alle Quellen direkt einen fertigen Auftrag generieren können,
-beginnt ein Auftrag im Zustand eingehend, sind schließlich alle Daten zusammengekommen,
+Da nicht alle Quellen sofort einen vollständigen Auftrag generieren können,
+beginnt ein Auftrag im Zustand eingehend.
+Anschließend werden weitere Daten für diesen Auftrag gesammelt.
+Sind schließlich alle Daten zusammengekommen,
 so wird der Eingang festgehalten und der Auftrag wird vom System weiterverarbeitet.
 
 %XXX Quellen betrachten``
 Betrachtet werden die Anforderungen für die Quellen
 \begin{description}
     \dhitem[E-Mail]
-        Der Eingang per E-Mail kann in zwei Formen erfolgen,
-        zum Einen kann der gesamte Auftrag ein einer einzigen E-Mail enthalten sein.
+        Der Eingang per E-Mail kann in zwei Formen erfolgen:
+        Zum Einen kann der gesamte Auftrag in einer einzigen E-Mail enthalten sein.
         Zum Anderen kann sich der Auftrag über mehr als eine E-Mail erstrecken.
         Beispiel hierfür sind z.B. Mercurial Patchbombs \cite{mercurial:patchbomb}.
         Ist ein Auftrag fertiggestellt, so ist eine Antwort-E-Mail hilfreich.
@@ -205,23 +208,22 @@ Betrachtet werden die Anforderungen für die Quellen
     \dhitem[HTTP Hook]
         HTTP Hooks sind ein traditionelles Werkzeug,
         um \ac{CI}-Systemen Änderungen mitzuteilen.
-        Sie sind einfach in externe Werkzeuge wie zB. \ac{SCM} integrierbar,
+        Sie sind einfach in externe Werkzeuge, wie z.B. \ac{SCM} integrierbar,
         und dienen dazu, Aufträge für die Standardkonfiguration
         eines Projektes abzusetzen, wenn externe Ereignisse,
-        wie zB. ein SCM commit, eintreten.
+        wie z.B. ein SCM commit, eintreten.
     \dhitem[Zeitsteuerung]
-        DIe Zeitsteuerung ist ein weiteres Traditionelles Werkzeug,
+        DIe Zeitsteuerung ist ein weiteres traditionelles Werkzeug,
         um Aufträge in Standardkonfiguration abzusetzen.
         Zu festgesetzten Zeitpunkten, wie zb. Nachts oder nach
         Arbeitsschluss, werden Aufträge abgesetzt.
     \dhitem[HTTP API]
         Eine HTTP API kann als Basis sowohl für Testwerkzeuge
         als auch für Web-Formulare dienen.
-        Sie ermöglicht Programmen ein hohes maß an Kontrolle
-        für das Absetzen von Aufträgen
+        Sie ermöglicht Programmen das Absetzen von Aufträgen.
 \end{description}
 
-Fur den Prototypen ist zumindest die HTTP API notwendig,
+Für den Prototypen ist zumindest die HTTP API notwendig,
 um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 
 
@@ -230,15 +232,15 @@ um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 %XXX: genauer beschreiben
 
 Die Validation verfolgt das Ziel, Aufträge auch aus weniger vertrauenswürdigen Quellen anzunehmen.
-Dies ermöglicht Verwendung ähnlich zu TravisCI, was es erlaubt, Zuarbeiten von Außenstehenden zu Testen.
+Dies ermöglicht Verwendung ähnlich zu TravisCI, was es erlaubt, Zuarbeiten von Außenstehenden zu testen.
 Für die Überprüfung stehen verschiedene Möglichkeiten zur Verfügung.
 Ein Eingang per Mail/Mailingliste oder Pull-Request auf einer Code-Hosting,
-kann zB. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
-während Informationen die Mitarbeiter einsenden zB. an ihr Arbeitsverhältnis gebunden werden können.
+kann z.B. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
+während Informationen die Mitarbeiter einsenden z.B. an ihr Arbeitsverhältnis gebunden werden können.
 
 Zeitgesteuerte Eingänge innerhalb des Systems können jedoch grundsätzlich zugelassen werden.
 
-Den Abschluss der Validation stellt die Markierung des Auftrages als valide oder invalide dar.
+Den Abschluss der Validation stellt die Markierung des Auftrages als ``valide'' oder ``invalide'' dar.
 
 \subsection{Management}
 
@@ -262,7 +264,7 @@ bevor mit der Erstellung von Arbeitspaketen begonnen wird.
 
 \subsubsection{Bereitstellung von Arbeitspaketen}
 
-Das Bereitstellen von Arbeitspaketen stellt den Anfang der eigentliche Arbeitsphase dar.
+Das Bereitstellen von Arbeitspaketen stellt den Anfang der eigentlichen Arbeitsphase dar.
 Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeits\-pakete generiert,
 wobei jedes Arbeitspaket eine der Wertekombinationen darstellt.
 Nachdem alle Arbeitspakete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen.
@@ -271,12 +273,12 @@ Nachdem alle Arbeitspakete erstellt sind, ist die Bearbeitung des Auftrages an s
 
 Der Abschluss eines Auftrages ist ein Ereignis, welches impliziert werden kann.
 Im zu entwickelnden System wird der Abschluss eines Auftrages definiert
-als der Zustand, der eintritt, wenn alle Arbeitspakete eines Auftrages
+als der Zustand, welcher eintritt, wenn alle Arbeitspakete eines Auftrages
 einen finalen Zustand erreichen.
 
 Dies vereinfacht die Behandlung des Auftragsabschlusses,
-da man nicht nach Abschluss von Arbeitspaketen weitere Operationen durchführen muss,
-um den eventuellen Abschluss festzustellen.
+da man nach Abschluss von Arbeitspaketen keine weitere Operationen durchführen muss,
+um den eventuellen Abschluss des Auftrages festzustellen.
 
 \subsection{Zuteilung/Abarbeitung von Arbeitspaketen}
 
@@ -302,8 +304,9 @@ um den eventuellen Abschluss festzustellen.
 \subsubsection{Abschluss Abarbeitung}
 
 Ist die Bearbeitung der einzelnen Schritte eines Arbeitspaketes abgeschlossen,
-so muss das Resultat zusammengefasst werde 
-Dabei wird die Entscheidung getroffen ob ein Arbeitspaket zum ERfolg oder Misserfolg geführt hat.
+so muss das Resultat zusammengefasst werden. 
+Dabei wird die Entscheidung getroffen,
+ob ein Arbeitspaket zum Erfolg oder Misserfolg geführt hat.
 
 \subsection{Überblick Methoden der Zuteilung von Arbeitspaketen}
 \label{sec:methoden:zuteilung}
@@ -332,7 +335,7 @@ welcher Arbeiter in der Lage ist, welche Arbeitspakete zu bearbeiten.
 \end{figure}
 
 Die \cref{fig:auftrag-zuteilung-token} stellt den Prozess noch einmal graphisch dar.
-Vorteil des Verfahrens ist, das die Zuteilung ein eindeutiger Prozess ist.
+Vorteil des Verfahrens ist, dass die Zuteilung ein eindeutiger Prozess ist.
 Jedoch benötigt der Manager genaues Wissen über die Arbeiter,
 um seiner Aufgabe gerecht zu werden.
 
@@ -345,11 +348,11 @@ Der Manager entscheidet dann, welcher Arbeiter welches Arbeitspaket bearbeiten d
 %MOAR
 
 Dies erlaubt Arbeitern wesentlich autonomer zu agieren.
-Sie sind nun in der Lage frei zu entscheiden,
+Sie sind nun in der Lage, frei zu entscheiden,
 welche der verfügbaren Aufträge sie bearbeiten wollen.
 Der Manager ist auch vereinfacht,
 da er nur noch die Entscheidung für den Zuschlag treffen muss.
-Es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeiten zu haben. 
+Es ist nicht notwendig, spezielles Wissen über die Arbeiter und ihre Fähigkeiten zu haben. 
 
 
 \begin{figure}[ht] 
@@ -383,24 +386,24 @@ Es ist nicht notwendig spezielles Wissen über die Arbeiter und ihre Fähigkeite
 
 Das Ausschreibungsverfahren zeigt sich im Vergleich zum Meldeverfahren
 wesentlich flexibler.
-Die Möglichkeit Detailkenntnisse über die Fähigkeiten eines Arbeiter 
-beim Arbeiter zu belassen, sorgt dafür das Arbeiter wesentlich autonomer sind.
+Die Möglichkeit, Detailkenntnisse über die Fähigkeiten eines Arbeiter 
+beim Arbeiter zu belassen, sorgt dafür, dass Arbeiter wesentlich autonomer sind.
 Dies hat zur Folge, dass der Algorithmus für die Zuteilung von Arbeitspaketen wesentlich vereinfacht wird,
 da es für ihn nun unerheblich ist, wer den Zuschlag bekommt.
 Das Endresultat wird durch die Zuteilung nicht beeinflusst.
 
 \subsection{Abarbeitung von Arbeitspaketen}
 
-Bei der Abarbeitung von Arbeitspaketen geht es darum die einzelnen Arbeitsschritte
-des Arbeitspaketes nacheinander linear abzuarbeiten.
+Bei der Abarbeitung von Arbeitspaketen geht es darum,
+die einzelnen Arbeitsschritte des Arbeitspaketes nacheinander linear abzuarbeiten.
 Tritt ein Fehler auf oder wird ein Wunsch zum Abbruch im System eingetragen,
 so kann der Prozess vorzeitig beendet werden.
 
 
 \section{Besondere Ansätze zur Datenbank-Interaktion}
 
-Dieses Unterkapitel behandelt einige Ansätze zum zugriff auf die Daten in der verteilten Datenbank.
-Die unterstützen die Konsistenz der Daten.
+Dieses Unterkapitel behandelt einige Ansätze zum Zugriff auf die Daten in der verteilten Datenbank.
+Sie unterstützen die Konsistenz der Daten.
 
 %XXX: http://dbmsmusings.blogspot.de/2010/04/problems-with-cap-and-yahoos-little.html
 
@@ -415,9 +418,9 @@ einer verteilten Applikation unterschiedliche Bereiche abzudecken.
 Sobald genau definiert ist, für welche Daten in welchem Kontext welche Eigenschaften benötigt werden,
 kann ein konsistentes Modell geschaffen werden.
 
-Wichtig ist bei dieser Betrachtung, dass die unterschiedlichen Komponenten des Entwickelten CI-Systems
+Wichtig ist bei dieser Betrachtung, dass die unterschiedlichen Komponenten des entwickelten CI-Systems
 nicht zwingend eine direkte Konsistenz-Bindung untereinander benötigen.
-Wichtig ist nur, die Konsistenz zwischen einer Komponente
+Wichtig ist nur die Konsistenz zwischen einer Komponente
 und dem Datenbankknoten, mit dem sie kommuniziert.
 
 Das Hauptsystem, in dem alle Komponenten in Kommunikation stehen,
@@ -448,10 +451,10 @@ Dieser ist ein gerichteter Graph, der die Zustände und Zustandsänderungen eine
 Wie bereits in \Cref{fig:lebenszyklus-arbeitspaket} gezeigt,
 stellt der Lebenszyklus eines Arbeitspaketes einen solchen Zustandsgraph dar.
 Als Besonderheit ist er sogar frei von Zyklen.
-Dadurch ist es unmöglich den gleichen Status noch einmal zu erreichen.
+Dadurch ist es unmöglich, den gleichen Zustand noch einmal zu erreichen.
 
 Bindet man zusätzlich noch die Zustandsänderungen an bearbeitende Komponenten,
-so ist es auch bei einer Partitionierung der Datenbank eine Konsistenz der Gesamtsystems gewährleistet.
+so ist auch bei einer Partitionierung der Datenbank die Konsistenz der Gesamtsystems gewährleistet.
 %XXX: moar?
 
 
@@ -464,7 +467,7 @@ Mit der Bereitschaft wird die Verantwortung vom Eingang zur Abarbeitung übertra
 
 \subsection{Abbildung des Verteilten Systems auf Datenbanken}
 
-Die Abbildung eines verteilten Systems auf eine Datenbank,
+Die Abbildung eines verteilten Systems auf eine Datenbank
 hat einige überaus erfreuliche Nebeneffekte.
 
 Im Client-Server-System müssen der Client und Server extra Nachrichten austauschen, um das gleiche Bild der Welt zu bekommen, wobei jedes System eine eigene Version des Zustandes hat.
@@ -495,8 +498,8 @@ Es bindet alle Operationen, die notwendig sind,
 um die Kontrolldaten (Steps, siehe \Cref{fig:datenstrukturen})
 aus der Datenbank zu laden und diese dann an ausführende Objekte zu binden (Proc).
 
-Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen ProcDir verwaltet.
-das Proc Objekt sollte nur innerhalb der Methode ``run'' existieren.
+Der Lebenszyklus eines ``Proc'' Objektes wird dabei vom zugehörigen ProcDir verwaltet
+und das Proc Objekt sollte nur innerhalb der Methode ``run'' existieren.
 
 %XXX: More
 
@@ -515,21 +518,21 @@ Der Lebenszyklus eines einzelnen Arbeitsschritts beginnt mit der Speicherung der
 Kommt es schließlich zur Ausführung, so wechselt der Zustand nach \verb|building|.
 Und nach der Ausführung wird festgestellt, ob der ablauf erfolgreich war und der Zustand entsprechend auf \verb|completed| oder \verb|failed| gesetzt.
 
-Solange ein Arbeitsschritt in Bearbeitung ist kann sein Abbruch
+Solange ein Arbeitsschritt in Bearbeitung ist, kann sein Abbruch
 durch den Zustand \verb|canceling| beantragt werden.
-Ein Abbruch zwingt den Arbeitsschritt in den zustand \verb|canceled|.
+Ein Abbruch zwingt den Arbeitsschritt in den Zustand \verb|canceled|.
 Wird er jedoch vor Bearbeitung des Abbruchs abgeschlossen,
 so findet ein normaler Abschluss statt.
 
 \subsection{Datensammlung zur Laufzeit}
 
-Datensammlung zur Laufzeit dient dazu, Zeitnah den Zustand eines Integrationsprozesses zu bewerten.
+Datensammlung zur Laufzeit dient dazu, zeitnah den Zustand eines Integrationsprozesses zu bewerten.
 Üblicherweise werden dabei die Standardausgabe und Standardfehlerausgabe berücksichtigt. Aber auch statistische Informationen und einzelne Testresultate sind hilfreich. Im System wird dazu der \verb|Event| Datentyp verwendet.
 
 \subsection{Datensammlung nach Abschluss eines Schrittes}
 
-Datensammlung nach dem Abschluss eines Arbeitsschritts,
-Umfasst in der Regel verschiedenste Dateiformate.
+Datensammlung nach dem Abschluss eines Arbeitsschritts
+umfasst in der Regel verschiedenste Dateiformate.
 Diese werden aus den verschiedensten Gründen generiert.
 Üblich sind Test-Resultate, Logdateien, Build-Resultate und Archive.
 
@@ -540,13 +543,12 @@ Die Abbildung dieser Datensammlung kann dabei auf 2 Arten geschehen,
     \item als eigene Art von Schritt
 \end{enumerate}
 
-Die Abbildung als eigene Art von Arbeitsschritt,
-hat einige Vorteile, da sie die Zuständigkeit vom reinen Arbeitsschritt
-und dem Daten-sammeln sauber trennt.
+Die Abbildung als eigene Art von Arbeitsschritt hat einige Vorteile,
+da sie die Zuständigkeit vom reinen Arbeitsschritt und dem Daten-sammeln sauber trennt.
 
 Dies macht die Werkzeuge zur Datensammlung wesentlich einfacher.
 Anstatt sie in jeden Schritt integrieren zu müssen,
-kann einfach nach dem Schritt angewendet werden.
+können sie einfach nach dem Schritt angewendet werden.
 
 \subsection{Prozess Schritte}
 
@@ -596,7 +598,7 @@ Dabei wird das Regexmuster ``pattern'' verwendet, um festzustellen,
 ob eine Datei im Arbeitsverzeichniss zur Menge der gewünschten Dateien gehört.
 
 Erweiterte Versionen dieser Schritt-Art könnten zusätzliche Funktionen,
-wie z.b. Einpflegen von Testergebnissen aus JunitXML-Dateien in die Datenbank,
+wie z.B. Einpflegen von Testergebnissen aus JunitXML-Dateien in die Datenbank,
 übernehmen.
 
 
