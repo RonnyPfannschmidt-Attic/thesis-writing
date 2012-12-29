@@ -34,7 +34,7 @@ Dabei werden drei Punkte als wichtig erachtet.
 \dhitem[S2]
   Alle anfallenden längerfristig verfügbaren Daten müssen\\
   mittels einer Standard-Schnittstelle für \\
-  Datenbankzugriff abfragbar Bez. verwendbar sein.
+  Datenbankzugriff abfragbar bez. verwendbar sein.
 
 \dhitem[S3]
   Das System soll für Erweiterungen offen stehen, \\
@@ -70,7 +70,7 @@ Jede von ihnen ist unabdingbar.
 \end{figure}
 
 Wie in \Cref{fig:use-case-muss} gezeigt,
-stellt sich der Absolute Kern eines CI-Systeme aus relativ wenigen Funktionalitäten zusammen.
+stellt sich der absolute Kern eines CI-Systeme aus relativ wenigen Funktionalitäten zusammen.
 
 Die erste notwendige Funktion stellt die Verwaltung von Projekten \deffeat{projekt-verwalten} dae.
 Sind diese dann angelegt, kann man damit beginnen, Aufträge abzusetzen \deffeat{auftrag-absetzen}.
@@ -87,7 +87,7 @@ wobei die grundlegende Art von Arbeitsschritten das Ausführen eines Prozesses \
 
 \subsection{Weiterführende Funktionen}
 
-Nach dem Umsetzung des funktionalen Kerns als Basis,
+Nach der Umsetzung des funktionalen Kerns als Basis
 k\"onnen nun weiterf\"uhrende Funktionen angelagert werden.
 Diese sind nicht zwingend notwendig, tragen jedoch erheblich dazu bei,
 informierte Entscheidungen \"uber den Zustand eines Projektes in Integration zu treffen.
@@ -129,7 +129,7 @@ Beispiele f\"ur diese sind Plattform oder Betriebsumgebung.
 
 Der Auftragseingang kann sich vielseitig gestalten.
 Moderne Systeme unterstützen eine Vielzahl von Medien \deffeat{auftrag-eingang-medien},
-wie zb. E-Mail, Web-Hooks, Web-Formulare oder zeitgesteuerte Systeme.
+wie z.B. E-Mail, Web-Hooks, Web-Formulare oder zeitgesteuerte Systeme.
 
 W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterst\"utzt werden,
 sind die Anreicherung eines Auftrages um eigene Daten/\"Anderungen.
@@ -155,7 +155,7 @@ Diese werden hier nur grob umrandet und dann sp\"ater in der Analyse genauer spe
 
 Die erste Erweiterung betrachtet vergleichende Analysen von Testergebnissen \deffeat{ext-testing}.
 Dabei sollen Entwickler in die Lage versetzt werden,
-dass Fehler-verhalten eines Programms in verschiedenen Konfigurationen und Auftr\"agen zu vergleichen.
+das Fehler-verhalten eines Programms in verschiedenen Konfigurationen und Auftr\"agen zu vergleichen.
 Dies dient zur Vereinfachung der Fehleranalyse.
 
 Die zweite Entwicklung betrachtet ein gänzlich anderes Thema.
@@ -178,7 +178,7 @@ Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 
 \subsection{Unit-Tests}
 
-Unit-Tests werden verwendet um die kleinsten Komponenten des Systems zu testen.
+Unit-Tests werden verwendet, um die kleinsten Komponenten des Systems zu testen.
 Durch ihre starke Koppelung an Implementation und Entwurf,
 sind sie w\"ahrend der Kriterien-Findung noch nicht n\"aher bestimmbar.
 
@@ -232,12 +232,12 @@ fehleranf\"allig und/oder umfangreich sind.
 
 \section{Abgrenzung}
 
-In dieser Arbeit soll nur der prototypische Kern eins \ac{CI}-Systems,
-sowie exemplarische Erweiterungen, geschaffen werden.
+In dieser Arbeit sollen nur der prototypische Kern eins \ac{CI}-Systems
+sowie exemplarische Erweiterungen geschaffen werden.
 Somit sind viele Themen, welche für ein produktiv eingesetztes \ac{CI}-System notwendig
 sind, nicht weiter zu betrachten.
-Benutzer und ihre Rechte sollen nicht betrachtet werden,
-Authentifikation und Authorisation sind weitreichende Themengebiete
+Benutzer und ihre Rechte sollen nicht betrachtet werden.
+Authentifikation und Authorisation sind weitreichende Themengebiete,
 die sorgf\"altig betrachtet werden m\"ussen.
 Dies ist neben der Hauptaufgabe nicht im zeitlichen Rahmen unterzubringen.
 Außerdem wird kein Wert auf die Benutzeroberfläche gelegt.
@@ -254,9 +254,9 @@ Die wesentliche Aufgabe ist es, den Kern des CI-Systems als Protoyp zu schaffen.
 Anschließend sollen weitere Funktionen sowie exemplarische Erweiterungen
 auf dieser Basis geschaffen werden.
 L\"osungskonzepte f\"ur die einzelnen Komponenten sollen vorgestellt werden,
-um anschließend ihre Eigenschaften zu betrachten
+um anschließend ihre Eigenschaften zu betrachten.
 
-Fokusse sind dabei die Interaktionen mit der Datenbank und die Datenoperationen.
+Fokus sind dabei die Interaktionen mit der Datenbank und die Datenoperationen.
 Semantik des Systems und das Konsistenz-Verhalten bei Datenbankpartitionierung
 sollen betrachtet werden. Erweiterungen zur Datenanalyse sollen ebenfalls nur auf technischer Ebene behandelt werden.
 
