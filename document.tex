@@ -155,43 +155,23 @@
 \input{includes/fancyRegisterPart}
 
 \input{appendix}
-
-\chapter{Verzeichnisse}
-\makeatletter
-\renewenvironment{thebibliography}[1]
-{\section*{\bibname}% <-- this line was changed from \chapter* to \section*
-    \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-    \list{\@biblabel{\@arabic\c@enumiv}}%
-    {\settowidth\labelwidth{\@biblabel{#1}}%
-        \leftmargin\labelwidth
-        \advance\leftmargin\labelsep
-        \@openbib@code
-        \usecounter{enumiv}%
-        \let\p@enumiv\@empty
-        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-        \sloppy
-        \clubpenalty4000
-        \@clubpenalty \clubpenalty
-        \widowpenalty4000%
-        \sfcode`\.\@m}
-        {\def\@noitemerr
-            {\@latex@warning{Empty `thebibliography' environment}}%
-            \endlist}
-            \makeatother
+\input{content/abbr}
 
 \bibliographystyle{plainnat}
 \bibliography{bibliography}
-\addcontentsline{toc}{section}{\bibname}
 
 \clearpage
-\input{content/abbr}
+
 
 \listoffigures
-\addcontentsline{toc}{section}{Abbildungsverzeichniss}
+\addcontentsline{toc}{chapter}{Abbildungsverzeichniss}
+
 \listoftables
-\addcontentsline{toc}{section}{Tabellenverzeichniss}
+
+\addcontentsline{toc}{chapter}{Tabellenverzeichniss}
+
 %\lstlistoflistings
-%\addcontentsline{toc}{section}{Listings}
+\addcontentsline{toc}{chapter}{Listings}
 % #####
 % # load the sworn declaration
 % #####
