@@ -2,7 +2,7 @@
 
 Dieses Kapitel beschreibt die Implementation des Systems.
 Dabei wird zuerst auf Wahl der Werkzeuge eingegangen,
-Anschließend wird die Struktur Beschrieben.
+anschließend wird die Struktur beschrieben.
 Danach werden Primitiven vorgestellt, welche die Implementation der Komponenten vereinfachen.
 Schließlich werden Besonderheiten bei der Implementation einiger Komponenten vorgestellt.
 Zum Schluss werden die exemplarischen Erweiterungen vorgestellt.
@@ -11,22 +11,22 @@ Zum Schluss werden die exemplarischen Erweiterungen vorgestellt.
 \subsection{Datenbank}
 
 Das Kriterium der \textbf{Master-Master Replikation}
-schränkte die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
+schränkt die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
 
 In die nähere Betrachtung kommen CouchDB \cite{couchdb:website} (dokumentorientiert)
 und PostgreSQL \cite{postgresql:website} (relational).
-Beide Systeme besitzen Werkzeuge für Master-Master Replikation
-und primitiven für die Mitteilung von Änderungen.
+Beide Systeme besitzen Werkzeuge für Master-Master-Replikation
+und Primitiven für die Mitteilung von Änderungen.
 
-Andere Systeme wie Mysql (relational) \cite{mysql:website}, Mongodb(dokumentorientiert) \cite{mongodb:website}
+Andere Systeme wie Mysql (relational) \cite{mysql:website}, Mongodb (dokumentorientiert) \cite{mongodb:website}
 und  Neo4J (graph) \cite{neo4j:website} scheiden aus, weil zu ihrem Funktionsumfang
-nur die Master-Slave Replikation geh\"ort.
+nur die Master-Slave-Replikation geh\"ort.
 Das System Riak \cite{riak:website} wurde verworfen, da es Mitteilungen über Änderungen nicht unterstützte und in einem kurzen Vergleich
 die Anfragen langsamer beantwortete.
 
-Im oberflächlichen Vergleich von PostgreSQL mit CouchDB, ging CouchDB als Sieger hervor.
+Im oberflächlichen Vergleich von PostgreSQL mit CouchDB ging CouchDB als Sieger hervor.
 Im Test mussten bei CouchDB zwar Abstriche im Bereich Performance gemacht werden,
-jedoch stellte sich heraus, das die Mitteilungen über Änderungen von Couchdb detaillierter sind.
+jedoch stellte sich heraus, dass die Mitteilungen über Änderungen von CouchDB detaillierter sind.
 Außerdem erscheint der Prozess der Replikation in CouchDB als fehlertoleranter und einfacher, da er fest integriert ist und für asynchrone Replikation mit langen Unterbrechungen konzipiert ist.
 
 In PostgreSQL sind Mitteilungen ein extra Konzept \cite{postgresql:notify}.
@@ -39,9 +39,9 @@ Somit wurde Aufgrund der technischen Vorteile das System CouchDB als zugrunde li
 
 \subsection{Programmiersprachen}
 
-Es wurden 2 Programmiersprachen Ausgew\"ahlt.
-Zum einen Python, wegen seiner Bibliotheken und
-zum anderen Javascript, da es die Datenbankinterne Sprache von CouchDB ist.
+Es wurden zwei Programmiersprachen ausgew\"ahlt:
+zum Einen Python, wegen seiner Bibliotheken und
+zum Anderen Javascript, da es die datenbankinterne Sprache von CouchDB ist.
 
 \begin{table}[ht]
 \centering
@@ -50,7 +50,7 @@ zum anderen Javascript, da es die Datenbankinterne Sprache von CouchDB ist.
     \hline
     Datenbankintern         & nein            & ja \\
     Prozesskontrolle        & integriert      & extern, rudimentär \\
-    SCM Api                 & verfügbar       & nicht verfügbar \\
+    SCM API                & verfügbar       & nicht verfügbar \\
     CouchDB Client          & verfügbar       & verfügbar \\
 \end{tabular}
 \caption{Überblick über Features und Bibliotheken der Sprachen}
@@ -58,12 +58,12 @@ zum anderen Javascript, da es die Datenbankinterne Sprache von CouchDB ist.
 \end{table}
 
 Ein besonderes Problem mit Javascript ist,
-dass es Datenbankintern Bibliotheken, die Datenbank-extern sind,
+dass es datenbankintern Bibliotheken, die Datenbank-extern sind,
 nicht oder nur in limitierter Form verwenden kann.
-Die Laufzeitumgebung weißt große Unterschiede
+Die Laufzeitumgebung weist große Unterschiede
 zwischen Datenbank-interner und Datenbank-externer Verwendung auf.
 
-Weiterhin konnten wie in \Cref{tab:python-vs-js} aufgezeigt,
+Weiterhin konnten, wie in \Cref{tab:python-vs-js} aufgezeigt,
 für einige benötigte Bibliotheken keine
 oder nur unzureichende Implementationen gefunden werden.
 Somit ist Javascript für die Implementation der Komponenten
@@ -75,115 +75,115 @@ um die Implementation der Komponenten zu stützen.
 
 \subsection{Bibliotheken}
 
-Diese Sektion stellt die genutzten Bibliotheken vor.
+Diese Unterkapitel stellt die genutzten Bibliotheken vor.
 
-\subsubsection{Datenbank Interaktion}
+\subsubsection{Datenbank-Interaktion}
 
-Zur Interaktion mit CouchDB wurde die Bibliothek \emph{couchdbkit} \cite{couchdbkit:website} verwendet.
-Sie stellte als einzige alle Funktionen der HTTP-Api von CouchDB zur Verfügung.
+Zur Interaktion mit CouchDB wurde die Bibliothek ``\emph{couchdbkit}'' \cite{couchdbkit:website} verwendet.
+Sie stellte als einzige alle Funktionen der HTTP-API von CouchDB zur Verfügung.
 %XXX cites?
-Andere Bibliotheken sind python-couchdb (kein Support für Änderungsmitteilungen)
-und Paisley (sehr Unvollständig)
+Andere Bibliotheken sind ``python-couchdb'' (kein Support für Änderungsmitteilungen)
+und Paisley (sehr unvollständig)
 
 \subsubsection{SCM Interaktion}
 
-Für die Interaktion mit der Versions-Kontrolle wurde die Bibliothek anyvc \cite{anyvc:website} verwendet.
-Sie ist eine von 2 Python Bibliotheken für den Zugriff auf SCM,
-und als einzige in der Lage mit einem Arbeitsverzeichniss zu interagieren.
+Für die Interaktion mit der Versions-Kontrolle wurde die Bibliothek ``anyvc'' \cite{anyvc:website} verwendet.
+Sie ist eine von zwei Python Bibliotheken für den Zugriff auf SCM
+und als einzige in der Lage mit einem Arbeitsverzeichnis zu interagieren.
 
 \subsection{Weitere Werkzeuge}
 
 \subsubsection{Testwerkzeuge}
 
-Zum Testen wird das Test Framework py.test \cite{pytest:website} verwendet.
-Es das einzige Test Framework für Python,
-welches neben Werkzeugen für UnitTests auch Tools für
-Funktionale und Akzeptanz Tests mitbringt.
+Zum Testen wird das Test-Framework py.test \cite{pytest:website} verwendet.
+Es das einzige Test-Framework für Python,
+welches neben Werkzeugen für Unit-Tests auch Werkzeuge für
+Funktionale-Tests und Akzeptanz-Tests mitbringt.
 
-Mit der Erweiterung ``pytest-couchdbkit'' \cite{pytest:couchdbkit} ist es Bereits
+Mit der Erweiterung ``pytest-couchdbkit'' \cite{pytest:couchdbkit} ist es bereits
 bestens für das Testen von Applikationen und einzelnen Funktionen,
 welche CouchDB verwenden, geeignet.
-Außerdem basiert ''pytest-couchdbkit'' auch auf der Bibliothek ``couchdbkit'',
-und ist damit Bestens geeignet um die Basis für den Testprozess zu bilden.
+Außerdem basiert ``pytest-couchdbkit'' auch auf der Bibliothek ``couchdbkit'',
+und ist damit bestens geeignet, um die Basis für den Testprozess zu bilden.
 
-\subsubsection{Datenbank Management}
+\subsubsection{Datenbank-Management}
 
 Zum Management der Datenbank an sich wurde die integrierte Administrationsschnittstelle Futon verwendet \cite{couchdb:futon}.
 Sie bietet einfache Schnittstellen für die Verwaltung von Datenbanken sowie der Replikation.
 
 Um Datenbankinterne Programme zu verwalten,
-wurde das Werkzeug ``couchdb-compose"" \cite{couchdb:compose} geschaffen.
+wurde das Werkzeug ``couchdb-compose'' \cite{couchdb:compose} geschaffen.
 Die Umsetzung dieses Werkzeugs ist nicht als Teil dieser Arbeit zu betrachten.
-Notwendig wurde es, da existierenden Werkzeugen wie ``Kanso"" und ``couchapp""
+Notwendig wurde es, da existierenden Werkzeugen wie ``Kanso'' und ``couchapp''
 keine Möglichkeit boten, um direkte Kontrolle über den Aufbau und die Struktur 
-einer CouchDB Applikation zu üben.
+einer CouchDB-Applikation zu üben.
 
-\subsubsection{Javascript Bibliotheken}
+\subsubsection{Javascript-Bibliotheken}
 
 Um einige wiederkehrende Aufgaben in Javascript zu vereinfachen,
-wurde die Bibliothek underscore verwendet. \cite{javascript:underscore}.
-Sie bietet diverse funktionale Werkzeuge um das schreiben
+wurde die Bibliothek ``underscore'' verwendet. \cite{javascript:underscore}.
+Sie bietet diverse funktionale Werkzeuge um das Schreiben
 von Datenbank-internen Filtern und Views zu erleichtern.
 
 
 \section{Projektstruktur}
 \subsection{Überblick}
 
-Die Grundlegende Projekt-struktur beinhaltet einige Hauptverzeichnisse.
+Die grundlegende Projektstruktur beinhaltet einige Hauptverzeichnisse.
 Der Codename des Projektes ist dabei ``Juggler''.
 
 
 \begin{description}
-    \item[bin] beinhaltet die Skripts um einzelne Komponenten zu starten
-    \item[tool] beinhaltet Werkzeuge um mit der Datenbank des Prototyp zu interagieren
-    \item[juggler] beinhaltet die Implementation der Komponenten in Python
-    \item[composeapp] beinhaltet die couchdb-compose Applikation
-    \item[testing] beinhaltet die automatischen Tests
-    \item[example\_data] beinhaltet Beispiel-Datensätze im YAML Format
+    \item[bin] beinhaltet die Skripts um einzelne Komponenten zu starten.
+    \item[tool] beinhaltet Werkzeuge um mit der Datenbank des Prototyp zu interagieren.
+    \item[juggler] beinhaltet die Implementation der Komponenten in Python.
+    \item[composeapp] beinhaltet die couchdb-compose Applikation.
+    \item[testing] beinhaltet die automatischen Tests.
+    \item[example\_data] beinhaltet Beispiel-Datensätze im \ac{YAML} Format.
 \end{description}
 
-\subsection{Scripte und Werkzeuge}
-Die Skripts und Werkzeuge haben verschiedene Aufgaben und Aufruf-formen,
-diese werden hier beschrieben dabei werden Parameter in eckigen Klammern angegeben.
+\subsection{Skripte und Werkzeuge}
+Die Skripte und Werkzeuge haben verschiedene Aufgaben und Aufruf-formen,
+diese werden hier beschrieben, dabei werden Parameter in eckigen Klammern angegeben.
 Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen einer  Datenbank an oder den Namen einer lokalen Datenbank an.
 
 \begin{description}
     \item[bin/slave.py] [db] [name] simple \hfill \\
-        Started einen Slave/Worker Prozess
+        Started einen Slave/Worker Prozess.
     \item[bin/master.py] [db] \hfill \\
         Startet den Master Prozess - es darf nur einen geben und der Prototyp testet nicht, ob bereits einer aktiv ist.
     \item[tool/put.py] [db] [item] / [db] [item] --newid \hfill \\
         Überträgt den Inhalt der Datei namens \textit{item} zur Datenbank,
-        ist das flag \textit{--newid} gesetzt, so wird eine neue Objekt ID erzwungen
+        ist das flag \textit{--newid} gesetzt, so wird eine neue Objekt-ID erzwungen.
     \item[tool/example-reset-db.sh] \hfill \\
-        Shell Skript, um die Datenbank für die manuellen Tests vorzubereiten.
-        Es verwendet immer die lokale Datenbank namens ``juggler''
+        Shell-Skript, um die Datenbank für die manuellen Tests vorzubereiten.
+        Es verwendet immer die lokale Datenbank namens ``juggler''.
     \item[tool/clean\_standing.py] [db]\hfill \\
-        Setzt unterbrochene Arbeitspakete auf den Ursprungs-zustand zurück.
+        Setzt unterbrochene Arbeitspakete auf den Ursprungs-Zustand zurück.
         Dies ist notwendig, da der Prototyp den Status interrupted für ein Arbeitspaket nicht unterstützt.
 \end{description}
 
-\subsection{Python Implementation}
+\subsection{Python-Implementation}
 
-Die Python Implementation besteht aus einigen wichtigen Dateien im Ordner namesn juggler.
+Die Python-Implementation besteht aus einigen wichtigen Dateien im Ordner namens \verb|juggler|.
 
-Einsprungpunkte sind die Dateien ``simple\_master.py' und ``simple\_slave.py''.
-Sie beinhalten die Implementationen der Management und Arbeiter Komponenten.
+Einsprungpunkte sind die Dateien ``simple\_master.py'' und ``simple\_slave.py''.
+Sie beinhalten die Implementationen der Management- und Arbeiter-Komponenten.
 
-Hinzu kommt die Datei ``service.py'', welche ein Grundgerät für Komponenten enthält.
+Hinzu kommt die Datei ``service.py'', welche das Grundgerüst für Komponenten enthält.
 
-Folgende Verzeichnisse sind noch wichtig.
+Folgende Verzeichnisse sind noch wichtig:
 
 \begin{description}
     \dhitem[model] 
         enthält  die Modelklassen,
-        welche die Daten aus der Datenbank auf Python Objekte abbilden
+        welche die Daten aus der Datenbank auf Python Objekte .
     \dhitem[handler] 
         enthält die Einzelteile der Komponenten,
-        welche in Kommunikation mit der Datenbank stehen
+        welche in Kommunikation mit der Datenbank stehen.
     \dhitem[process]
         enthält die Implementation der Arbeitsschritte
-        und ihrer Ausführungssumgebung
+        und ihrer Ausführungssumgebung.
 \end{description}
 
 
@@ -192,24 +192,24 @@ Folgende Verzeichnisse sind noch wichtig.
 \label{sec:db-indexe}
 
 Die Indexe werden in CouchDB mittels 
-eines MapReduce \cite{couchdb:views} Algorithmus umgesetzt,
+eines MapReduce-Algorithmus \cite{couchdb:views} umgesetzt,
 welcher die Resultate innerhalb der Datenbank speichert.
 
 \begin{description}
     \dhitem[tasks\_of]
-        Der \verb|tasks_of| View hat 2 Aufgaben.
-        In der Map Phase, erzeugt er eine Menge an \hbox{Key $\rightarrow$ (Value(status), Id)} Zuordnungen.
-        Dabei ist der \textbf{Key} die Id des Auftrages,
-        \textbf{Id} ist die Id des Arbeitspaketes
+        Der \verb|tasks_of| View hat zwei Aufgaben.
+        In der Map-Phase erzeugt er eine Menge an \hbox{$Key \rightarrow (Value(status), Id)$} Zuordnungen.
+        Dabei ist der \textbf{Key} die ID des Auftrages
+        \textbf{Id} ist die ID des Arbeitspaketes
         und \textbf{Value} der Zustand dieses Arbeitspaketes.
         Dies ermöglicht es, einfach herauszufinden
         welche Arbeitspakete zu welchem Auftrag gehören.
-        In der Reduce Phase wird schließlich die eindeutige Menge
+        In der Reduce-Phase wird schließlich die eindeutige Menge
         der Zustände der Arbeitspakete gebildet,
         besteht dieses ausschließlich aus finalen Zuständen,
-        so kann der Auftrag als Abgeschlossen angesehen werden.
+        so kann der Auftrag als abgeschlossen angesehen werden.
     \dhitem[steps\_of]
-        Der \verb|steps_of| View hat lediglich die Aufgabe,
+        Der \verb|steps_of|-View hat lediglich die Aufgabe,
         eine Zuordnung von Arbeitsschritten
         zu ihren Arbeitspaketen zu schaffen.
     \dhitem[streams]
@@ -217,22 +217,22 @@ welcher die Resultate innerhalb der Datenbank speichert.
         festzustellen, welche Datenströme (stdout, stderr)
         eines Arbeitsschritts Daten halten.
     \dhitem[lines]
-        Der \verb|lines| View dient dem Auffinden der einzelnen Zeilen
+        Der \verb|lines|-View dient dem Auffinden der einzelnen Zeilen
         eines Datenstroms. Sie werden nach der Zeilennummer geordnet.
     \dhitem[stm]
         Der \verb|stm| View hat mehrere Aufgaben.
-        Er dient der Statistischen Analyse und
+        Er dient der statistischen Analyse und
         erzeugt seine Schlüssel aus der Kombination
         von Typ und Zustand eines Dokumentes.
         Dies ermöglicht es jederzeit festzustellen,
         welche Objekte sich in welchem Zustand befinden.
-        In der Reduce Phase wird die Anzahl ermittelt.
+        In der Reduce-Phase wird die Anzahl ermittelt.
         Somit lässt sich jederzeit feststellen,
         welche Dokumente sich in welchem Zustand befinden.
 %XXX: statret nach testing/eval
 \end{description}
 
-\subsection{CouchDB Applikation}
+\subsection{CouchDB-Applikation}
 
 Die Datenbank-Applikation wurde mit \emph{couchdb-compose} \cite{couchdb:compose} geschaffen und befindet sich wie bereits erwähnt im Verzeichnis \verb|composeapp|.
 
@@ -255,26 +255,26 @@ Somit kann man an eine Folge speziell ausgewählter Änderungen in der Datenbank
 
 \subsection{watch\_for}
 
-Die Primitive \verb|watch_for| dient dazu auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die \verb|listen_changes| Primitive ein und gibt die erste passende Änderung in der Datenbank zurück.
+Die Primitive \verb|watch_for| dient dazu auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die \verb|listen_changes|-Primitive ein und gibt die erste passende Änderung in der Datenbank zurück.
 
 \subsection{watches\_for - Kontext für Komponenten}
 
 Die Primitive \verb|watches_for| dient dazu einzelne Systemkomponenten
-an bestimmte Änderungen der Datenbank zu Knüpfen.
+an bestimmte Änderungen der Datenbank zu knüpfen.
 Sie bringt die Zustandsänderungen zum Ausdruck,
 bei denen eine Komponente aktiv werden soll.
 
 Außerdem abstrahiert sie die Logik für das Warten auf diese Änderungen
-(unter Verwendung der \verb|watch_for| primitive)
-und ermöglicht es die einzelnen Komponenten direkt mit den Daten Aufzurufen,
+(unter Verwendung der \verb|watch_for|-Primitive)
+und ermöglicht es die einzelnen Komponenten direkt mit den Daten aufzurufen,
 auf die sie hätte warten müssen.
 Dies ermöglicht es einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
 
 Die Primitive \verb|watches_for| umschließt dabei die Funktion, welche die Arbeit verrichtet und schafft durch Komposition eine neue Funktion,
 welche basierend auf den übergebenen Parametern die Art und Weise der Vorarbeit entscheidet.
 
-Wird das zu erwartende Objekt nicht mit übergeben, so werden aus den Parametern der Funktion die Parameter für die \verb|watches_for| Primitive generiert.
-diese wird anschließend verwendet um das zu erwartende Objekt von der Datenbank zu erhalten.
+Wird das zu erwartende Objekt nicht mit übergeben, so werden aus den Parametern der Funktion die Parameter für die \verb|watches_for|-Primitive generiert.
+diese wird anschließend verwendet, um das zu erwartende Objekt von der Datenbank zu erhalten.
 
 
 
@@ -286,20 +286,20 @@ ruft für jede Änderung die passende Komponente auf.
 
 Einzelne Komponenten sind dabei mit der Primitive \verb|watches_for| vorbereitet,
 die Primitive muss somit nur die Komponenten den Ereignissen zuordnen
-und Anschließend die Folge der Änderungen der Datenbank abarbeiten.
+und anschließend die Folge der Änderungen der Datenbank abarbeiten.
 
 \section{Funktionale Komponenten}
 
-Diese Sektion beschreibt die einzelnen Komponenten welche mit der \verb|watches_for| Primitive kombiniert werden. Sie bilden die Grundsteine des Prototypen.
+Dieses Unterkapitel beschreibt die einzelnen Komponenten welche mit der \verb|watches_for|-Primitive kombiniert werden. Sie bilden die Grundsteine des Prototypen.
 
-In der ersten Komponente wird dabei die Verwendung der \verb|watches_for| Primitive genauer vorgestellt, und ein Code-Beispiel gegeben.
+In der ersten Komponente wird dabei die Verwendung der \verb|watches_for|-Primitive genauer vorgestellt, und ein Code-Beispiel gegeben.
 
 \subsection{Auftragsannahme}
 
-Die Umsetzung der Auftragsannahme wurde stark Vereinfacht.
-Im Prototypen werden Aufträge mittels des \verb|put.py| Skriptes in die Datenbank eingegeben.
-Ein Beispiel wäre \Cref{fig:auftrag-beispieldaten}.
-\begin{figure}
+Die Umsetzung der Auftragsannahme wurde stark vereinfacht.
+Im Prototypen werden Aufträge mittels des \verb|put.py|-Skriptes in die Datenbank eingegeben.
+Ein Beispiel ist in \Cref{fig:auftrag-beispieldaten}.
+\begin{listing}[h]
 \begin{minted}{yaml}
 project: "print-some"
 type: juggler:order
@@ -310,14 +310,14 @@ axis:
   third: [1,2,3]
   fouth: [3,4,5]
 \end{minted}
-\caption{Beispiel Auftrage im YAML Format}
+\caption{Beispiel Auftr\"age im YAML Format}
 \label{fig:auftrag-beispieldaten}
-\end{figure}
+\end{listing}
 
-Es bringt einen Auftrag zum Ausdruck, welcher 4 Achsen der Konfiguration definiert.
+Es bringt einen Auftrag zum Ausdruck, welcher vier Achsen der Konfiguration definiert.
 Mit den Werten für diese Achsen, werden somit $3*3*3*3 = 81$ Arbeitspakete benötigt.
-Das zugehörige Projekt ist offensichtlich. Das Feld ``type"" gibt den für CouchDB benötigten Dokumenttyp an (es stellt nur eine Konvention dar).
-Der Status \textit{received} sorgt dafür, das dieser Auftrag sofort in Bearbeitung geht
+Das zugehörige Projekt ist offensichtlich. Das Feld ``type'' gibt den für CouchDB benötigten Dokumenttyp an (es stellt nur eine Konvention dar).
+Der Status \textit{``received''} sorgt dafür, dass dieser Auftrag sofort in Bearbeitung geht.
 
 \FloatBarrier
 Die Auftragsannahme im System beginnt dabei mit einem Auftrag der in den Zustand \textit{erhalten} (received) versetzt wurde.
@@ -325,11 +325,11 @@ Die Auftragsannahme im System beginnt dabei mit einem Auftrag der in den Zustand
 Dieser sollte nun eigentlich Validiert werden und anschließend in einen der Zustände Valide oder Invalide versetzt werden.
 
 Da diese Umsetzung recht einfach ist, soll sie als Beispiel dienen
-\begin{figure}[h]
+\begin{listing}[h]
 \mintedfromtexofcode{auftrag-validate}{juggler/handlers/inbox.py:order_validate}
 \caption{Quelltext Ausschnitt Auftrag Validation}
 \label{fig:auftrag-validation-code}
-\end{figure}
+\end{listing}
 
 Die Dekoration \cite{python:decorator}
 der Funktion mit der \verb|watches_for| Primitive legt den zu Bearbeitenden Datentyp und Zustand fest.
