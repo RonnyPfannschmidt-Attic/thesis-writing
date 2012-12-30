@@ -1,4 +1,4 @@
-\chapter{Ist-Analyse ( 5 \%)}
+\chapter{Ist-Analyse}
 \label{chap:ist-analyse}
 
 Dieses Kapitel dient der Beschreibung existierender Systeme.
@@ -58,7 +58,7 @@ w\"ahrend Testergebnisse nur dargestellt werden.
 
 \section{Probleme existierender Systeme}
 
-Diese Unterkapitel gibt einen \"Uberblick \"uber die Problemarten existierender Systeme
+Diese Unterkapitel gibt einen \"Uberblick \"uber die Problemarten existierender Systeme.
 
 \subsection{Datenzugriff}
 
@@ -85,7 +85,6 @@ Damit ist zumindest das problemlose Anpassen der Benutzeroberfläche gegeben.
 Für eigene Analysewerkzeuge kann es jedoch oft notwendig werden,
 eine eigene Datenbank, welche vom \ac{CI}-System getrennt ist, zu verwenden.
 Einige Anbieter von \ac{CI}-Werkzeugen wünschen dies sogar explizit.
-%XXX:
 
 
 \subsection{Komponentenabhängigkeit}
@@ -161,8 +160,8 @@ Das Konzept der Build-Artefakte wird unterst\"utzt und
 aktiv f\"ur Funktionen wie nachgelagerte Builds verwendet.
 
 Es gibt einige einfach gestrickte Plugins mit dem Zweck die Testresultate anzuzeigen.
-Jedoch wird auf weitergehende Analysen dieser Resultate g\"anzlich verzichtet,
-mehr als ein Histogramm gibt es nicht.
+Jedoch wird auf weitergehende Analysen dieser Resultate g\"anzlich verzichtet
+und mehr als ein Histogramm gibt es nicht.
 
 
 \subsection{Buildbot}
@@ -221,7 +220,7 @@ wenn ein anderer Benutzer der Code-Hosting Seite Github \"Anderungen anmeldet
 \cite{github:pullreq} (sog. Pull-Request).
 Die testet es und f\"ugt anschließend das Resultat der \"Anderungsanmeldung hinzu.
 
-Was leider nichts daran \"andert, dass TravisCI keine externe API zur Verfügung stellt.
+Dies \"andert leider nichts daran, dass TravisCI keine externe API zur Verfügung stellt.
 Es ist ein geschlossenes System. Außerdem hat es kein Konzept f\"ur Datensammlung/Artefakte
 und auch Testresultate werden nicht betrachtet.
 Es ist nicht portabel und scheinbar f\"ur den Betrieb nur
@@ -230,11 +229,11 @@ auf den zur Verfügung gestellten Servern vorgesehen.
 
 \section{Zusammenfassung}
 
-Dieses Kapitel hat die Probleme der CI-Systeme n\"aher gezeigt.
+Dieses Kapitel hat die Probleme der \ac{CI}-Systeme n\"aher gezeigt.
 Wir haben gesehen, dass Datenzugriff und Erweiterungen f\"ur Analyse
 schwer oder gar nicht zu erreichen sind.
 Außerdem sind die Systeme nach einigen Fehlerklassen nicht direkt wiederherstellbar.
-Im folgenden Verlauf der Arbeit soll der Grundstein f\"ur ein CI-System gelegt werden,
+Im folgenden Verlauf der Arbeit soll der Grundstein f\"ur ein \ac{CI}-System gelegt werden,
 welches Datenzugriff und Datenanalyse vereinfacht.
 Zus\"atzlich soll es eine bessere Fehlertoleranz aufweisen.
 
