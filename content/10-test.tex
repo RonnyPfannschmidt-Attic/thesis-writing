@@ -7,17 +7,18 @@
 
 
 \subsection{Manuelle Tests}
-Um das Gesamte System zu testen, wurde der Physische Überblick (siehe \cref{fig:grob-layout-komponenten}) als Plan hergenommen.
+Um das gesamte System zu testen, wurde der physische Überblick (siehe \cref{fig:grob-layout-komponenten}) als Plan hergenommen.
 Und auf 3 Rechnern (für jeden Knoten der Datenbank einen) umgesetzt.
 Dabei wurde auf jedem Rechner für jede CPU ein Arbeiter gestartet.
-zusätzlich wurde Willkürlich auf einem der Rechner der Manager gestartet.
+Auf den Testsystemen waren je vier CPU's verfügbar.
+Zusätzlich wurde willkürlich auf einem der Rechner der Manager gestartet.
 
-Um Daten an das Testsystem zu bringen wurde dabei das \verb|put.py| Tool mit beispielhaften Daten verwendet.
-Zur vorbereiten der Datenbank wurde jeweils couchdb-compose \cite{couchdb:compose} verwendet.
+Um Daten an das Testsystem zu bringen, wurde dabei das \verb|put.py| Tool mit beispielhaften Daten verwendet.
+Zum Vorbereiten der Datenbank wurde jeweils ``couchdb-compose'' \cite{couchdb:compose} verwendet.
 Anschließend wurde das System beobachtet.
 
 \subsection{Automatische Tests}
-Die Automatischen Tests wurden unter Zuhilfenahme von pytest \cite{pytest:website} und seiner Erweiterung  pytest-couchdb \cite{pytest:couchdbkit} auf dem Entwicklungsrechner  ausgeführt.
+Die automatischen Tests wurden unter Zuhilfenahme von pytest \cite{pytest:website} und seiner Erweiterung  pytest-couchdb \cite{pytest:couchdbkit} auf dem Entwicklungsrechner  ausgeführt.
 Dazu wurde lediglich eine einzelne Datenbank verwendet.
 Die automatischen Tests bereiten die Datenbank dabei vor jeder Ausführung der Tests selbstständig vor.
 
@@ -27,11 +28,11 @@ Die automatischen Tests bereiten die Datenbank dabei vor jeder Ausführung der T
 Diese Sektion beschreibt die einzelnen komplexen Tests des Systems.
 
 \subsection{Funktionale Tests}
-Die Funktionalen Tests stellen die Funktionsweise einzelner Komponenten sicher,
+Die funktionalen Tests stellen die Funktionsweise einzelner Komponenten sicher.
 Komponenten die im Prototypen nur eine einzige Aufgabe haben,
-erhielten daher auch nur einzelne Tests, während Andere Komponenten mehrere Tests erhielten.
+erhielten daher auch nur einzelne Tests, während andere Komponenten mehrere Tests erhielten.
 
-Die Tests verteilen sich Dabei wie folgt:
+Die Tests verteilen sich dabei wie folgt:
 
 \begin{description}
     \item[Eingang] \hfill
@@ -50,7 +51,7 @@ Die Tests verteilen sich Dabei wie folgt:
     \begin{itemize}
         \item Arbeitspaket anfordern Konfliktfrei
         \item Arbeitspaket anfordern Konflikt
-        \item Zugewiesenes Arbeitspaket Ausführen
+        \item Zugewiesenes Arbeitspaket ausführen
     \end{itemize}
     \item[Arbeitsschritte] \hfill
     \begin{description}
@@ -72,25 +73,25 @@ Die Tests verteilen sich Dabei wie folgt:
 
 \subsection{Systemtests}
 
-Von den 3 Systemtests wurden nur 2 Automatisiert.
-die Tests mit dem Durchlauf der Funktionalen  und des Gesamtsystems
-zeigten viele kleine Fehler auf die hier nicht Näher betrachtet werden.
+Von den 3 Systemtests wurden nur 2 automatisiert.
+Die Tests mit dem Durchlauf der Funktionalen Komponenten und des Gesamtsystems
+zeigten viele kleine Fehler, auf die hier nicht Näher eingegangen wird.
 
-Das Testen der Beispielerweiterung stellte sich als kompliziert heraus, und wurde auch als Manueller Test umgesetzt.
+Das Testen der Beispielerweiterung stellte sich als kompliziert heraus und wurde auch als Manueller Test umgesetzt.
 
 Der Durchlauf der Komponenten führt einfach nur die Komponenten der logischen Reihenfolge nach aus.
 \begin{enumerate}
     \item Auftrag Überprüfung
     \item Auftrag Vorbereitung
-    \item Auftrag Arbeitspakete Generieren
-    \item Arbeitspaket Schritte Generieren
-    \item Arbeitspaket Inanspruchnahme
-    \item Arbeitspaket Zuweisung
-    \item Arbeitspaket Erwarten
-    \item Arbeitspaket Ausführen
+    \item Auftrag Arbeitspakete generieren
+    \item Arbeitspaket Schritte generieren
+    \item Arbeitspaket in Anspruch nehmen
+    \item Arbeitspaket zuweisen
+    \item Arbeitspaket erwarten
+    \item Arbeitspaket ausführen
 \end{enumerate}
 
-Der Test des Gesamtsystems verwendet die beschriebenen Systemkomponenten, um den Manager und 2 Arbeiter zu starten und gibt Aufträge ins System
+Der Test des Gesamtsystems verwendet die beschriebenen Systemkomponenten, um den Manager und 2 Arbeiter zu starten und gibt Aufträge ins System.
 
 \subsection{Manuelle Tests}
 
@@ -103,19 +104,19 @@ Der Test des Gesamtsystems verwendet die beschriebenen Systemkomponenten, um den
 
 Bei den manuellen Tests, welche zum händischen Analysieren
 einiger schwer testbarer Problem-Punkte dienen,
-sind einige schwerwiegende Probleme aufgetreten,
-dieser werden hier nur kurz umrandet.
+sind einige schwerwiegende Probleme aufgetreten.
+Diese werden hier nur kurz umrandet.
 
 \begin{description}
     \dhitem[Langwierige Anlaufphase]
         Beim wiederholten Testen mit der gleichen Datenbank fiel auf, dass die Menge der Daten in der Datenbank Einfluss auf das Starten von Komponenten hat. Je mehr Daten sich in der Datenbank befinden, desto länger benötigen Komponenten, um mit ihrer Arbeit zu beginnen.
     \dhitem[Konfliktsituation Inanspruchname Arbeitspackete]
-        Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter dasselbe nächste Arbeitspaket in Anspruch nehmen wollen. Dies führte oft dazu, das manche Arbeiter erst nach dutzenden Versuchen das nächste Arbeitspaket bearbeiten können.
+        Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter dasselbe nächste Arbeitspaket in Anspruch nehmen wollen. Dies führte oft dazu, dass manche Arbeiter erst nach dutzenden Versuchen das nächste Arbeitspaket bearbeiten können.
     \dhitem[Blockade Abarbeitung von Managementdaten]
         Beim Absetzen großer Aufträge fiel auf, dass der Manager in einigen Situationen für mehrere Minuten keine Inanspruchnahme eines Arbeitspaketes bearbeitete. Somit wurden Arbeitern keine Arbeitsschritte gegeben, obwohl diese eigentlich verfügbar waren.
     \dhitem[Blockade Datenausgabe Python]
         Bei der Beobachtung des Systems fiel auf, dass Python Schritte/Prozesse
-        die Daten von STDOUT/STDERR nicht kontinuierlich und Zeilenweise,
-        sondern in größeren Blöcke zur Ausgabe schickten.
+        die Daten von STDOUT/STDERR nicht kontinuierlich und zeilenweise,
+        sondern in größeren Blöcken zur Ausgabe schickten.
 \end{description}
 

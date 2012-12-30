@@ -5,7 +5,7 @@ müsste eigentlich ab \Cref{chap:ist-analyse} neu iteriert werden,
 um die Anforderungen entsprechen anzupassen.
 Um überhöhten Aufwand zu vermeiden,
 sollen die Problemlösungen stattdessen hier vorgestellt werden.
-Außerdem eine Auswahl auch Implementiert werden.
+Außerdem eine Auswahl auch implementiert werden.
 
 \section{Langwierige Anlaufphase}
 
@@ -18,26 +18,25 @@ Dies führt zwangsläufig dazu, dass die Primitiven \verb|watch_for| und \verb|l
 
 \subsection{Lösungsansatz Zustand Speichern}
 
-Da es möglich ist die Mitteilungen über an einem bestimmten Änderungsstand der 
-Datenbank beginnen zu lassen (update sequence),
+Da es möglich ist, die Mitteilungen über Änderungen an einem bestimmten Änderungsstand der Datenbank beginnen zu lassen (update sequence),
 kann durch Speichern und Wiederverwenden der aktuellen Sequenz verhindert werden,
 dass das System auch die bereits fertiggestellten Änderungen betrachten muss.
-Dazu werden neue Datenobjekte benötigt, welche dies für die einzelnen Arbeiter festhalten. Eine Überarbeitung ab Grobkonzept wäre Notwendig
+Dazu werden neue Datenobjekte benötigt, welche dies für die einzelnen Arbeiter festhalten. Eine Überarbeitung ab Grobkonzept wäre notwendig
 
 
 \subsection{Lösungsansatz CouchDB View}
 
-Ein View in CouchDB ist in der Lage Daten zu einem bestimmten Stand der Datenbank abzubilden und dieses Abbild zu speichern.
-Damit ist es möglich den aktuellen Zustand sowie den Stand der Änderungen zu erfragen und somit den Zustand des Views, sowie die darauf-folgenden Änderungen zu bearbeiten 
-Dies benötigt nur eine Überarbeitung der Techn. Konzeption und der Implementation.
+Ein View in CouchDB ist in der Lage, Daten zu einem bestimmten Stand der Datenbank abzubilden und dieses Abbild zu speichern.
+Damit ist es möglich, den aktuellen Zustand sowie den Stand der Änderungen zu erfragen und somit den Zustand des Views sowie die darauf-folgenden Änderungen zu bearbeiten 
+Dies benötigt nur eine Überarbeitung der technischen Konzeption und der Implementation.
 
 \subsection{Implementation}
 Da der View \verb|stm| bereits die Anforderungen des View-Ansatzes erfüllt,
 wurde er zur Implementation verwendet.
 
-Die primitiven \verb|watch_for| und \verb|run_callbacks| wurden modifiziert zuerst
-die Daten aus dem View \verb|stm| zu bearbeiten und anschließend 
-auf nachfolgenden Änderungen zuzugreifen.
+Die primitiven \verb|watch_for| und \verb|run_callbacks| wurden modifiziert.
+Im neuen Ablauf bearbeiten sie zuerst die Daten aus dem View \verb|stm|.
+Anschließend fahren sie wie bisher mit den nachfolgenden Änderungen fort.
 
 \subsection{Resultat}
 Das Problem ist damit eingestellt, das System hat keinerlei Wartezeiten mehr bei der Anlaufphase.
@@ -63,20 +62,20 @@ Durch die Steigerung der Menge kann dabei die Wahrscheinlichkeit des Konfliktes 
 
 \subsection{Implementation}
 
-Aufgrund der vorhergehenden Optimierung für die Anlaufphase,
+Aufgrund der vorhergehenden Optimierung für die Anlaufphase
 bietet die Primitive \verb|watch_for| einen geeigneten Ansatzpunkt für den Ansatz ``Zufall''.
-Anstelle des nächsten Objektes im View, werden die nächsten $N$ Objekte erfragt,
-und anschließend Zufällig eines davon ausgewählt.
+Anstelle des nächsten Objektes im View werden die nächsten $N$ Objekte erfragt
+und anschließend zufällig eines davon ausgewählt.
 Dabei wurde in den Tests $N = 10$ gewählt.
 
 \subsection{Resultat}
 Im normalen Ablauf sind Konflikte nicht länger bemerkbar.
-Sie sie sind nur noch feststellbar, wenn die Menge der verfügbaren Arbeitspakete
+Sie sind nur noch feststellbar, wenn die Menge der verfügbaren Arbeitspakete
 sehr gering ist oder bereits mehrere Arbeiter dazu übergegangen sind,
 auf eine Mitteilung über einen neuen Auftrag zu warten.
 
 Dies bedeutet, dass Konflikte nur noch dann auftreten,
-wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete nicht mehr in der Lage sind weiter zu Arbeiten. Damit kann das Problem als gelöst betrachtet werden.
+wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete nicht mehr in der Lage sind weiter zu arbeiten. Damit kann das Problem als gelöst betrachtet werden.
 
 \section{Theorie Blockade Managementdaten}
 \subsection{Analyse}
@@ -90,7 +89,7 @@ Wird eine große Menge an Arbeitspaketen generiert,
 so ist das Management anschließend lange Zeit damit beschäftigt,
 diese für die Abarbeitung vorzubereiten.
 
-In dieser Zeit kann Aufgrund der Abarbeitungsreihenfolge
+In dieser Zeit kann der Manager aufgrund der Abarbeitungsreihenfolge
 keine anderen Aufgaben wahrnehmen.
 Somit werden andere Vorgänge blockiert.
 
@@ -105,17 +104,17 @@ Die Aufteilung in mehr Prozesse benötigt eine Umstellung der technischen Konzep
 \subsection{Lösungsansatz Priorisieren}
 
 Bei der Priorisierung von Notifikationen ist das Ziel,
-die Notifikationen welche Einfluss auf andere Komponenten haben zuerst zu betrachten.
+die Notifikationen, welche Einfluss auf andere Komponenten haben, zuerst zu betrachten.
 Inanspruchnahme sollte also immer vor anderen Notifikationen bearbeitet werden.
-Dies würde Bedeuten, das Vor-/Nachbereitung nicht länger die Zuteilung von Arbeitspaketen behindern.
+Dies würde bedeuten, dass Vor-/Nachbereitung nicht länger die Zuteilung von Arbeitspaketen behindern.
 
-Um dies umzusetzen wäre eine Neukonzeption im Grobkonzept notwendig.
+Um dies umzusetzen, wäre eine Neukonzeption im Grobkonzept notwendig.
 
 
 \subsection{Ausgrenzung}
 
 Aufgrund der relativen Komplexität der Umsetzung
-wurde darauf verzichtet die vorgestellten Lösungsansätze der Locksituation Management
+wurde darauf verzichtet, die vorgestellten Lösungsansätze der Locksituation Management
 als Teil dieser Arbeit zu testen.
 
 \section{Blockade Datenausgabe Python}
@@ -125,10 +124,10 @@ Bei Recherchen im Internet stellte sich heraus,
 dass Python in der Standardeinstellung die Datenausgabe puffert und somit Zeilen nicht direkt,
 sondern in großen Blöcken ausgibt.
 %XXX citation
-Die Quellen legten nahe, den Interpreter einfach nur so zu Konfigurieren,
+Die Quellen legten nahe, den Interpreter einfach nur so zu konfigurieren,
 dass er nach jeder Ausgabe auch den Puffer in den Datenstrom ausgibt.
 
 \subsection{Resultat}
 
-Die Ausgaben werden nun Zeilenweise in das System gegeben,
-es entstehen keine Blockaden mehr.
+Die Ausgaben werden nun zeilenweise in das System gegeben.
+Es kommt nicht mehr zu Blockaden.
