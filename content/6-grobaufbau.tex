@@ -1,4 +1,4 @@
-\chapter{Analyse und Design ( 25 \%)}
+\chapter{Analyse und Design}
 \label{chap:design}
 
 Im vorhergehenden Kapitel wurden Ziele und Leistungskriterien
@@ -609,7 +609,8 @@ Dieses Unterkapitel beschäftigt sich mit dem Aufbau der zwei Beispielerweiterun
 
 \subsection{Analyse Test-Resultate}
 
-Bei der Analyse von Test-Resultaten ist das Ziel Veränderungen in verschiedenen Umgebungen feststellen zu können.
+Bei der Analyse von Test-Resultaten ist das Ziel,
+Veränderungen in verschiedenen Umgebungen feststellen zu können.
 Betrachtungsgrundlage sind dabei vorwiegend Unterschiede zwischen verschiedenen Arbeitspaketen und Aufträgen sowie Unterschiede zwischen zeitlich aufeinander folgenden Aufträgen oder Arbeitspaketen, welche verschiedene Plattformen, Entwickler-Zweige oder Konfigurationen betrachten, geben Aufschluss über Entwicklung und Zustand des Projektes.
 
 Da ein großer Teil dieser Erweiterung zur Benutzeroberfläche gehört,
@@ -624,11 +625,11 @@ anzulegen. Zudem sollen sie an das Arbeitspaket und nicht an den Arbeitsschritt 
 
 Für die Vergleiche ist es nun notwendig,
 Unterschiede zwischen zwei oder mehr Mengen an Testresultaten zu bestimmen.
-Eine recht einfache Methode ist dabei die Mengen-Differenz,
+Eine recht einfache Methode ist dabei die Mengen-Differenz.
 Nimmt man für die Resultate von Tests eine Werte-Menge mit der Struktur \{ $Testname \rightarrow Resultat$ \} als Basis,
-so ist es leicht einen passenden Überblick aufzubauen.
+so ist es leicht, einen passenden Überblick aufzubauen.
 
-Die Datenstruktur der Resultate, für Vergleiche zwischen N Resultatmengen
+Die Datenstruktur der Resultate für Vergleiche zwischen N Resultatmengen
 ist dabei eine Zuordnung von
 $\{ Testname \rightarrow ( Resultat_{1},\ldots,Resultat_{N})\}$
 Wobei i.d.R. nur die Elemente interessant sind,
@@ -636,13 +637,13 @@ deren Resultat-Menge Unterschiede und/oder Fehlschläge aufweist.
 Ein gutes Beispiel für die Darstellung eines solchen Resultates
 stellt der Testresultatüberblick des PYPY Projektes \cite{pypy:overview} dar.
 
-Die Art und Weise wie die Mengen an Test-Resultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
+Die Art und Weise, wie die Mengen an Test-Resultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
 da dies vorwiegend ein Problem der Benutzeroberfläche ist.
 
 \subsection{Analyse Verhalten eines Programms}
 
-Bei der Erweiterung zur Analyse des Verhaltens eines Programms,
-geht es darum das Verhalten eines Programms
+Bei der Erweiterung zur Analyse des Verhaltens eines Programms
+geht es darum, das Verhalten eines Programms
 in verschiedenen Konfigurationen zu testen.
 Als Programm wurde dabei ein Skript gewählt,
 welches einen genetischen Algorithmus umsetzt.
@@ -671,7 +672,7 @@ Weitere Parameter und Achsenkonfigurationen sind denkbar.
 Das Analysewerkzeug soll zeigen, welchen Einfluss die Parameter haben.
 
 Um dies zu zeigen, ist es notwendig die Resultate
-eines Konfigurierten Durchlaufes (Auftrag) zusammenzufassen.
+eines konfigurierten Durchlaufes (Auftrag) zusammenzufassen.
 Die Resultate jedes einzelnen Auftrages sind dabei aus der Standardausgabe
 des Programms zu entnehmen.
 
@@ -690,8 +691,8 @@ Wichtig ist dabei, dass vorgefertigte Testdaten in die Datenbank eingegeben werd
 
 In diesem Kapitel wurden sowohl die gesamte Struktur als auch die funktionalen Kernkomponenten vorgestellt.
 Dabei wurde besonders auf das Kernsystem eingegangen,
-und außerdem 2 Erweiterungen umrandet.
+und außerdem die zwei Erweiterungen umrandet.
 
-Um die Eigenschaften und Möglichkeiten dieses Systems zu praktisch ergründen ist es notwendig, das Kernsystem vollständig zu implementieren.
-Um die Erweiterbarkeit zu untersuchen ist Zumindest eine der beiden Beispiel-Erweiterungen umzusetzen. Dabei ist die Umsetzung,
+Um die Eigenschaften und Möglichkeiten dieses Systems zu praktisch zu ergründen, ist es notwendig, das Kernsystem vollständig zu implementieren.
+Um die Erweiterbarkeit zu untersuchen, ist zumindest eine der beiden Beispiel-Erweiterungen umzusetzen. Dabei ist die Umsetzung,
 der Datenanalyse erfolgversprechender, da hier die initiale Analyse bereits mehrere Arbeitspakete umfasst, während die Analyse der Testresultate dies in der Benutzeroberfläche umsetzen müsste (und die Benutzeroberfläche wird in dieser Arbeit nicht behandelt).

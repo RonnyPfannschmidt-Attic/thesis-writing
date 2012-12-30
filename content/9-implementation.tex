@@ -1,4 +1,4 @@
-\chapter{Implementation ( 15 \% ) }
+\chapter{Implementation}
 
 Dieses Kapitel beschreibt die Implementation des Systems.
 Dabei wird zuerst auf Wahl der Werkzeuge eingegangen,
@@ -35,12 +35,12 @@ In CouchDB sind Mitteilungen \cite[Chap Notifications]{couchdb:guide}, genaue In
 über das geänderte Objekt, eventuelle Konflikte der Datenbank
 und auf Wunsch sogar das Objekt selbst. Somit erfüllen die Mitteilungen in CouchDB bereits alle Anforderungen.
 
-Somit wurde Aufgrund der technischen Vorteile das System CouchDB als zugrunde liegende Datenbank ausgewählt.
+Somit wurde aufgrund der technischen Vorteile das System CouchDB als zugrunde liegende Datenbank ausgewählt.
 
 \subsection{Programmiersprachen}
 
 Es wurden zwei Programmiersprachen ausgew\"ahlt:
-zum Einen Python, wegen seiner Bibliotheken und
+zum Einen Python wegen seiner Bibliotheken und
 zum Anderen Javascript, da es die datenbankinterne Sprache von CouchDB ist.
 
 \begin{table}[ht]
@@ -58,12 +58,12 @@ zum Anderen Javascript, da es die datenbankinterne Sprache von CouchDB ist.
 \end{table}
 
 Ein besonderes Problem mit Javascript ist,
-dass es datenbankintern Bibliotheken, die Datenbank-extern sind,
+dass es innerhalb der Datenbank die Bibliotheken, welche Datenbank-extern sind,
 nicht oder nur in limitierter Form verwenden kann.
 Die Laufzeitumgebung weist große Unterschiede
 zwischen Datenbank-interner und Datenbank-externer Verwendung auf.
 
-Weiterhin konnten, wie in \Cref{tab:python-vs-js} aufgezeigt,
+Weiterhin konnten wie in \Cref{tab:python-vs-js} aufgezeigt,
 für einige benötigte Bibliotheken keine
 oder nur unzureichende Implementationen gefunden werden.
 Somit ist Javascript für die Implementation der Komponenten
@@ -83,7 +83,7 @@ Zur Interaktion mit CouchDB wurde die Bibliothek ``\emph{couchdbkit}'' \cite{cou
 Sie stellte als einzige alle Funktionen der HTTP-API von CouchDB zur Verfügung.
 %XXX cites?
 Andere Bibliotheken sind ``python-couchdb'' (kein Support für Änderungsmitteilungen)
-und Paisley (sehr unvollständig)
+und Paisley (sehr unvollständig).
 
 \subsubsection{SCM Interaktion}
 
@@ -103,8 +103,8 @@ Funktionale-Tests und Akzeptanz-Tests mitbringt.
 Mit der Erweiterung ``pytest-couchdbkit'' \cite{pytest:couchdbkit} ist es bereits
 bestens für das Testen von Applikationen und einzelnen Funktionen,
 welche CouchDB verwenden, geeignet.
-Außerdem basiert ``pytest-couchdbkit'' auch auf der Bibliothek ``couchdbkit'',
-und ist damit bestens geeignet, um die Basis für den Testprozess zu bilden.
+Außerdem basiert ``pytest-couchdbkit'' auch auf der Bibliothek ``couchdbkit''
+und ist damit bestens geeignet um die Basis für den Testprozess zu bilden.
 
 \subsubsection{Datenbank-Management}
 
@@ -121,8 +121,8 @@ einer CouchDB-Applikation zu üben.
 \subsubsection{Javascript-Bibliotheken}
 
 Um einige wiederkehrende Aufgaben in Javascript zu vereinfachen,
-wurde die Bibliothek ``underscore'' verwendet. \cite{javascript:underscore}.
-Sie bietet diverse funktionale Werkzeuge um das Schreiben
+wurde die Bibliothek ``underscore'' \cite{javascript:underscore} verwendet.
+Sie bietet diverse funktionale Werkzeuge, um das Schreiben
 von Datenbank-internen Filtern und Views zu erleichtern.
 
 
@@ -202,11 +202,11 @@ welcher die Resultate innerhalb der Datenbank speichert.
         Dabei ist der \textbf{Key} die ID des Auftrages
         \textbf{Id} ist die ID des Arbeitspaketes
         und \textbf{Value} der Zustand dieses Arbeitspaketes.
-        Dies ermöglicht es, einfach herauszufinden
+        Dies ermöglicht es, einfach herauszufinden,
         welche Arbeitspakete zu welchem Auftrag gehören.
         In der Reduce-Phase wird schließlich die eindeutige Menge
-        der Zustände der Arbeitspakete gebildet,
-        besteht dieses ausschließlich aus finalen Zuständen,
+        der Zustände der Arbeitspakete gebildet.
+        Besteht diese Menge ausschließlich aus finalen Zuständen,
         so kann der Auftrag als abgeschlossen angesehen werden.
     \dhitem[steps\_of]
         Der \verb|steps_of|-View hat lediglich die Aufgabe,
@@ -215,7 +215,7 @@ welcher die Resultate innerhalb der Datenbank speichert.
     \dhitem[streams]
         Aufgabe dieses View ist es,
         festzustellen, welche Datenströme (stdout, stderr)
-        eines Arbeitsschritts Daten halten.
+        eines Arbeitsschrittes Daten halten.
     \dhitem[lines]
         Der \verb|lines|-View dient dem Auffinden der einzelnen Zeilen
         eines Datenstroms. Sie werden nach der Zeilennummer geordnet.
@@ -250,31 +250,32 @@ Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teil
 
 Die Primitive \verb|listen_changes| dient dazu,
 Änderungen der Datenbank den Komponenten der Applikation mitzuteilen.
-Dabei kann Typ und weiteren Parametern gefiltert werden.
+Dabei kann nach dem Datentyp und nach weiteren Parametern gefiltert werden.
 Somit kann man an eine Folge speziell ausgewählter Änderungen in der Datenbank erhalten.
 
 \subsection{watch\_for}
 
-Die Primitive \verb|watch_for| dient dazu auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die \verb|listen_changes|-Primitive ein und gibt die erste passende Änderung in der Datenbank zurück.
+Die Primitive \verb|watch_for| dient dazu, auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die \verb|listen_changes|-Primitive ein und gibt die erste zutreffende Änderung in der Datenbank zurück.
 
 \subsection{watches\_for - Kontext für Komponenten}
 
-Die Primitive \verb|watches_for| dient dazu einzelne Systemkomponenten
+Die Primitive \verb|watches_for| dient dazu, einzelne Systemkomponenten
 an bestimmte Änderungen der Datenbank zu knüpfen.
 Sie bringt die Zustandsänderungen zum Ausdruck,
 bei denen eine Komponente aktiv werden soll.
 
 Außerdem abstrahiert sie die Logik für das Warten auf diese Änderungen
 (unter Verwendung der \verb|watch_for|-Primitive)
-und ermöglicht es die einzelnen Komponenten direkt mit den Daten aufzurufen,
+und ermöglicht es, die einzelnen Komponenten direkt mit den Daten aufzurufen,
 auf die sie hätte warten müssen.
-Dies ermöglicht es einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
+Dies ermöglicht es, einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
 
-Die Primitive \verb|watches_for| umschließt dabei die Funktion, welche die Arbeit verrichtet und schafft durch Komposition eine neue Funktion,
+Die Primitive \verb|watches_for| umschließt dabei die Funktion,
+welche die Arbeit verrichtet. Sie schafft somit durch Komposition eine neue Funktion,
 welche basierend auf den übergebenen Parametern die Art und Weise der Vorarbeit entscheidet.
 
 Wird das zu erwartende Objekt nicht mit übergeben, so werden aus den Parametern der Funktion die Parameter für die \verb|watches_for|-Primitive generiert.
-diese wird anschließend verwendet, um das zu erwartende Objekt von der Datenbank zu erhalten.
+Diese wird anschließend verwendet, um das zu erwartende Objekt von der Datenbank zu erhalten.
 
 
 
@@ -290,15 +291,16 @@ und anschließend die Folge der Änderungen der Datenbank abarbeiten.
 
 \section{Funktionale Komponenten}
 
-Dieses Unterkapitel beschreibt die einzelnen Komponenten welche mit der \verb|watches_for|-Primitive kombiniert werden. Sie bilden die Grundsteine des Prototypen.
+Dieses Unterkapitel beschreibt die einzelnen Komponenten, welche mit der \verb|watches_for|-Primitive kombiniert werden. Sie bilden die Grundsteine des Prototypen.
 
-In der ersten Komponente wird dabei die Verwendung der \verb|watches_for|-Primitive genauer vorgestellt, und ein Code-Beispiel gegeben.
+In der ersten Komponente wird dabei die Verwendung der \verb|watches_for|-Primitive genauer vorgestellt und ein Code-Beispiel gegeben.
 
 \subsection{Auftragsannahme}
 
 Die Umsetzung der Auftragsannahme wurde stark vereinfacht.
 Im Prototypen werden Aufträge mittels des \verb|put.py|-Skriptes in die Datenbank eingegeben.
 Ein Beispiel ist in \Cref{fig:auftrag-beispieldaten}.
+
 \begin{listing}[h]
 \begin{minted}{yaml}
 project: "print-some"
@@ -308,14 +310,14 @@ axis:
   first: [1,2,3]
   second: [3,4,5]
   third: [1,2,3]
-  fouth: [3,4,5]
+  fourth: [3,4,5]
 \end{minted}
 \caption{Beispiel Auftr\"age im YAML Format}
 \label{fig:auftrag-beispieldaten}
 \end{listing}
 
 Es bringt einen Auftrag zum Ausdruck, welcher vier Achsen der Konfiguration definiert.
-Mit den Werten für diese Achsen, werden somit $3*3*3*3 = 81$ Arbeitspakete benötigt.
+Mit den Werten für diese Achsen werden somit $3*3*3*3 = 81$ Arbeitspakete benötigt.
 Das zugehörige Projekt ist offensichtlich. Das Feld ``type'' gibt den für CouchDB benötigten Dokumenttyp an (es stellt nur eine Konvention dar).
 Der Status \textit{``received''} sorgt dafür, dass dieser Auftrag sofort in Bearbeitung geht.
 
@@ -350,8 +352,8 @@ Anschließend wird er in den Zustand \textit{ready} versetzt
 \subsection{Erstellung Arbeitspakete}
 
 Erreicht ein Auftrag den Zustand \textit{ready}, so ist er bereit für die Erstellung von Arbeitspaketen.
-Bei der Erstellung der Arbeitspaketen, soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden.
-Dazu wird das kartesisches Produkt der Achsen gebildet,
+Bei der Erstellung der Arbeitspaketen soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden.
+Dazu wird das kartesisches Produkt der Achsen gebildet.
 Die Ergebnis-Menge beinhaltet dann alle Konfigurationen.
 Die Menge aller Arbeitspakete muss nun in der Datenbank abgelegt werden
 und der Auftrag erreicht seinen Endzustand.
@@ -361,19 +363,20 @@ Die generierten Arbeitspakete befinden sich dabei im Zustand \textit{new}.
 \subsection{Generierung der Arbeitsschritte}
 
 Ist ein neues Arbeitspaket vorhanden (Status \textit{new}), so müssen aus den Templates die eigentlichen Arbeitsschritte generiert werden.
-Anschließend kann das Arbeitspaket als \textit{ready} markiert werden.
+Anschließend kann das Arbeitspaket als \textit{ready} (bereit) markiert werden.
 
 \subsection{Inanspruchnahme von Arbeitspaketen}
 
-wie bereits in \Cref{sec:verfahren:erteilung} erwähnt gibt es 2 Möglichkeiten für die Umsetzung der Inanspruchnahme.
+Wie bereits in \Cref{sec:verfahren:erteilung} erwähnt,
+gibt es 2 Möglichkeiten für die Umsetzung der Inanspruchnahme.
 Da CouchDB \emph{MVCC} direkt unterstützt und das Verwenden von extra Objekten einiges an extra Aufwand generiert, wird die Methode der alternativen Versionen verwendet.
 Die Inanspruchnahme eines Arbeitspaketes erzeugt also eine neue Version dieses Arbeitspaketes.
 Diese beschreibt den neuen Besitzer (Feld ``owner'') und die Inanspruchnahme mittels des Zustandes \verb|claimed|
 zum Ausdruck bringt.
 
 \subsection{Zuteilung von Arbeitern}
-Die Zuteilung von Arbeitern löst der Konflikt,
-den die Inanspruchnahme in der Datenbank hinterlässt,
+Die Zuteilung von Arbeitern löst den Konflikt,
+welchen die Inanspruchnahme in der Datenbank hinterlässt,
 indem sie eine Version als Gewinner auswählt und
 diese in den Zustand \textit{claimed} versetzt.
 
@@ -389,7 +392,8 @@ Erfolg/Misserfolg ergibt sich aus der Übereinstimmung zwischen dem Feld ``owner
 
 \subsection{Ausführung von Arbeitspaketen}
 
-Die Ausführung von Arbeitspaketen dient dazu die Arbeitsschritte letztendlich innerhalb eines Arbeitsverzeichnisses abzuarbeiten.
+Die Ausführung von Arbeitspaketen dient dazu,
+die Arbeitsschritte letztendlich innerhalb eines Arbeitsverzeichnisses abzuarbeiten.
 Dieser Prozess wird später detaillierter beschrieben.
 
 
@@ -421,7 +425,7 @@ Jedoch ist das System nicht in der Lage, korrekt zu agieren, wenn mehr als ein M
 \subsection{Arbeiter}
 
 Arbeiter sind im Prototyp extrem einfach gebaut:
-ihre Aufgabe besteht darin sich Arbeitspakete zu sichern
+ihre Aufgabe besteht darin, sich Arbeitspakete zu sichern
 und diese dann auszuführen.
 Dazu nutzen sie in einer Schleife folgende Komponenten:
 
@@ -432,10 +436,10 @@ Dazu nutzen sie in einer Schleife folgende Komponenten:
 \end{enumerate}
 
 Wie sich aus der Reduktion auf ein Minimum schließen lässt,
-wurde im Prototypen darauf verzichtet den Abbruch oder die Unterbrechung
+wurde im Prototypen darauf verzichtet, den Abbruch oder die Unterbrechung
 eines Arbeitspakets zu unterstützen.
 
-Stattdessen dient \verb|tool/clean_standing.py| dazu,
+Stattdessen dient das Hilfswerkzeug \verb|tool/clean_standing.py| dazu,
 um Überbleibsel in der Datenbank nach dem erzwungenen Ende
 eines Arbeiters zu entfernen.
 
@@ -453,27 +457,27 @@ Der Lebenszyklus des Procdir entspricht der Ausführung des Arbeitspaketes.
 Es verwaltet das Arbeitsverzeichniss des Arbeitspaketes und behandelt die Ausführung von Arbeitsschritten.
 Es behandelt somit alle Vorgänge, welche von einem \emph{Arbeiter} Service benötigt werden, um  Arbeitspakete Schritt für Schritt auszuführen.
 
-\subsection{baseproc - eine Basis für Arbeitsschritte}
+\subsection{Baseproc - eine Basis für Arbeitsschritte}
 
 Die Baseproc Klasse stellt ein Framework für die Schaffung von eigenen Arbeitsschritten.
-Neben der Verwaltung von zusammengehörenden Threads und Ressourcen, bietet sie außerdem Werkzeuge um Datensammlung zur Laufzeit zu behandeln.
+Neben der Verwaltung von zusammengehörenden Threads und Ressourcen bietet sie außerdem Werkzeuge, um Datensammlung zur Laufzeit zu behandeln.
 
-Sie ermöglicht es Arbeitsschritte als Kombination von Ressourcen und Threads (welche Laufzeit-Daten generieren) zu beschreiben.
+Sie ermöglicht es, Arbeitsschritte als Kombination von Ressourcen und Threads (welche Laufzeit-Daten generieren) zu beschreiben.
 
 
 \subsection{Prozessschritte}
 
 Prozessschritte (\verb|process.subprocess.SubProcessProc|)
-führen einzelne Prozesse aus, und schließen ab, sobald dieser
+führen einzelne Prozesse aus und schließen ab, sobald dieser
 abgeschlossen ist.
 
 Dabei ist das Prozess-handle die grundlegende Ressource.
-Auf seiner Basis sammeln mehrere Threads die Ausgaben des Prozesses, sowie Informationen über Status der Ausführung des Prozesses.
-Auf Statistische Informationen wurde dabei verzichtet.
+Auf seiner Basis sammeln mehrere Threads die Ausgaben des Prozesses sowie Informationen über Status der Ausführung des Prozesses.
+Auf statistische Informationen wurde dabei verzichtet.
 
 \subsection{Quellcode Management Schritte}
 
-Die Quellcode Management Schritte sind auf Basis von anyvc \cite{anyvc:website} implementiert. Die wurden lediglich Funktionsfähig erstellt und sammeln noch keine Laufzeiten.
+Die Quellcode Management Schritte sind auf Basis von anyvc \cite{anyvc:website} implementiert. Die wurden lediglich funktionsfähig erstellt und sammeln noch keine Laufzeitdaten.
 
 \section{Exemplarische Erweiterung - Datenaggregation}
 

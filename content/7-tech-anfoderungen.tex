@@ -1,10 +1,10 @@
-\chapter{Technologische Konzeption ( 5\% )}
+\chapter{Technologische Konzeption}
 
 
 Im vorhergehenden Kapitel wurde das grundlegende System konzipiert.
 Fortsetzend daran sollen nun geeignete Technologien und Werkzeuge gefunden werden,
 um einen Prototyp umzusetzen.
-Außerdem werden notwendige Anpassungen der Konzepte an technische Gegebenheiten vorgenommen werden,
+Außerdem sollen notwendige Anpassungen der Konzepte an technische Gegebenheiten vorgenommen werden,
 um die fortf\"uhrende Implementation zu unterst\"utzen.
 
 
@@ -24,7 +24,7 @@ Die Datenbank stellt die Basis dieses Systems und ihre Eigenschaften werden die 
 
 In einer initialen Sondierung zeigte sich,
 dass drei Klassen an Datenbanken die grundlegenden Anforderungen an die Modellierung des Denkschemata erfüllen.
-Dies sind die dokument-orientierten Datenbanken, die Graphen-Datenbanken und moderne relationale Datenbanken. 
+Diese sind die dokument-orientierten Datenbanken, die Graphen-Datenbanken und moderne relationale Datenbanken. 
 Eine erklärende Abbildung findet sich in \Cref{fig:klassen-datenbanken}
 
 \subsection{Produktanforderungen}
@@ -94,32 +94,34 @@ welche die Implementation unterstützen.
 
 Um die noch zu entwickelnden Unit-Tests,
 sowie die bereits in \cref{chap:target} spezifizierten Tests umzusetzen,
-is es notwendig Tests zu schreiben. Um diese Aufgabe zu erleichtern
-und gleichzeitig 
+ist es notwendig, Tests zu schreiben. Um diese Aufgabe zu erleichtern
+sollen Werkzeuge und Frameworks herangezogen werden,
+welche die Arbeitsprozesse rund um die verschiedenen Arten von Tests unterstützen.
 
 \subsection{Datenbank Management}
 
 Zur Verwaltung der Datenbank, sowie Datenbank-interne Programmteile,
-werden Werkzeuge zum analysieren und verwalten benötigt.
+werden Werkzeuge zum Analysieren und Verwalten benötigt.
 
 
 \section{Konzeptuelle Abbildungen}
 
 Dieses Unterkapitel behandelt konzeptuelle Abbildungen der Ideen aus dem Grobkonzept.
-Sie sollen den verwendeten Technologien angepasst werden
+Sie sollen den verwendeten Technologien angepasst werden.
 
 \subsection{Ausschreibungsverfahren für die Auftragserteilung}
 \label{sec:verfahren:erteilung}
+
 Für die Umsetzung des Ausschreibungsverfahren der Auftragserteilung gibt es
 mehrere Möglichkeiten die Inanspruchnahme eines Auftrages in
 der Datenbank umzusetzen. Je nach Fähigkeiten der Datenbank kann man 
-alternative Versionen des selben Datenobjekt nutzen,
-oder auf separate Datenobjekte, welche die Inanspruchnahme ausdrücken, setzen.
+alternative Versionen eines bestimmten Datenobjekts nutzen
+oder auf separate Datenobjekte, welche die Inanspruchnahme ausdrücken setzen.
 
 \subsubsection{Alternative Versionen}
 
-Bei der Umsetzung mit alternativen Versionen, wird die Technik \ac{MVCC} eingesetzt.
-Sinnhaft Übersetzt bedeutet das Kontrolle der Nebenläufigkeit durch multiple Versionen.
+Bei der Umsetzung mit alternativen Versionen wird die Technik \ac{MVCC} eingesetzt.
+Sinnhaft überbesetzt, bedeutet das Kontrolle der Nebenläufigkeit durch multiple Versionen.
 
 Im Prozess der Zuteilung sind dabei mehrere Versionen eines Arbeitspaket-Objektes vorhanden und jede Version bringt eine andere Inanspruchnahme zum Ausdruck.
 
