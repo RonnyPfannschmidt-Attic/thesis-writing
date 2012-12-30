@@ -1,17 +1,17 @@
-\chapter{Einleitung (5\%) }
+\chapter{Einleitung}
 \label{chap:intro}
+
 \section{Motivation}
 
 \ac{CI} ist ein wachsender Bereich
 in der Welt der Software-Entwicklung und ihrer Qualitätssicherung.
 
-% referenzen folwer/xp
 Entstammend aus der Praxis des \ac{XP}
 \cite{xp:explained, folwer:xp},
-beschäftigen sich Werkzeuge für kontinuierliche Integration damit,
+beschäftigen sich Werkzeuge für \ac{CI} damit,
 Programme nach einer vollzogenen Integration zu testen.
 
-In regelmäßigen Abständen, wie zB. nach einer erfolgreichen Integration oder nach Arbeitsschluss,
+In regelmäßigen Abständen, wie z.B. nach einer erfolgreichen Integration oder nach Arbeitsschluss,
 wird das Programm vorbereitet und getestet.
 Dies unterstützt das rasche Auffinden von Fehlern
 und informiert über den Zustand der Software.
@@ -24,7 +24,7 @@ so findet man heutzutage Mitschnitte verschiedener Datenquellen, Testergebnisse
 \cite{jenkins:junitxml}, sowie detaillierte Informationen über die Umgebung des Tests.
 
 Weiterhin entstand mit zunehmenden Anforderungen an die Portabilität über
-verschiedenste Arten von Plattformen (zB. Datenbanken oder Betriebssystemen)
+verschiedenste Arten von Plattformen (z.B. Datenbanken oder Betriebssystemen)
 die Notwendigkeit das System in mehr als nur einer Umgebung zu testen.
 
 Die Verwaltung von Software hat sich geändert.
@@ -32,7 +32,7 @@ Während ursprünglich nur auf einem Zweig der Entwicklung gearbeitet und integr
 findet dies Dank moderner Quellcode-verwaltung jetzt in vielen Zweigen statt.
 \cite{dvcs:vorteile, dvcs:entwicklungsmodelle}
 
-Aufgrund dieser Entwicklung stehen immer mehr Daten und Informationen zur Verfügung,
+Aufgrund dieser Entwicklung stehen immer mehr Daten und Informationen zur Verfügung
 und es erscheint überaus sinnvoll, diese auch zu nutzen, um den Entwicklungsprozess zu unterstützen.
 
 %XXX woanders?
@@ -59,7 +59,7 @@ Die Zukunftsvision, die Daten zu nutzen,
 trifft in der Praxis auf einige harte Probleme.
 Existierende Systeme sind schwer erweiterbar und haben oft schwer zugängliche Datenmodelle.
 
-Es gibt keine Standards für Schnittstellen um Systeme fur \ac{CI} zu erweitern und mit ihren Daten zu arbeiten.
+Es gibt keine Standards für Schnittstellen um Systeme für \ac{CI} zu erweitern und mit ihren Daten zu arbeiten.
 
 Die Kombination von diesen beiden Problemen erzeugt wiederum viele Probleme,
 welche später im Kapitel \ref{chap:ist-analyse} behandelt werden.
@@ -83,7 +83,7 @@ welches auf Datenbanktechnik basiert.
 Dies dient als Ansatzpunkt, um das System zu erweitern und
 Schnittstellen für den Datenzugriff zur Verfügung zu stellen.
 
-Dabei sollten sowohl die grundlegenden Funktionen eines CI,
+Dabei sollten sowohl die grundlegenden Funktionen eines \ac{CI},
 als auch die Möglichkeit der Erweiterung in Betracht gezogen werden.
 Beispiele für solche Erweiterungen sind, wie schon genannt,
 vergleichende Analyse zwischen Entwicklungs-zweigen oder eigenständige Analysewerkzeuge.
@@ -102,5 +102,4 @@ Stattdessen wird der Kern des Systems und die Datenbank in den Fokus gestellt.
 
 
 \section{Aufbau der Arbeit}
-
 

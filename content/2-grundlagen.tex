@@ -6,16 +6,25 @@ welche für das Verständnis dieser Arbeit hilfreich sind.
 \section{Verteilte Systeme}
 \label{sec:base:vs}
 
-\begin{verbatim}
-- basics
-- cite from somewhere
-\end{verbatim}
+Ein verteiltes System bezeichnet nach Tanenbaum \cite{tanenbaum:vs}
+einen Zusammenschluss unabhängiger Computer, die sich für den Benutzer als ein einziges System präsentieren.
+
+% http://www.inf.fu-berlin.de/lehre/WS03/VS/
+L\"ohr geht sogar noch weiter und definiert:
+\begin{quotation}
+    Ein verteiltes System ist eine Menge
+    interagierender Prozesse (oder Prozessoren),
+    die über keinen gemeinsamen Speicher verfügen
+    und daher über Nachrichten miteinander kommunizieren. \cite{loehr:vs}
+\end{quotation}
+
+Im Rahmen dieser Arbeit wird sich auf die Definition von L\"ohr bezogen.
 
 \section{CAP}
 \label{sec:base:cap}
 %XXX literatur
 %  http://www.julianbrowne.com/article/viewer/brewers-cap-theorem
-Das \ac{CAP} Theorem nach \cite{brewer:cap} beschreibt drei grundlegend
+Das \ac{CAP}-Theorem nach Brewer \cite{brewer:cap} beschreibt drei grundlegend
 wünschenswerte Eigenschaften von verteilten Systemen/Datenbanken.
 
 \begin{description}
@@ -53,8 +62,7 @@ A Recipe for Build Maintainability and Reusability'' \cite{folwer:receipe} eindr
 \label{sec:base:scm}
 
 
-\ac{SCM} fasst eine Menge
-von Praktiken und Werkzeugen zusammen,
+\ac{SCM} fasst eine Menge von Praktiken und Werkzeugen zusammen,
 welche dazu dienen, den Quellcode eines Projektes zu verwalten.
 Sie verwalten Änderungen am Quelltext, Zweige der Entwicklung und sogenannte Tags,
 welche einen Namen zu einem bestimmten Änderungsstand zuweisen.
