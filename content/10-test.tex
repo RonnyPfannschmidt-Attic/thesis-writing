@@ -1,15 +1,25 @@
 \chapter{Evaluation}
+
+Dieses Kapitel bewertet das Resultat der Implementation und
+stellt fest in welchem Umfang die Ziele umgesetzt wurden.
+
 \section{Umgesetzte Funktionale Kriterien}
-\input{content/featurelist}
+Wie in \cref{tab:features} aufgelistet,
+wurden die Kernfunktionen umgesetzt.
+
+\input{content/featurelist}    
+
+Außerdem wurden einige erweiterte Funktionen sowie eine der beispielhaften Erweiterungen umgesetzt.
+Damit ist der Umfang des Prototypen ausreichend um die Eigenschaften des Systems zu bewerten und zu bestimmen ob das gewünschte Ziel erreichbar ist.
 
 
 \section{Testumgebung}
 
 
 \subsection{Manuelle Tests}
-Um das gesamte System zu testen, wurde der physische Überblick (siehe \cref{fig:grob-layout-komponenten}) als Plan hergenommen.
-Und auf 3 Rechnern (für jeden Knoten der Datenbank einen) umgesetzt.
-Dabei wurde auf jedem Rechner für jede CPU ein Arbeiter gestartet.
+Um das gesamte System zu testen, wird der physische Überblick (siehe \cref{fig:grob-layout-komponenten}) als Plan hergenommen.
+Auf 3 Rechnern (für jeden Knoten der Datenbank einen) ist dieser umgesetzt worden.
+Dabei wurden auf jedem Rechner für jede CPU ein Arbeiter gestartet .
 Auf den Testsystemen waren je vier CPU's verfügbar.
 Zusätzlich wurde willkürlich auf einem der Rechner der Manager gestartet.
 
@@ -24,8 +34,14 @@ Die automatischen Tests bereiten die Datenbank dabei vor jeder Ausführung der T
 
 \section{Testfälle}
 
-
 Diese Sektion beschreibt die einzelnen komplexen Tests des Systems.
+Alle automatisch durchgeführten Tests sollen dabei fehlerfrei durchlaufen.
+
+\subsection{Unittests}
+
+Die Auflistung und Eigenschaften der UnitTests
+ist für die gewählte Betrachtung nicht relevant und
+daher wird darauf verzichtet.
 
 \subsection{Funktionale Tests}
 Die funktionalen Tests stellen die Funktionsweise einzelner Komponenten sicher.
@@ -71,6 +87,8 @@ Die Tests verteilen sich dabei wie folgt:
     \end{description}
 \end{description}
 
+
+
 \subsection{Systemtests}
 
 Von den 3 Systemtests wurden nur 2 automatisiert.
@@ -79,32 +97,37 @@ zeigten viele kleine Fehler, auf die hier nicht Näher eingegangen wird.
 
 Das Testen der Beispielerweiterung stellte sich als kompliziert heraus und wurde auch als Manueller Test umgesetzt.
 
-Der Durchlauf der Komponenten führt einfach nur die Komponenten der logischen Reihenfolge nach aus.
+Der Durchlauf der Komponenten führt einfach nur die Komponenten der logischen Reihenfolge nach aus:
 \begin{enumerate}
-    \item Auftrag Überprüfung
-    \item Auftrag Vorbereitung
-    \item Auftrag Arbeitspakete generieren
-    \item Arbeitspaket Schritte generieren
-    \item Arbeitspaket in Anspruch nehmen
-    \item Arbeitspaket zuweisen
-    \item Arbeitspaket erwarten
-    \item Arbeitspaket ausführen
+    \item Auftrag überprüfen,
+    \item Auftrag vorbereiten,
+    \item Auftrag Arbeitspakete generieren,
+    \item Arbeitspaket Schritte generieren,
+    \item Arbeitspaket in Anspruch nehmen,
+    \item Arbeitspaket zuweisen,
+    \item Arbeitspaket erwarten und
+    \item Arbeitspaket ausführen.
 \end{enumerate}
 
-Der Test des Gesamtsystems verwendet die beschriebenen Systemkomponenten, um den Manager und 2 Arbeiter zu starten und gibt Aufträge ins System.
+Der Test des Gesamtsystems verwendet die beschriebenen Systemkomponenten um den Manager und 2 Arbeiter zu starten.
+Anschließend gibt er Aufträge verschiedener Größe ins System.
 
 \subsection{Manuelle Tests}
 
-\subsection{Exemplarische Erweiterung - Datenaggregation}
+Alle manuellen Tests wurden im Kontext der ``Grossen Datenanalyse'' durchgeführt.
+Der Umfang dieses Tests ermöglichte es wiederholt Fehlerfälle zu testen sowie das Systemverhalten zu beobachten.
+
+Zu verschiedenen Zeitpunkten wurden Komponenten des Systems hart beendet und spaeter wieder neu gestartet.
+Dabei wurde das Verhalten der Komponenten nach dem Neustart sowie der Einfluss des Verlustes auf das Gesamtsystem betrachtet.
 
 
+\section{Festgestellte Probleme}
 
+Dieses Unterkapitel  beschreibt die in der Implementation und Testphase aufgetretenen Probleme.
 
-\section{Festgestellte Probleme bei den manuellen Tests}
+\subsection{manuelle Tests}
 
-Bei den manuellen Tests, welche zum händischen Analysieren
-einiger schwer testbarer Problem-Punkte dienen,
-sind einige schwerwiegende Probleme aufgetreten.
+Bei den manuellen Tests sind einige schwerwiegende Probleme aufgetreten.
 Diese werden hier nur kurz umrandet.
 
 \begin{description}
@@ -119,4 +142,22 @@ Diese werden hier nur kurz umrandet.
         die Daten von STDOUT/STDERR nicht kontinuierlich und zeilenweise,
         sondern in größeren Blöcken zur Ausgabe schickten.
 \end{description}
+
+
+\subsection{Datenbank und Erweiterungen}
+
+Bei der Implementation der Erweiterung für Datenanalyse fiel auf,
+dass die Resultate des Map-Reduce-Algorithmus an die verfügbaren Informationen an der Datenbank gebunden sind.
+Es ist nicht möglich für Daten aus Events einen $Key$ mit Informationen aus den zugeordneten Arbeitspaketen zu generieren ohne zuvor eine starke Denormalisierung einzuführen.
+
+Damit ist die Sortierung der Resultate an die verwendeten Schlüssel gebunden. 
+Im Prototypen wurde dieses Problem mittels nachgelegter Sortierung gelöst,
+allerdings ist eine Lösung in der Datenbank wünschenswert da die nach-gelagerte Sortierung einen erheblichen Mehraufwand bedeutete.
+
+
+\section{Zusammenfassung}
+%XXX
+Um die drei definierten Systemkriterien als umgesetzt zu betrachten,
+müssten die festgestellten Probleme gelöst werden,
+dies soll soweit technisch möglich im folgenden Kapitel behandelt werden.
 

@@ -10,7 +10,7 @@ Zum Schluss werden die exemplarischen Erweiterungen vorgestellt.
 \section{Werkzeuge}
 \subsection{Datenbank}
 
-Das Kriterium der \textbf{Master-Master Replikation}
+Das Kriterium der \textbf{Master-Master-Replikation}
 schränkt die Auswahl der verwendbaren Datenbanksysteme bereits stark ein.
 
 In die nähere Betrachtung kommen CouchDB \cite{couchdb:website} (dokumentorientiert)
@@ -29,9 +29,9 @@ Im Test mussten bei CouchDB zwar Abstriche im Bereich Performance gemacht werden
 jedoch stellte sich heraus, dass die Mitteilungen über Änderungen von CouchDB detaillierter sind.
 Außerdem erscheint der Prozess der Replikation in CouchDB als fehlertoleranter und einfacher, da er fest integriert ist und für asynchrone Replikation mit langen Unterbrechungen konzipiert ist.
 
-In PostgreSQL sind Mitteilungen ein extra Konzept \cite{postgresql:notify}.
+In PostgreSQL sind Mitteilungen über Änderungen ein separates Konzept \cite{postgresql:notify}.
 Sie sind unabhängig von Änderungen der Datenbank und müssen manuell integriert werden. 
-In CouchDB sind Mitteilungen \cite[Chap Notifications]{couchdb:guide}, genaue Informationen
+In CouchDB sind Mitteilungen \cite[Chap Notifications]{couchdb:guide} über Änderungen genaue Informationen
 über das geänderte Objekt, eventuelle Konflikte der Datenbank
 und auf Wunsch sogar das Objekt selbst. Somit erfüllen die Mitteilungen in CouchDB bereits alle Anforderungen.
 
@@ -83,7 +83,7 @@ Zur Interaktion mit CouchDB wurde die Bibliothek ``\emph{couchdbkit}'' \cite{cou
 Sie stellte als einzige alle Funktionen der HTTP-API von CouchDB zur Verfügung.
 %XXX cites?
 Andere Bibliotheken sind ``python-couchdb'' (kein Support für Änderungsmitteilungen)
-und Paisley (sehr unvollständig).
+und ``Paisley'' (sehr unvollständig).
 
 \subsubsection{SCM Interaktion}
 

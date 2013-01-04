@@ -26,14 +26,14 @@ Diese Unterkapitel gibt Aufschluss über die Grobstruktur des \ac{CI}-Systems au
 \end{figure}
 
 
-Die erste wichtige Komponente ist der Eingang,
-in ihm gehen Aufträge aus verschiedensten Quellen ein.
+Die erste wichtige Komponente ist der Eingang.
+In ihm gehen Aufträge aus verschiedensten Quellen ein.
 Nachdem sie validiert wurden, werden die Aufträge an
 die zweite wichtige Komponente, den Manager, weitergegeben.
 Dort werden sie vorbereitet und entsprechend der Build-Matrix Arbeitspakete erstellt.
 Nun treten Manager und Arbeiter in eine Interaktion,
-um zu bestimmen, welcher Arbeiter das Eigentliche Arbeitspaket bearbeitet.
-Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt. (siehe \cref{fig:grob-layout-komponenten-logisch})
+um zu bestimmen, welcher Arbeiter welche Arbeitspakete bearbeitet.
+Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt (siehe \cref{fig:grob-layout-komponenten-logisch}).
 
 %XXX: more
 
@@ -48,8 +48,9 @@ Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern a
 \end{figure}
 
 Der physische Aufbau unterscheidet sich stark von den bisher da gewesenen CI-Systemen.
-Ein Grund dafür ist der Fokus auf die verteilte Datenbank, direkte Kommunikation
-wird der Interaktion mit einer verteilten Datenbank weichen.
+Ein Grund dafür ist der Fokus auf die verteilte Datenbank.
+Anstatt direkter Kommunikation,
+wird die Interaktion mit der verteilten Datenbank den Programmablauf der einzelnen Komponenten bestimmen .
 
 Das System besteht somit aus Komponenten, welche alle als Clients einer verteilten Datenbank operieren.
 Die \Cref{fig:grob-layout-komponenten} zeigt die Struktur.
@@ -78,7 +79,7 @@ Arbeitspaket (Task) und Arbeitsschritt (Step).
 Das Projekt beinhaltet neben dem Namen auch alle Informationen,
 die später für das Erstellen von Arbeitspaketen sowie
 die Ausführung einer Integration benötigt werden.
-Dazu gehört das Quellcode-repository (repo), von dem später
+Dazu gehört das Quellcode-repository (``repo''), von dem später
 die Quelltexte für das dem Test unterworfenen Projekt bezogen werden.
 Weiterhin beinhaltet es die Build-Achsen,
 welche die Wertebereiche der einzelnen Ebenen der Build-Matrix
@@ -98,8 +99,8 @@ einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zurü
 \subsubsection{Auftrag}
 
 Ein Auftrag beinhaltet grundsätzlich eine Referenz auf das zugehörige Projekt,
-außerdem beinhaltet er Überschreibungen/Zusätze für die Build-Achsen,
-dies ermöglicht es sowohl in den Achsen eingeschränkte
+außerdem beinhaltet er Überschreibungen und/oder Zusätze für die Build-Achsen.
+Dies ermöglicht es sowohl in den Achsen eingeschränkte
 als auch erweiterte Aufträge zu erstellen.
 Diese werden später genauer erklärt.
 Zusätzlich beinhaltet der Auftrag einen Status, dieser beinhaltet den aktuellen Stand der Bearbeitung.
@@ -110,7 +111,7 @@ Ein Arbeitspaket beinhaltet, neben Referenzen zu dem Projekt und dem Auftrag,
 seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen für dieses Paket an.
 Des Weiteren beinhaltet es den Index, dieser gibt die numerische Position in der Build-Matrix an.
 Auch ein Arbeitspaket hat einen Status, welcher den aktuellen Bearbeitungsstand zum Ausdruck bringt.
-Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher das Arbeitspaket letztendlich bearbeiten wird.
+Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher Arbeiter das Arbeitspaket letztendlich bearbeiten wird.
 
 \subsubsection{Arbeitsschritt}
 
@@ -127,7 +128,7 @@ die bei der Ausführung genutzt werden.
 \subsubsection{Event}
 %XXX referenz auf task?
 
-Das Event bringt Datensammlung zur Laufzeit zum Ausdruck.
+Ein Event bringt Datensammlung zur Laufzeit zum Ausdruck.
 Neben den Referenzen für den Arbeitsschritt und das Arbeitspaket,
 beinhaltet es eine Indexnummer und einen Timestamp.
 Die Indexnummer ist eine aufsteigende Zahl
@@ -282,9 +283,8 @@ um den eventuellen Abschluss des Auftrages festzustellen.
 
 \subsection{Zuteilung/Abarbeitung von Arbeitspaketen}
 
-
-\subsubsection{Lebenszyklus eines Arbeitspaketes}
-
+\cref{fig:lebenszyklus-arbeitspaket} Stellt den Lebenszyklus eines Arbeitspaketes als Zustandsgraph dar.
+Jedes Arbeitspacket beginnt dabei im Zustand \verb|new|.
 
 \begin{figure}[ht] 
   \centering
@@ -296,10 +296,24 @@ um den eventuellen Abschluss des Auftrages festzustellen.
 
 \subsubsection{Vorbereitung Abarbeitung}
 
-
+Bevor ein Arbeitspaket bereit (\verb|ready|) für die Zuteilung ist,
+müssen seine Arbeitsschritte erstellt werden.
+Dazu wird die Ausprägung der Build-Achsen für dieses Arbeitspaket hergenommen.
+Auf ihrer Basis werden die Variablen in den Schritt-Templates des Projektes
+ausgefüllt und die Arbeitspakete für das Arbeitspaket erstellt. 
 
 \subsubsection{Zuteilung}
-\cref{sec:methoden:zuteilung}
+
+Die Zuteilung von Arbeitspaketen is ein komplexes Thema.
+Sie wird daher anschließend in \cref{sec:methoden:zuteilung} behandelt.
+Ihr Ziel ist es, dass ein Arbeitspaket einem Arbeiter zugeteilt wird.
+
+\subsubsection{Abarbeitung von Arbeitspaketen}
+
+Bei der Abarbeitung von Arbeitspaketen geht es darum,
+die einzelnen Arbeitsschritte des Arbeitspaketes nacheinander linear abzuarbeiten.
+Tritt ein Fehler auf oder wird ein Wunsch zum Abbruch im System eingetragen,
+so kann der Prozess vorzeitig beendet werden. Details hierzu werden in \cref{sec:schritt-kontext}.
 
 \subsubsection{Abschluss Abarbeitung}
 
@@ -310,6 +324,7 @@ ob ein Arbeitspaket zum Erfolg oder Misserfolg geführt hat.
 
 \subsection{Überblick Methoden der Zuteilung von Arbeitspaketen}
 \label{sec:methoden:zuteilung}
+
 Dieses Unterkapitel beschäftigt sich mit der Zuteilung von Arbeitspaketen.
 Grundsätzlich gibt es zwei Möglichkeiten dies zu bewerkstelligen.
 Es muss festgestellt werden, welche Methode besser geeignet ist.
@@ -391,13 +406,6 @@ beim Arbeiter zu belassen, sorgt dafür, dass Arbeiter wesentlich autonomer sind
 Dies hat zur Folge, dass der Algorithmus für die Zuteilung von Arbeitspaketen wesentlich vereinfacht wird,
 da es für ihn nun unerheblich ist, wer den Zuschlag bekommt.
 Das Endresultat wird durch die Zuteilung nicht beeinflusst.
-
-\subsection{Abarbeitung von Arbeitspaketen}
-
-Bei der Abarbeitung von Arbeitspaketen geht es darum,
-die einzelnen Arbeitsschritte des Arbeitspaketes nacheinander linear abzuarbeiten.
-Tritt ein Fehler auf oder wird ein Wunsch zum Abbruch im System eingetragen,
-so kann der Prozess vorzeitig beendet werden.
 
 
 \section{Besondere Ansätze zur Datenbank-Interaktion}
@@ -481,6 +489,10 @@ Sie muss nicht wie bisher auf eine Rückantwort warten.
 
 
 \section{Arbeitsschritte und der Kontext ihrer Ausführung}
+\label{sec:schritt-kontext}
+
+%XXX
+
 \subsection{Überblick und grundlegender Ablauf}
 
 \begin{figure}[!ht]
@@ -536,11 +548,11 @@ umfasst in der Regel verschiedenste Dateiformate.
 Diese werden aus den verschiedensten Gründen generiert.
 Üblich sind Test-Resultate, Logdateien, Build-Resultate und Archive.
 
-Die Abbildung dieser Datensammlung kann dabei auf 2 Arten geschehen,
+Die Abbildung dieser Datensammlung kann dabei auf 2 Arten geschehen:
 
 \begin{enumerate}
-    \item als Teil des Schrittes
-    \item als eigene Art von Schritt
+    \item als Teil des Schrittes und
+    \item als eigene Art von Schritt.
 \end{enumerate}
 
 Die Abbildung als eigene Art von Arbeitsschritt hat einige Vorteile,
@@ -626,7 +638,7 @@ anzulegen. Zudem sollen sie an das Arbeitspaket und nicht an den Arbeitsschritt 
 Für die Vergleiche ist es nun notwendig,
 Unterschiede zwischen zwei oder mehr Mengen an Testresultaten zu bestimmen.
 Eine recht einfache Methode ist dabei die Mengen-Differenz.
-Nimmt man für die Resultate von Tests eine Werte-Menge mit der Struktur \{ $Testname \rightarrow Resultat$ \} als Basis,
+Nimmt man für die Resultate von Tests eine Werte-Menge mit der Struktur $\{ Testname \rightarrow Resultat \}$ als Basis,
 so ist es leicht, einen passenden Überblick aufzubauen.
 
 Die Datenstruktur der Resultate für Vergleiche zwischen N Resultatmengen
@@ -635,7 +647,7 @@ $\{ Testname \rightarrow ( Resultat_{1},\ldots,Resultat_{N})\}$
 Wobei i.d.R. nur die Elemente interessant sind,
 deren Resultat-Menge Unterschiede und/oder Fehlschläge aufweist.
 Ein gutes Beispiel für die Darstellung eines solchen Resultates
-stellt der Testresultatüberblick des PYPY Projektes \cite{pypy:overview} dar.
+stellt der Testresultatüberblick des ``PYPY""-Projektes \cite{pypy:overview} dar.
 
 Die Art und Weise, wie die Mengen an Test-Resultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
 da dies vorwiegend ein Problem der Benutzeroberfläche ist.

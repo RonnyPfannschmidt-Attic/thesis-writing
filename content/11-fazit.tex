@@ -1,35 +1,49 @@
-\chapter{Fazit ( 5 \%)}
-\section{Ziele}
-% redundant zusammen fassen
+\chapter{Fazit}
 
-% aufgabenstellung
-% hat sich gez
-% hat sich ergeben
+
+
+\section{Ziele}
+
+Wie in der Evaluation aufgezeigt wurden die meisten funktionalen Anforderungen erfüllt und nach der Optimierung sind auch die meisten Systemanforderungen erfüllt.
+Das gröbste verbleibende Problem ist die Limitierung der Map-Reduce-Algorithmus,
+welche noch nicht mit den gegebenen technischen Mitteln beseitigt werden kann.
+
+Zusammenfassend ist die Arbeit jedoch ein voller Erfolg.
+Es wurde ein Kernsystem für \ac{CI} geschaffen welches auf verteilter Datenbanktechnik basiert.
+Dabei muss besonders hervorgehoben werden wie stark die Implementation des Systems vereinfacht wird, indem man auf eine Verteilte Datenbank baut anstatt ein Verteiltes System und eine eigene Datenbank zu schaffen.
+
 
 \section{Kritische Betrachtung}
-% selbstkritik
-\begin{verbatim}
-% was ist suboptimal
 
-- modell auch fuer zentrale datenbanken geeignet
-  - postgres notifications evtl ausreichend?
+Wie bei jeder praktisch orientierten wissenschaftlichen Arbeit,
+sind auch an dieser Arbeit einige Punkte zu kritisieren.
 
-- erweiterungsmodell unvollstaendig
-- interne datenanalyse durch map/reduce limitiert
-  - extern wurde nie in betracht gezogen
-- performance fragwuerdig, weitere analysen notwendig
-\end{verbatim}
+Im Laufe der Bearbeitung zeigte sich, dass das Modell des Programms auch für
+nicht verteilte Datenbanken geeignet ist.
+Die bekannte hohe Zuverlässigkeit der traditionellen relationalen Datenbanken legt den verdacht nahe, dass auch diese für die Implementation in Frage kommen.
+
+Ein weiterer Kritikpunkt ist die Belegkraft der im \cref{chap:ist-analyse} angebrachten Probleme der existierenden Systeme. Diese sind zwar augenscheinlich und exemplarisch dargestellt, jedoch ist zur vollständigen Absicherung eine tiefgreifende Analyse notwendig, welche Umfangreich genug für eine eigene Arbeit wäre.
+
+Weiterhin ist festzuhalten, dass das Erweiterungsmodell noch unvollständig ist.
+Es wurde noch nicht näher untersucht wie verschiedene Erweiterungen miteinander zu kombinieren sind. Außerdem wurden externe Erweiterungen und externe Datenanalyse explizit nicht in Betracht gezogen (obwohl Limitierungen der aktuellen internen Datenanlyse bekannt sind)
+
+Zusätzlich wurden keine genauen Performance-Tests durchgeführt,
+auch wenn das System nach den Optimierungen augenscheinlich ``schnell'' ist,
+ist kein Verglich zu den existierenden Systemen angetreten worden.
 
 
-% erweiterungsmodel
-% neue tools
-%  - refuge
-% - titan db
 
 
 \section{Ausblick und zukünftige Erweiterungen}
 
-* kann krit
-* interface
-* kontrolle replikation
+In Fortsetzung an diese Arbeit soll der Prototyp in ein Produkt gewandelt werden.
+Dies erfordert zahlreiche weitere Punkte an Entwicklung.
+So müssen Benutzerinterface und Benutzerverwaltung integriert werden.
+Außerdem muss das Erweiterungsmodell an diese Angepasst werden.
+Zudem sind die weiteren kann Kriterien und Erweiterungen zu implementieren.
+Zusätzlich ist die Kontrolle der Replikation wichtig.
 
+An die Kritikpunkte anschließend sollten auch alternative Implementationen auf nicht verteilten Datenbanken analysiert und bewertet werden.
+
+Letztendlich sollen auch die restlichen Probleme gelöst werden.
+Da zukünftige Versionen von CouchDB das Aneinanderreihen von Map-Reduce-Prozessen unterstuetzen werden,
