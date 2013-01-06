@@ -40,7 +40,7 @@ Zum einen in die Laufzeitdaten und zum anderen in die Artefakte.
 Laufzeitdaten fallen bereits w\"ahrend der Ausf\"uhrung an
 und beinhalten in der Regel zumindest die textuellen Ausgaben
 der ausgef\"uhrten Programme.
-Weitere M\"oglichkeiten k\"onnen Resultate von Tests, Echtzeit Mitschnitte und Ausführungsstatistiken sein.
+Weitere M\"oglichkeiten k\"onnen Resultate von Tests, Echtzeitmitschnitte und Ausführungsstatistiken sein.
 Laufzeitdaten werden dem Benutzer in der Regel zeitnah zur Verfügung gestellt.
 
 Artefakte hingegen sind Dateien,
@@ -58,7 +58,7 @@ w\"ahrend Testergebnisse nur dargestellt werden.
 
 \section{Probleme existierender Systeme}
 
-Diese Unterkapitel gibt einen \"Uberblick \"uber die Problemarten existierender Systeme.
+Dieses Unterkapitel gibt einen \"Uberblick \"uber die Problemarten existierender Systeme.
 
 \subsection{Datenzugriff}
 
@@ -73,9 +73,9 @@ Weiterführende Abfragen sind nicht möglich.
 \subsection{Erweiterbarkeit}
 
 Die Erweiterbarkeit eines \ac{CI}-Systems wird von zwei Hauptpunkten dominiert.
-Dies ist zum Einen die Integration in die Benutzeroberfl\"ache
-und zum Anderen die Möglichkeiten mit den Daten interagieren
-und auf neue Weise zu kombinieren.
+Dies ist zum einen die Integration in die Benutzeroberfl\"ache
+und zum anderen die Möglichkeit mit den Daten zu interagieren
+und diese auf neue Weise zu kombinieren.
 
 Die erweiterbaren Systeme stellen normalerweise zumindest eine Schnittstelle
 für die graphische Oberfläche zur Verfügung.
@@ -151,7 +151,7 @@ Zugriff auf die Daten kann nur mittels der internen \ac{API} oder
 einer nicht dokumentierten \ac{REST} \ac{API} genommen werden.
 
 Damit war es nicht m\"oglich, in annehmbarer Zeit festzustellen,
-in wie weit sich die bereits vorgestellten Usecases umsetzen lassen.
+inwieweit sich die bereits vorgestellten Usecases umsetzen lassen.
 Das System verwendet augenscheinlich kein \ac{DBMS}.
 Datenabfragen und Aggregationen m\"ussen
 somit von Hand ausformuliert werden.
@@ -164,7 +164,7 @@ Jedoch wird auf weitergehende Analysen dieser Resultate g\"anzlich verzichtet
 und mehr als ein Histogramm gibt es nicht.
 
 
-\subsection{Buildbot}
+\subsection{BuildBot}
 
 
 BuildBot \cite{buildbot:website} positioniert sich als eine Art Meta-Build-Server.
@@ -178,18 +178,18 @@ k\"onnen aber in Teilen durch die Verwendung von Schleifen im Script simuliert w
 Es ist möglich Build-Jobs mit minimalen Parametern in Form von Strings zu \"ubergeben,
 dabei kann man auch den Entwicklungszweig mit angeben.
 
-Builbot unterst\"utzt das Sammeln von Daten in sog. Logdateien.
+Builbot unterst\"utzt das Sammeln von Daten in sogenannten Logdateien.
 Diese sind intern und extern leicht auffindbar.
 Es gibt sogar schon Werkzeuge, welche diese zu erweiterten Vergleichen von Testresultaten nutzen.
 
 %XXX referenzen
 %XXX: C
 Einige wurden dabei besonders genau betrachtet.
-Das erste ist der PYPY Buildbot \cite{pypy:overview}, welcher eine hilfreiche Gesamtübersicht der Testergebnisse und ihrer Fehler darstellt.
+Das erste ist der PYPY-BuildBot \cite{pypy:overview}, welcher eine hilfreiche Gesamtübersicht der Testergebnisse und ihrer Fehler darstellt.
 Dabei werden nur die letzten vier Builds betrachtet.
 Das zweite ist das Script namens \verb|compare_last_builds.py|
 aus dem PYPY Projekt \cite{pypy:diffscript} ,
-welches die Unterschiede in den Testresultaten zwischen 2 Builds hervorhebt.
+welches die Unterschiede in den Testresultaten zwischen zwei Builds hervorhebt.
 Sie werden sp\"ater als Ideenlieferant dienen.
 
 Bedauerlich ist, dass die Entwickler von BuildBot es nicht als Aufgabe ihres Systems sehen
