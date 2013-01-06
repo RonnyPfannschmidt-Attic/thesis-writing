@@ -48,7 +48,7 @@ zum Anderen Javascript, da es die datenbankinterne Sprache von CouchDB ist.
 \begin{tabular}{l|c|c}
                             & \textbf{Python} & \textbf{Javascript} \\
     \hline
-    Datenbankintern         & nein            & ja \\
+    datenbankintern         & nein            & ja \\
     Prozesskontrolle        & integriert      & extern, rudimentär \\
     SCM API                & verfügbar       & nicht verfügbar \\
     CouchDB Client          & verfügbar       & verfügbar \\
@@ -58,7 +58,7 @@ zum Anderen Javascript, da es die datenbankinterne Sprache von CouchDB ist.
 \end{table}
 
 Ein besonderes Problem mit Javascript ist,
-dass es innerhalb der Datenbank die Bibliotheken, welche Datenbank-extern sind,
+dass es innerhalb der Datenbank die Bibliotheken, welche datenbankextern sind,
 nicht oder nur in limitierter Form verwenden kann.
 Die Laufzeitumgebung weist große Unterschiede
 zwischen Datenbank-interner und Datenbank-externer Verwendung auf.
@@ -109,7 +109,7 @@ und ist damit bestens geeignet um die Basis für den Testprozess zu bilden.
 \subsubsection{Datenbank-Management}
 
 Zum Management der Datenbank an sich wurde die integrierte Administrationsschnittstelle Futon verwendet \cite{couchdb:futon}.
-Sie bietet einfache Schnittstellen für die Verwaltung von Datenbanken sowie der Replikation.
+Sie bietet einfache Schnittstellen für die Verwaltung von Datenbanken sowie deren Replikation.
 
 Um Datenbankinterne Programme zu verwalten,
 wurde das Werkzeug ``couchdb-compose'' \cite{couchdb:compose} geschaffen.
@@ -268,7 +268,7 @@ Außerdem abstrahiert sie die Logik für das Warten auf diese Änderungen
 (unter Verwendung der \verb|watch_for|-Primitive)
 und ermöglicht es, die einzelnen Komponenten direkt mit den Daten aufzurufen,
 auf die sie hätte warten müssen.
-Dies ermöglicht es, einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
+Dies ermöglicht es, einzelne Komponenten direkt zu testen ohne, dass eine echte Datenbank benötigt wird.
 
 Die Primitive \verb|watches_for| umschließt dabei die Funktion,
 welche die Arbeit verrichtet. Sie schafft somit durch Komposition eine neue Funktion,
@@ -339,8 +339,8 @@ Da diese Umsetzung recht einfach ist, soll sie im \cref{fig:auftrag-validation-c
 Die Dekoration \cite{python:decorator}
 der Funktion mit der \verb|watches_for|-Primitive legt den zu bearbeitenden Datentyp und Zustand fest.
 
-Die Parameter der Funktion sind dabei zum Einen die Verbindung mit der Datenbank (db) und
-zum Anderen das Objekt was erwartet oder übergeben wurde.
+Die Parameter der Funktion sind dabei zum einen die Verbindung mit der Datenbank (db) und
+zum anderen das Objekt was erwartet oder übergeben wurde.
 Der Ablauf ist nun denkbar einfach, der Status wird auf valide gesetzt und das Resultat wird wieder in der Datenbank gespeichert.
 Damit ist der Eingang abgeschlossen.
 
@@ -348,7 +348,7 @@ Damit ist der Eingang abgeschlossen.
 \subsection{Auftragsvorbereitung}
 
 Bei der Arbeitsvorbereitung wird ein Auftrag,
-welcher den Zustand \textit{valid} erreicht hat, um weiter Daten ergänzt.
+welcher den Zustand \textit{valid} erreicht hat, um weitere Daten ergänzt.
 Anschließend wird er in den Zustand \textit{ready} versetzt
 
 \subsection{Erstellung Arbeitspakete}
@@ -461,10 +461,10 @@ Es behandelt somit alle Vorgänge, welche von einem \emph{Arbeiter} Service ben�
 
 \subsection{Baseproc - eine Basis für Arbeitsschritte}
 
-Die Baseproc Klasse stellt ein Framework für die Schaffung von eigenen Arbeitsschritten.
+Die Baseproc Klasse stellt ein Framework für die Schaffung von eigenen Arbeitsschritten dar.
 Neben der Verwaltung von zusammengehörenden Threads und Ressourcen bietet sie außerdem Werkzeuge, um Datensammlung zur Laufzeit zu behandeln.
 
-Sie ermöglicht es, Arbeitsschritte als Kombination von Ressourcen und Threads (welche Laufzeit-Daten generieren) zu beschreiben.
+Sie ermöglicht es, Arbeitsschritte als Kombination von Ressourcen und Threads (welche Laufzeitdaten generieren) zu beschreiben.
 
 
 \subsection{Prozessschritte}
@@ -473,7 +473,7 @@ Prozessschritte (\verb|process.subprocess.SubProcessProc|)
 führen einzelne Prozesse aus und schließen ab, sobald dieser
 abgeschlossen ist.
 
-Dabei ist das Prozess-handle die grundlegende Ressource.
+Dabei ist das Prozess-Handle die grundlegende Ressource.
 Auf seiner Basis sammeln mehrere Threads die Ausgaben des Prozesses sowie Informationen über Status der Ausführung des Prozesses.
 Auf statistische Informationen wurde dabei verzichtet.
 

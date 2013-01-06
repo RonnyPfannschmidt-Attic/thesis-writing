@@ -50,7 +50,7 @@ Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern a
 Der physische Aufbau unterscheidet sich stark von den bisher da gewesenen CI-Systemen.
 Ein Grund dafür ist der Fokus auf die verteilte Datenbank.
 Anstatt direkter Kommunikation,
-wird die Interaktion mit der verteilten Datenbank den Programmablauf der einzelnen Komponenten bestimmen .
+wird die Interaktion mit der verteilten Datenbank den Programmablauf der einzelnen Komponenten bestimmen.
 
 Das System besteht somit aus Komponenten, welche alle als Clients einer verteilten Datenbank operieren.
 Die \Cref{fig:grob-layout-komponenten} zeigt die Struktur.
@@ -162,8 +162,8 @@ sie bilden die Bausteine für das Gesamtsystem.
 
 Die Auftragsannahme lässt sich grob in zwei Abschnitte einteilen.
 Zuerst geht ein Auftrag ein.
-Dies kann je nach Methode in mehrere Schritte umfassen.
-Danach wird er überprüft und damit angenommen oder abgelehnt.
+Dies kann je nach Methode mehrere Schritte umfassen.
+Danach wird der Auftrag überprüft und damit angenommen oder abgelehnt.
 
 
 \begin{figure}[ht]
@@ -174,6 +174,7 @@ Danach wird er überprüft und damit angenommen oder abgelehnt.
 \end{figure}
 
 In \cref{fig:lebenszyklus-auftrag-eingang} ist das Flussdiagramm zur Auftragsannahme dargestellt.
+\FloatBarrier
 
 \subsubsection{Eingang}
 
@@ -189,8 +190,8 @@ Betrachtet werden die Anforderungen für die Quellen
 \begin{description}
     \dhitem[E-Mail]
         Der Eingang per E-Mail kann in zwei Formen erfolgen:
-        Zum Einen kann der gesamte Auftrag in einer einzigen E-Mail enthalten sein.
-        Zum Anderen kann sich der Auftrag über mehr als eine E-Mail erstrecken.
+        Zum einen kann der gesamte Auftrag in einer einzigen E-Mail enthalten sein.
+        Zum anderen kann sich der Auftrag über mehr als eine E-Mail erstrecken.
         Beispiel hierfür sind z.B. Mercurial Patchbombs \cite{mercurial:patchbomb}.
         Ist ein Auftrag fertiggestellt, so ist eine Antwort-E-Mail hilfreich.
         Wichtig ist, dass E-Mails Unbekannter auf keinen Fall
@@ -209,7 +210,8 @@ Betrachtet werden die Anforderungen für die Quellen
     \dhitem[HTTP Hook]
         HTTP Hooks sind ein traditionelles Werkzeug,
         um \ac{CI}-Systemen Änderungen mitzuteilen.
-        Sie sind einfach in externe Werkzeuge, wie z.B. \ac{SCM} integrierbar,
+        Da sie lediglich die Reaktion auf einen HTTP Request sind,
+        sind sie einfach in externe Werkzeuge, wie z.B. \ac{SCM} integrierbar,
         und dienen dazu, Aufträge für die Standardkonfiguration
         eines Projektes abzusetzen, wenn externe Ereignisse,
         wie z.B. ein SCM commit, eintreten.
@@ -235,7 +237,7 @@ um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 Die Validation verfolgt das Ziel, Aufträge auch aus weniger vertrauenswürdigen Quellen anzunehmen.
 Dies ermöglicht Verwendung ähnlich zu TravisCI, was es erlaubt, Zuarbeiten von Außenstehenden zu testen.
 Für die Überprüfung stehen verschiedene Möglichkeiten zur Verfügung.
-Ein Eingang per Mail/Mailingliste oder Pull-Request auf einer Code-Hosting,
+Ein Eingang per Mail/Mailingliste oder Pull-Request auf einer Code-Hosting-Site,
 kann z.B. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
 während Informationen die Mitarbeiter einsenden z.B. an ihr Arbeitsverhältnis gebunden werden können.
 
@@ -268,7 +270,7 @@ bevor mit der Erstellung von Arbeitspaketen begonnen wird.
 Das Bereitstellen von Arbeitspaketen stellt den Anfang der eigentlichen Arbeitsphase dar.
 Entsprechend der Werte der Build-Achsen des Auftrages, werden nun die Arbeits\-pakete generiert,
 wobei jedes Arbeitspaket eine der Wertekombinationen darstellt.
-Nachdem alle Arbeitspakete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen.
+Nachdem alle Arbeitspakete erstellt sind, ist die Bearbeitung des Auftrages an sich abgeschlossen. Der Rest der Bearbeitung befasst sich nur mit den Arbeitspaketen.
 
 \subsubsection{Abschluss von Aufträgen}
 
@@ -304,7 +306,7 @@ ausgefüllt und die Arbeitspakete für das Arbeitspaket erstellt.
 
 \subsubsection{Zuteilung}
 
-Die Zuteilung von Arbeitspaketen is ein komplexes Thema.
+Die Zuteilung von Arbeitspaketen ist ein komplexes Thema.
 Sie wird daher anschließend in \cref{sec:methoden:zuteilung} behandelt.
 Ihr Ziel ist es, dass ein Arbeitspaket einem Arbeiter zugeteilt wird.
 
@@ -473,7 +475,7 @@ Der Übergang zwischen Eingang und Abarbeitung ist die der Validation angeschlos
 Da es nur diesen einen Punkt des Austausches gibt, ist die Wahrung der Konsistenz des Auftrages denkbar einfach.
 Mit der Bereitschaft wird die Verantwortung vom Eingang zur Abarbeitung übertragen.
 
-\subsection{Abbildung des Verteilten Systems auf Datenbanken}
+\subsection{Abbildung des verteilten Systems auf Datenbanken}
 
 Die Abbildung eines verteilten Systems auf eine Datenbank
 hat einige überaus erfreuliche Nebeneffekte.
@@ -521,14 +523,14 @@ und das Proc Objekt sollte nur innerhalb der Methode ``run'' existieren.
 \begin{figure}[ht] 
     \centering
     \includegraphics[height=3.4in]{imageinput/lebenszyklus-arbeitsschritt.png}
-    \caption{Zustandsdiagramm eines Arbeitsschritts}
+    \caption{Zustandsdiagramm eines Arbeitsschrittes}
     \label{fig:lebenszyklus-arbeitsschritt}
 \end{figure}
 
-Der Lebenszyklus eines einzelnen Arbeitsschritts beginnt mit der Speicherung der Arbeitsschritte für ein Arbeitspaket. Ein Arbeitsschritt wird sich, bis er zur Ausführung kommt, im Zustand \verb|new| befinden.
+Der Lebenszyklus eines einzelnen Arbeitsschrittes beginnt mit der Speicherung der Arbeitsschritte für ein Arbeitspaket. Ein Arbeitsschritt wird sich, bis er zur Ausführung kommt, im Zustand \verb|new| befinden.
 
 Kommt es schließlich zur Ausführung, so wechselt der Zustand nach \verb|building|.
-Und nach der Ausführung wird festgestellt, ob der ablauf erfolgreich war und der Zustand entsprechend auf \verb|completed| oder \verb|failed| gesetzt.
+Und nach der Ausführung wird festgestellt, ob der Ablauf erfolgreich war und der Zustand entsprechend auf \verb|completed| oder \verb|failed| gesetzt.
 
 Solange ein Arbeitsschritt in Bearbeitung ist, kann sein Abbruch
 durch den Zustand \verb|canceling| beantragt werden.
@@ -562,15 +564,15 @@ Dies macht die Werkzeuge zur Datensammlung wesentlich einfacher.
 Anstatt sie in jeden Schritt integrieren zu müssen,
 können sie einfach nach dem Schritt angewendet werden.
 
-\subsection{Prozess Schritte}
+\subsection{Prozessschritte}
 
-Die Aufgabe eines Prozessschritts ist es,
-einen Programm mit vorgegebenen Parametern auszuführen.
-Dies ist der Grund, warum der ``ProcessProc''-Datentyp einen
+Die Aufgabe eines Prozessschrittes ist es,
+ein Programm mit vorgegebenen Parametern auszuführen.
+Dies ist der Grund, warum der ``SubprocessProc''-Datentyp einen
 Prozess-Handle enthält.
 
 Dabei fallen zur Laufzeit Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe-Datenströmen an.
-Außerdem verändern sich statistische Informationen über den Prozess wie Speicher-Verbrauch, IO-Last, u.a.
+Außerdem verändern sich statistische Informationen über den Prozess wie Speicher-Verbrauch, I/O-Last und andere.
 
 
 \subsection{Skript-Schritte}
@@ -589,16 +591,15 @@ Danach gibt es mehrere grundlegende Operationen, die durchgeführt werden könne
 
 \begin{description}
     \dhitem[Eingang von Historie]
-        bringt die lokale Historie auf den aktuellen Stand, ``pull'' genannt.
+        Der Eingang von Historie bringt die lokale Historie auf den aktuellen Stand. Dies wird in verteilten \ac{SCM} ``pull'' genannt.
     \dhitem[Aktualisierung des Arbeitsverzeichniss]
-        aktualisiert die Dateien im Arbeitsverzeichniss
-        auf eine gewünschte Version.
+        Die Aktualisierung des Arbeitsverzeichnisses bringt die Dateien im Arbeitsverzeichniss auf eine gewünschte Version.
     \dhitem[Anwendung von Patches]
-        wendet Patches auf das aktuelle Arbeitsverzeichniss an.
+        Die Anwendung von Patches wendet Patches auf das aktuelle Arbeitsverzeichniss an.
 \end{description}
 
 
-\subsection{Datensammlungs Schritte}
+\subsection{Datensammlungs-Schritte}
 
 Datensammlungs-Schritte haben die Aufgabe
 bei vorhergehenden Schritten entstandene Dateien 
@@ -609,10 +610,9 @@ Laufzeit-Daten dieses Schritts sind die gefundenen Dateien.
 Dabei wird das Regexmuster ``pattern'' verwendet, um festzustellen,
 ob eine Datei im Arbeitsverzeichniss zur Menge der gewünschten Dateien gehört.
 
-Erweiterte Versionen dieser Schritt-Art könnten zusätzliche Funktionen,
-wie z.B. Einpflegen von Testergebnissen aus JunitXML-Dateien in die Datenbank,
+Erweiterte Versionen dieser Schrittart könnten zusätzliche Funktionen,
+wie z.B. Einpflegen von Testergebnissen aus JunitXML-Dateien, in die Datenbank,
 übernehmen.
-
 
 
 \section{Erweiterungen}
@@ -627,7 +627,7 @@ Betrachtungsgrundlage sind dabei vorwiegend Unterschiede zwischen verschiedenen 
 
 Da ein großer Teil dieser Erweiterung zur Benutzeroberfläche gehört,
 werden hier nur die unterstützenden Algorithmen und Datenstrukturen betrachtet.
-Um überhaupt Vergleiche anstellen zu können, muss zuerst die Vergleichs-Menge bestimmt werden. Dabei erscheint die Menge an Test-Resultaten je Arbeitsschritt am geeignetsten. Im Gegensatz zur Menge an Test-Resultaten je Auftrag,
+Um überhaupt Vergleiche anstellen zu können, muss zuerst die Vergleichs-Menge bestimmt werden. Dabei erscheint die Menge an Test-Resultaten je Arbeitsschritt am geeignetsten. Im Gegensatz zur Menge an Testresultaten je Auftrag,
 ist in diesem Fall für jede Konfiguration ein Set an Resultaten verfügbar.
 
 Um Testresultate abzulegen, erscheint es sinnvoll eine weitere Art an Datenstruktur einzuführen.
@@ -645,11 +645,11 @@ Die Datenstruktur der Resultate für Vergleiche zwischen N Resultatmengen
 ist dabei eine Zuordnung von
 $\{ Testname \rightarrow ( Resultat_{1},\ldots,Resultat_{N})\}$
 Wobei i.d.R. nur die Elemente interessant sind,
-deren Resultat-Menge Unterschiede und/oder Fehlschläge aufweist.
+deren Resultatmenge Unterschiede und/oder Fehlschläge aufweist.
 Ein gutes Beispiel für die Darstellung eines solchen Resultates
-stellt der Testresultatüberblick des ``PYPY""-Projektes \cite{pypy:overview} dar.
+stellt der Überblick der Testresultate des ``PYPY''-Projektes \cite{pypy:overview} dar.
 
-Die Art und Weise, wie die Mengen an Test-Resultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
+Die Art und Weise, wie die Mengen an Testresultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
 da dies vorwiegend ein Problem der Benutzeroberfläche ist.
 
 \subsection{Analyse Verhalten eines Programms}
@@ -701,10 +701,10 @@ Wichtig ist dabei, dass vorgefertigte Testdaten in die Datenbank eingegeben werd
 
 \section{Zusammenfassung}
 
-In diesem Kapitel wurden sowohl die gesamte Struktur als auch die funktionalen Kernkomponenten vorgestellt.
+In diesem Kapitel wurden sowohl die Gesamtstruktur als auch die funktionalen Kernkomponenten vorgestellt.
 Dabei wurde besonders auf das Kernsystem eingegangen,
 und außerdem die zwei Erweiterungen umrandet.
 
-Um die Eigenschaften und Möglichkeiten dieses Systems zu praktisch zu ergründen, ist es notwendig, das Kernsystem vollständig zu implementieren.
+Um die Eigenschaften und die Möglichkeiten dieses Systems praktisch zu ergründen, ist es notwendig, das Kernsystem vollständig zu implementieren.
 Um die Erweiterbarkeit zu untersuchen, ist zumindest eine der beiden Beispiel-Erweiterungen umzusetzen. Dabei ist die Umsetzung,
 der Datenanalyse erfolgversprechender, da hier die initiale Analyse bereits mehrere Arbeitspakete umfasst, während die Analyse der Testresultate dies in der Benutzeroberfläche umsetzen müsste (und die Benutzeroberfläche wird in dieser Arbeit nicht behandelt).
