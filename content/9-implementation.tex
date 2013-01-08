@@ -483,13 +483,34 @@ Die Quellcode Management Schritte sind auf Basis von anyvc \cite{anyvc:website} 
 
 \section{Exemplarische Erweiterung - Datenaggregation}
 
- 
+Die exemplarische Erweiterung wurde in zwei Teilen umgesetzt.
+Dies ist zum einen der Map-Reduce-View und zum anderen der CouchDB-List um die Daten darzustellen.
+
+\subsection{View}
+
+In der Map-Phase des View werden die Ausgabezeilen des Programms betrachtet.
+Dies ermöglicht es, das unveränderte Programm einfach zu verwenden.
+Dabei werden die jeweiligen Daten als einfache Zuordnung extrahiert,
+und unter Verwendung der ID des Arbeitspaketes als Key abgelegt.
+Weiterhin wird die Ausprägung der Build-Achsen für das Arbeitspaket mit abgelegt.
+
+Die Reduce-Phase führt dann diese verschiedenen Zuordnungen zusammen.
+Für jedes Arbeitspaket sind nun unter seiner ID als Key die Resultate verfügbar.
+
+\subsection{List}
+%cite?
+Ein List in CochDB wird verwendet um Resultate von anfragen an Views auf verschiedene Art und Weise darzustellen. In der Erweiterung wird er dazu genutzt, um die Resultate für einen bestimmten Auftrag darzustellen.
+Dabei wird der View für den Bereich aller Arbeitspakete abgefragt.
+Diese werden datenbankintern der List-Funktion nacheinander übergeben.
+
+Es ist somit möglich in der Reihenfolge des Views die Datensätze auszugeben.
+Da die Reihenfolge von den ID's der Arbeitspakete abhängt
+und die Permutationsreihenfolge der Build-Achsen unglücklich gewählt war (`height\_weight' vor `generations' und `population') musste Abhilfe geschaffen werden.
+Um die gewünschte Darstellung mit Diagrammen für `generations' und `population', welche nach der `height\_weight' sortiert sind zu erreichen, wurden nur die Ausgaben für den ersten Wert für `height\_weight' direkt ausgegeben.
+Die weiteren Ausgaben wurden bis nach Abschluss des View vorgehalten und dann zusammen ausgegeben.
+Dabei wurde Fehlschlag rot und Erfolg grün markiert.
+
+
+%XXX screenshoot
 %XXX: falscher platz
-\begin{verbatim}
-
-- beispiel sommer
-  - ausgabe eines programms
-  - zusammenfassung in graphen/uebersichten
-
-\end{verbatim}
 
