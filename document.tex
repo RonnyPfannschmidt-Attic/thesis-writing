@@ -68,8 +68,10 @@
 %\usepackage[doublespacing]{setspace}
 \usepackage{setspace}
 
-
-\newcommand{\dhitem}[1][\errmessage{no label given}]{\item[#1] \hfill \\}
+%XXX
+\newcommand{\dhitem}[1][\errmessage{no label given}]{
+    \item \textbf{#1}\hfill \\
+}
 
 % #####
 % #
