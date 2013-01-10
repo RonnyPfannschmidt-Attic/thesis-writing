@@ -1,9 +1,10 @@
 \chapter{Evaluation}
-
+\label{cha:eval}
 Dieses Kapitel bewertet das Resultat der Implementation und
 stellt fest in welchem Umfang die Ziele umgesetzt wurden.
 
 \section{Umgesetzte Funktionale Kriterien}
+\label{sec:eval:features}
 Wie in \cref{tab:features} aufgelistet,
 wurden die Kernfunktionen umgesetzt.
 
@@ -14,13 +15,13 @@ Damit ist der Umfang des Prototypen ausreichend um die Eigenschaften des Systems
 
 
 \section{Testumgebung}
-
+\label{sec:eval:Testumgebung}
 
 \subsection{Manuelle Tests}
 Um das gesamte System zu testen, wird der physische Überblick (siehe \cref{fig:grob-layout-komponenten}) als Plan hergenommen.
 Auf 3 Rechnern (für jeden Knoten der Datenbank einen) ist dieser umgesetzt worden.
-Dabei wurden auf jedem Rechner für jede CPU ein Arbeiter gestartet .
-Auf den Testsystemen waren je vier CPU's verfügbar.
+Dabei wurden auf jedem Rechner für jede physische CPU ein Arbeiter gestartet .
+Auf den Testsystemen waren je vier physische CPU's verfügbar.
 Zusätzlich wurde willkürlich auf einem der Rechner der Manager gestartet.
 
 Um Daten an das Testsystem zu bringen, wurde dabei das \verb|put.py| Tool mit beispielhaften Daten verwendet.
@@ -33,6 +34,7 @@ Dazu wurde lediglich eine einzelne Datenbank verwendet.
 Die automatischen Tests bereiten die Datenbank dabei vor jeder Ausführung der Tests selbstständig vor.
 
 \section{Testfälle}
+\label{sec:eval:testcases}
 
 Diese Sektion beschreibt die einzelnen komplexen Tests des Systems.
 Alle automatisch durchgeführten Tests sollen dabei fehlerfrei durchlaufen.
@@ -60,13 +62,13 @@ Die Tests verteilen sich dabei wie folgt:
     \item[Management] \hfill
     \begin{itemize}
         \item Arbeitsschritte vom Template generieren
-        \item Arbeitspaket Zuteilung Konfliktfrei
-        \item Arbeitspaket Zuteilung Konflikt
+        \item Arbeitspaket Zuteilung konfliktfrei
+        \item Arbeitspaket Zuteilung konfliktbehaftet
     \end{itemize}
     \item[Arbeiter] \hfill
     \begin{itemize}
-        \item Arbeitspaket anfordern Konfliktfrei
-        \item Arbeitspaket anfordern Konflikt
+        \item Arbeitspaket anfordern konfliktfrei
+        \item Arbeitspaket anfordern konfliktbehaftet
         \item Zugewiesenes Arbeitspaket ausführen
     \end{itemize}
     \item[Arbeitsschritte] \hfill
@@ -91,11 +93,11 @@ Die Tests verteilen sich dabei wie folgt:
 
 \subsection{Systemtests}
 
-Von den 3 Systemtests wurden nur 2 automatisiert.
+Von den drei Systemtests wurden nur zwei automatisiert.
 Die Tests mit dem Durchlauf der Funktionalen Komponenten und des Gesamtsystems
-zeigten viele kleine Fehler, auf die hier nicht Näher eingegangen wird.
+zeigten viele kleine Fehler, auf die hier nicht näher eingegangen wird.
 
-Das Testen der Beispielerweiterung stellte sich als kompliziert heraus und wurde auch als Manueller Test umgesetzt.
+Das Testen der Beispielerweiterung stellte sich als kompliziert heraus und wurde auch als manueller Test umgesetzt.
 
 Der Durchlauf der Komponenten führt einfach nur die Komponenten der logischen Reihenfolge nach aus:
 \begin{enumerate}
@@ -114,31 +116,34 @@ Anschließend gibt er Aufträge verschiedener Größe ins System.
 
 \subsection{Manuelle Tests}
 
-Alle manuellen Tests wurden im Kontext der ``Grossen Datenanalyse'' durchgeführt.
+Alle manuellen Tests wurden im Kontext der ``Großen Datenanalyse'' durchgeführt.
 Der Umfang dieses Tests ermöglichte es wiederholt Fehlerfälle zu testen sowie das Systemverhalten zu beobachten.
 
-Zu verschiedenen Zeitpunkten wurden Komponenten des Systems hart beendet und spaeter wieder neu gestartet.
-Dabei wurde das Verhalten der Komponenten nach dem Neustart sowie der Einfluss des Verlustes auf das Gesamtsystem betrachtet.
+Zu verschiedenen Zeitpunkten wurden Komponenten des Systems hart beendet und später wieder neu gestartet.
+Dabei wurde das Verhalten der Komponenten nach dem Neustart
+% im vergleich zu regul. Ausfuehrung
+ sowie der Einfluss des Verlustes auf das Gesamtsystem betrachtet.
 
 
 \section{Festgestellte Probleme}
+\label{sec:eval:probleme}
 
 Dieses Unterkapitel  beschreibt die in der Implementation und Testphase aufgetretenen Probleme.
 
-\subsection{manuelle Tests}
+\subsection{Manuelle Tests}
 
 Bei den manuellen Tests sind einige schwerwiegende Probleme aufgetreten.
 Diese werden hier nur kurz umrandet.
 
 \begin{description}
-    \dhitem[Langwierige Anlaufphase]
-        Beim wiederholten Testen mit der gleichen Datenbank fiel auf, dass die Menge der Daten in der Datenbank Einfluss auf das Starten von Komponenten hat. Je mehr Daten sich in der Datenbank befinden, desto länger benötigen Komponenten, um mit ihrer Arbeit zu beginnen.
-    \dhitem[Konfliktsituation Inanspruchname Arbeitspackete]
-        Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter dasselbe nächste Arbeitspaket in Anspruch nehmen wollen. Dies führte oft dazu, dass manche Arbeiter erst nach dutzenden Versuchen das nächste Arbeitspaket bearbeiten können.
-    \dhitem[Blockade Abarbeitung von Managementdaten]
+    \dhitem[Langwierige Anlaufphase:]
+        Beim wiederholten Testen mit der gleichen Datenbank fiel auf, dass die Menge der Daten in der Datenbank Einfluss auf das Starten von Komponenten hat. Je mehr Daten sich in der Datenbank befinden, desto länger benötigen Komponenten, um mit ihrer Arbeit wieder aufzunehmen.
+    \dhitem[Konfliktsituation bei der Inanspruchname von Arbeitspacketen:]
+        Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter dasselbe nächste Arbeitspaket in Anspruch nehmen wollten. Dies führte oft dazu, dass manche Arbeiter erst nach dutzenden Versuchen das nächste Arbeitspaket bearbeiten konnten.
+    \dhitem[Blockade bei der Abarbeitung von Managementdaten:]
         Beim Absetzen großer Aufträge fiel auf, dass der Manager in einigen Situationen für mehrere Minuten keine Inanspruchnahme eines Arbeitspaketes bearbeitete. Somit wurden Arbeitern keine Arbeitsschritte gegeben, obwohl diese eigentlich verfügbar waren.
-    \dhitem[Blockade Datenausgabe Python]
-        Bei der Beobachtung des Systems fiel auf, dass Python Schritte/Prozesse
+    \dhitem[Blockade der Datenausgabe von Python:]
+        Bei der Beobachtung des Systems fiel auf, dass Python Prozesse
         die Daten von STDOUT/STDERR nicht kontinuierlich und zeilenweise,
         sondern in größeren Blöcken zur Ausgabe schickten.
 \end{description}
@@ -151,11 +156,12 @@ dass die Resultate des Map-Reduce-Algorithmus an die verfügbaren Informationen 
 Es ist nicht möglich für Daten aus Events einen $Key$ mit Informationen aus den zugeordneten Arbeitspaketen zu generieren ohne zuvor eine starke Denormalisierung einzuführen.
 
 Damit ist die Sortierung der Resultate an die verwendeten Schlüssel gebunden. 
-Im Prototypen wurde dieses Problem mittels nachgelegter Sortierung gelöst,
+Im Prototypen wurde dieses Problem mittels nachgelagerter Sortierung gelöst,
 allerdings ist eine Lösung in der Datenbank wünschenswert da die nach-gelagerte Sortierung einen erheblichen Mehraufwand bedeutete.
 
 
 \section{Zusammenfassung}
+\label{sec:eval:zusammenfassung}
 %XXX
 Um die drei definierten Systemkriterien als umgesetzt zu betrachten,
 müssten die festgestellten Probleme gelöst werden,
