@@ -59,7 +59,7 @@ Nennenswert ist dabei die Bindung einer Komponente an bestimmte Knotenpunkte der
 %XXX more
 
 \section{Datenschema}
-
+\label{sec:design:schema}
 
 \begin{figure}[ht] 
   \centering
@@ -139,19 +139,20 @@ Der Timestamp gibt den Events eine zeitliche Ordnung (welche jedoch nicht eindeu
 Zusätzlich zu diesen Basisdaten beinhaltet ein Event beliebige weitere optionale Felder.
 Einige mögliche (und ihre Datentypen) sind:
 
-\begin{description}
+\begin{itemize}
     \dhitem[returncode: Number] Rückgabe-wert eines Prozesses bei seiner Beendigung.
     \dhitem[line: Text] Textzeile eines Datenstromes der Ausgabe
     \dhitem[lineno: Number] Zugehörige Zeilennummer
     \dhitem[stream: Name] Zugehörige Name des Datenstromes
     \dhitem[start: Name] Mitteilung über den Start eines bestimmten Vorganges
     \dhitem[end: Name] Mitteilung über den Abschluss eines bestimmten Vorganges
-\end{description}
+\end{itemize}
 
 
 
 
 \section{Logik der Komponenten}
+\label{sec:design:logik}
 
 Dieses Unterkapitel behandelt die grundlegende Logik  der Einzelteile des Systems,
 sie bilden die Bausteine für das Gesamtsystem.
@@ -340,6 +341,7 @@ er muss also über das Wissen verfügen,
 welcher Arbeiter in der Lage ist, welche Arbeitspakete zu bearbeiten.
 
 \begin{figure}[ht] 
+    \centering
   \begin{sequencediagram}
       \newinst{worker}{:Worker}
       \newinst[1]{manager}{:Manager}
@@ -372,7 +374,8 @@ da er nur noch die Entscheidung für den Zuschlag treffen muss.
 Es ist nicht notwendig, spezielles Wissen über die Arbeiter und ihre Fähigkeiten zu haben. 
 
 
-\begin{figure}[ht] 
+\begin{figure}[ht]
+  \centering
   \begin{sequencediagram}
       \newinst{workera}{:Worker A}
       \newinst[1]{manager}{:Manager}
@@ -411,6 +414,7 @@ Das Endresultat wird durch die Zuteilung nicht beeinflusst.
 
 
 \section{Besondere Ansätze zur Datenbank-Interaktion}
+\label{sec:design:bes-ansaetze}
 
 Dieses Unterkapitel behandelt einige Ansätze zum Zugriff auf die Daten in der verteilten Datenbank.
 Sie unterstützen die Konsistenz der Daten.
@@ -616,6 +620,7 @@ wie z.B. Einpflegen von Testergebnissen aus JunitXML-Dateien, in die Datenbank,
 
 
 \section{Erweiterungen}
+\label{sec:design:erweiterungen}
 
 Dieses Unterkapitel beschäftigt sich mit dem Aufbau der zwei Beispielerweiterungen.
 
@@ -693,6 +698,7 @@ Anschließend können die Daten in Graphen dargestellt werden.
 
 
 \section{Benutzeroberfläche}
+\label{sec:design:ui}
 
 Da die Benutzeroberfläche für den Prototypen nicht zwingend notwendig ist,
 wird darauf verzichtet, mehr als nur simple Werkzeuge zur Verfügung zu stellen.
@@ -700,6 +706,7 @@ Wichtig ist dabei, dass vorgefertigte Testdaten in die Datenbank eingegeben werd
 
 
 \section{Zusammenfassung}
+\label{sec:design:zusammenfassung}
 
 In diesem Kapitel wurden sowohl die Gesamtstruktur als auch die funktionalen Kernkomponenten vorgestellt.
 Dabei wurde besonders auf das Kernsystem eingegangen,
