@@ -1,6 +1,8 @@
 DIAFILES=$(wildcard imageinput/*.dia)
 DOTFILES=$(wildcard imageinput/*.dot)
 TEXFILES=$(wildcard content/*.tex) document.tex
+BUILDPDF=pdflatex -shell-escape document
+
 
 %.png: %.dot
 	@echo dot export $<
@@ -10,11 +12,15 @@ TEXFILES=$(wildcard content/*.tex) document.tex
 	@echo dia export $<
 	@dia $< -e $@ -t png
 
+.PHONY: once
+once: images code
+	$(BUILDPDF)
+
 document.pdf: images code $(TEXFILES)
-	TEXINPUTS=.:includes: pdflatex -shell-escape document && \
+	TEXINPUTS=.:includes: $(BUILDPDF) && \
 	TEXINPUTS=.:includes: bibtex document && \
-	TEXINPUTS=.:includes: pdflatex -shell-escape document && \
-	TEXINPUTS=.:includes: pdflatex -shell-escape document
+	TEXINPUTS=.:includes: $(BUILDPDF) && \
+	TEXINPUTS=.:includes: $(BUILDPDF)
 
 .PHONY: perm
 perm:
