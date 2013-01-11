@@ -1,4 +1,5 @@
 \chapter{Implementation}
+\label{cha:imp}
 
 Dieses Kapitel beschreibt die Implementation des Systems.
 Dabei wird zuerst auf Wahl der Werkzeuge eingegangen,
@@ -8,6 +9,7 @@ Schließlich werden Besonderheiten bei der Implementation einiger Komponenten vo
 Zum Schluss werden die exemplarischen Erweiterungen vorgestellt.
 
 \section{Werkzeuge}
+\label{sec:imp:tools}
 \subsection{Datenbank}
 
 Das Kriterium der \textbf{Master-Master-Replikation}
@@ -127,6 +129,8 @@ von Datenbank-internen Filtern und Views zu erleichtern.
 
 
 \section{Projektstruktur}
+\label{sec:imp:projektstruktur}
+
 \subsection{Überblick}
 
 Die grundlegende Projektstruktur beinhaltet einige Hauptverzeichnisse.
@@ -243,6 +247,7 @@ weiterhin beinhaltet die applikation einen \emph{list} \cite{couchdb:guide}[list
 Weiterhin sind in der Datei \verb|rewrites.yml| Regeln enthalten, um verwendbare URLs für den \verb|lines| show benutzen zu können.
 
 \section{Grundlegende Primitiven}
+\label{sec:imp:primitiven}
 
 Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teile des Prototypen. Die bilden die Basis für eine kompakte und schnell umsetzbare Implementation.
 
@@ -290,6 +295,7 @@ die Primitive muss somit nur die Komponenten den Ereignissen zuordnen
 und anschließend die Folge der Änderungen der Datenbank abarbeiten.
 
 \section{Funktionale Komponenten}
+\label{sec:imp:komponenten}
 
 Dieses Unterkapitel beschreibt die einzelnen Komponenten,
 welche mit der \verb|watches_for|-Primitive kombiniert werden.
@@ -304,7 +310,7 @@ Im Prototypen werden Aufträge mittels des \verb|put.py|-Skriptes in die Datenba
 Ein Beispiel ist in \Cref{fig:auftrag-beispieldaten}.
 
 \begin{listing}[h]
-\begin{minted}{yaml}
+\begin{minted}[linenos]{yaml}
 project: "print-some"
 type: juggler:order
 status: received
@@ -400,6 +406,8 @@ Dieser Prozess wird später detaillierter beschrieben.
 
 
 \section{Kombination der Komponenten}
+\label{sec:imp:kombination}
+
 \subsection{Inbox und Management}
 
 Im Prototypen wurden Inbox und Management in einer einzelnen Systemkomponente  kombiniert.
@@ -448,6 +456,7 @@ eines Arbeiters zu entfernen.
 
 
 \section{Procdir und Arbeitsschritte}
+\label{sec:imp:procdir}
 
 Procdir und Arbeitsschritte setzen die letztendliche Ausführung eines Arbeitspakets um.
 Sie finden in der Ausführungskomponente im Arbeiter Anwendung.
@@ -482,6 +491,7 @@ Auf statistische Informationen wurde dabei verzichtet.
 Die Quellcode Management Schritte sind auf Basis von anyvc \cite{anyvc:website} implementiert. Die wurden lediglich funktionsfähig erstellt und sammeln noch keine Laufzeitdaten.
 
 \section{Exemplarische Erweiterung - Datenaggregation}
+\label{sec:imp:extension}
 
 Die exemplarische Erweiterung wurde in zwei Teilen umgesetzt.
 Dies ist zum einen der Map-Reduce-View und zum anderen der CouchDB-List um die Daten darzustellen.
@@ -490,7 +500,7 @@ Dies ist zum einen der Map-Reduce-View und zum anderen der CouchDB-List um die D
 
 In der Map-Phase des View werden die Ausgabezeilen des Programms betrachtet.
 Dies ermöglicht es, das unveränderte Programm einfach zu verwenden.
-Dabei werden die jeweiligen Daten als einfache Zuordnung extrahiert,
+Dabei werden die jeweiligen Daten als einfache Zuordnung extrahiert
 und unter Verwendung der ID des Arbeitspaketes als Key abgelegt.
 Weiterhin wird die Ausprägung der Build-Achsen für das Arbeitspaket mit abgelegt.
 
@@ -499,7 +509,7 @@ Für jedes Arbeitspaket sind nun unter seiner ID als Key die Resultate verfügba
 
 \subsection{List}
 %cite?
-Ein List in CochDB wird verwendet um Resultate von anfragen an Views auf verschiedene Art und Weise darzustellen. In der Erweiterung wird er dazu genutzt, um die Resultate für einen bestimmten Auftrag darzustellen.
+Ein List in CouchDB wird verwendet um Resultate von anfragen an Views auf verschiedene Art und Weise darzustellen. In der Erweiterung wird er dazu genutzt, um die Resultate für einen bestimmten Auftrag darzustellen.
 Dabei wird der View für den Bereich aller Arbeitspakete abgefragt.
 Diese werden datenbankintern der List-Funktion nacheinander übergeben.
 
@@ -509,6 +519,7 @@ und die Permutationsreihenfolge der Build-Achsen unglücklich gewählt war (`hei
 Um die gewünschte Darstellung mit Diagrammen für `generations' und `population', welche nach der `height\_weight' sortiert sind zu erreichen, wurden nur die Ausgaben für den ersten Wert für `height\_weight' direkt ausgegeben.
 Die weiteren Ausgaben wurden bis nach Abschluss des View vorgehalten und dann zusammen ausgegeben.
 Dabei wurde Fehlschlag rot und Erfolg grün markiert.
+In \cref{fig:beispielerweiterung-screenshoot} ist ein Screenshot davon zu sehen.
 
 
 %XXX screenshoot

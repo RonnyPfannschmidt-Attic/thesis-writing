@@ -189,7 +189,7 @@ so wird der Eingang festgehalten und der Auftrag wird vom System weiterverarbeit
 %XXX Quellen betrachten``
 Betrachtet werden die Anforderungen für die Quellen
 \begin{description}
-    \dhitem[E-Mail]
+    \item[E-Mail]
         Der Eingang per E-Mail kann in zwei Formen erfolgen:
         Zum einen kann der gesamte Auftrag in einer einzigen E-Mail enthalten sein.
         Zum anderen kann sich der Auftrag über mehr als eine E-Mail erstrecken.
@@ -197,18 +197,18 @@ Betrachtet werden die Anforderungen für die Quellen
         Ist ein Auftrag fertiggestellt, so ist eine Antwort-E-Mail hilfreich.
         Wichtig ist, dass E-Mails Unbekannter auf keinen Fall
         akzeptiert werden sollten.
-    \dhitem[Mailingliste]
+    \item[Mailingliste]
         Der Eingang per Mailingliste ist dem Eingang per E-Mail sehr ähnlich.
         Haupt-unterschied ist, dass anstelle einer privaten Korrespondenz
         ein öffentliches Forum genutzt wird. Dabei sollen auch E-Mails Unbekannter 
         bearbeitet werden können.
         Ein bekanntes Beispiel für eine Mailingliste mit Patches
         ist die Mercurial Mailingliste \cite{mercurial:mailingliste}.
-    \dhitem[Web Formular]
+    \item[Web Formular]
         Web-Formulare bieten eine intuitive Möglichkeit,
         einen Auftrag zu bearbeiten und vorzubereiten,
         bevor man ihn letztendlich in Bearbeitung gibt.
-    \dhitem[HTTP Hook]
+    \item[HTTP Hook]
         HTTP Hooks sind ein traditionelles Werkzeug,
         um \ac{CI}-Systemen Änderungen mitzuteilen.
         Da sie lediglich die Reaktion auf einen HTTP Request sind,
@@ -216,12 +216,12 @@ Betrachtet werden die Anforderungen für die Quellen
         und dienen dazu, Aufträge für die Standardkonfiguration
         eines Projektes abzusetzen, wenn externe Ereignisse,
         wie z.B. ein SCM commit, eintreten.
-    \dhitem[Zeitsteuerung]
+    \item[Zeitsteuerung]
         DIe Zeitsteuerung ist ein weiteres traditionelles Werkzeug,
         um Aufträge in Standardkonfiguration abzusetzen.
         Zu festgesetzten Zeitpunkten, wie zb. Nachts oder nach
         Arbeitsschluss, werden Aufträge abgesetzt.
-    \dhitem[HTTP API]
+    \item[HTTP API]
         Eine HTTP API kann als Basis sowohl für Testwerkzeuge
         als auch für Web-Formulare dienen.
         Sie ermöglicht Programmen das Absetzen von Aufträgen.
@@ -590,16 +590,16 @@ weitere Laufzeit-Daten zur Verfügung zu stellen
 \subsection{Quellcode Management Schritte}
 
 Quellcode Management Schritte behandeln die Interaktion mit dem SCM.
-Es wird, wenn notwendig, ein Arbeitsverzeichniss erstellt.
+Es wird, wenn notwendig, ein Arbeitsverzeichnis erstellt.
 Danach gibt es mehrere grundlegende Operationen, die durchgeführt werden können.
 
 \begin{description}
-    \dhitem[Eingang von Historie]
+    \item[Eingang von Historie]
         Der Eingang von Historie bringt die lokale Historie auf den aktuellen Stand. Dies wird in verteilten \ac{SCM} ``pull'' genannt.
-    \dhitem[Aktualisierung des Arbeitsverzeichniss]
-        Die Aktualisierung des Arbeitsverzeichnisses bringt die Dateien im Arbeitsverzeichniss auf eine gewünschte Version.
-    \dhitem[Anwendung von Patches]
-        Die Anwendung von Patches wendet Patches auf das aktuelle Arbeitsverzeichniss an.
+    \item[Aktualisierung des Arbeitsverzeichnis]
+        Die Aktualisierung des Arbeitsverzeichnises bringt die Dateien im Arbeitsverzeichnis auf eine gewünschte Version.
+    \item[Anwendung von Patches]
+        Die Anwendung von Patches wendet Patches auf das aktuelle Arbeitsverzeichnis an.
 \end{description}
 
 
