@@ -18,6 +18,7 @@ qualitativ und quantitativ festlegen.
 
 
 \section{Systemanforderungen}
+\label{sec:target:systemanforderungen}
 
 Die Systemanforderungen legen funktionale Eigenschaften der Software auf System-ebene fest.
 Dabei werden drei Punkte als wichtig erachtet.
@@ -25,24 +26,25 @@ Dabei werden drei Punkte als wichtig erachtet.
 
 \begin{description}
 
-\dhitem[S1]
+\item[S1]
   Das System darf sich nicht vom Absturz/Fehlerfall \\
   einzelner Komponenten stören lassen. Jederzeit muss \\
   es möglich sein, Teile des Systems hart zu beenden \\
   oder die Struktur des Systems zu verändern.
 
-\dhitem[S2]
+\item[S2]
   Alle anfallenden längerfristig verfügbaren Daten müssen\\
   mittels einer Standard-Schnittstelle für \\
   Datenbankzugriff abfragbar beziehungsweise verwendbar sein.
 
-\dhitem[S3]
+\item[S3]
   Das System soll für Erweiterungen offen stehen \\
   und soweit möglich Erweiterbarkeit aktiv unterstützen.
 \end{description}
 
 
 \section{Funktionale Anforderungen und Usecases}
+\label{sec:target:usecases}
 % kann/soll kriterien
 
 Um ein modernes und erweiterbares \ac{CI}-System zu schaffen,
@@ -62,7 +64,7 @@ Dabei werden den einzelnen Anforderungen Kennziffern zugewiesen (F0001 bis F...N
 Die Kernfunktionen bilden das absolute Minimum an Funktionen.
 Jede von ihnen ist unabdingbar.
 
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \includegraphics[width=0.7\textwidth]{imageinput/use-case-muss.png}
   \caption{\"Ubersicht Usecases - Kern}
@@ -174,6 +176,7 @@ Ideen f\"ur neue Ans\"atze und Werkzeuge bei der Qualit\"atssicherung liefern.
 
 
 \section{Testkriterien}
+\label{sec:target:tests}
 
 Dieses Unterkapitel beschäftigt sich mit verschiedenen Tests,
 die zur Sicherstellung der Funktionalität des Systems notwendig sind.
@@ -204,13 +207,13 @@ Im Rahmen dieser Arbeit werden drei Systemtests definiert.
 
 
 \begin{description}
-  \dhitem[Komponentendurchlauf:]
+  \item[Komponentendurchlauf:]
     Der Komponentendurchlauf soll anhand des Ausführens der einzelnen, funktionalen Komponenten aufzeigen,
     ob das Zusammenspiel der Komponenten grunds\"atzlich funktioniert.
-  \dhitem[Komplettstystem:]
+  \item[Komplettstystem:]
     Der Test des Komplettsystems soll das komplette CI-System auf einer Testdatenbank starten
     und seine Funktion sicherstellen
-  \dhitem[Beispiel Datenanalyse:]
+  \item[Beispiel Datenanalyse:]
     Das Beispiel Datenanalyse soll die Funktion der Beispielerweiterung für die Datenanalyse sicherstellen
 \end{description}
 
@@ -218,25 +221,27 @@ Im Rahmen dieser Arbeit werden drei Systemtests definiert.
 
 Die manuellen Tests umfassen alle Tests,
 deren Umsetzung als automatisches Programm erfahrungsgemäß zeitaufwendig,
-fehleranfällig und/oder umfangreich sind.
+fehleranfällig und/oder umfangreich ist.
+Sie werden deshalb von Hand ausgeführt.
 
 \begin{description}
-  \dhitem[Zeitliches Verhalten:]
-    Die Beobachtung und Analyse des Zeitverhaltens \\
+  \item[Zeitliches Verhalten:]
+    Die Beobachtung und Analyse des Zeitverhaltens
     bei wachsender Datenmenge und Auftragsgröße soll Aufschluss über algorithmische Engpässe geben.
-  \dhitem[Race-Conditions:]
-    Die Beobachtung und Analyse trivialer Race-Conditions \\
+  \item[Race-Conditions:]
+    Die Beobachtung und Analyse trivialer Race-Conditions
     bei wachsender Nebenl\"aufigkeit soll Probleme bei der Skalierbarkeit aufdecken.
-  \dhitem[Verhalten bei Systemfehler:]
+  \item[Verhalten bei Systemfehler:]
       Der Verhaltenstest bei Systemfehlern dient der
     \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten.
-  \dhitem[Große Datenanalyse:]
-    Die Große Datenanalyse wird die exemplarischen Erweiterungen mit Datenmengen und Aufgaben, \\
+  \item[Große Datenanalyse:]
+    Die Große Datenanalyse wird die exemplarischen Erweiterungen mit Datenmengen und Aufgaben,
     welche den Rahmen eines automatischen Tests sprengen überprüfen.
 \end{description}
 
 
 \section{Abgrenzung}
+\label{sec:target:abgrenzung}
 
 In dieser Arbeit sollen nur der prototypische Kern eins \ac{CI}-Systems
 sowie exemplarische Erweiterungen geschaffen werden.
@@ -253,7 +258,7 @@ wie z.B. Konfiguration der Replikation ausgeschlossen.
 
 
 \section{Zusammenfassung}
-
+\label{sec:target:zusammenfassung}
 %XXX: more text
 
 Die wesentliche Aufgabe ist es, den Kern des \ac{CI}-Systems als Protoyp zu schaffen.
