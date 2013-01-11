@@ -52,42 +52,48 @@ erhielten daher auch nur einzelne Tests, während andere Komponenten mehrere Tes
 
 Die Tests verteilen sich dabei wie folgt:
 
-\begin{description}
-    \item[Eingang] \hfill
-    \begin{itemize}
-        \item Einfache Validation
-        \item Arbeitspakete ohne eigene Achsen generieren
-        \item Arbeitspakete mit eigenen Achsen generieren
-    \end{itemize}
-    \item[Management] \hfill
-    \begin{itemize}
-        \item Arbeitsschritte vom Template generieren
-        \item Arbeitspaket Zuteilung konfliktfrei
-        \item Arbeitspaket Zuteilung konfliktbehaftet
-    \end{itemize}
-    \item[Arbeiter] \hfill
-    \begin{itemize}
-        \item Arbeitspaket anfordern konfliktfrei
-        \item Arbeitspaket anfordern konfliktbehaftet
-        \item Zugewiesenes Arbeitspaket ausführen
-    \end{itemize}
-    \item[Arbeitsschritte] \hfill
-    \begin{description}
-        \item[Prozess] \hfill
+\begin{itemize}
+    \item
+        \textbf{Eingang}
         \begin{itemize}
-            \item Einfacher Prozess
-            \item Einfacher Prozess Fehlschlag
-            \item Prozess mit vielen ausgaben (cat)
-            \item Python Prozess
+            \item Einfache Validation
+            \item Arbeitspakete ohne eigene Achsen generieren
+            \item Arbeitspakete mit eigenen Achsen generieren
         \end{itemize}
-        \item[SCM] \hfill
+    \item
+        \textbf{Management}
         \begin{itemize}
-            \item Clone lokal
-            \item Clone remote
-            \item Clone Fehlschlag
+            \item Arbeitsschritte vom Template generieren
+            \item Arbeitspaket Zuteilung konfliktfrei
+            \item Arbeitspaket Zuteilung konfliktbehaftet
         \end{itemize}
-    \end{description}
-\end{description}
+    \item
+        \textbf{Arbeiter}
+        \begin{itemize}
+            \item Arbeitspaket anfordern konfliktfrei
+            \item Arbeitspaket anfordern konfliktbehaftet
+            \item Zugewiesenes Arbeitspaket ausführen
+        \end{itemize}
+    \item
+        \textbf{Arbeitsschritte}
+        \begin{itemize}
+            \item
+                \textbf{Prozess}
+                \begin{itemize}
+                    \item Einfacher Prozess
+                    \item Einfacher Prozess Fehlschlag
+                    \item Prozess mit vielen ausgaben (cat)
+                    \item Python Prozess
+                \end{itemize}
+            \item
+                \textbf{SCM}
+                \begin{itemize}
+                    \item Clone lokal
+                    \item Clone remote
+                    \item Clone Fehlschlag
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
 
 
 
@@ -135,18 +141,25 @@ Dieses Unterkapitel  beschreibt die in der Implementation und Testphase aufgetre
 Bei den manuellen Tests sind einige schwerwiegende Probleme aufgetreten.
 Diese werden hier nur kurz umrandet.
 
-\begin{description}
+\begin{itemize}
     \dhitem[Langwierige Anlaufphase:]
-        Beim wiederholten Testen mit der gleichen Datenbank fiel auf, dass die Menge der Daten in der Datenbank Einfluss auf das Starten von Komponenten hat. Je mehr Daten sich in der Datenbank befinden, desto länger benötigen Komponenten, um mit ihrer Arbeit wieder aufzunehmen.
+        Beim wiederholten Testen mit der gleichen Datenbank fiel auf,
+        dass die Menge der Daten in der Datenbank Einfluss auf das Starten von Komponenten hat.
+        Je mehr Daten sich in der Datenbank befinden, desto länger benötigen Komponenten,
+        um mit ihrer Arbeit wieder zu beginnen.
     \dhitem[Konfliktsituation bei der Inanspruchname von Arbeitspacketen:]
-        Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter dasselbe nächste Arbeitspaket in Anspruch nehmen wollten. Dies führte oft dazu, dass manche Arbeiter erst nach dutzenden Versuchen das nächste Arbeitspaket bearbeiten konnten.
+        Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter
+        dasselbe nächste Arbeitspaket in Anspruch nehmen wollten. Dies führte oft dazu,
+        dass manche Arbeiter erst nach dutzenden Versuchen das nächste Arbeitspaket bearbeiten konnten.
     \dhitem[Blockade bei der Abarbeitung von Managementdaten:]
-        Beim Absetzen großer Aufträge fiel auf, dass der Manager in einigen Situationen für mehrere Minuten keine Inanspruchnahme eines Arbeitspaketes bearbeitete. Somit wurden Arbeitern keine Arbeitsschritte gegeben, obwohl diese eigentlich verfügbar waren.
+        Beim Absetzen großer Aufträge fiel auf, dass der Manager in einigen Situationen
+        für mehrere Minuten keine Inanspruchnahme eines Arbeitspaketes bearbeitete.
+        Somit wurden Arbeitern keine Arbeitsschritte gegeben, obwohl diese eigentlich verfügbar waren.
     \dhitem[Blockade der Datenausgabe von Python:]
         Bei der Beobachtung des Systems fiel auf, dass Python Prozesse
         die Daten von STDOUT/STDERR nicht kontinuierlich und zeilenweise,
         sondern in größeren Blöcken zur Ausgabe schickten.
-\end{description}
+\end{itemize}
 
 
 \subsection{Datenbank und Erweiterungen}
