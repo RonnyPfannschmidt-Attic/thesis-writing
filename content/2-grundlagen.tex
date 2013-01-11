@@ -27,15 +27,15 @@ Im Rahmen dieser Arbeit wird sich auf die Definition von L\"ohr bezogen.
 Das \ac{CAP}-Theorem nach Brewer \cite{brewer:cap} beschreibt drei grundlegend
 wünschenswerte Eigenschaften von verteilten Systemen und Datenbanken.
 
-\begin{description}
-  \item[Konsistenz (C)] \hfill \\
+\begin{itemize}
+  \dhitem[Konsistenz (C)]
       Alle Knoten sehen zur selben Zeit die selben Daten. 
-  \item[Verfügbarkeit (A)] \hfill \\
+  \dhitem[Verfügbarkeit (A)]
       Alle Anfragen an das System werden stets beantwortet.
-  \item[Partitionstoleranz (P)] \hfill \\
+  \dhitem[Partitionstoleranz (P)]
       Das System arbeitet auch bei Verlust von Nachrichten,
       einzelner Netzknoten oder bei der Partition des Netzes weiter.
-\end{description}
+\end{itemize}
 
 Zu beachten ist dabei, dass nur zwei dieser drei Anforderungen gleichzeitig
 vollständig erfüllt werden können.
