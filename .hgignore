@@ -5,6 +5,7 @@ syntax: glob
 .project
 .texlipse
 tmp/
+thesis-cd/
 
 imageinput/*.png
 .tex_from_code/*.tex
