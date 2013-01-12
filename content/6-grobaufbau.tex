@@ -74,7 +74,7 @@ beschreibt die Daten des Kernsystems und einige ihrer Interaktionen.
 Die wichtigsten Datentypen sind dabei Projekt, Auftrag (Order),
 Arbeitspaket (Task) und Arbeitsschritt (Step).
 
-\subsubsection{Projekt}
+\subsubsection{Projekt (im Schema `Project')}
 
 Das Projekt beinhaltet neben dem Namen auch alle Informationen,
 die später für das Erstellen von Arbeitspaketen sowie
@@ -85,7 +85,7 @@ Weiterhin beinhaltet es die Build-Achsen,
 welche die Wertebereiche der einzelnen Ebenen der Build-Matrix
 beschreiben.
 
-\subsubsection{Arbeitsschritt Templates}
+\subsubsection{Arbeitsschritt Templates (im Schema `StepTemplate')}
 
 Der mitunter wichtigste Teil eines Projektes ist jedoch die Beschreibung der Arbeitsschritte als Templates.
 Die Darstellung als Template ist dabei bewusst gewählt,
@@ -96,7 +96,7 @@ Zudem stellen die extra Objekte auch einen Anschlusspunkt für die Datensammlung
 Die Methode \textit{construct} des Templates dient dazu,
 einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zurückzugeben.
 
-\subsubsection{Auftrag}
+\subsubsection{Auftrag (im Schema `Order')}
 
 Ein Auftrag beinhaltet grundsätzlich eine Referenz auf das zugehörige Projekt,
 außerdem beinhaltet er Überschreibungen und/oder Zusätze für die Build-Achsen.
@@ -105,7 +105,7 @@ als auch erweiterte Aufträge zu erstellen.
 Diese werden später genauer erklärt.
 Zusätzlich beinhaltet der Auftrag einen Status, dieser beinhaltet den aktuellen Stand der Bearbeitung.
 
-\subsubsection{Arbeitspaket}
+\subsubsection{Arbeitspaket (im Schema `Task')}
 %XXX: eventuell projekt hier nicht referenzieren
 Ein Arbeitspaket beinhaltet, neben Referenzen zu dem Projekt und dem Auftrag,
 seine Spezifikation. Diese gibt die Ausbildung aller Build-Achsen für dieses Paket an.
@@ -113,7 +113,7 @@ Des Weiteren beinhaltet es den Index, dieser gibt die numerische Position in der
 Auch ein Arbeitspaket hat einen Status, welcher den aktuellen Bearbeitungsstand zum Ausdruck bringt.
 Zudem bestimmt das Feld ``Owner'' den Arbeiter, welcher Arbeiter das Arbeitspaket letztendlich bearbeiten wird.
 
-\subsubsection{Arbeitsschritt}
+\subsubsection{Arbeitsschritt (im Schema `Step')}
 
 Ein Arbeitsschritt referenziert das zugehörige Arbeitspaket.
 Neben den Zeitpunkten für Anfang und Ende seiner Ausführung,
@@ -125,7 +125,7 @@ die bei der Ausführung genutzt werden.
 %XXX: dies dient \ldots
 
 
-\subsubsection{Event}
+\subsubsection{Event (im Schema `Event')}
 %XXX referenz auf task?
 
 Ein Event bringt Datensammlung zur Laufzeit zum Ausdruck.
