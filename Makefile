@@ -12,8 +12,10 @@ BUILDPDF=pdflatex -shell-escape document
 	@echo dia export $<
 	@dia $< -e $@ -t png
 
+all: thesis-appendix.iso
+
 .PHONY: thesis-cd
-thesis-cd:
+thesis-cd: document.pdf
 	sh tools/mkcdtree.sh
 
 thesis-appendix.iso: thesis-cd
