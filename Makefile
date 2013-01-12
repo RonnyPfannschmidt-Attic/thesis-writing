@@ -12,6 +12,13 @@ BUILDPDF=pdflatex -shell-escape document
 	@echo dia export $<
 	@dia $< -e $@ -t png
 
+.PHONY: thesis-cd
+thesis-cd:
+	sh tools/mkcdtree.sh
+
+thesis-appendix.iso: thesis-cd
+	genisoimage -J -r -o thesis-appendix.iso thesis-cd
+
 .PHONY: once
 once: images code
 	$(BUILDPDF)
@@ -42,3 +49,5 @@ cleaner: clean
 	rmdir .tex_from_code
 	rm -f imageinput/*.png
 	rm -f *.pdf *.out
+	rm -f thesis-appendix.iso
+	rm -fr thesis-cd

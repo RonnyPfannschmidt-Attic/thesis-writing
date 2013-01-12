@@ -6,6 +6,7 @@ syntax: glob
 .texlipse
 tmp/
 thesis-cd/
+thesis-appendix.iso
 
 imageinput/*.png
 .tex_from_code/*.tex
