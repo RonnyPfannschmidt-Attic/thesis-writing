@@ -219,7 +219,7 @@ Betrachtet werden die Anforderungen für die Quellen
     \item[Zeitsteuerung]
         Die Zeitsteuerung ist ein weiteres traditionelles Werkzeug,
         um Aufträge in Standardkonfiguration abzusetzen.
-        Zu festgesetzten Zeitpunkten, wie z.b. Nachts oder nach
+        Zu festgesetzten Zeitpunkten, wie z.B. nachts oder nach
         Arbeitsschluss, werden Aufträge abgesetzt.
     \item[HTTP API]
         Eine HTTP API kann als Basis sowohl für Testwerkzeuge
@@ -238,8 +238,8 @@ um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 Die Validation verfolgt das Ziel, Aufträge auch aus weniger vertrauenswürdigen Quellen anzunehmen.
 Dies ermöglicht Verwendung ähnlich zu TravisCI, was es erlaubt, Zuarbeiten von Außenstehenden zu testen.
 Für die Überprüfung stehen verschiedene Möglichkeiten zur Verfügung.
-Ein Eingang per Mail/Mailingliste oder Pull-Request auf einer Code-Hosting-Site,
-kann z.B. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
+Ein Eingang per Mail/Mailingliste oder Pull-Request auf einer Code-Hosting-Site kann,
+z.B. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
 während Informationen die Mitarbeiter einsenden z.B. an ihr Arbeitsverhältnis gebunden werden können.
 
 Zeitgesteuerte Eingänge innerhalb des Systems können jedoch grundsätzlich zugelassen werden.
@@ -329,7 +329,7 @@ ob ein Arbeitspaket zum Erfolg oder Misserfolg geführt hat.
 \label{sec:methoden:zuteilung}
 
 Dieser Abschnitt beschäftigt sich mit der Zuteilung von Arbeitspaketen.
-Grundsätzlich gibt es zwei Möglichkeiten dies zu bewerkstelligen.
+Grundsätzlich gibt es zwei Möglichkeiten, dies zu bewerkstelligen.
 Es muss festgestellt werden, welche Methode besser geeignet ist.
 
 \subsubsection{Melde-Verfahren}
@@ -427,7 +427,7 @@ Sie unterstützen die Konsistenz der Daten.
 Wie bereits in \Cref{sec:base:cap} erwähnt,
 ist es immer nur möglich zwei der drei Aspekte des CAP-Theorems abzudecken.
 
-Jedoch ist es durchaus legitim für verschiedene Teile
+Jedoch ist es durchaus legitim, für verschiedene Teile
 einer verteilten Applikation unterschiedliche Bereiche abzudecken.
 Sobald genau definiert ist, für welche Daten in welchem Kontext welche Eigenschaften benötigt werden,
 kann ein konsistentes Modell geschaffen werden.
@@ -575,7 +575,7 @@ ein Programm mit vorgegebenen Parametern auszuführen.
 Dies ist der Grund, warum der ``SubprocessProc''-Datentyp einen
 Prozess-Handle enthält.
 
-Dabei fallen zur Laufzeit Daten wie z.B. Text auf den Standard Eingabe-/Ausgabe-Datenströmen an.
+Dabei fallen zur Laufzeit Daten, wie z.B. Text auf den Standard Eingabe-/Ausgabe-Datenströmen, an.
 Außerdem verändern sich statistische Informationen über den Prozess wie Speicher-Verbrauch, I/O-Last und andere.
 
 
@@ -615,8 +615,7 @@ Dabei wird das Regexmuster ``pattern'' verwendet, um festzustellen,
 ob eine Datei im Arbeitsverzeichniss zur Menge der gewünschten Dateien gehört.
 
 Erweiterte Versionen dieser Schrittart könnten zusätzliche Funktionen,
-wie z.B. Einpflegen von Testergebnissen aus JunitXML-Dateien, in die Datenbank,
-übernehmen.
+wie z.B. Einpflegen von Testergebnissen aus JunitXML-Dateien, in die Datenbank übernehmen.
 
 
 \section{Erweiterungen}
@@ -677,7 +676,7 @@ Dabei wurden die folgenden Konfigurations-Achsen für Parameter gewählt:
 \begin{description}
     \item[generations:] Menge der Generationen
     \item[population:] Größe der Population
-    \item[height-weight:] Bewertungsgewicht für die Höhe des Baumes welcher die angenäherte Funktion zum Ausdruck bringt
+    \item[height-weight:] Bewertungsgewicht für die Höhe des Baumes, der die angenäherte Funktion zum Ausdruck bringt
 \end{description}
 
 Die Achsen ``generations'' und ``population'' sind dabei ein exponentiell wachsender Wertebereich zwischen 20 und 5000.
@@ -688,7 +687,7 @@ Die Wahl der Achsen und ihrer Parameter ist willkürlich als Teil eines ersten T
 Weitere Parameter und Achsenkonfigurationen sind denkbar.
 Das Analysewerkzeug soll zeigen, welchen Einfluss die Parameter haben.
 
-Um dies zu zeigen, ist es notwendig die Resultate
+Um dies zu zeigen, ist es notwendig, die Resultate
 eines konfigurierten Durchlaufes (Auftrag) zusammenzufassen.
 Die Resultate jedes einzelnen Auftrages sind dabei aus der Standardausgabe
 des Programms zu entnehmen.
@@ -713,5 +712,5 @@ Dabei wurde besonders auf das Kernsystem eingegangen,
 und außerdem die zwei Erweiterungen umrandet.
 
 Um die Eigenschaften und die Möglichkeiten dieses Systems praktisch zu ergründen, ist es notwendig, das Kernsystem vollständig zu implementieren.
-Um die Erweiterbarkeit zu untersuchen, ist zumindest eine der beiden Beispiel-Erweiterungen umzusetzen. Dabei ist die Umsetzung,
+Um die Erweiterbarkeit zu untersuchen, ist zumindest eine der beiden Beispiel-Erweiterungen umzusetzen. Dabei ist die Umsetzung
 der Datenanalyse erfolgversprechender, da hier die initiale Analyse bereits mehrere Arbeitspakete umfasst, während die Analyse der Testresultate dies in der Benutzeroberfläche umsetzen müsste (und die Benutzeroberfläche wird in dieser Arbeit nicht behandelt).

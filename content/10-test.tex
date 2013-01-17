@@ -11,7 +11,7 @@ wurden die Kernfunktionen umgesetzt.
 \input{content/featurelist}    
 
 Außerdem wurden einige erweiterte Funktionen sowie eine der beispielhaften Erweiterungen umgesetzt.
-Damit ist der Umfang des Prototypen ausreichend um die Eigenschaften des Systems zu bewerten und zu bestimmen ob das gewünschte Ziel erreichbar ist.
+Damit ist der Umfang des Prototypen ausreichend, um die Eigenschaften des Systems zu bewerten und zu bestimmen, ob das gewünschte Ziel erreichbar ist.
 
 
 \section{Testumgebung}
@@ -47,7 +47,7 @@ daher wird darauf verzichtet.
 
 \subsection{Funktionale Tests}
 Die funktionalen Tests stellen die Funktionsweise einzelner Komponenten sicher.
-Komponenten die im Prototypen nur eine einzige Aufgabe haben,
+Komponenten, die im Prototypen nur eine einzige Aufgabe haben,
 erhielten daher auch nur einzelne Tests, während andere Komponenten mehrere Tests erhielten.
 
 Die Tests verteilen sich dabei wie folgt:
@@ -167,11 +167,11 @@ Diese werden hier nur kurz umrandet.
 
 Bei der Implementation der Erweiterung für Datenanalyse fiel auf,
 dass die Resultate des Map-Reduce-Algorithmus an die verfügbaren Informationen an der Datenbank gebunden sind.
-Es ist nicht möglich für Daten aus Events einen $Key$ mit Informationen aus den zugeordneten Arbeitspaketen zu generieren ohne zuvor eine starke Denormalisierung einzuführen.
+Es ist nicht möglich für Daten aus Events einen $Key$ mit Informationen aus den zugeordneten Arbeitspaketen zu generieren, ohne zuvor eine starke Denormalisierung einzuführen.
 
 Damit ist die Sortierung der Resultate an die verwendeten Schlüssel gebunden. 
 Im Prototypen wurde dieses Problem mittels nachgelagerter Sortierung gelöst,
-allerdings ist eine Lösung in der Datenbank wünschenswert da die nach-gelagerte Sortierung einen erheblichen Mehraufwand bedeutete.
+allerdings ist eine Lösung in der Datenbank wünschenswert, da die nach-gelagerte Sortierung einen erheblichen Mehraufwand bedeutete.
 
 
 \section{Zusammenfassung}
