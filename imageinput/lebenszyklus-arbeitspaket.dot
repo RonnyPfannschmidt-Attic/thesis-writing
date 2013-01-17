@@ -3,8 +3,8 @@ digraph arbeitspacket {
     running -> completed;
     ready-> canceling;
     claiming -> canceling; 
-    acepted -> canceling;
-    ready -> claiming -> acepted -> running;
+    accepted -> canceling;
+    ready -> claiming -> accepted -> running;
     running -> canceling;
 
     subgraph final {
@@ -22,7 +22,7 @@ digraph arbeitspacket {
     canceling [style=filled,fillcolor=orange];
     ready [style=filled,fillcolor=orange];
     claiming [style=filled,fillcolor=blue,fontcolor=white];
-    acepted [style=filled,fillcolor=orange];
+    accepted [style=filled,fillcolor=orange];
     running [style=filled,fillcolor=blue,fontcolor=white];
     completed [style=filled,fillcolor=blue,fontcolor=white];
 }
