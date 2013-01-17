@@ -42,8 +42,8 @@ Somit wurde aufgrund der technischen Vorteile das System CouchDB als zugrunde li
 \subsection{Programmiersprachen}
 
 Es wurden zwei Programmiersprachen ausgew\"ahlt:
-zum Einen Python wegen seiner Bibliotheken und
-zum Anderen Javascript, da es die datenbankinterne Sprache von CouchDB ist.
+zum einen Python wegen seiner Bibliotheken und
+zum anderen Javascript, da es die datenbankinterne Sprache von CouchDB ist.
 
 \begin{table}[ht]
 \centering
@@ -98,7 +98,7 @@ und als einzige in der Lage mit einem Arbeitsverzeichnis zu interagieren.
 \subsubsection{Testwerkzeuge}
 
 Zum Testen wird das Test-Framework py.test \cite{pytest:website} verwendet.
-Es das einzige Test-Framework für Python,
+Es ist das einzige Test-Framework für Python,
 welches neben Werkzeugen für Unit-Tests auch Werkzeuge für
 Funktionale-Tests und Akzeptanz-Tests mitbringt.
 
@@ -157,8 +157,8 @@ Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen eine
     \item[bin/master.py] [db] \hfill \\
         Startet den Master Prozess - es darf nur einen geben und der Prototyp testet nicht, ob bereits einer aktiv ist.
     \item[tool/put.py] [db] [item] / [db] [item] --newid \hfill \\
-        Überträgt den Inhalt der Datei namens \textit{item} zur Datenbank,
-        ist das flag \textit{--newid} gesetzt, so wird eine neue Objekt-ID erzwungen.
+        Überträgt den Inhalt der Datei namens \textit{item} zur Datenbank.
+        Ist das flag \textit{--newid} gesetzt, so wird eine neue Objekt-ID erzwungen.
     \item[tool/example-reset-db.sh] \hfill \\
         Shell-Skript, um die Datenbank für die manuellen Tests vorzubereiten.
         Es verwendet immer die lokale Datenbank namens ``juggler''.
@@ -256,7 +256,7 @@ Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teil
 Die Primitive \verb|listen_changes| dient dazu,
 Änderungen der Datenbank den Komponenten der Applikation mitzuteilen.
 Dabei kann nach dem Datentyp und nach weiteren Parametern gefiltert werden.
-Somit kann man an eine Folge speziell ausgewählter Änderungen in der Datenbank erhalten.
+Somit kann man eine Folge an speziell ausgewählten Änderungen in der Datenbank erhalten.
 
 \subsection{watch\_for}
 
@@ -361,7 +361,7 @@ Anschließend wird er in den Zustand \textit{ready} versetzt
 
 Erreicht ein Auftrag den Zustand \textit{ready}, so ist er bereit für die Erstellung von Arbeitspaketen.
 Bei der Erstellung der Arbeitspaketen soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden.
-Dazu wird das kartesisches Produkt der Achsen gebildet.
+Dazu wird das kartesische Produkt der Achsen gebildet.
 Die Ergebnis-Menge beinhaltet dann alle Konfigurationen.
 Die Menge aller Arbeitspakete muss nun in der Datenbank abgelegt werden
 und der Auftrag erreicht seinen Endzustand.
@@ -379,8 +379,7 @@ Wie bereits in \Cref{sec:verfahren:erteilung} erwähnt,
 gibt es 2 Möglichkeiten für die Umsetzung der Inanspruchnahme.
 Da CouchDB \emph{MVCC} direkt unterstützt und das Verwenden von extra Objekten einiges an extra Aufwand generiert, wird die Methode der alternativen Versionen verwendet.
 Die Inanspruchnahme eines Arbeitspaketes erzeugt also eine neue Version dieses Arbeitspaketes.
-Diese beschreibt den neuen Besitzer (Feld ``owner'') und die Inanspruchnahme mittels des Zustandes \verb|claimed|
-zum Ausdruck bringt.
+Diese beschreibt den neuen Besitzer (Feld ``owner'') und die Inanspruchnahme mittels des Zustandes \verb|claimed|.
 
 \subsection{Zuteilung von Arbeitern}
 Die Zuteilung von Arbeitern löst den Konflikt,
@@ -509,7 +508,7 @@ Für jedes Arbeitspaket sind nun unter seiner ID als Key die Resultate verfügba
 
 \subsection{List}
 %cite?
-Ein List in CouchDB wird verwendet um Resultate von anfragen an Views auf verschiedene Art und Weise darzustellen. In der Erweiterung wird er dazu genutzt, um die Resultate für einen bestimmten Auftrag darzustellen.
+Ein List in CouchDB wird verwendet um Resultate von Anfragen an Views auf verschiedene Art und Weise darzustellen. In der Erweiterung wird er dazu genutzt, um die Resultate für einen bestimmten Auftrag darzustellen.
 Dabei wird der View für den Bereich aller Arbeitspakete abgefragt.
 Diese werden datenbankintern der List-Funktion nacheinander übergeben.
 

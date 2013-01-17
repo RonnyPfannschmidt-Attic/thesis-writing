@@ -5,13 +5,13 @@
 \section{Ziele}
 \label{sec:fazit:ziele}
 
-Wie in der Evaluation aufgezeigt wurden, sind die meisten funktionalen Anforderungen erfüllt und nach der Optimierung sind auch die meisten Systemanforderungen erfüllt.
+Wie in der Evaluation aufgezeigt wurde, sind die meisten funktionalen Anforderungen erfüllt und nach der Optimierung sind auch die meisten Systemanforderungen erfüllt.
 Das gröbste verbleibende Problem ist die Limitierung der Map-Reduce-Algorithmus,
 welche noch nicht mit den gegebenen technischen Mitteln beseitigt werden kann.
 
 Zusammenfassend ist die Arbeit jedoch ein voller Erfolg.
 Es wurde ein Kernsystem für \ac{CI} geschaffen welches auf verteilter Datenbanktechnik basiert.
-Dabei muss besonders hervorgehoben werden wie stark die Implementation des Systems vereinfacht wird, indem man auf eine Verteilte Datenbank baut anstatt ein Verteiltes System und eine eigene Datenbank zu schaffen.
+Dabei muss besonders hervorgehoben werden wie stark die Implementation des Systems vereinfacht wird, indem man auf eine Verteilte Datenbank baut anstatt ein verteiltes System und eine eigene Datenbank zu schaffen.
 
 
 \section{Kritische Betrachtung}
@@ -22,9 +22,9 @@ sind auch an dieser Arbeit einige Punkte zu kritisieren.
 
 Im Laufe der Bearbeitung zeigte sich, dass das Modell des Programms auch für
 nicht verteilte Datenbanken geeignet ist.
-Die bekannte hohe Zuverlässigkeit der traditionellen relationalen Datenbanken legt den verdacht nahe, dass auch diese für die Implementation in Frage kommen.
+Die bekannte hohe Zuverlässigkeit der traditionellen relationalen Datenbanken legt den Verdacht nahe, dass auch diese für die Implementation in Frage kommen.
 
-Ein weiterer Kritikpunkt ist die Belegkraft der im \cref{chap:ist-analyse} angebrachten Probleme der existierenden Systeme. Diese sind zwar augenscheinlich und exemplarisch dargestellt, jedoch ist zur vollständigen Absicherung eine tiefgreifende Analyse notwendig, welche Umfangreich genug für eine eigene Arbeit wäre.
+Ein weiterer Kritikpunkt ist die Belegkraft der im \cref{chap:ist-analyse} angebrachten Probleme der existierenden Systeme. Diese sind zwar augenscheinlich und exemplarisch dargestellt, jedoch ist zur vollständigen Absicherung eine tiefgreifende Analyse notwendig, welche umfangreich genug für eine eigene Arbeit wäre.
 
 Weiterhin ist festzuhalten, dass das Erweiterungsmodell noch unvollständig ist.
 Es wurde noch nicht näher untersucht wie verschiedene Erweiterungen miteinander zu kombinieren sind. Außerdem wurden externe Erweiterungen und externe Datenanalyse explizit nicht in Betracht gezogen (obwohl Limitierungen der aktuellen internen Datenanlyse bekannt sind)
@@ -44,11 +44,11 @@ wurde kein Verglich zu den existierenden Systemen angetreten.
 In Fortsetzung an diese Arbeit soll der Prototyp in ein Produkt gewandelt werden.
 Dies erfordert zahlreiche weitere Punkte an Entwicklung.
 So müssen Benutzerinterface und Benutzerverwaltung integriert werden.
-Außerdem muss das Erweiterungsmodell an diese Angepasst werden.
+Außerdem muss das Erweiterungsmodell an diese angepasst werden.
 Zudem sind die weiteren Kannkriterien und Erweiterungen zu implementieren.
 Zusätzlich ist die Kontrolle der Replikation wichtig.
 
 An die Kritikpunkte anschließend sollten auch alternative Implementationen auf nicht verteilten Datenbanken analysiert und bewertet werden.
 
-Letztendlich sollen auch die restlichen Probleme gelöst werden.
-Da zukünftige Versionen von CouchDB das Aneinanderreihen von Map-Reduce-Prozessen unterstützen werden.
+Letztendlich sollen auch die restlichen Probleme gelöst werden,
+da zukünftige Versionen von CouchDB das Aneinanderreihen von Map-Reduce-Prozessen unterstützen werden.
