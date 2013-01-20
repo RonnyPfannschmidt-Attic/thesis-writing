@@ -96,10 +96,10 @@ informierte Entscheidungen \"uber den Zustand eines Projektes in Integration zu 
 
 \subsubsection{Datensammlung}
 
-Zun\"achst einmal gilt es Datensammlung beim Ablauf eines Arbeitsschritts zu betrachten.
+Zun\"achst einmal gilt es die Datensammlung beim Ablauf eines Arbeitsschritts zu betrachten.
 \"Ublicherweise muss zumindest STDOUT/STDERR schon zur Laufzeit festgehalten \deffeat{arbeisschritt-stdio} werden.
 Weiterhin besteht  Interesse an statistisch auswertbaren Daten
-wie z.B. den Speicherverbrauch \deffeat{arbeitsschritt-stats}.
+wie z.B. dem Speicherverbrauch \deffeat{arbeitsschritt-stats}.
 
 Nach dem Ausf\"uhren eines Arbeitsschritts fallen interessante Daten an.
 Oftmals sorgt zumindest einer der Arbeitsschritte für das Generieren eines ausführbaren Programms.
@@ -123,7 +123,7 @@ Dies soll ein verteilter Prozess sein \deffeat{arbeitspackete-autonome-verteilun
 bei dem die Slaves/Arbeiter aktiv mitwirken k\"onnen.
 Eine denkbare Erweiterung w\"are die Möglichkeit, dass Slaves/Arbeiter
 die Arbeitspakete mittels kategorischer Filter auswählen \deffeat{arbeitspackete-verteilung-selektiv}.
-Beispiele f\"ur diese sind Plattform oder Betriebsumgebung.
+Beispiele f\"ur diese sind die Plattform oder die Betriebsumgebung.
 
 \subsubsection{Auftragseingang und Vorbereitung}
 
@@ -135,8 +135,8 @@ wie z.B. E-Mail, Web-Hooks, Web-Formulare oder zeitgesteuerte Systeme.
 
 W\"unschenswerte Erweiterungen, welche nicht von existierenden Systemen unterst\"utzt werden,
 sind die Anreicherung eines Auftrages um eigene Daten/\"Anderungen.
-Besonders hilfreich erscheint hierbei das sogenannte Workdir-diff \deffeat{auftrag-eingang-diff},
-welches die aktuellen \"Anderungen eines Entwicklers darstellen.
+Besonders hilfreich erscheinen hierbei sogenannte ``Patches'' \deffeat{auftrag-eingang-diff},
+welche die aktuellen \"Anderungen eines Entwicklers darstellen.
 Dies macht sie besonders n\"utzlich f\"ur den laufenden Entwicklungsprozess.
 
 \subsubsection{Resultatanalyse}
@@ -236,7 +236,7 @@ Sie werden deshalb von Hand ausgeführt.
     \"Uberpr\"ufung des Verhaltens beim Absturz von Teilkomponenten.
   \item[Große Datenanalyse:]
     Die Große Datenanalyse wird die exemplarischen Erweiterungen mit Datenmengen und Aufgaben,
-    welche den Rahmen eines automatischen Tests sprengen überprüfen.
+    welche den Rahmen eines automatischen Tests sprengen, überprüfen.
 \end{description}
 
 

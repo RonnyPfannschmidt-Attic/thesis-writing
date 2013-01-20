@@ -3,7 +3,7 @@
 
 Im vorhergehenden Kapitel wurden Ziele und Leistungskriterien
 für das \ac{CI}-System festgelegt.
-Diese werden nun auf konzeptueller Ebene umgesetzt werden.
+Diese sollen nun auf konzeptueller Ebene umgesetzt werden.
 Dazu wird zuerst ein Überblick des Gesamtkonzeptes in der Systemarchitektur und den Schemata gegeben.
 Anschließend wird die Logik einzelner Systemkomponenten genauer betrachtet.
 Schließlich werden besondere Ansätze zur Interaktion mit der Datenbank betrachtet.
@@ -30,7 +30,7 @@ Die erste wichtige Komponente ist der Eingang.
 In ihm gehen Aufträge aus verschiedensten Quellen ein.
 Nachdem sie validiert wurden, werden die Aufträge an
 die zweite wichtige Komponente, den Manager, weitergegeben.
-Dort werden sie vorbereitet und entsprechend der Build-Matrix Arbeitspakete erstellt.
+Dort werden sie vorbereitet und entsprechend der Build-Matrix zugehörige Arbeitspakete erstellt.
 Nun treten Manager und Arbeiter in eine Interaktion,
 um zu bestimmen, welcher Arbeiter welche Arbeitspakete bearbeitet.
 Anschließend werden die Arbeitspakete von den jeweilig designierten Arbeitern abgefertigt (siehe \cref{fig:grob-layout-komponenten-logisch}).
@@ -88,8 +88,8 @@ beschreiben.
 \subsubsection{Arbeitsschritt Templates (im Schema `StepTemplate')}
 
 Der mitunter wichtigste Teil eines Projektes ist jedoch die Beschreibung der Arbeitsschritte als Templates.
-Die Darstellung als Template ist dabei bewusst gewählt,
-sie ermöglicht es jedem Arbeitspaket speziell konfigurierte Arbeitsschritte zur Verfügung zu stellen.
+Die Darstellung als Template ist dabei bewusst gewählt.
+Sie ermöglicht es jedem Arbeitspaket speziell konfigurierte Arbeitsschritte zur Verfügung zu stellen.
 Außerdem bewirkt die erneute Speicherung in der Datenbank,
 dass das Bearbeiten der Schritte eines Projektes keinen Einfluss auf bereits erstellte Arbeitspakete hat.
 Zudem stellen die extra Objekte auch einen Anschlusspunkt für die Datensammlung dar.
@@ -100,9 +100,9 @@ einen Arbeitsschritt, angereichert mit einer entsprechenden Konfiguration, zurü
 
 Ein Auftrag beinhaltet grundsätzlich eine Referenz auf das zugehörige Projekt,
 außerdem beinhaltet er Überschreibungen und/oder Zusätze für die Build-Achsen.
-Dies ermöglicht es sowohl in den Achsen eingeschränkte
+Das ermöglicht es sowohl in den Achsen eingeschränkte
 als auch erweiterte Aufträge zu erstellen.
-Diese werden später genauer erklärt.
+Sie werden später genauer erklärt.
 Zusätzlich beinhaltet der Auftrag einen Status, dieser beinhaltet den aktuellen Stand der Bearbeitung.
 
 \subsubsection{Arbeitspaket (im Schema `Task')}
@@ -128,11 +128,11 @@ die bei der Ausführung genutzt werden.
 \subsubsection{Event (im Schema `Event')}
 %XXX referenz auf task?
 
-Ein Event bringt Datensammlung zur Laufzeit zum Ausdruck.
+Ein Event bringt eine Datensammlung zur Laufzeit zum Ausdruck.
 Neben den Referenzen für den Arbeitsschritt und das Arbeitspaket,
 beinhaltet es eine Indexnummer und einen Timestamp.
 Die Indexnummer ist eine aufsteigende Zahl
-und gibt den Events eines bestimmten Arbeitsschritts eine feste, eindeutige Reihenfolge.
+und gibt den Events eines bestimmten Arbeitsschrittes eine feste, eindeutige Reihenfolge.
 Der Timestamp gibt den Events eine zeitliche Ordnung (welche jedoch nicht eindeutig ist).
 
 
@@ -140,7 +140,7 @@ Zusätzlich zu diesen Basisdaten beinhaltet ein Event beliebige weitere optional
 Einige mögliche (und ihre Datentypen) sind:
 
 \begin{itemize}
-    \dhitem[returncode: Number] Rückgabe-wert eines Prozesses bei seiner Beendigung.
+    \dhitem[returncode: Number] Rückgabewert eines Prozesses bei seiner Beendigung.
     \dhitem[line: Text] Textzeile eines Datenstromes der Ausgabe
     \dhitem[lineno: Number] Zugehörige Zeilennummer
     \dhitem[stream: Name] Zugehörige Name des Datenstromes
@@ -195,7 +195,7 @@ Betrachtet werden die Anforderungen für die Quellen
         Zum anderen kann sich der Auftrag über mehr als eine E-Mail erstrecken.
         Beispiel hierfür sind z.B. Mercurial Patchbombs \cite{mercurial:patchbomb}.
         Ist ein Auftrag fertiggestellt, so ist eine Antwort-E-Mail hilfreich.
-        Wichtig ist, dass E-Mails Unbekannter auf keinen Fall
+        Wichtig ist, dass E-Mails unbekannter Absender auf keinen Fall
         akzeptiert werden sollten.
     \item[Mailingliste]
         Der Eingang per Mailingliste ist dem Eingang per E-Mail sehr ähnlich.
@@ -236,7 +236,7 @@ um dem System zu Demonstrationszwecken Aufträge zu erteilen.
 %XXX: genauer beschreiben
 
 Die Validation verfolgt das Ziel, Aufträge auch aus weniger vertrauenswürdigen Quellen anzunehmen.
-Dies ermöglicht Verwendung ähnlich zu TravisCI, was es erlaubt, Zuarbeiten von Außenstehenden zu testen.
+Dies ermöglicht eine Verwendung ähnlich zu TravisCI, die es erlaubt, Zuarbeiten von Außenstehenden zu testen.
 Für die Überprüfung stehen verschiedene Möglichkeiten zur Verfügung.
 Ein Eingang per Mail/Mailingliste oder Pull-Request auf einer Code-Hosting-Site kann,
 z.B. nach erstmaliger Erlaubnis, wiederholt zugelassen werden,
@@ -287,7 +287,7 @@ um den eventuellen Abschluss des Auftrages festzustellen.
 \subsection{Zuteilung/Abarbeitung von Arbeitspaketen}
 
 \cref{fig:lebenszyklus-arbeitspaket} stellt den Lebenszyklus eines Arbeitspaketes als Zustandsgraph dar.
-Jedes Arbeitspacket beginnt dabei im Zustand \verb|new|.
+Jedes Arbeitspaket beginnt dabei im Zustand \verb|new|.
 
 \begin{figure}[ht] 
   \centering
@@ -303,13 +303,13 @@ Bevor ein Arbeitspaket bereit (\verb|ready|) für die Zuteilung ist,
 müssen seine Arbeitsschritte erstellt werden.
 Dazu wird die Ausprägung der Build-Achsen für dieses Arbeitspaket hergenommen.
 Auf ihrer Basis werden die Variablen in den Schritt-Templates des Projektes
-ausgefüllt und die Arbeitspakete für das Arbeitspaket erstellt. 
+ausgefüllt und die Arbeitsschritte für das Arbeitspaket erstellt. 
 
 \subsubsection{Zuteilung}
 
 Die Zuteilung von Arbeitspaketen ist ein komplexes Thema.
-Sie wird daher anschließend in \cref{sec:methoden:zuteilung} behandelt.
-Ihr Ziel ist es, dass ein Arbeitspaket einem Arbeiter zugeteilt wird.
+Es wird daher anschließend in \cref{sec:methoden:zuteilung} behandelt.
+Ziel ist es, dass ein Arbeitspaket einem Arbeiter zugeteilt wird.
 
 \subsubsection{Abarbeitung von Arbeitspaketen}
 
@@ -432,7 +432,7 @@ einer verteilten Applikation unterschiedliche Bereiche abzudecken.
 Sobald genau definiert ist, für welche Daten in welchem Kontext welche Eigenschaften benötigt werden,
 kann ein konsistentes Modell geschaffen werden.
 
-Wichtig ist bei dieser Betrachtung, dass die unterschiedlichen Komponenten des entwickelten CI-Systems
+Wichtig ist bei dieser Betrachtung, dass die unterschiedlichen Komponenten des entwickelten \ac{CI}-Systems
 nicht zwingend eine direkte Konsistenz-Bindung untereinander benötigen.
 Wichtig ist nur die Konsistenz zwischen einer Komponente
 und dem Datenbankknoten, mit dem sie kommuniziert.
@@ -440,13 +440,12 @@ und dem Datenbankknoten, mit dem sie kommuniziert.
 Das Hauptsystem, in dem alle Komponenten in Kommunikation stehen,
 %XXX: s1?
 soll nach Systemanforderung \textbf{S1} immer verfügbar sein und somit einen Teil-Ausfall  verkraften.
-Somit kommt für die Kommunikation zwischen Komponenten nur das Modell \textbf{A-P} in Frage
-(was verfügbar und partitionstolerant bedeutet).
+Somit kommt für die Kommunikation zwischen Komponenten nur das Modell
+\textbf{A-P} (verfügbar und partitionstolerant) in Frage.
 
 Die Anbindung einzelner Komponenten an ihre Knoten in der Datenbank hat jedoch andere Anforderungen.
 Da eine direkte Anbindung an die Datenbank für das Funktionieren einer Komponente unabdingbar ist,
-kann in diesem Fall nur das Modell \textbf{C-A} zum Einsatz kommen.
-(was konsistent und verfügbar bedeutet)
+kann in diesem Fall nur das Modell \textbf{C-A} (konsistent und verfügbar) zum Einsatz kommen.
 
 %XXX: http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed
 
@@ -459,7 +458,7 @@ kann in diesem Fall nur das Modell \textbf{C-A} zum Einsatz kommen.
 
 Zustands-Maschinen sind ein allgemein bekanntes Werkzeug,
 um den Ablauf eines komplexen Programms zu beschreiben oder zu erklären.
-In der Regel wird dazu ein sog. ZustandsGraph verwendet.
+In der Regel wird dazu ein sogenannter Zustandsgraph verwendet.
 Dieser ist ein gerichteter Graph, der die Zustände und Zustandsänderungen eines Systems beschreibt.
 
 Wie bereits in \Cref{fig:lebenszyklus-arbeitspaket} gezeigt,
@@ -468,14 +467,14 @@ Als Besonderheit ist er sogar frei von Zyklen.
 Dadurch ist es unmöglich, den gleichen Zustand noch einmal zu erreichen.
 
 Bindet man zusätzlich noch die Zustandsänderungen an bearbeitende Komponenten,
-so ist auch bei einer Partitionierung der Datenbank die Konsistenz der Gesamtsystems gewährleistet.
+so ist auch bei einer Partitionierung der Datenbank die Konsistenz des Gesamtsystems gewährleistet.
 %XXX: moar?
 
 
 Mit dem Eingang und der Abarbeitung von Aufträgen verhält es sich ähnlich,
 jedoch ist der Graph dort wesentlich einfacher.
 Die \Cref{fig:lebenszyklus-auftrag-eingang,fig:lebenszyklus-auftrag-abarbeitung} zeigen den groben Ablauf.
-Der Übergang zwischen Eingang und Abarbeitung ist die der Validation angeschlossene Markierung zur Bereitschaft.
+Der Übergang zwischen Eingang und Abarbeitung ist die, der Validation angeschlossene, Markierung zur Bereitschaft.
 Da es nur diesen einen Punkt des Austausches gibt, ist die Wahrung der Konsistenz des Auftrages denkbar einfach.
 Mit der Bereitschaft wird die Verantwortung vom Eingang zur Abarbeitung übertragen.
 
@@ -549,7 +548,7 @@ Datensammlung zur Laufzeit dient dazu, zeitnah den Zustand eines Integrationspro
 
 \subsection{Datensammlung nach Abschluss eines Schrittes}
 
-Datensammlung nach dem Abschluss eines Arbeitsschritts
+Eine Datensammlung nach dem Abschluss eines Arbeitsschritts
 umfasst in der Regel verschiedenste Dateiformate.
 Diese werden aus den verschiedensten Gründen generiert.
 Üblich sind Test-Resultate, Logdateien, Build-Resultate und Archive.
@@ -562,7 +561,7 @@ Die Abbildung dieser Datensammlung kann dabei auf 2 Arten geschehen:
 \end{enumerate}
 
 Die Abbildung als eigene Art von Arbeitsschritt hat einige Vorteile,
-da sie die Zuständigkeit vom reinen Arbeitsschritt und dem Daten-sammeln sauber trennt.
+da sie die Zuständigkeit vom reinen Arbeitsschritt und dem Sammeln von Daten sauber trennt.
 
 Dies macht die Werkzeuge zur Datensammlung wesentlich einfacher.
 Anstatt sie in jeden Schritt integrieren zu müssen,
@@ -625,13 +624,13 @@ Dieser Abschnitt beschäftigt sich mit dem Aufbau der zwei Beispielerweiterungen
 
 \subsection{Analyse Test-Resultate}
 
-Bei der Analyse von Test-Resultaten ist das Ziel,
+Bei der Analyse von Test-Resultaten ist es das Ziel,
 Veränderungen in verschiedenen Umgebungen feststellen zu können.
 Betrachtungsgrundlage sind dabei vorwiegend Unterschiede zwischen verschiedenen Arbeitspaketen und Aufträgen sowie Unterschiede zwischen zeitlich aufeinander folgenden Aufträgen oder Arbeitspaketen, welche verschiedene Plattformen, Entwickler-Zweige oder Konfigurationen betrachten. Sie geben Aufschluss über Entwicklung und Zustand des Projektes.
 
 Da ein großer Teil dieser Erweiterung zur Benutzeroberfläche gehört,
 werden hier nur die unterstützenden Algorithmen und Datenstrukturen betrachtet.
-Um überhaupt Vergleiche anstellen zu können, muss zuerst die Vergleichs-Menge bestimmt werden. Dabei erscheint die Menge an Test-Resultaten je Arbeitsschritt am geeignetsten. Im Gegensatz zur Menge an Testresultaten je Auftrag,
+Um überhaupt Vergleiche anstellen zu können, muss zuerst die Vergleichsmenge bestimmt werden. Dabei erscheint die Menge an Test-Resultaten je Arbeitsschritt am geeignetsten. Im Gegensatz zur Menge an Testresultaten je Auftrag,
 ist in diesem Fall für jede Konfiguration ein Set an Resultaten verfügbar.
 
 Um Testresultate abzulegen, erscheint es sinnvoll eine weitere Art an Datenstruktur einzuführen.
@@ -656,7 +655,7 @@ stellt der Überblick der Testresultate des ``PYPY''-Projektes \cite{pypy:overvi
 Die Art und Weise, wie die Mengen an Testresultaten für die Vergleiche ausgewählt werden sollen, werden in dieser Arbeit nicht betrachtet,
 da dies vorwiegend ein Problem der Benutzeroberfläche ist.
 
-\subsection{Analyse Verhalten eines Programms}
+\subsection{Analyse des Verhaltens eines Programms}
 
 Bei der Erweiterung zur Analyse des Verhaltens eines Programms
 geht es darum, das Verhalten eines Programms
@@ -700,7 +699,7 @@ Anschließend können die Daten in Graphen dargestellt werden.
 \label{sec:design:ui}
 
 Da die Benutzeroberfläche für den Prototypen nicht zwingend notwendig ist,
-wird darauf verzichtet, mehr als nur simple Werkzeuge zur Verfügung zu stellen.
+wird darauf verzichtet mehr als nur simple Werkzeuge zur Verfügung zu stellen.
 Wichtig ist dabei, dass vorgefertigte Testdaten in die Datenbank eingegeben werden können.
 
 
@@ -713,4 +712,4 @@ und außerdem die zwei Erweiterungen umrandet.
 
 Um die Eigenschaften und die Möglichkeiten dieses Systems praktisch zu ergründen, ist es notwendig, das Kernsystem vollständig zu implementieren.
 Um die Erweiterbarkeit zu untersuchen, ist zumindest eine der beiden Beispiel-Erweiterungen umzusetzen. Dabei ist die Umsetzung
-der Datenanalyse erfolgversprechender, da hier die initiale Analyse bereits mehrere Arbeitspakete umfasst, während die Analyse der Testresultate dies in der Benutzeroberfläche umsetzen müsste (und die Benutzeroberfläche wird in dieser Arbeit nicht behandelt).
+der Datenanalyse erfolgversprechender, da hier die initiale Analyse bereits mehrere Arbeitspakete umfasst, während die Analyse der Testresultate dies in der Benutzeroberfläche umsetzen müsste (die Benutzeroberfläche wird in dieser Arbeit nicht behandelt).

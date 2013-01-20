@@ -1,14 +1,14 @@
 digraph komponenten_logisch {
     rankdir=LR;
 
-    email -> eingang;
-    cron -> eingang;
-    events -> eingang;
-    forms[label="web formulare"];
-    forms -> eingang;
+    EMail -> Eingang;
+    Cron -> Eingang;
+    Events -> Eingang;
+    forms[label="Web Formulare"];
+    forms -> Eingang;
 
-    eingang -> manager;
+    Eingang -> Manager;
 
-    manager -> arbeiter;
-    arbeiter -> manager;
+    Manager -> Arbeiter;
+    Arbeiter -> Manager;
 }
