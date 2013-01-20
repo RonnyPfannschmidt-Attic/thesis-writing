@@ -2,7 +2,7 @@
 \label{cha:opt}
 Nachdem die Probleme festgestellt wurden,
 müsste eigentlich ab \Cref{chap:ist-analyse} neu iteriert werden,
-um die Anforderungen entsprechen anzupassen.
+um die Anforderungen entsprechend anzupassen.
 Um überhöhten Aufwand zu vermeiden,
 sollen die Problemlösungen stattdessen hier vorgestellt werden.
 Außerdem soll eine Auswahl auch implementiert werden.
@@ -18,16 +18,16 @@ Dies führt zwangsläufig dazu, dass die Primitiven \verb|watch_for| und \verb|l
 
 \subsection{Lösungsansatz - Zustand speichern}
 
-Da es möglich ist, die Mitteilungen über Änderungen an einem bestimmten Änderungsstand der Datenbank beginnen zu lassen (update sequence),
-kann durch Speichern und Wiederverwenden der aktuellen Sequenz verhindert werden,
-dass das System auch die bereits fertiggestellten Änderungen betrachten muss.
+Es ist möglich die Mitteilungen über Änderungen an einem bestimmten Änderungsstand der Datenbank beginnen zu lassen (update sequence).
+Hierdurch kann mittels Speichern und Wiederverwenden der aktuellen Sequenz verhindert werden,
+dass das System auch die bereits bearbeiteten Änderungen der Datenbank betrachten muss.
 Dazu werden neue Datenobjekte benötigt, welche die Zustände für die einzelnen Arbeiter festhalten. Eine Überarbeitung ab Grobkonzept wäre notwendig.
 
 
 \subsection{Lösungsansatz - CouchDB View}
 
 Ein View in CouchDB ist in der Lage, Daten zu einem bestimmten Stand der Datenbank abzubilden und dieses Abbild zu speichern.
-Damit ist es möglich, den aktuellen Zustand sowie den Stand der Änderungen zu erfragen und somit den Zustand des Views sowie die darauf-folgenden Änderungen zu bearbeiten 
+Damit ist es möglich, den aktuellen Zustand sowie den Stand der Änderungen zu erfragen und somit den Zustand des Views sowie die darauffolgenden Änderungen zu bearbeiten.
 Dies benötigt nur eine Überarbeitung der technischen Konzeption und der Implementation.
 
 \subsection{Implementation}
@@ -35,11 +35,11 @@ Da der View \verb|stm| bereits die Anforderungen des View-Ansatzes erfüllt,
 wurde er zur Implementation verwendet.
 
 Die primitiven \verb|watch_for| und \verb|run_callbacks| wurden modifiziert.
-Im neuen Ablauf bearbeiten sie zuerst die Daten aus dem View \verb|stm|.
-Anschließend fahren sie wie bisher mit den nachfolgenden Änderungen fort.
+Im neuen Ablauf bearbeiten sie zuerst die Daten aus dem View \verb|stm| und
+anschließend fahren sie wie bisher mit den nachfolgenden Änderungen fort.
 
 \subsection{Resultat}
-Das Problem ist damit eingestellt, das System hat keinerlei Wartezeiten mehr bei der Anlaufphase.
+Das Problem ist damit abgestellt und das System hat dadurch keinerlei Wartezeiten mehr bei der Anlaufphase.
 
 
 \section{Konfliktsituation Inanspruchnahme Arbeitspakete}
@@ -76,7 +76,7 @@ sehr gering ist oder bereits mehrere Arbeiter dazu übergegangen sind,
 auf eine Mitteilung über einen neuen Auftrag zu warten.
 
 Dies bedeutet, dass Konflikte nur noch dann auftreten,
-wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete nicht mehr in der Lage sind weiter zu arbeiten. Damit kann das Problem als gelöst betrachtet werden.
+wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete nicht mehr in der Lage sind, weiter zu arbeiten. Damit kann das Problem als gelöst betrachtet werden.
 
 \section{Theoretische Betrachtung - Blockade Managementdaten}
 \label{cha:opt:lock-management}
@@ -84,8 +84,8 @@ wenn Arbeiter mangels weiterer verfügbarer Arbeitspakete nicht mehr in der Lage
 Das Blockieren bei der Bearbeitung von Managementdaten lässt sich
 aus der Kombination von zwei Umständen erklären.
 Zum einen gibt die Primitive ``listen\_changes'' Mitteilungen
-in der Reihenfolge der Datenbankoperationen zurück.
-Zum anderen die Zusammenlegung von Zuteilung, Vorbereitung
+in der Reihenfolge der Datenbankoperationen zurück und
+zum anderen die Zusammenlegung von Zuteilung, Vorbereitung
 und Erstellung von Arbeitspaketen.
 Wird eine große Menge an Arbeitspaketen generiert,
 so ist das Management anschließend lange Zeit damit beschäftigt,
@@ -98,19 +98,19 @@ Somit werden andere Vorgänge blockiert.
 \subsection{Lösungsansatz Prozess-Spaltung}
 
 Der Ansatz der Spaltung teilt die Bearbeitung verschiedener Callbacks im Manager
-in verschiedene Prozesse. Jeder Prozess bearbeitet dabei einen eigenen Strom an Mitteilungen, dies macht die verschiedenen Operationen unabhängig und nebenläufig.
+in verschiedene Prozesse. Jeder Prozess bearbeitet dabei einen eigenen Strom an Mitteilungen. Dies macht die verschiedenen Operationen unabhängig und nebenläufig.
 Somit kann das Bearbeiten einer Art von Änderung nicht länger das Bearbeiten einer anderen beeinflussen.
 
 Die Aufteilung in mehrere Prozesse benötigt eine Umstellung der technischen Konzeption und der Implementation.
 
 \subsection{Lösungsansatz Priorisieren}
 
-Bei der Priorisierung von Notifikationen ist das Ziel,
-die Notifikationen, welche Einfluss auf andere Komponenten haben, zuerst zu betrachten.
-Inanspruchnahme sollte also immer vor anderen Notifikationen bearbeitet werden.
+Bei der Priorisierung von Mitteilungen ist das Ziel,
+die Mitteilungen, welche Einfluss auf andere Komponenten haben, zuerst zu betrachten.
+Inanspruchnahme sollte also immer vor anderen Mitteilungen bearbeitet werden.
 Dies würde bedeuten, dass die Vor- und Nachbereitung nicht länger die Zuteilung von Arbeitspaketen behindern.
 
-Um dies umzusetzen, wäre eine Neukonzeption im Grobkonzept notwendig.
+Um dies umzusetzen, wäre eine Neukonzeption ab dem Grobkonzept notwendig.
 
 
 \subsection{Ausgrenzung}
@@ -133,5 +133,4 @@ dass er nach jeder Ausgabe auch den Puffer in den Datenstrom ausgibt.
 
 \subsection{Resultat}
 
-Die Ausgaben werden nun zeilenweise in das System gegeben.
-Es kommt nicht mehr zu Blockaden.
+Die Ausgaben werden nun zeilenweise in das System gegeben und die Blockade wurde dadurch abgestellt.

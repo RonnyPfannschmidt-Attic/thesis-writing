@@ -1,7 +1,7 @@
 \chapter{Evaluation}
 \label{cha:eval}
 Dieses Kapitel bewertet das Resultat der Implementation und
-stellt fest in welchem Umfang die Ziele umgesetzt wurden.
+stellt fest, in welchem Umfang die Ziele umgesetzt wurden.
 
 \section{Umgesetzte funktionale Kriterien}
 \label{sec:eval:features}
@@ -31,7 +31,8 @@ Anschließend wurde das System beobachtet.
 \subsection{Automatische Tests}
 Die automatischen Tests wurden unter Zuhilfenahme von pytest \cite{pytest:website} und seiner Erweiterung  pytest-couchdb \cite{pytest:couchdbkit} auf dem Entwicklungsrechner  ausgeführt.
 Dazu wurde lediglich eine einzelne Datenbank verwendet.
-Die automatischen Tests bereiten die Datenbank dabei vor jeder Ausführung der Tests selbstständig vor.
+Jeder Test wird dabei unter Verwendung einer eigenen Datenbank ausgeführt.
+Die Testwerkzeuge bereiten diese vor jeder Ausführung vor.
 
 \section{Testfälle}
 \label{sec:eval:testcases}
@@ -41,7 +42,7 @@ Alle automatisch durchgeführten Tests sollen dabei fehlerfrei durchlaufen.
 
 \subsection{Unittests}
 
-Die Auflistung und Eigenschaften der UnitTests
+Die Auflistung und Eigenschaften der Unittests
 ist für die gewählte Betrachtung nicht relevant und
 daher wird darauf verzichtet.
 
@@ -80,9 +81,9 @@ Die Tests verteilen sich dabei wie folgt:
             \item
                 \textbf{Prozess}
                 \begin{itemize}
-                    \item Einfacher Prozess
+                    \item Einfacher Prozess Erfolg
                     \item Einfacher Prozess Fehlschlag
-                    \item Prozess mit vielen ausgaben (cat)
+                    \item Prozess mit vielen Ausgaben (cat)
                     \item Python Prozess
                 \end{itemize}
             \item
@@ -100,8 +101,8 @@ Die Tests verteilen sich dabei wie folgt:
 \subsection{Systemtests}
 
 Von den drei Systemtests wurden nur zwei automatisiert.
-Die Tests mit dem Durchlauf der Funktionalen Komponenten und des Gesamtsystems
-zeigten viele kleine Fehler, auf die hier nicht näher eingegangen wird.
+Die Tests mit dem Durchlauf der funktionalen Komponenten und des Gesamtsystems
+zeigten viele kleine Fehler. Diese wurden behoben, und es wird hier nicht näher auf sie eingegangen.
 
 Das Testen der Beispielerweiterung stellte sich als kompliziert heraus.
 Die notwendige Systemumgebung zu schaffen, war schwer zu automatisieren und daher wurde sie manuell getestet.
@@ -124,7 +125,7 @@ Anschließend gibt er Aufträge verschiedener Größe ins System.
 \subsection{Manuelle Tests}
 
 Alle manuellen Tests wurden im Kontext der ``Großen Datenanalyse'' durchgeführt.
-Der Umfang dieses Tests ermöglichte es wiederholt Fehlerfälle zu testen sowie das Systemverhalten zu beobachten.
+Der Umfang dieses Tests ermöglichte es, wiederholt Fehlerfälle zu testen sowie das Systemverhalten zu beobachten.
 
 Zu verschiedenen Zeitpunkten wurden Komponenten des Systems hart beendet und später wieder neu gestartet.
 Dabei wurde das Verhalten der Komponenten nach dem Neustart
@@ -148,7 +149,7 @@ Diese werden hier nur kurz umrandet.
         dass die Menge der Daten in der Datenbank Einfluss auf das Starten von Komponenten hat.
         Je mehr Daten sich in der Datenbank befinden, desto länger benötigen Komponenten,
         um mit ihrer Arbeit wieder zu beginnen.
-    \dhitem[Konfliktsituation bei der Inanspruchname von Arbeitspacketen:]
+    \dhitem[Konfliktsituation bei der Inanspruchname von Arbeitspaketen:]
         Beim Testen mit vielen Arbeitern fiel auf, dass immer alle gerade freien Arbeiter
         dasselbe nächste Arbeitspaket in Anspruch nehmen wollten. Dies führte oft dazu,
         dass manche Arbeiter erst nach dutzenden Versuchen das nächste Arbeitspaket bearbeiten konnten.
@@ -171,13 +172,13 @@ Es ist nicht möglich für Daten aus Events einen $Key$ mit Informationen aus de
 
 Damit ist die Sortierung der Resultate an die verwendeten Schlüssel gebunden. 
 Im Prototypen wurde dieses Problem mittels nachgelagerter Sortierung gelöst,
-allerdings ist eine Lösung in der Datenbank wünschenswert, da die nach-gelagerte Sortierung einen erheblichen Mehraufwand bedeutete.
+allerdings ist eine Lösung in der Datenbank wünschenswert, da die nachgelagerte Sortierung einen erheblichen Mehraufwand bedeutet.
 
 
 \section{Zusammenfassung}
 \label{sec:eval:zusammenfassung}
 %XXX
 Um die drei definierten Systemkriterien als umgesetzt zu betrachten,
-müssten die festgestellten Probleme gelöst werden,
-dies soll soweit technisch möglich im folgenden Kapitel behandelt werden.
+müssten die festgestellten Probleme gelöst werden.
+Dies soll soweit technisch möglich im folgenden Kapitel behandelt werden.
 
