@@ -251,18 +251,18 @@ Weiterhin sind in der Datei \verb|rewrites.yml| Regeln enthalten, um verwendbare
 
 Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teile des Prototypen. Die bilden die Basis für eine kompakte und schnell umsetzbare Implementation.
 
-\subsection{listen\_changes}
+\subsection{``listen\_changes''}
 
 Die Primitive \verb|listen_changes| dient dazu,
 Änderungen der Datenbank den Komponenten der Applikation mitzuteilen.
 Dabei kann nach dem Datentyp und nach weiteren Parametern gefiltert werden.
 Somit kann man eine Folge an speziell ausgewählten Änderungen in der Datenbank erhalten.
 
-\subsection{watch\_for}
+\subsection{``watch\_for''}
 
 Die Primitive \verb|watch_for| dient dazu, auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die \verb|listen_changes|-Primitive ein und gibt die erste zutreffende Änderung in der Datenbank zurück.
 
-\subsection{watches\_for - Kontext für Komponenten}
+\subsection{``watches\_for'' - Kontext für Komponenten}
 
 Die Primitive \verb|watches_for| dient dazu, einzelne Systemkomponenten
 an bestimmte Änderungen der Datenbank zu knüpfen.
@@ -284,7 +284,7 @@ Diese wird anschließend verwendet, um das zu erwartende Objekt von der Datenban
 
 
 
-\subsection{run\_callbacks}
+\subsection{``run\_callbacks''}
 
 Die Primitive \verb|run_callbacks| dient dazu, mehrere Komponenten zu einem Programm
 zu kombinieren, sie nimmt die Folge der Änderungen in der Datenbank und
