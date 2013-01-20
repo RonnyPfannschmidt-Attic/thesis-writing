@@ -120,9 +120,9 @@ Sie sollen den verwendeten Technologien angepasst werden.
 \subsection{Ausschreibungsverfahren für die Auftragserteilung}
 \label{sec:verfahren:erteilung}
 
-Für die Umsetzung des Ausschreibungsverfahren der Auftragserteilung gibt es
+Für die Umsetzung des Ausschreibungsverfahren für die Auftragserteilung gibt es
 mehrere Möglichkeiten die Inanspruchnahme eines Auftrages in
-der Datenbank umzusetzen. Je nach Fähigkeiten der Datenbank kann man 
+der Datenbank auszudrücken. Je nach Fähigkeiten der Datenbank kann man 
 alternative Versionen eines bestimmten Datenobjekts nutzen
 oder auf separate Datenobjekte, welche die Inanspruchnahme ausdrücken, setzen.
 
@@ -141,7 +141,7 @@ Dabei wird eine neue Version des Arbeitspaketes erstellt, welche den Gewinner fe
 
 Bei der Abbildung als separate Objekte in der Datenbank
 wird für jeden Arbeiter, der ein Arbeitspaket ausführen will, ein $Claim (Paket, Arbeiter)$ erzeugt. Diese bringen Inanspruchnahme zum Ausdruck.
-Der Manager kann dann eines dieser $Claim$-Objekte auswählen und dem Arbeitspaket einen Arbeiter zuteilen.
+Der Manager kann dann eines dieser $Claim$-Objekte auswählen und dem zugehörigen Arbeitspaket den entsprechenden Arbeiter zuweisen.
 %MORE!
 
 \subsection{Alternativen zu Fabriken in Skript-Sprachen}
@@ -149,7 +149,7 @@ Der Manager kann dann eines dieser $Claim$-Objekte auswählen und dem Arbeitspak
 Das Fabrik-Muster kommt vorwiegend in statisch-typisierten objektorientierten Sprachen zum Einsatz. In dynamisch typisierten Sprachen gibt es jedoch eine weitere Methode, das dynamische Instantiieren von abgeleiteten Klassen zu behandeln.
 
 Anstelle einer Fabrik-Klasse, die konfiguriert wird,
-kann eine einfache Zuordnung an Konstruktoren anlegt werden.
+kann eine einfache Zuordnung an Konstruktoren angelegt werden.
 
 Dies trifft besonders auf die ``Proc''-Klassen (siehe \Cref{fig:klassen-arten-arbeitsschritt}) zu.
 Ihre Zuordnung zu Arbeitsschritten findet über den Wert eines Attributes statt,
