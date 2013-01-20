@@ -147,8 +147,9 @@ Der Codename des Projektes ist dabei ``Juggler''.
 \end{description}
 
 \subsection{Skripte und Werkzeuge}
-Die Skripte und Werkzeuge haben verschiedene Aufgaben und Aufruf-formen,
-diese werden hier beschrieben, dabei werden Parameter in eckigen Klammern angegeben.
+
+Die Skripte und Werkzeuge haben verschiedene Aufgaben und Aufrufformen,
+welche hier beschrieben werde. Die Parameter werden dabei in eckigen Klammern angegeben.
 Der Parameter namens \textbf{db} gibt dabei entweder einen kompletten Namen einer  Datenbank an oder den Namen einer lokalen Datenbank an.
 
 \begin{description}
@@ -181,7 +182,7 @@ Folgende Verzeichnisse sind noch wichtig:
 \begin{description}
     \dhitem[model] 
         enthält  die Modelklassen,
-        welche die Daten aus der Datenbank auf Python Objekte .
+        welche die Daten aus der Datenbank auf Python Objekte übertragen.
     \dhitem[handler] 
         enthält die Einzelteile der Komponenten,
         welche in Kommunikation mit der Datenbank stehen.
@@ -242,14 +243,14 @@ Die Datenbank-Applikation wurde mit \emph{couchdb-compose} \cite{couchdb:compose
 
 Die Grundstruktur ist dabei in der Datei \verb|couchdb-compose.yml| festgelegt.
 Die bereits in \cref{sec:db-indexe} erwähnten Views befinden sich im Verzeichnis \verb|views|.
-weiterhin beinhaltet die applikation einen \emph{list} \cite{couchdb:guide}[list] s names \verb|lines| - er dient dazu, die Daten aus dem \verb|lines| view als text zu formatieren.
+Weiterhin beinhaltet die Applikation einen \emph{list} \cite{couchdb:guide}[list] namens \verb|lines|. Er dient dazu, die Daten aus dem \verb|lines| View als Text zu formatieren.
 
 Weiterhin sind in der Datei \verb|rewrites.yml| Regeln enthalten, um verwendbare URLs für den \verb|lines| show benutzen zu können.
 
 \section{Grundlegende Primitiven}
 \label{sec:imp:primitiven}
 
-Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teile des Prototypen. Die bilden die Basis für eine kompakte und schnell umsetzbare Implementation.
+Die grundlegenden Primitiven unterstützen die Implementation der einzelnen Teile des Prototypen. Sie bilden die Basis für eine kompakte und schnell umsetzbare Implementation.
 
 \subsection{``listen\_changes''}
 
@@ -260,7 +261,8 @@ Somit kann man eine Folge an speziell ausgewählten Änderungen in der Datenbank
 
 \subsection{``watch\_for''}
 
-Die Primitive \verb|watch_for| dient dazu, auf eine bestimmte Änderung in der Datenbank zu warten. Dazu setzt sie die \verb|listen_changes|-Primitive ein und gibt die erste zutreffende Änderung in der Datenbank zurück.
+Die Primitive \verb|watch_for| dient dazu, auf eine bestimmte Änderung in der Datenbank zu warten.
+Dazu setzt sie die \verb|listen_changes|-Primitive ein und gibt die erste zutreffende Änderung in der Datenbank zurück.
 
 \subsection{``watches\_for'' - Kontext für Komponenten}
 
@@ -273,7 +275,7 @@ Außerdem abstrahiert sie die Logik für das Warten auf diese Änderungen
 (unter Verwendung der \verb|watch_for|-Primitive)
 und ermöglicht es, die einzelnen Komponenten direkt mit den Daten aufzurufen,
 auf die sie hätte warten müssen.
-Dies ermöglicht es, einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
+Es besteht hierdurch die Möglichkeit, einzelne Komponenten direkt zu testen, ohne dass eine echte Datenbank benötigt wird.
 
 Die Primitive \verb|watches_for| umschließt dabei die Funktion,
 welche die Arbeit verrichtet. Sie schafft somit durch Komposition eine neue Funktion,
@@ -287,11 +289,11 @@ Diese wird anschließend verwendet, um das zu erwartende Objekt von der Datenban
 \subsection{``run\_callbacks''}
 
 Die Primitive \verb|run_callbacks| dient dazu, mehrere Komponenten zu einem Programm
-zu kombinieren, sie nimmt die Folge der Änderungen in der Datenbank und
+zu kombinieren. Sie nimmt die Folge der Änderungen in der Datenbank und
 ruft für jede Änderung die passende Komponente auf.
 
 Einzelne Komponenten sind dabei mit der Primitive \verb|watches_for| vorbereitet,
-die Primitive muss somit nur die Komponenten den Ereignissen zuordnen
+somit muß die Primitive nur noch die Komponenten den Ereignissen zuordnen
 und anschließend die Folge der Änderungen der Datenbank abarbeiten.
 
 \section{Funktionale Komponenten}
@@ -326,7 +328,7 @@ axis:
 
 Es bringt einen Auftrag zum Ausdruck, welcher vier Achsen der Konfiguration definiert.
 Mit den Werten für diese Achsen werden somit $3*3*3*3 = 81$ Arbeitspakete benötigt.
-Das zugehörige Projekt ist offensichtlich. Das Feld ``type'' gibt den für CouchDB benötigten Dokumenttyp an (es stellt nur eine Konvention dar).
+Das zugehörige Projekt ist offensichtlich. Das Feld ``type'' gibt den für CouchDB benötigten Dokumenttyp an. Der Name dieses Feldes ist jedoch nur eine Konvention, und kann frei gewählt werden.
 Der Status \textit{``received''} sorgt dafür, dass dieser Auftrag sofort in Bearbeitung geht.
 
 \FloatBarrier
@@ -347,7 +349,7 @@ der Funktion mit der \verb|watches_for|-Primitive legt den zu bearbeitenden Date
 
 Die Parameter der Funktion sind dabei zum einen die Verbindung mit der Datenbank (db) und
 zum anderen das Objekt, was erwartet oder übergeben wurde.
-Der Ablauf ist nun denkbar einfach, der Status wird auf valide gesetzt und das Resultat wird wieder in der Datenbank gespeichert.
+Der Ablauf ist nun denkbar einfach. Der Status wird auf valide gesetzt und das Resultat wird wieder in der Datenbank gespeichert.
 Damit ist der Eingang abgeschlossen.
 
 \FloatBarrier
@@ -360,9 +362,9 @@ Anschließend wird er in den Zustand \textit{ready} versetzt.
 \subsection{Erstellung Arbeitspakete}
 
 Erreicht ein Auftrag den Zustand \textit{ready}, so ist er bereit für die Erstellung von Arbeitspaketen.
-Bei der Erstellung der Arbeitspaketen soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden.
+Bei der Erstellung der Arbeitspakete soll für jede Konfiguration der Achsen ein Arbeitspaket generiert werden.
 Dazu wird das kartesische Produkt der Achsen gebildet.
-Die Ergebnis-Menge beinhaltet dann alle Konfigurationen.
+Die Ergebnismenge beinhaltet dann alle Konfigurationen.
 Die Menge aller Arbeitspakete muss nun in der Datenbank abgelegt werden
 und der Auftrag erreicht seinen Endzustand.
 
@@ -391,11 +393,11 @@ diese in den Zustand \textit{claimed} versetzt.
 
 Die ``Erwartung der Zuteilung'' dient dazu
 einen Arbeiter in die Lage zu versetzen,
-auf den Erfolg/Misserfolg einer Inanspruchnahme zu warten.
-Dabei wird für einen bestimmten Auftrag darauf gewartet,
+auf den Erfolg oder Misserfolg einer Inanspruchnahme zu warten.
+Dabei wird, für einen bestimmten Auftrag, darauf gewartet,
 dass dieser den Zustand \textit{claimed} erreicht.
 
-Erfolg/Misserfolg ergibt sich aus der Übereinstimmung zwischen dem Feld ``owner'' und dem aktuellen Arbeiter.
+Erfolg oder Misserfolg ergibt sich aus der Übereinstimmung zwischen dem Feld ``owner'' und dem aktuellen Arbeiter.
 
 \subsection{Ausführung von Arbeitspaketen}
 
@@ -412,7 +414,7 @@ Dieser Prozess wird später detaillierter beschrieben.
 Im Prototypen wurden Inbox und Management in einer einzelnen Systemkomponente  kombiniert.
 Dabei kommt die ``run\_callbacks''-Primitive zum Einsatz.
 
-Die Callbacks des Managers (und ihre Positionen im Quelltext) sind:
+Die Callbacks des Managers und ihre Positionen im Quelltext sind:
 \begin{table}[h]
 \begin{tabular}{lcl}
     \textbf{Callback} && \textbf{Position} \\
@@ -433,14 +435,14 @@ Jedoch ist das System nicht in der Lage, korrekt zu agieren, wenn mehr als ein M
 
 \subsection{Arbeiter}
 
-Arbeiter sind im Prototyp extrem einfach gebaut:
-ihre Aufgabe besteht darin, sich Arbeitspakete zu sichern
+Arbeiter sind im Prototyp extrem einfach gebaut.
+Ihre Aufgabe besteht nur darin, sich Arbeitspakete zu sichern
 und diese dann auszuführen.
 Dazu nutzen sie in einer Schleife folgende Komponenten:
 
 \begin{enumerate}
     \item Inanspruchnahme - \verb|work.claim_pending_task|
-    \item Erwartung Zuteilung - \verb|work.wait_for_one_claiming_task|
+    \item Erwartung der Zuteilung - \verb|work.wait_for_one_claiming_task|
     \item Ausführung - \verb|work.run_one_claimed_task|
 \end{enumerate}
 
@@ -457,7 +459,7 @@ eines Arbeiters zu entfernen.
 \section{Procdir und Arbeitsschritte}
 \label{sec:imp:procdir}
 
-Procdir und Arbeitsschritte setzen die letztendliche Ausführung eines Arbeitspakets um.
+Procdir und Arbeitsschritte setzen die Ausführung eines Arbeitspakets um.
 Sie finden in der Ausführungskomponente im Arbeiter Anwendung.
 
 
@@ -465,14 +467,14 @@ Sie finden in der Ausführungskomponente im Arbeiter Anwendung.
 
 Der Lebenszyklus des Procdir entspricht der Ausführung des Arbeitspaketes.
 Es verwaltet das Arbeitsverzeichniss des Arbeitspaketes und behandelt die Ausführung von Arbeitsschritten.
-Es behandelt somit alle Vorgänge, welche von einem \emph{Arbeiter} Service benötigt werden, um  Arbeitspakete Schritt für Schritt auszuführen.
+Es bearbeitet somit alle Vorgänge, welche von einem \emph{Arbeiter} benötigt werden, um  Arbeitspakete Schritt für Schritt auszuführen.
 
 \subsection{Baseproc - eine Basis für Arbeitsschritte}
 
 Die Baseproc Klasse stellt ein Framework für die Schaffung von eigenen Arbeitsschritten dar.
-Neben der Verwaltung von zusammengehörenden Threads und Ressourcen bietet sie außerdem Werkzeuge, um Datensammlung zur Laufzeit zu behandeln.
+Neben der Verwaltung von zusammengehörenden Threads und Ressourcen bietet sie außerdem Werkzeuge am, um die Datensammlung zur Laufzeit zu behandeln.
 
-Sie ermöglicht es, Arbeitsschritte als Kombination von Ressourcen und Threads (welche Laufzeitdaten generieren) zu beschreiben.
+Sie ermöglicht es, Arbeitsschritte als Kombination von Ressourcen und Threads, welche Laufzeitdaten generieren, zu beschreiben.
 
 
 \subsection{Prozess-Schritte}
@@ -508,14 +510,14 @@ Für jedes Arbeitspaket sind nun unter seiner ID als Key die Resultate verfügba
 
 \subsection{List}
 %cite?
-Ein List in CouchDB wird verwendet, um Resultate von Anfragen an Views auf verschiedene Art und Weise darzustellen. In der Erweiterung wird er dazu genutzt, um die Resultate für einen bestimmten Auftrag darzustellen.
+Ein List in CouchDB wird verwendet, um Resultate von Anfragen an Views auf verschiedene Art und Weise darzustellen. In der Erweiterung wird er genutzt, um die Resultate für einen bestimmten Auftrag darzustellen.
 Dabei wird der View für den Bereich aller Arbeitspakete abgefragt.
 Diese werden datenbankintern der List-Funktion nacheinander übergeben.
 
-Es ist somit möglich in der Reihenfolge des Views die Datensätze auszugeben.
+Es ist somit möglich die Datensätze in der Reihenfolge des Views auszugeben.
 Da die Reihenfolge von den ID's der Arbeitspakete abhängt
 und die Permutationsreihenfolge der Build-Achsen unglücklich gewählt war, (`height\_weight' vor `generations' und `population') musste Abhilfe geschaffen werden.
-Um die gewünschte Darstellung mit Diagrammen für `generations' und `population', welche nach der `height\_weight' sortiert sind zu erreichen, wurden nur die Ausgaben für den ersten Wert für `height\_weight' direkt ausgegeben.
+Um die gewünschte Darstellung mit Diagrammen für `generations' und `population', welche nach der `height\_weight' sortiert sind, zu erreichen, wurden nur die Ausgaben für den ersten Wert für `height\_weight' direkt ausgegeben.
 Die weiteren Ausgaben wurden bis nach Abschluss des View vorgehalten und dann zusammen ausgegeben.
 Dabei wurde Fehlschlag rot und Erfolg grün markiert.
 In \cref{fig:beispielerweiterung-screenshoot} ist ein Screenshot davon zu sehen.
@@ -528,4 +530,5 @@ In \cref{fig:beispielerweiterung-screenshoot} ist ein Screenshot davon zu sehen.
 
 %XXX: MORE?
 
-Nach der Umsetzung des Designs ist es offensichtlich, dass die gestellten Probleme lösbar sind. Darauf folgend muss nun die Güte der Lösung betrachtet werden.
+Nach der Umsetzung des Entwurfes ist es offensichtlich, dass die gestellten Probleme lösbar sind.
+Darauf folgend muss nun die Güte der Lösung betrachtet werden.
