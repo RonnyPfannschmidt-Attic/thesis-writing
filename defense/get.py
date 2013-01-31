@@ -3,10 +3,15 @@ import restkit
 base = 'https://raw.github.com/hakimel/reveal.js/master/'
 
 want = {
-    'vendor/head.min.js': 'lib/js/head.min.js',
-    'vendor/reveal.js': 'js/reveal.js',
-    'vendor/reveal.css': 'css/reveal.css',
-    'vendor/theme-default.css': 'css/theme/default.css',
+    'classList.js': 'lib/js/classList.js',
+    'zoom.js': 'plugin/zoom-js/zoom.js',
+    'showdown.js': 'plugin/markdown/showdown.js',
+    'markdown.js': 'plugin/markdown/markdown.js',
+    'head.min.js': 'lib/js/head.min.js',
+    'reveal.js': 'js/reveal.js',
+    'reveal.css': 'css/reveal.css',
+    'theme-default.css': 'css/theme/default.css',
+    'notes.js': 'plugin/notes/notes.js',
 }
 
 
@@ -14,5 +19,5 @@ for target in want:
     print target
     response = restkit.request(base + want[target])
     body = response.body_string()
-    with open(target, 'w') as fp:
+    with open('vendor/' + target, 'w') as fp:
         fp.write(body)
