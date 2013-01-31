@@ -1,9 +1,6 @@
 # use glob syntax.
 syntax: glob
 
-defense/ui
-defense/vendor
-defense/defense.html
 # eclipse conf file
 .project
 .texlipse
