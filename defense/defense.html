@@ -5,7 +5,12 @@
   <script src="vendor/head.min.js"></script>
   <title>Kontinuierliche Integration</title>
   <link rel=stylesheet href=vendor/reveal.css>
-  <link rel=stylesheet href=vendor/theme-default.css id="theme">
+  <link rel=stylesheet href=vendor/theme-simple.css id="theme">
+  <style>
+    .reveal h2 {
+      font-size: 1.9em;
+    }
+  </style>
 </head>
 <body>
   <script src="vendor/reveal.js"></script>
@@ -37,44 +42,59 @@
 
 
 </section>
-<section>
-<h2>Leitfaden</h2>
+<section data-markdown>
+## Leitfaden
 
-
-<ul>
-  <li> Kontinuierliche Integration
-  <li> Motivation und Problem
-  <li> Lösungswege und existierende Systeme
-  <li> Das System
-  <ul>
-    <li> Aufbau
-    <li> Verhalten
-    <li> Erweiterungen
-    <li> Probleme
-  </ul>
-  <li> Fazit
-  <li>Ausblick
-</ul>
-</section>
-
-<section>
-<h2>Kontinuierliche Integration</h2>
-
-
-
-</section>
-<section>
-<h2>Motivation und Problem</h2>
-
-
+* Kontinuierliche Integration
+* Motivation und Problem
+* Lösungswege und existierende Systeme
+* Das System
+  * Aufbau
+  * Verhalten
+  * Erweiterungen
+  * Probleme
+* Fazit
+* Ausblick
 
 </section>
 
-<section>
-  <h2>Überblick</h2>
+<section data-markdown>
+## Kontinuierliche Integration
 
-  <section>
-  <h2>Überblick logisch</h2>
+* automtisierte Tests
+* regelmässige Ausführung
+* Quellcode Management
+* Datensammlung
+* Zustandsinformation
+* Fehlermitteilung
+
+</section>
+<section data-markdown>
+## Motivation und Problem
+
+* verteiltes Quellcode Management
+* Menge der Platformen
+* Verhaltensanalyse
+* Datenanalyse
+* Datenzugriff
+* Zusammenhänge
+
+</section>
+
+
+<section data-markdown>
+## Lösungswege
+
+* Plugins
+* Neuimplementation
+</section>
+
+
+
+<section>
+
+  <section data-markdown>
+  ## Überblick logisch
   <img src=../imageinput/grob-layout-komponenten-logisch.png>
   </section>
 
@@ -85,19 +105,34 @@
 
 
 </section>
-<section>
-  <h2>Fazit</h2>
+<section data-markdown>
+## Fazit
 
 
 </section>
-<section>
-  <h2>Ausblick</h2>
+<section data-markdown>
+## Ausblick
+
+
+
 </section>
 
 </div> <!-- slides --> 
 </div> <!-- reveal -->
 
 <script>
-  Reveal.initialize({})
+  Reveal.initialize({
+    transition: 'zoom',
+    dependencies: [
+      { src: 'vendor/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'vendor/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'vendor/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+      // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+
+  })
 </script>
 </body>

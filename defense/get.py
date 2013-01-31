@@ -11,6 +11,7 @@ want = {
     'reveal.js': 'js/reveal.js',
     'reveal.css': 'css/reveal.css',
     'theme-default.css': 'css/theme/default.css',
+    'theme-simple.css': 'css/theme/simple.css',
     'notes.js': 'plugin/notes/notes.js',
 }
 
