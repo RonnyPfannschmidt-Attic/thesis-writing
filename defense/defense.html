@@ -81,20 +81,34 @@
 
 </section>
 
+<section>
+  <section data-markdown>
+  ## Lösungswege
 
-<section data-markdown>
-## Lösungswege
+  * Erweiterung in Altsystem
+  * Neues System
+  </section>
+  <section data-markdown>
+  ## Altsysteme Probleme
 
-* Plugins
-* Neuimplementation
+  * Datenzugriff
+  * Kompnentenabhängigkeit <br> <img src="../imageinput/ist-aufbau-tradition.png">
+  * Erweiterbarkeit
+
+  </section>
+  <section data-markdown>
+  ## Neusystem Wünsche
+
+  * einfacher Datenzugriff
+  * erweiterbar
+  * fehlertolerant
+  </section>
 </section>
-
-
 
 <section>
 
-  <section data-markdown>
-  ## Überblick logisch
+  <section>
+  <h2>Überblick logisch</h2>
   <img src=../imageinput/grob-layout-komponenten-logisch.png>
   </section>
 
@@ -103,17 +117,98 @@
   <img src=../imageinput/grob-layout-komponenten.png>
   </section>
 
+  <section>
+  <h2>Überblick Schema</h2>
+  <img src=../imageinput/datenstrukturen-step-templates.png>
+  </section>
+
 
 </section>
+
+
+<section>
+  <section data-markdown>
+  ## Eingang
+
+  * Annahme Auftragsdaten
+  * Validation
+  * Vorbereitung Erstellung Arbeitspakete
+  </section>
+
+  <section data-markdown>
+  ## Management
+
+  * Bereitstellung Arbeitspakete
+  * Konfiguration Arbeitsschritte
+  * Vergabe Arbeitspakete
+
+  </section>
+
+
+  <section data-markdown>
+  ## Arbeiter
+
+  * Abarbeitung Arbeitspakete
+  * Durchführung Arbeitsschritte
+  * Datensammlung
+  </section>
+
+</section>
+
+
+<section data-markdown>
+## Datenbank
+
+* Master-Master Replikation
+* schemafreie Daten
+* Änderungsnotifikationen
+
+<br><br>
+## * CouchDB *
+</section>
+
+<section>
+  <section data-markdown>
+  ## Besondere Ansätze
+
+  * CAP Abdeckung
+  * Zustands Maschinen Konsistenzwahrung
+  * Abbildung verteiltes System auf <br>
+    verteilte Datenbank
+  </section>
+
+  <section data-markdown>
+  ## CAP Abdeckung
+
+  * Konsistent
+  * Verfügbar
+  * Partition Tolerant
+
+  <hr>
+
+  * Komponente - Knoten : C-A
+  * Knoten - Knoten : A-P
+  
+  </section>
+</section>
+
 <section data-markdown>
 ## Fazit
+
+#### Experiment Erfolg
+* erweiterbar
+* fehlertolerant
+* Standardschnittstellen
 
 
 </section>
 <section data-markdown>
 ## Ausblick
 
-
+* Benutzeroberfläche
+* Benuzerverwaltung
+* weitere Erweiterungen, <br>
+  insbes. Testresultate
 
 </section>
 
