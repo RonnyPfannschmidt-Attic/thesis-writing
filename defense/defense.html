@@ -42,6 +42,7 @@
 
 
 </section>
+<section>
 <section data-markdown>
 ## Leitfaden
 
@@ -80,29 +81,50 @@
 * Zusammenhänge
 
 </section>
+</section>
 
 <section>
-  <section data-markdown>
-  ## Lösungswege
+<section data-markdown>
+## Lösungswege
 
-  * Erweiterung in Altsystem
-  * Neues System
-  </section>
-  <section data-markdown>
-  ## Altsysteme Probleme
+* Erweiterung in Altsystem
+* Neues System
+</section>
+<section data-markdown>
+## Altsysteme Probleme
 
-  * Datenzugriff
-  * Kompnentenabhängigkeit <br> <img src="../imageinput/ist-aufbau-tradition.png">
-  * Erweiterbarkeit
+* Datenzugriff
+* Kompnentenabhängigkeit <br> <img src="../imageinput/ist-aufbau-tradition.png">
+* Erweiterbarkeit
 
-  </section>
-  <section data-markdown>
-  ## Neusystem Wünsche
+</section>
+<section data-markdown>
+## Neusystem Wünsche
 
-  * einfacher Datenzugriff
-  * erweiterbar
-  * fehlertolerant
-  </section>
+* einfacher Datenzugriff
+* erweiterbar
+* fehlertolerant
+</section>
+</section>
+
+<section>
+<section data-markdown>
+## Neusystem Kernfunktionen
+## Auswahl
+
+* Build Achsen
+* Zustandsberichte
+* Schritte
+  * SCM
+  * Prozesse
+</section>
+<section data-markdown>
+## Neusystem Erweiterungen
+
+* Testresultat Analyse
+* Programmverhalten Analyse
+
+</section>
 </section>
 
 <section>
@@ -156,23 +178,23 @@
 </section>
 
 
-<section data-markdown>
-## Datenbank
+<section> <!-- arbeitschritte -->
 
-* Master-Master Replikation
-* schemafreie Daten
-* Änderungsnotifikationen
 
-<br><br>
-## * CouchDB *
-</section>
+</section> <!-- arbeitschritte -->
+
+
+
+<section> <!-- claiming -->
+</section> <!-- claiming -->
+
 
 <section>
   <section data-markdown>
   ## Besondere Ansätze
 
   * CAP Abdeckung
-  * Zustands Maschinen Konsistenzwahrung
+  * Zustandsmaschinen Konsistenzwahrung
   * Abbildung verteiltes System auf <br>
     verteilte Datenbank
   </section>
@@ -188,9 +210,118 @@
 
   * Komponente - Knoten : C-A
   * Knoten - Knoten : A-P
-  
+
   </section>
+
+  <section data-markdown>
+  ## Zustandsmaschinen
+  * Bindung von Transitionen an bearbeitende Knoten
+  * zyklenfreier Zustandsgraph garantiert Konsistenz
+  * allgemein bekannt, leicht zu analysieren
+  </section>
+
+  <section>
+  <h2>Zustandsmaschinen Beispiel</h2>
+  <p>Lebenszyklus Arbeitspaket<br>
+  <img src=../imageinput/lebenszyklus-arbeitspaket.png height=350 width=250>
+  </p>
+  </section>
+
+  <section data-markdown>
+  ## Abbildung VS auf VDBS
+
+  * Änderungen statt Nachrichten
+  * Zustand in Datenbank
+  </section>
+
 </section>
+
+<section> <!-- imp -->
+<section data-markdown>
+## Datenbank
+
+* Master-Master Replikation
+* schemafreie Daten
+* Änderungsnotifikationen
+
+<br><br>
+## * CouchDB *
+</section>
+
+
+
+<section data-markdown>
+## Implementationsprimitiven
+
+* listen_changes
+* watch_for
+* watches_for
+* run_callbacks
+
+</section>
+
+
+<section data-markdown>
+## Implementation Inbox+Manager
+
+* Auftrag Validieren
+* Arbeitspakete Generieren
+* Arbeitschritte Ausfüllen
+* Arbeitspakete Zuteilen
+
+</section>
+<section data-markdown>
+## Implementation Arbeiter
+
+* Arbeitspaket in Anspruch nehmen
+* Zuteilung erwarten
+* Arbeitsschritte Abarbeiten
+
+</section>
+</section> <!-- /imp -->
+
+
+
+<section> <!-- probleme-->
+<section data-markdown>
+## Aufgetretene Probleme
+
+* Langwierige Anlaufphase
+* Konfliktsituation Claiming
+* Locksituation Management
+</section>
+<section data-markdown>
+## Anlaufphase
+
+* Datenstrom über Änderungen beginnt immer am Anfang
+* Lösungen
+  * Position Speichern
+  * Index
+* Implemtiert Index
+
+</section>
+<section data-markdown>
+## Konflikt claiming
+
+* deterministische Auswahl des nächsten Arbeitspaketes
+* Lösungen
+  * Zufall
+  * Wechsel auf Token
+* Implementiert: Zufall
+</section>
+
+<section data-markdown>
+## Locksituation Management
+
+* lineare Abarbeitung im Manager
+* Lösungen
+  * mehr Prozesse
+  * Priorisierung
+* Implementation ausstehend
+
+</section>
+
+</section><!--/probleme-->
 
 <section data-markdown>
 ## Fazit
