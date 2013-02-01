@@ -122,14 +122,14 @@
 
 <script>
   Reveal.initialize({
-    transition: 'zoom',
+    transition: 'none',
     dependencies: [
       { src: 'vendor/classList.js', condition: function() { return !document.body.classList; } },
       { src: 'vendor/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
       { src: 'vendor/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+      { src: 'vendor/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'vendor/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'vendor/notes.js', async: true, condition: function() { return !!document.body.classList; } }
       // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
     ]
 
