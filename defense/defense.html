@@ -51,34 +51,42 @@
 * Lösungswege und existierende Systeme
 * Das System
   * Aufbau
-  * Verhalten
-  * Erweiterungen
   * Probleme
 * Fazit
 * Ausblick
+* Abschluss
 
 </section>
 
 <section data-markdown>
 ## Kontinuierliche Integration
 
+<br><br>
+
+## Was ?
+
+## Warum ?
+
+<aside class=notes>
 * automtisierte Tests
 * regelmässige Ausführung
 * Quellcode Management
 * Datensammlung
 * Zustandsinformation
 * Fehlermitteilung
+</aside>
+
 
 </section>
 <section data-markdown>
 ## Motivation und Problem
 
-* verteiltes Quellcode Management
-* Menge der Platformen
-* Verhaltensanalyse
-* Datenanalyse
-* Datenzugriff
-* Zusammenhänge
+* Neuerungen
+  * Quellcode Management (SCM)
+  * Menge der Platformen
+* Datenanalyse/Zugriff
+  * Verhalten
+  * Zusammenhänge
 
 </section>
 </section>
@@ -93,9 +101,11 @@
 <section data-markdown>
 ## Altsysteme Probleme
 
+<img src="../imageinput/ist-aufbau-tradition.png">
+
 * Datenzugriff
-* Kompnentenabhängigkeit <br> <img src="../imageinput/ist-aufbau-tradition.png">
 * Erweiterbarkeit
+* Fehleranfälligkeit
 
 </section>
 <section data-markdown>
@@ -117,38 +127,30 @@
 * Schritte
   * SCM
   * Prozesse
-</section>
+  </section>
+<!--
 <section data-markdown>
 ## Neusystem Erweiterungen
 
 * Testresultat Analyse
 * Programmverhalten Analyse
 
-</section>
+</section> -->
 </section>
 
 <section>
-
-  <section>
-  <h2>Überblick logisch</h2>
-  <img src=../imageinput/grob-layout-komponenten-logisch.png>
-  </section>
-
-  <section>
-  <h2>Überblick physisch</h2>
-  <img src=../imageinput/grob-layout-komponenten.png>
-  </section>
 
   <section>
   <h2>Überblick Schema</h2>
   <img src=../imageinput/datenstrukturen-step-templates.png>
   </section>
 
+  <section>
+  <h2>Überblick logisch</h2>
+  <img src=../imageinput/grob-layout-komponenten-logisch.png>
+  </section>
 
-</section>
-
-
-<section>
+<!--
   <section data-markdown>
   ## Eingang
 
@@ -174,69 +176,76 @@
   * Durchführung Arbeitsschritte
   * Datensammlung
   </section>
+  -->
+  <section>
+  <h2>Überblick physisch</h2>
+  <img src=../imageinput/grob-layout-komponenten.png>
+  </section>
+
 
 </section>
 
 
-<section> <!-- arbeitschritte -->
+<section data-markdown> <!-- arbeitschritte -->
+## Arbeitsschritte <br> und ihre Ausführung
+
+* Procdir
+
+* SCM
+* Process
+
 </section> <!-- arbeitschritte -->
 
 
+<section data-markdown> <!-- claiming -->
 
-<section> <!-- claiming -->
+## Zuteilung von Arbeitspaketen
+
+* Methoden
+  * Token
+  * Claim
+
 </section> <!-- claiming -->
 
-
-
-
-<section> <!-- extensions -->
-</section> <!-- extensions -->
-
+<!--
+<section> -extensions ->
+</section>  extensions ->
+-->
 <section>
-  <section data-markdown>
-  ## Besondere Ansätze
+<section data-markdown>
+## Besondere Ansätze
 
-  * CAP Abdeckung
-  * Zustandsmaschinen Konsistenzwahrung
-  * Abbildung verteiltes System auf <br>
-    verteilte Datenbank
-  </section>
-
-  <section data-markdown>
-  ## CAP Abdeckung
-
-  * Konsistent
-  * Verfügbar
-  * Partition Tolerant
-
-  <hr>
-
+* Abbildung verteiltes System auf <br>
+  verteilte Datenbank
+* Zustandsmaschinen Konsistenzwahrung
+* CAP Abdeckung
   * Komponente - Knoten : C-A
   * Knoten - Knoten : A-P
+</section>
+
 
   </section>
 
-  <section data-markdown>
+<!--  <section data-markdown>
   ## Zustandsmaschinen
   * Bindung von Transitionen an bearbeitende Knoten
   * zyklenfreier Zustandsgraph garantiert Konsistenz
   * allgemein bekannt, leicht zu analysieren
   </section>
-
+  -->
   <section>
-  <h2>Zustandsmaschinen Beispiel</h2>
-  <p>Lebenszyklus Arbeitspaket<br>
-  <img src=../imageinput/lebenszyklus-arbeitspaket.png height=350 width=250>
+  <h2>Beispiel <small>Lebenszyklus Arbeitspaket</small> </h2>
+  <img src=../imageinput/lebenszyklus-arbeitspaket.png height=400 width=375>
   </p>
   </section>
 
-  <section data-markdown>
+<!--  <section data-markdown>
   ## Abbildung VS auf VDBS
 
   * Änderungen statt Nachrichten
   * Zustand in Datenbank
   </section>
-
+  -->
 </section>
 
 <section> <!-- imp -->
@@ -345,6 +354,11 @@
   insbes. Testresultate
 
 </section>
+
+<section data-markdown>
+## Abschluss
+</section>
+
 
 </div> <!-- slides --> 
 </div> <!-- reveal -->
